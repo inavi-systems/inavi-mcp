@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>폴리곤 생성하기</title>
+    <style>
+      #map {
+        width: 100%;
+        height: 500px;
+      }
+    </style>
+  </head>
+  <body>
+    <!--
+    ╔══════════════════════════════════════════════════════════════╗
+    ║  CRITICAL NOTICE FOR AI ASSISTANTS                          ║
+    ║  This is a REFERENCE TEMPLATE with customizable data        ║
+    ║  ✅ ALLOWED: Replace data values (coordinates, colors,      ║
+    ║              opacity, path points)                           ║
+    ║  ❌ FORBIDDEN: Modify iNavi Maps API calls/constructors     ║
+    ║  • DO NOT add options/parameters not shown in template      ║
+    ║  • DO NOT change API usage patterns                         ║
+    ║  • iNavi Maps API ≠ Google Maps API (different syntax)     ║
+    ╚══════════════════════════════════════════════════════════════╝
+    -->
+    <div id="map"></div>
+
+    <script>
+    function initMap() {
+      const map = new inavi.maps.Map({
+        center: [127.090836, 37.407405],
+        container: "map",
+        zoom: 14,
+      });
+
+      const polygon = new inavi.maps.Polygon({
+        map: map,
+        path: [
+          [127.083712, 37.410439],
+          [127.097960, 37.410439],
+          [127.097960, 37.404371],
+          [127.083712, 37.404371],
+          [127.083712, 37.410439],
+        ],
+        style: {
+          fillOpacity: 0.8,
+          fillColor: "#4772F9",
+          fillOutlineColor: "#031B80",
+        },
+      });
+    }
+    </script>
+    <script type="text/javascript" src="{base_url}/appkeys/{appKey}/maps?callback=initMap"></script>
+  </body>
+</html>
+

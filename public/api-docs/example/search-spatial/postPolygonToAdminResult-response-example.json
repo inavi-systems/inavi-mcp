@@ -1,0 +1,122 @@
+{
+  "200": {
+    "success": {
+      "summary": "성공",
+      "value": {
+        "header": {
+          "isSuccessful": true,
+          "resultCode": 0,
+          "resultMessage": "Success"
+        },
+        "adm": {
+          "result": true,
+          "admincodes": {
+            "count": 2,
+            "admincodelist": [
+              {
+                "adminCode": "4113510900",
+                "address": "경기도 성남시 분당구 삼평동"
+              },
+              {
+                "adminCode": "4113565500",
+                "address": "경기도 성남시 분당구 삼평동"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "argError": {
+      "summary": "파라미터 에러",
+      "description": "Argument Error",
+      "value": {
+        "header": {
+          "isSuccessful": false,
+          "resultCode": 101,
+          "resultMessage": "Argument Error"
+        }
+      }
+    },
+    "serverError": {
+      "summary": "IMPS 서버 에러",
+      "description": "IMPS Server Error",
+      "value": {
+        "header": {
+          "isSuccessful": false,
+          "resultCode": 102,
+          "resultMessage": "IMPS Server Error"
+        }
+      }
+    },
+    "authentication": {
+      "summary": "인증 실패",
+      "description": "Authentication Failed",
+      "value": {
+        "header": {
+          "isSuccessful": false,
+          "resultCode": 300,
+          "resultMessage": "Authentication Failed"
+        }
+      }
+    },
+    "badRequest": {
+      "summary": "부적절한 URL",
+      "description": "Inappropriate URL",
+      "value": {
+        "header": {
+          "isSuccessful": false,
+          "resultCode": 301,
+          "resultMessage": "Inappropriate URL"
+        }
+      }
+    }
+  },
+  "400": {
+    "400": {
+      "summary": "잘못된 요청",
+      "value": {
+        "header": {
+          "isSuccessful": false,
+          "resultCode": 400,
+          "resultMessage": "Invalid request parameter or body"
+        }
+      }
+    }
+  },
+  "404": {
+    "404": {
+      "summary": "API 없음",
+      "value": {
+        "header": {
+          "isSuccessful": false,
+          "resultCode": 404,
+          "resultMessage": "API endpoint not found"
+        }
+      }
+    }
+  },
+  "415": {
+    "415": {
+      "summary": "허용되지 않는 메서드",
+      "value": {
+        "header": {
+          "isSuccessful": false,
+          "resultCode": 415,
+          "resultMessage": "Unsupported content type"
+        }
+      }
+    }
+  },
+  "500": {
+    "500": {
+      "summary": "서버 내부 오류",
+      "value": {
+        "header": {
+          "isSuccessful": false,
+          "resultCode": 500,
+          "resultMessage": "Internal Server Error"
+        }
+      }
+    }
+  }
+}

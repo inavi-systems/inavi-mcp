@@ -1,0 +1,249 @@
+{
+  "operationId": "postAdminToPolygonResult",
+  "method": "GET, POST",
+  "path": "/maps/v3.0/appkeys/{APPKEY}/adminToPolygon",
+  "category": "search-spatial",
+  "tags": [
+    "공간 검색"
+  ],
+  "summary": "공간 검색",
+  "description": "지정한 행정구역에 대한 공간(Polygon) 정보를 조회합니다<br>행정구역 코드 또는 명칭을 기준으로 해당 구역의 공간 좌표 목록을 반환합니다",
+  "deprecated": false,
+  "parameters": [
+    {
+      "name": "APPKEY",
+      "in": "path",
+      "description": "해당 API 사용 권한이 있는 API 키",
+      "required": true,
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": {
+    "description": "공간 검색 조건",
+    "content": {
+      "application/json": {
+        "schema": {
+          "required": [
+            "mode",
+            "query"
+          ],
+          "type": "object",
+          "properties": {
+            "query": {
+              "type": "string",
+              "description": "검색 할 행정구역 코드 및 행정 명칭",
+              "example": "4113510900"
+            },
+            "mode": {
+              "maximum": 4,
+              "minimum": 1,
+              "type": "integer",
+              "description": "검색 구역 범위",
+              "format": "int32",
+              "example": 3,
+              "enum": [
+                1,
+                2,
+                3,
+                4
+              ],
+              "x-enum-descriptions": {
+                "1": "광역시도",
+                "2": "시군구",
+                "3": "읍면동",
+                "4": "리"
+              }
+            },
+            "coordtype": {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "string",
+              "description": "좌표 체계",
+              "default": "1",
+              "enum": [
+                "0",
+                "1"
+              ],
+              "x-enum-descriptions": {
+                "0": "TW 좌표",
+                "1": "WGS84 좌표"
+              }
+            }
+          },
+          "description": "공간 검색을 위한 요청 파라미터 집합"
+        },
+        "example": {
+          "query": "4113510600",
+          "mode": 3
+        }
+      }
+    },
+    "required": true
+  },
+  "responses": {
+    "200": {
+      "description": "OK",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": {
+                "type": "object",
+                "properties": {
+                  "isSuccessful": {
+                    "type": "boolean",
+                    "description": "API 요청 성공 여부",
+                    "example": true
+                  },
+                  "resultCode": {
+                    "type": "integer",
+                    "description": "API 응답 결과 코드",
+                    "format": "int32",
+                    "example": 0
+                  },
+                  "resultMessage": {
+                    "type": "string",
+                    "description": "API 응답 결과 문구",
+                    "example": "Success"
+                  }
+                },
+                "description": "API 응답 결과"
+              },
+              "polygon": {
+                "type": "object",
+                "properties": {
+                  "result": {
+                    "type": "boolean",
+                    "description": "검색 결과 성공 여부",
+                    "example": true
+                  },
+                  "count": {
+                    "type": "integer",
+                    "description": "총 응답 결과 개수",
+                    "format": "int32",
+                    "example": 192
+                  },
+                  "polygondata": {
+                    "type": "array",
+                    "description": "행정구역 공간 정보 목록(배열)",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "admincode": {
+                          "type": "string",
+                          "description": "행정표준코드",
+                          "example": "true"
+                        },
+                        "count": {
+                          "type": "integer",
+                          "description": "행정구역 공간 개수",
+                          "format": "int32",
+                          "example": 192
+                        },
+                        "polygonlist": {
+                          "type": "object",
+                          "properties": {
+                            "count": {
+                              "type": "integer",
+                              "description": "공간의 좌표 개수",
+                              "format": "int32",
+                              "example": 236
+                            },
+                            "polygon": {
+                              "type": "array",
+                              "description": "공간의 좌표 정보 목록(배열)",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "x": {
+                                    "type": "number",
+                                    "description": "해당 지점의 X좌표(경도)",
+                                    "example": 127.110762
+                                  },
+                                  "y": {
+                                    "type": "number",
+                                    "description": "해당 지점의 Y좌표(위도)",
+                                    "example": 37.402184
+                                  }
+                                },
+                                "description": "검색 할 좌표를 담는 목록(배열)<br>*최소 3개 이상 입력"
+                              }
+                            }
+                          },
+                          "description": "행정구역 공간 정보 목록(배열)"
+                        }
+                      },
+                      "description": "행정구역 공간 정보 목록(배열)"
+                    }
+                  }
+                },
+                "description": "공간 검색 결과"
+              }
+            },
+            "description": "공간 검색 API의 전체 응답"
+          }
+        }
+      }
+    },
+    "400": {
+      "description": "잘못된 요청",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    },
+    "404": {
+      "description": "API 없음",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    },
+    "415": {
+      "description": "허용되지 않는 메서드",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    },
+    "500": {
+      "description": "서버 내부 오류",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    }
+  },
+  "baseUrl": "https://imaps.inavi.com"
+}

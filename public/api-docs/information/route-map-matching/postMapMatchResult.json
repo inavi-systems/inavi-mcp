@@ -1,0 +1,483 @@
+{
+  "operationId": "postMapMatchResult",
+  "method": "POST",
+  "path": "/maps/v3.0/appkeys/{APPKEY}/map-match",
+  "category": "route-map-matching",
+  "tags": [
+    "복원"
+  ],
+  "summary": "Special Map Matching",
+  "description": "차량 주행 좌표와 함께 속도, 각도, 시간 정보 목록을 입력받아<br>도로 네트워크에 보다 정밀하게 매칭하여 실제 주행 경로를 복원합니다",
+  "deprecated": false,
+  "parameters": [
+    {
+      "name": "APPKEY",
+      "in": "path",
+      "description": "해당 API 사용 권한이 있는 API 키",
+      "required": true,
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": {
+    "description": "Special Map Matching 조건",
+    "content": {
+      "application/json": {
+        "schema": {
+          "required": [
+            "paths",
+            "userId"
+          ],
+          "type": "object",
+          "properties": {
+            "userId": {
+              "type": "string",
+              "description": "사용자를 구분하기 위한 고유 식별 ID"
+            },
+            "paths": {
+              "maxItems": 2147483647,
+              "minItems": 1,
+              "type": "array",
+              "description": "경로를 구성하는 각 지점에 대한 정보 목록(배열)",
+              "items": {
+                "required": [
+                  "angle",
+                  "speed",
+                  "time",
+                  "x",
+                  "y"
+                ],
+                "type": "object",
+                "properties": {
+                  "time": {
+                    "type": "integer",
+                    "description": "해당 경로의 시간<br>*Unix time",
+                    "format": "int64",
+                    "example": 1768795262
+                  },
+                  "x": {
+                    "minimum": 0,
+                    "exclusiveMinimum": false,
+                    "type": "number",
+                    "description": "해당 지점의 X좌표(경도)",
+                    "format": "double"
+                  },
+                  "y": {
+                    "minimum": 0,
+                    "exclusiveMinimum": false,
+                    "type": "number",
+                    "description": "해당 지점의 Y좌표(위도)",
+                    "format": "double"
+                  },
+                  "speed": {
+                    "minimum": 0,
+                    "type": "integer",
+                    "description": "해당 지점의 속도",
+                    "format": "int32"
+                  },
+                  "angle": {
+                    "maximum": 359,
+                    "minimum": 0,
+                    "type": "integer",
+                    "description": "해당 지점의 각도",
+                    "format": "int32"
+                  }
+                },
+                "description": "경로를 구성하는 각 지점에 대한 정보 목록(배열)"
+              }
+            }
+          }
+        },
+        "example": {
+          "userId": "example",
+          "paths": [
+            {
+              "time": 1768795262,
+              "x": 128.9188406742412,
+              "y": 35.0911965931231,
+              "speed": 20,
+              "angle": 0
+            },
+            {
+              "time": 1768795264,
+              "x": 128.91877817651627,
+              "y": 35.09131324558493,
+              "speed": 20,
+              "angle": 336
+            },
+            {
+              "time": 1768795266,
+              "x": 128.9184657070997,
+              "y": 35.09118825385209,
+              "speed": 20,
+              "angle": 243
+            }
+          ]
+        }
+      }
+    },
+    "required": true
+  },
+  "responses": {
+    "200": {
+      "description": "OK",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": {
+                "type": "object",
+                "properties": {
+                  "isSuccessful": {
+                    "type": "boolean",
+                    "description": "API 요청 성공 여부",
+                    "example": true
+                  },
+                  "resultCode": {
+                    "type": "integer",
+                    "description": "API 응답 결과 코드",
+                    "format": "int32",
+                    "example": 0
+                  },
+                  "resultMessage": {
+                    "type": "string",
+                    "description": "API 응답 결과 문구",
+                    "example": "Success"
+                  }
+                },
+                "description": "API 응답 결과"
+              },
+              "roadMatch": {
+                "type": "object",
+                "properties": {
+                  "userId": {
+                    "type": "string",
+                    "description": "사용자를 구분하기 위한 고유 식별 ID"
+                  },
+                  "tollFee": {
+                    "type": "integer",
+                    "description": "경로 상에서 발생하는 총 톨게이트 통행 요금",
+                    "format": "int32",
+                    "example": 1200
+                  },
+                  "totalDistance": {
+                    "type": "integer",
+                    "description": "경로 전체의 총 거리(m)",
+                    "format": "int32",
+                    "example": 4038
+                  },
+                  "totalPointCount": {
+                    "type": "integer",
+                    "description": "경로 전체의 총 지점 개수",
+                    "format": "int32",
+                    "example": 141
+                  },
+                  "safeDrivingScore": {
+                    "type": "integer",
+                    "description": "경로 전체의 안전 운행 점수",
+                    "format": "int32",
+                    "example": 71
+                  },
+                  "safeDrivingEvents": {
+                    "type": "object",
+                    "properties": {
+                      "accelEvents": {
+                        "type": "array",
+                        "description": "급가속 이벤트 리스트",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "startTimestamp": {
+                              "type": "integer",
+                              "description": "이벤트 시작 시간",
+                              "format": "int64",
+                              "example": 1669848945
+                            },
+                            "endTimestamp": {
+                              "type": "integer",
+                              "description": "이벤트 종료 시간",
+                              "format": "int64",
+                              "example": 1669848945
+                            },
+                            "eventLevel": {
+                              "type": "integer",
+                              "description": "급가속 이벤트 레벨<br>*1~3초 이내 속도 증가 기준",
+                              "format": "int32",
+                              "example": 1,
+                              "enum": [
+                                1,
+                                2,
+                                3,
+                                4,
+                                5
+                              ],
+                              "x-enum-descriptions": {
+                                "1": "10km/h 이상",
+                                "2": "15km/h 이상",
+                                "3": "20km/h 이상",
+                                "4": "25km/h 이상",
+                                "5": "30km/h 이상"
+                              }
+                            }
+                          },
+                          "description": "급가속 이벤트 리스트"
+                        }
+                      },
+                      "decelEvents": {
+                        "type": "array",
+                        "description": "급감속 이벤트 리스트",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "startTimestamp": {
+                              "type": "integer",
+                              "description": "이벤트 시작 시간",
+                              "format": "int64",
+                              "example": 1669848945
+                            },
+                            "endTimestamp": {
+                              "type": "integer",
+                              "description": "이벤트 종료 시간",
+                              "format": "int64",
+                              "example": 1669848945
+                            },
+                            "eventLevel": {
+                              "type": "integer",
+                              "description": "급감속 이벤트 레벨<br>*1~3초 이내 속도 증가 기준",
+                              "format": "int32",
+                              "example": 1,
+                              "enum": [
+                                1,
+                                2,
+                                3,
+                                4,
+                                5
+                              ],
+                              "x-enum-descriptions": {
+                                "1": "10km/h 이상",
+                                "2": "15km/h 이상",
+                                "3": "20km/h 이상",
+                                "4": "25km/h 이상",
+                                "5": "30km/h 이상"
+                              }
+                            }
+                          },
+                          "description": "급감속 이벤트 리스트"
+                        }
+                      },
+                      "overspeedEvents": {
+                        "type": "array",
+                        "description": "과속 이벤트 리스트",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "startTimestamp": {
+                              "type": "integer",
+                              "description": "이벤트 시작 시간",
+                              "format": "int64",
+                              "example": 1669848945
+                            },
+                            "endTimestamp": {
+                              "type": "integer",
+                              "description": "이벤트 종료 시간",
+                              "format": "int64",
+                              "example": 1669848945
+                            },
+                            "eventLevel": {
+                              "type": "integer",
+                              "description": "과속 이벤트 레벨<br>*2회 이상 제한속도 초과 기준",
+                              "format": "int32",
+                              "example": 1,
+                              "enum": [
+                                1,
+                                2,
+                                3,
+                                4,
+                                5,
+                                6
+                              ],
+                              "x-enum-descriptions": {
+                                "1": "10km/h 이상",
+                                "2": "20km/h 이상",
+                                "3": "30km/h 이상",
+                                "4": "40km/h 이상",
+                                "5": "50km/h 이상",
+                                "6": "60km/h 이상"
+                              }
+                            }
+                          },
+                          "description": "과속 이벤트 리스트"
+                        }
+                      }
+                    },
+                    "description": "경로 전체의 안전 운행 이벤트 정보"
+                  },
+                  "paths": {
+                    "type": "array",
+                    "description": "경로를 구성하는 각 세부 구간에 대한 정보 목록(배열)",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "x": {
+                          "type": "number",
+                          "description": "해당 지점의 X좌표(경도)",
+                          "format": "double",
+                          "example": 127.105399
+                        },
+                        "y": {
+                          "type": "number",
+                          "description": "해당 지점의 Y좌표(위도)",
+                          "format": "double",
+                          "example": 37.5124518
+                        },
+                        "errorDistance": {
+                          "type": "number",
+                          "description": "요청 좌표와 매칭된 좌표와의 거리(m)",
+                          "format": "double",
+                          "example": 0
+                        },
+                        "angle": {
+                          "type": "integer",
+                          "description": "해당 지점의 진행 각도",
+                          "format": "int32",
+                          "example": 62
+                        },
+                        "roadAttr": {
+                          "type": "integer",
+                          "description": "도로 속성 정보",
+                          "format": "int32",
+                          "example": 0,
+                          "enum": [
+                            1,
+                            2,
+                            3,
+                            4,
+                            17,
+                            18,
+                            19,
+                            20
+                          ],
+                          "x-enum-descriptions": {
+                            "1": "일반 도로",
+                            "2": "JC(연결로)",
+                            "3": "IC(램프)",
+                            "4": "휴게소",
+                            "17": "톨게이트 & 일반도로",
+                            "18": "톨게이트 & JC(연결로)",
+                            "19": "톨게이트 & IC(램프)",
+                            "20": "톨게이트 & 휴게소"
+                          }
+                        },
+                        "roadType": {
+                          "type": "integer",
+                          "description": "도로 종별 정보",
+                          "format": "int32",
+                          "example": 0,
+                          "enum": [
+                            0,
+                            1,
+                            2,
+                            3,
+                            4,
+                            5
+                          ],
+                          "x-enum-descriptions": {
+                            "0": "미조사 도로",
+                            "1": "고속자동차도로",
+                            "2": "도시고속도로",
+                            "3": "국도",
+                            "4": "지방도",
+                            "5": "일반도로"
+                          }
+                        },
+                        "speed": {
+                          "type": "integer",
+                          "description": "해당 지점의 진행 속도",
+                          "format": "int32",
+                          "example": 73
+                        },
+                        "speedLimit": {
+                          "type": "integer",
+                          "description": "해당 지점의 도로 제한 속도",
+                          "format": "int32",
+                          "example": 30
+                        },
+                        "datetime": {
+                          "type": "string",
+                          "description": "해당 지점을 지난 시간",
+                          "example": "2026-01-01 10:05:22"
+                        }
+                      },
+                      "description": "경로를 구성하는 각 세부 구간에 대한 정보 목록(배열)"
+                    }
+                  }
+                },
+                "description": "Road Map Matching 결과"
+              }
+            },
+            "description": "Special Map Matching 의 전체 응답"
+          }
+        }
+      }
+    },
+    "400": {
+      "description": "잘못된 요청",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    },
+    "404": {
+      "description": "API 없음",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    },
+    "415": {
+      "description": "허용되지 않는 메서드",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    },
+    "500": {
+      "description": "서버 내부 오류",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    }
+  },
+  "baseUrl": "https://imaps.inavi.com"
+}

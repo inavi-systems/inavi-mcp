@@ -1,0 +1,153 @@
+{
+  "200": {
+    "success": {
+      "summary": "성공",
+      "value": {
+        "header": {
+          "isSuccessful": true,
+          "resultCode": 0,
+          "resultMessage": "Success"
+        },
+        "route": {
+          "data": {
+            "option": "real_traffic",
+            "toll_fee": 3400,
+            "taxiFare": 45000,
+            "totalTaxiFare": "7000",
+            "spend_time": 3720,
+            "distance": 72183,
+            "isHighWay": true,
+            "times": [
+              {
+                "index": 0,
+                "spend_time": 3720,
+                "start_time": {
+                  "year": 2019,
+                  "month": 11,
+                  "day": 26,
+                  "hour": 11,
+                  "minutes": 0
+                },
+                "end_time": {
+                  "year": 2019,
+                  "month": 11,
+                  "day": 26,
+                  "hour": 11,
+                  "minutes": 0
+                }
+              }
+            ],
+            "paths": [
+              {
+                "coords": [
+                  {
+                    "x": "127.110762",
+                    "y": "37.402184"
+                  }
+                ],
+                "speed": 85,
+                "distance": 120,
+                "spend_time": 2800,
+                "road_code": 1,
+                "traffic_color": "#fb3a76",
+                "point_type": "S"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "argError": {
+      "summary": "파라미터 에러",
+      "description": "Argument Error",
+      "value": {
+        "header": {
+          "isSuccessful": false,
+          "resultCode": 101,
+          "resultMessage": "Argument Error"
+        }
+      }
+    },
+    "serverError": {
+      "summary": "IMPS 서버 에러",
+      "description": "IMPS Server Error",
+      "value": {
+        "header": {
+          "isSuccessful": false,
+          "resultCode": 102,
+          "resultMessage": "IMPS Server Error"
+        }
+      }
+    },
+    "authentication": {
+      "summary": "인증 실패",
+      "description": "Authentication Failed",
+      "value": {
+        "header": {
+          "isSuccessful": false,
+          "resultCode": 300,
+          "resultMessage": "Authentication Failed"
+        }
+      }
+    },
+    "badRequest": {
+      "summary": "부적절한 URL",
+      "description": "Inappropriate URL",
+      "value": {
+        "header": {
+          "isSuccessful": false,
+          "resultCode": 301,
+          "resultMessage": "Inappropriate URL"
+        }
+      }
+    }
+  },
+  "400": {
+    "400": {
+      "summary": "잘못된 요청",
+      "value": {
+        "header": {
+          "isSuccessful": false,
+          "resultCode": 400,
+          "resultMessage": "Invalid request parameter or body"
+        }
+      }
+    }
+  },
+  "404": {
+    "404": {
+      "summary": "API 없음",
+      "value": {
+        "header": {
+          "isSuccessful": false,
+          "resultCode": 404,
+          "resultMessage": "API endpoint not found"
+        }
+      }
+    }
+  },
+  "415": {
+    "415": {
+      "summary": "허용되지 않는 메서드",
+      "value": {
+        "header": {
+          "isSuccessful": false,
+          "resultCode": 415,
+          "resultMessage": "Unsupported content type"
+        }
+      }
+    }
+  },
+  "500": {
+    "500": {
+      "summary": "서버 내부 오류",
+      "value": {
+        "header": {
+          "isSuccessful": false,
+          "resultCode": 500,
+          "resultMessage": "Internal Server Error"
+        }
+      }
+    }
+  }
+}

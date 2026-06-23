@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>색상별 마커 표시하기</title>
+    <style>
+      #map {
+        width: 100%;
+        height: 500px;
+      }
+    </style>
+  </head>
+  <body>
+    <!--
+    ╔══════════════════════════════════════════════════════════════╗
+    ║  CRITICAL NOTICE FOR AI ASSISTANTS                          ║
+    ║  This is a REFERENCE TEMPLATE with customizable data        ║
+    ║  ✅ ALLOWED: Replace data values (coordinates, labels)      ║
+    ║  ❌ FORBIDDEN: Modify iNavi Maps API calls/constructors     ║
+    ║  • DO NOT add options/parameters not shown in template      ║
+    ║  • DO NOT change API usage patterns                         ║
+    ║  • iNavi Maps API ≠ Google Maps API (different syntax)     ║
+    ╚══════════════════════════════════════════════════════════════╝
+    -->
+    <div id="map"></div>
+
+    <script>
+    /**
+     * 지정된 색상의 마커 SVG 이미지를 생성합니다.
+     * @param {string} color - Hex 색상 코드 (예: '#E74C3C')
+     * @returns {string} Data URL 형식의 SVG 이미지
+     */
+    function createMarkerSVG(color) {
+      // Hex 색상 코드의 # 기호를 URL 인코딩
+      const encodedColor = color.replace('#', '%23');
+      return `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='40' viewBox='0 0 30 40'%3E%3Cpath d='M15 2C7.82 2 2 7.82 2 15c0 7.18 13 23 13 23s13-15.82 13-23C28 7.82 22.18 2 15 2z' fill='${encodedColor}' stroke='%23FFFFFF' stroke-width='1.5'/%3E%3C/svg%3E`;
+    }
+
+    function initMap() {
+      const map = new inavi.maps.Map({
+        center: [127.0276, 37.4979],
+        container: "map",
+        zoom: 13,
+      });
+
+      // 마커에 표시할 위치 목록 (각 위치별로 다른 색상 지정)
+      const locations = [
+        { lng: 127.0276, lat: 37.4979, title: "강남역", color: "#E74C3C" },      // 빨강
+        { lng: 127.0324, lat: 37.5002, title: "역삼역", color: "#3498DB" },      // 파랑
+        { lng: 127.0396, lat: 37.5007, title: "선릉역", color: "#27AE60" },      // 초록
+        { lng: 127.0486, lat: 37.5045, title: "삼성역", color: "#F39C12" },      // 주황
+        { lng: 127.0598, lat: 37.5082, title: "봉은사역", color: "#9B59B6" },    // 보라
+      ];
+
+      // 마커 생성 및 지도에 추가
+      locations.forEach((location) => {
+        const marker = new inavi.maps.Marker({
+          map: map,
+          position: [location.lng, location.lat],
+          icon: createMarkerSVG(location.color),
+          title: location.title,
+        });
+      });
+    }
+    </script>
+    <script type="text/javascript" src="{base_url}/appkeys/{appKey}/maps?callback=initMap"></script>
+  </body>
+</html>
+

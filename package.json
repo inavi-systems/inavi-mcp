@@ -1,0 +1,96 @@
+{
+  "name": "@inavi-maps/mcp-server",
+  "version": "0.3.7",
+  "description": "MCP Server for iNavi Maps API - Geocoding, POI Search, Route Planning for Claude AI",
+  "main": "dist/server.js",
+  "bin": {
+    "inavi-maps-mcp": "dist/server.js"
+  },
+  "files": [
+    "dist/",
+    "public/",
+    ".env.example",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only -r tsconfig-paths/register src/server.ts",
+    "build": "tsc -p tsconfig.src.json && tsc-alias -p tsconfig.src.json",
+    "start": "node dist/server.js",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest --coverage",
+    "test:watch": "vitest --watch",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "eslint src --ext .ts --fix",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "format:check": "prettier --check \"src/**/*.ts\"",
+    "type-check": "tsc --noEmit",
+    "update-api-docs": "node scripts/update-api-docs.js",
+    "validate-api-docs": "vitest run test/scripts/validate-api-docs.test.ts",
+    "prepublishOnly": "npm run lint && npm run type-check && npm run build",
+    "version": "node scripts/sync-version.js && git add manifest.json",
+    "release": "echo 'Use GitHub Actions: Actions > Release > Run workflow' && exit 1"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "typescript",
+    "stdio",
+    "inavi",
+    "maps",
+    "geocoding",
+    "reverse-geocoding",
+    "poi",
+    "search",
+    "route",
+    "navigation",
+    "claude",
+    "ai",
+    "llm",
+    "korean-maps"
+  ],
+  "author": "inavi-webservice",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/inavi-systems/inavi-mcp.git"
+  },
+  "homepage": "https://github.com/inavi-systems/inavi-mcp#readme",
+  "bugs": {
+    "url": "https://github.com/inavi-systems/inavi-mcp/issues"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "dependencies": {
+    "@apidevtools/json-schema-ref-parser": "^11.0.0",
+    "@modelcontextprotocol/sdk": "^1.21.0",
+    "dotenv": "^17.2.3",
+    "zod": "^3.25.76",
+    "zod-to-json-schema": "^3.25.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@types/node": "^24.10.0",
+    "@typescript-eslint/eslint-plugin": "^8.46.3",
+    "@typescript-eslint/parser": "^8.46.3",
+    "@vitest/coverage-v8": "^1.0.0",
+    "@vitest/ui": "^1.0.0",
+    "eslint": "^9.39.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
+    "prettier": "^3.6.2",
+    "ts-node-dev": "^2.0.0",
+    "tsc-alias": "^1.8.16",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.46.3",
+    "vite": "^5.0.0",
+    "vitest": "^1.0.0"
+  }
+}

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>클러스터된 마커에서 정보창 표시</title>
+    <style>
+      #map {
+        width: 100%;
+        height: 500px;
+      }
+    </style>
+  </head>
+  <body>
+    <!--
+    ╔══════════════════════════════════════════════════════════════╗
+    ║  CRITICAL NOTICE FOR AI ASSISTANTS                          ║
+    ║  This is a REFERENCE TEMPLATE with customizable data        ║
+    ║  ✅ ALLOWED: Replace data values (coordinates, labels)      ║
+    ║  ❌ FORBIDDEN: Modify iNavi Maps API calls/constructors     ║
+    ║  • DO NOT add options/parameters not shown in template      ║
+    ║  • DO NOT change API usage patterns                         ║
+    ║  • iNavi Maps API ≠ Google Maps API (different syntax)     ║
+    ╚══════════════════════════════════════════════════════════════╝
+    -->
+    <div id="map"></div>
+
+    <script>
+    function initMap() {
+      const markerPoints = [
+        { lat: 37.392679, lng: 127.089033 },
+        { lat: 37.39943,  lng: 127.092467 },
+        { lat: 37.397316, lng: 127.103024 },
+        { lat: 37.404271, lng: 127.106629 },
+        { lat: 37.398203, lng: 127.11813  },
+        { lat: 37.394043, lng: 127.102595 },
+        { lat: 37.399703, lng: 127.101221 },
+        { lat: 37.397112, lng: 127.126627 },
+        { lat: 37.40768,  lng: 127.130404 },
+        { lat: 37.404544, lng: 127.110663 },
+        { lat: 37.392748, lng: 127.142592 },
+        { lat: 37.406044, lng: 127.147312 },
+      ];
+
+      const map = new inavi.maps.Map({
+        center: [127.110749, 37.402158],
+        container: "map",
+        zoom: 13,
+      });
+
+      /*
+       * ╔════════════════════════════════════════════════════════════════╗
+       * ║  InfoWindow vs CustomInfoWindow - IMPORTANT FOR AI           ║
+       * ╠════════════════════════════════════════════════════════════════╣
+       * ║  TWO TYPES OF INFO WINDOWS AVAILABLE:                         ║
+       * ║                                                                ║
+       * ║  1. inavi.maps.InfoWindow (Used in this example)              ║
+       * ║     - Provides DEFAULT white rectangular background           ║
+       * ║     - Automatic styling applied                               ║
+       * ║     - Quick implementation with built-in appearance           ║
+       * ║                                                                ║
+       * ║  2. inavi.maps.CustomInfoWindow (Alternative)                 ║
+       * ║     - FULLY CUSTOMIZABLE appearance                           ║
+       * ║     - NO default background - complete freedom                ║
+       * ║     - Control background color, shape, border, etc.           ║
+       * ║     - To use: Replace "InfoWindow" with "CustomInfoWindow"   ║
+       * ║       Example: new inavi.maps.CustomInfoWindow({ ... })      ║
+       * ╚════════════════════════════════════════════════════════════════╝
+       */
+      const sharedInfoWindow = new inavi.maps.InfoWindow({
+        content: '',
+        offset: [0, -40],
+        zIndexOffSet: 999,
+        closeButton: false,
+      });
+
+      const markers = markerPoints.map(function(point) {
+        return new inavi.maps.Marker({ position: point });
+      });
+
+      const markerCluster = new inavi.maps.MarkerClusterer(map, markers);
+
+      // Check if target is individual marker (id ends with 's', e.g., "cluster_123_7s")
+      function isIndividualMarker(target) {
+        return target.id && /s$/.test(target.id);
+      }
+
+      // Extract index from marker id (e.g., "cluster_123_7s" -> 7)
+      function getMarkerIndex(id) {
+        const match = id.match(/_(\d+)s$/);
+        return match ? Number(match[1]) : null;
+      }
+
+      function createInfoContent(point) {
+        return `
+          <div style="padding: 10px; min-width: 150px;">
+            <p style="margin: 0; font-size: 13px; color: #333;">
+              <strong>위도:</strong> ${point.lat.toFixed(6)}
+            </p>
+            <p style="margin: 4px 0 0 0; font-size: 13px; color: #333;">
+              <strong>경도:</strong> ${point.lng.toFixed(6)}
+            </p>
+          </div>
+        `;
+      }
+
+      // Cluster click: zoom in
+      markerCluster.on("click", function(e) {
+        if (e.target.cluster) {
+          map.flyTo(e.lngLat, { zoom: map.getZoom() + 1, duration: 1000 });
+        }
+      });
+
+      // Marker hover: show InfoWindow
+      markerCluster.on("mouseenter", function(e) {
+        if (!isIndividualMarker(e.target)) return;
+
+        const index = getMarkerIndex(e.target.id);
+        const point = markerPoints[index];
+
+        if (point) {
+          sharedInfoWindow.setPosition(e.lngLat);
+          sharedInfoWindow.setContent(createInfoContent(point));
+          sharedInfoWindow.setMap(map);
+        }
+      });
+
+      // Marker hover out: hide InfoWindow
+      markerCluster.on("mouseleave", function(e) {
+        if (isIndividualMarker(e.target)) {
+          sharedInfoWindow.setMap();
+        }
+      });
+    }
+    </script>
+    <script type="text/javascript" src="{base_url}/appkeys/{appKey}/maps?callback=initMap"></script>
+  </body>
+</html>

@@ -1,0 +1,191 @@
+{
+  "operationId": "getW3WProposersResult",
+  "method": "GET",
+  "path": "/maps/v3.0/appkeys/{APPKEY}/w3w-proposers",
+  "category": "search-w3w",
+  "tags": [
+    "W3W"
+  ],
+  "summary": "W3W 검색어 추천",
+  "description": "W3W 검색어 추천 결과에 대한 상세 정보를 제공합니다",
+  "deprecated": false,
+  "parameters": [
+    {
+      "name": "APPKEY",
+      "in": "path",
+      "description": "해당 API 사용 권한이 있는 API 키",
+      "required": true,
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "query",
+      "in": "query",
+      "description": "w3w(what3words)키워드 <br>*what3words 양식 대로 2단어 입력 후 초성 및 단어 입력 필수<br>*예: 서명.증감.ㅇ / 외치다.효자.소",
+      "required": true,
+      "schema": {
+        "pattern": "^(([가-힣]+\\.){2}[ㄱ-ㅎ가-힣]+|([a-zA-Z]+\\.){2}[a-zA-Z]+)$",
+        "type": "string",
+        "description": "w3w(what3words)키워드 <br>*what3words 양식 대로 2단어 입력 후 초성 및 단어 입력 필수<br>*예: 서명.증감.ㅇ / 외치다.효자.소",
+        "example": "외치다.효자.소"
+      },
+      "example": "외치다.효자.소"
+    },
+    {
+      "name": "posX",
+      "in": "query",
+      "description": "해당 지점의 X좌표(경도)",
+      "required": false,
+      "schema": {
+        "type": "string",
+        "description": "해당 지점의 X좌표(경도)",
+        "example": 127.11075
+      },
+      "example": 127.11075
+    },
+    {
+      "name": "posY",
+      "in": "query",
+      "description": "해당 지점의 Y좌표(위도)",
+      "required": false,
+      "schema": {
+        "type": "string",
+        "description": "해당 지점의 Y좌표(위도)",
+        "example": 37.402159
+      },
+      "example": 37.402159
+    }
+  ],
+  "responses": {
+    "200": {
+      "description": "OK",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": {
+                "type": "object",
+                "properties": {
+                  "isSuccessful": {
+                    "type": "boolean",
+                    "description": "API 요청 성공 여부",
+                    "example": true
+                  },
+                  "resultCode": {
+                    "type": "integer",
+                    "description": "API 응답 결과 코드",
+                    "format": "int32",
+                    "example": 0
+                  },
+                  "resultMessage": {
+                    "type": "string",
+                    "description": "API 응답 결과 문구",
+                    "example": "Success"
+                  }
+                },
+                "description": "API 응답 결과"
+              },
+              "proposer": {
+                "type": "object",
+                "properties": {
+                  "result": {
+                    "type": "boolean",
+                    "description": "검색 결과 성공 여부",
+                    "example": true
+                  },
+                  "keyword": {
+                    "type": "array",
+                    "description": "w3w 검색어 추천 결과 목록(배열)",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "keyword": {
+                          "type": "string",
+                          "description": "추천 w3w(what3words) 키워드",
+                          "example": "외치다.효자.다소"
+                        },
+                        "address": {
+                          "type": "string",
+                          "description": "축약 주소",
+                          "example": "대전광역시"
+                        },
+                        "distance": {
+                          "type": "integer",
+                          "description": "기준점과의 거리",
+                          "format": "int32",
+                          "example": 9
+                        }
+                      },
+                      "description": "w3w 검색어 추천 결과 목록(배열)"
+                    }
+                  }
+                },
+                "description": "W3W 검색어 추천 결과"
+              }
+            },
+            "description": "W3W 검색어 추천 API의 전체 응답"
+          }
+        }
+      }
+    },
+    "400": {
+      "description": "잘못된 요청",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    },
+    "404": {
+      "description": "API 없음",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    },
+    "415": {
+      "description": "허용되지 않는 메서드",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    },
+    "500": {
+      "description": "서버 내부 오류",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    }
+  },
+  "baseUrl": "https://imaps.inavi.com"
+}

@@ -1,0 +1,394 @@
+{
+  "operationId": "getCoordinateResult",
+  "method": "GET",
+  "path": "/maps/v3.0/appkeys/{APPKEY}/coordinates",
+  "category": "search-geocoding",
+  "tags": [
+    "지오코딩"
+  ],
+  "summary": "지오코딩",
+  "description": "입력한 주소 문자열을 기반으로 좌표 정보를 검색합니다<br>부분 주소 또는 키워드 형태의 입력도 허용되며,<br>검색 결과에 따라 하나 이상의 후보 좌표를 반환합니다",
+  "deprecated": false,
+  "parameters": [
+    {
+      "name": "APPKEY",
+      "in": "path",
+      "description": "해당 API 사용 권한이 있는 API 키",
+      "required": true,
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "query",
+      "in": "query",
+      "description": "검색 키워드",
+      "required": true,
+      "schema": {
+        "type": "string",
+        "description": "검색 키워드",
+        "example": "경기도 성남시 분당구 판교역로 240"
+      },
+      "example": "경기도 성남시 분당구 판교역로 240"
+    },
+    {
+      "name": "coordtype",
+      "in": "query",
+      "description": "좌표 체계",
+      "required": false,
+      "schema": {
+        "maximum": 1,
+        "minimum": 0,
+        "type": "string",
+        "description": "좌표 체계",
+        "default": "1",
+        "enum": [
+          "0",
+          "1"
+        ],
+        "x-enum-descriptions": {
+          "0": "TW 좌표",
+          "1": "WGS84 좌표"
+        }
+      },
+      "x-enum-descriptions": {
+        "0": "TW 좌표",
+        "1": "WGS84 좌표"
+      }
+    },
+    {
+      "name": "startposition",
+      "in": "query",
+      "description": "검색 시작 위치<br>*0은 첫 번째 위치를 의미",
+      "required": false,
+      "schema": {
+        "type": "string",
+        "description": "검색 시작 위치<br>*0은 첫 번째 위치를 의미",
+        "default": "0"
+      }
+    },
+    {
+      "name": "reqcount",
+      "in": "query",
+      "description": "요청 개수<br>*0~9999",
+      "required": false,
+      "schema": {
+        "maximum": 9999,
+        "minimum": 0,
+        "type": "string",
+        "description": "요청 개수<br>*0~9999",
+        "default": "100"
+      }
+    },
+    {
+      "name": "admcode",
+      "in": "query",
+      "description": "행정구역 코드",
+      "required": false,
+      "schema": {
+        "type": "string",
+        "description": "행정구역 코드"
+      }
+    },
+    {
+      "name": "posX",
+      "in": "query",
+      "description": "X좌표(경도) <br>*입력 시 좌표를 기준으로 거리 값 출력",
+      "required": false,
+      "schema": {
+        "type": "string",
+        "description": "X좌표(경도) <br>*입력 시 좌표를 기준으로 거리 값 출력",
+        "example": 127.11075
+      },
+      "example": 127.11075
+    },
+    {
+      "name": "posY",
+      "in": "query",
+      "description": "Y좌표(위도) <br>*입력 시 좌표를 기준으로 거리 값 출력",
+      "required": false,
+      "schema": {
+        "type": "string",
+        "description": "Y좌표(위도) <br>*입력 시 좌표를 기준으로 거리 값 출력",
+        "example": 37.402159
+      },
+      "example": 37.402159
+    },
+    {
+      "name": "addrext",
+      "in": "query",
+      "description": "주소 지번/건물번호 확장 검색 옵션",
+      "required": false,
+      "schema": {
+        "maximum": 2,
+        "minimum": 0,
+        "type": "string",
+        "description": "주소 지번/건물번호 확장 검색 옵션",
+        "default": "0",
+        "enum": [
+          "0",
+          "1",
+          "2"
+        ],
+        "x-enum-descriptions": {
+          "0": "지번/건물번호 확장 검색",
+          "1": "부번호 확장 검색",
+          "2": "본번호 확장 검색"
+        }
+      },
+      "x-enum-descriptions": {
+        "0": "지번/건물번호 확장 검색",
+        "1": "부번호 확장 검색",
+        "2": "본번호 확장 검색"
+      }
+    }
+  ],
+  "responses": {
+    "200": {
+      "description": "OK",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": {
+                "type": "object",
+                "properties": {
+                  "isSuccessful": {
+                    "type": "boolean",
+                    "description": "API 요청 성공 여부",
+                    "example": true
+                  },
+                  "resultCode": {
+                    "type": "integer",
+                    "description": "API 응답 결과 코드",
+                    "format": "int32",
+                    "example": 0
+                  },
+                  "resultMessage": {
+                    "type": "string",
+                    "description": "API 응답 결과 문구",
+                    "example": "Success"
+                  }
+                },
+                "description": "API 응답 결과"
+              },
+              "address": {
+                "type": "object",
+                "properties": {
+                  "result": {
+                    "type": "boolean",
+                    "description": "검색 결과 성공 여부",
+                    "example": true
+                  },
+                  "totalcount": {
+                    "type": "integer",
+                    "description": "총 검색 결과 개수",
+                    "format": "int32",
+                    "example": 192
+                  },
+                  "admtotalcount": {
+                    "type": "integer",
+                    "description": "총 주소 검색 결과 개수",
+                    "format": "int32",
+                    "example": 2
+                  },
+                  "admcount": {
+                    "type": "integer",
+                    "description": "주소 검색 응답 개수",
+                    "format": "int32",
+                    "example": 2
+                  },
+                  "adm": {
+                    "type": "array",
+                    "description": "주소 검색 결과 목록(배열)",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "integer",
+                          "description": "검색 타입",
+                          "format": "int32",
+                          "example": 1,
+                          "enum": [
+                            1,
+                            2,
+                            3
+                          ],
+                          "x-enum-descriptions": {
+                            "1": "행정구역 검색",
+                            "2": "지번 검색",
+                            "3": "도로명 주소 검색"
+                          }
+                        },
+                        "posx": {
+                          "type": "string",
+                          "description": "X좌표(경도) 값",
+                          "example": "127.11065"
+                        },
+                        "posy": {
+                          "type": "string",
+                          "description": "Y좌표(위도) 값",
+                          "example": "37.402109"
+                        },
+                        "admcode": {
+                          "type": "string",
+                          "description": "법정구역 코드",
+                          "example": "4113510900"
+                        },
+                        "address": {
+                          "type": "string",
+                          "description": "전체 주소",
+                          "example": "경기도 성남시 분당구 삼평동"
+                        },
+                        "address_sido": {
+                          "type": "string",
+                          "description": "시/도",
+                          "example": "경기도"
+                        },
+                        "address_gu": {
+                          "type": "string",
+                          "description": "군/구",
+                          "example": "성남시 분당구"
+                        },
+                        "address_dong": {
+                          "type": "string",
+                          "description": "법정동 명칭",
+                          "example": "삼평동"
+                        },
+                        "address_haeng": {
+                          "type": "string",
+                          "description": "행정동 명칭",
+                          "example": "삼평동"
+                        },
+                        "legalcode": {
+                          "type": "string",
+                          "description": "법정동 코드",
+                          "example": "4113510900"
+                        },
+                        "haengcode": {
+                          "type": "string",
+                          "description": "행정동 코드",
+                          "example": "4113565500"
+                        },
+                        "jibun": {
+                          "type": "string",
+                          "description": "지번 정보",
+                          "example": "678"
+                        },
+                        "roadname": {
+                          "type": "string",
+                          "description": "도로명 주소",
+                          "example": "경기도 성남시 분당구 판교역로"
+                        },
+                        "roadjibun": {
+                          "type": "string",
+                          "description": "건물 번호",
+                          "example": "240"
+                        },
+                        "postcode": {
+                          "type": "string",
+                          "description": "우편번호<br>*주소+지번 검색 시 제공",
+                          "example": "13493"
+                        },
+                        "buildname": {
+                          "type": "string",
+                          "description": "건물 명칭<br>*도로명 주소 검색 시 제공",
+                          "example": "삼환하이펙스A동"
+                        },
+                        "accuracy": {
+                          "type": "integer",
+                          "description": "지번 정확도<br>*검색 된 방식에 따라 정확도가 결정",
+                          "format": "int32",
+                          "example": 0,
+                          "enum": [
+                            0,
+                            1,
+                            2,
+                            3
+                          ],
+                          "x-enum-descriptions": {
+                            "0": "지번 일치 검색",
+                            "1": "호지번 확장 검색",
+                            "2": "모지번 확장 검색",
+                            "3": "행정구역 검색"
+                          }
+                        },
+                        "distance": {
+                          "type": "integer",
+                          "description": "기준점과의 거리 정보(m)",
+                          "format": "int32",
+                          "example": 0
+                        }
+                      },
+                      "description": "주소 검색 결과 목록(배열)"
+                    }
+                  }
+                },
+                "description": "지오코딩 결과"
+              }
+            },
+            "description": "지오코딩 API의 전체 응답"
+          }
+        }
+      }
+    },
+    "400": {
+      "description": "잘못된 요청",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    },
+    "404": {
+      "description": "API 없음",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    },
+    "415": {
+      "description": "허용되지 않는 메서드",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    },
+    "500": {
+      "description": "서버 내부 오류",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    }
+  },
+  "baseUrl": "https://imaps.inavi.com"
+}

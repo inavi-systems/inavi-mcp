@@ -1,0 +1,436 @@
+{
+  "operationId": "postRouteSummaryResult",
+  "method": "GET, POST",
+  "path": "/maps/v3.0/appkeys/{APPKEY}/route-summary",
+  "category": "route-directions",
+  "tags": [
+    "탐색"
+  ],
+  "summary": "경로 탐색 요약",
+  "description": "출발/도착지 및 최대 5개의 경유지, 기타 설정을 통해 탐색된 요약 정보를 반환합니다",
+  "deprecated": false,
+  "parameters": [
+    {
+      "name": "APPKEY",
+      "in": "path",
+      "description": "해당 API 사용 권한이 있는 API 키",
+      "required": true,
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": {
+    "description": "경로 탐색 요약 조건",
+    "content": {
+      "application/json": {
+        "schema": {
+          "required": [
+            "endX",
+            "endY",
+            "option",
+            "startX",
+            "startY"
+          ],
+          "type": "object",
+          "properties": {
+            "option": {
+              "pattern": "^(real_traffic|real_traffic2|real_traffic_freeroad|short_distance_priority|time_priority|motorcycle|recommendation|highway_priority)(\\s*,\\s*(real_traffic|real_traffic2|real_traffic_freeroad|short_distance_priority|time_priority|motorcycle|recommendation|highway_priority))*$",
+              "type": "string",
+              "description": "경로 탐색 옵션<br>*다중 선택 가능",
+              "example": "real_traffic",
+              "enum": [
+                "real_traffic",
+                "real_traffic2",
+                "real_traffic_freeroad",
+                "short_distance_priority",
+                "time_priority",
+                "motorcycle",
+                "recommendation",
+                "highway_priority"
+              ],
+              "x-enum-descriptions": {
+                "motorcycle": "이륜차 경로",
+                "highway_priority": "고속 도로",
+                "short_distance_priority": "최단 거리",
+                "time_priority": "최소 시간",
+                "real_traffic": "실시간 경로",
+                "recommendation": "추천 경로",
+                "real_traffic_freeroad": "무료 도로",
+                "real_traffic2": "대안 경로"
+              }
+            },
+            "startX": {
+              "type": "string",
+              "description": "시작 지점(출발지)에 대한 X좌표(경도)",
+              "example": "127.110762"
+            },
+            "startY": {
+              "type": "string",
+              "description": "시작 지점(출발지)에 대한 Y좌표(위도)",
+              "example": "37.402184"
+            },
+            "endX": {
+              "type": "string",
+              "description": "끝 지점(도착지)에 대한 X좌표(경도)",
+              "example": "127.105399"
+            },
+            "endY": {
+              "type": "string",
+              "description": "끝 지점(도착지)에 대한 Y좌표(위도)",
+              "example": "37.5124518"
+            },
+            "coordType": {
+              "pattern": "^(tw|wgs84|TW|WGS84)$",
+              "type": "string",
+              "description": "좌표 체계<br>*'wgs84'는 국제 표준 좌표계, 'tw'는 팅크웨어 좌표계를 의미",
+              "default": "wgs84",
+              "enum": [
+                "wgs84",
+                "tw"
+              ]
+            },
+            "via1X": {
+              "type": "string",
+              "description": "1 번째 경유지에 대한 X좌표(경도)"
+            },
+            "via1Y": {
+              "type": "string",
+              "description": "1 번째 경유지에 대한 Y좌표(위도)"
+            },
+            "via2X": {
+              "type": "string",
+              "description": "2 번째 경유지에 대한 X좌표(경도)"
+            },
+            "via2Y": {
+              "type": "string",
+              "description": "2 번째 경유지에 대한 Y좌표(위도)"
+            },
+            "via3X": {
+              "type": "string",
+              "description": "3 번째 경유지에 대한 X좌표(경도)"
+            },
+            "via3Y": {
+              "type": "string",
+              "description": "3 번째 경유지에 대한 Y좌표(위도)"
+            },
+            "via4X": {
+              "type": "string",
+              "description": "4 번째 경유지에 대한 X좌표(경도)"
+            },
+            "via4Y": {
+              "type": "string",
+              "description": "4 번째 경유지에 대한 Y좌표(위도)"
+            },
+            "via5X": {
+              "type": "string",
+              "description": "5 번째 경유지에 대한 X좌표(경도)"
+            },
+            "via5Y": {
+              "type": "string",
+              "description": "5 번째 경유지에 대한 Y좌표(위도)"
+            },
+            "carType": {
+              "maximum": 6,
+              "minimum": 1,
+              "type": "integer",
+              "description": "차량 종류",
+              "format": "int32",
+              "example": 1,
+              "default": 1,
+              "enum": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ],
+              "x-enum-descriptions": {
+                "1": "소형차",
+                "2": "중형차",
+                "3": "대형차",
+                "4": "대형화물차",
+                "5": "특수화물차",
+                "6": "경차"
+              }
+            },
+            "carHeight": {
+              "type": "integer",
+              "description": "차량의 높이(cm)",
+              "format": "int32",
+              "example": 150
+            },
+            "carWeight": {
+              "type": "integer",
+              "description": "차량의 총 중량(kg)",
+              "format": "int32",
+              "example": 4000
+            },
+            "groupByTrafficColor": {
+              "type": "boolean",
+              "description": "경로의 교통 상황 색상 그룹화 여부",
+              "default": false,
+              "enum": [
+                false,
+                true
+              ],
+              "x-enum-descriptions": {
+                "false": "교통 상황 색상 비그룹화",
+                "true": "교통 상황 색상 그룹화"
+              }
+            },
+            "useAngle": {
+              "type": "boolean",
+              "description": "출발 지점의 주행 각도 설정 여부",
+              "default": false,
+              "enum": [
+                false,
+                true
+              ],
+              "x-enum-descriptions": {
+                "false": "주행 방향 비우선",
+                "true": "주행 방향 우선"
+              }
+            },
+            "angle": {
+              "maximum": 359,
+              "minimum": 0,
+              "type": "integer",
+              "description": "주행 각도<br>*정북 방향을 0으로 하여 시계 방향으로 0~359도<br>*'useAngle'이 true일 때 적용",
+              "format": "int32"
+            },
+            "useStartDirection": {
+              "type": "boolean",
+              "description": "출발지 좌표 기준 주행 방향 지정 여부<br>*차량 주행방향을 알 수 없을 때 활용",
+              "default": false,
+              "enum": [
+                false,
+                true
+              ],
+              "x-enum-descriptions": {
+                "false": "출발지 좌표 기준 주행 방향 미지정",
+                "true": "출발지 좌표 기준 주행 방향 지정"
+              }
+            },
+            "searchByAddress": {
+              "type": "boolean",
+              "description": "주소 기반 경로 탐색 여부",
+              "default": false,
+              "enum": [
+                false,
+                true
+              ],
+              "x-enum-descriptions": {
+                "false": "일반 경로 탐색",
+                "true": "주소 기반 경로 탐색"
+              }
+            },
+            "usageType": {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "integer",
+              "description": "사용 용도",
+              "format": "int32",
+              "default": 0,
+              "enum": [
+                0,
+                1
+              ],
+              "x-enum-descriptions": {
+                "0": "일반",
+                "1": "택시"
+              }
+            },
+            "avoidWaterSourceArea": {
+              "type": "boolean",
+              "description": "상수원 보호 구역 회피 탐색 여부",
+              "default": false,
+              "enum": [
+                false,
+                true
+              ],
+              "x-enum-descriptions": {
+                "false": "일반 탐색",
+                "true": "상수원 보호 구역 회피 탐색"
+              }
+            },
+            "avoidNarrowRoad": {
+              "maximum": 16,
+              "minimum": 0,
+              "type": "integer",
+              "description": "좁은 길(이면도로) 회피 차선 정보<br>*0~16<br>*값은 왕복 차선의 개수<br>*예: 값이 6일 경우, 왕복 6차선 도로에서 차종에 관계 없이 모두 회피",
+              "format": "int32",
+              "default": 0
+            },
+            "avoidUTurn": {
+              "maximum": 16,
+              "minimum": 0,
+              "type": "integer",
+              "description": "U턴 회피 차선 정보<br>*0~16<br>*값은 왕복 차선의 개수<br>*예: 값이 6 일 경우, 왕복 6차선 이하 도로에서 U턴 회피",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          "description": "일반 경로 탐색 요약을 위한 요청 파라미터 집합 다양한 조건을 설정하여 예상 소요 시간 및 거리를 탐색합니다"
+        },
+        "example": {
+          "option": "real_traffic",
+          "coordType": "wgs84",
+          "startX": "127.110762",
+          "startY": "37.402184",
+          "endX": "127.111412",
+          "endY": "37.39476"
+        }
+      }
+    },
+    "required": true
+  },
+  "responses": {
+    "200": {
+      "description": "OK",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": {
+                "type": "object",
+                "properties": {
+                  "isSuccessful": {
+                    "type": "boolean",
+                    "description": "API 요청 성공 여부",
+                    "example": true
+                  },
+                  "resultCode": {
+                    "type": "integer",
+                    "description": "API 응답 결과 코드",
+                    "format": "int32",
+                    "example": 0
+                  },
+                  "resultMessage": {
+                    "type": "string",
+                    "description": "API 응답 결과 문구",
+                    "example": "Success"
+                  }
+                },
+                "description": "API 응답 결과"
+              },
+              "route": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "array",
+                    "description": "경로 탐색 요약 결과 목록(배열)",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "option": {
+                          "type": "string",
+                          "description": "경로 탐색 시 사용된 옵션",
+                          "example": "real_traffic",
+                          "enum": [
+                            "real_traffic",
+                            "real_traffic2",
+                            "real_traffic_freeroad",
+                            "short_distance_priority",
+                            "time_priority",
+                            "motorcycle",
+                            "recommendation",
+                            "highway_priority"
+                          ],
+                          "x-enum-descriptions": {
+                            "motorcycle": "이륜차 경로",
+                            "highway_priority": "고속 도로",
+                            "short_distance_priority": "최단 거리",
+                            "time_priority": "최소 시간",
+                            "real_traffic": "실시간 경로",
+                            "recommendation": "추천 경로",
+                            "real_traffic_freeroad": "무료 도로",
+                            "real_traffic2": "대안 경로"
+                          }
+                        },
+                        "spend_time": {
+                          "type": "integer",
+                          "description": "경로 전체의 총 예상 소요 시간(초)",
+                          "format": "int32",
+                          "example": 3720
+                        },
+                        "distance": {
+                          "type": "integer",
+                          "description": "경로 전체의 총 거리(m)",
+                          "format": "int32",
+                          "example": 72183
+                        }
+                      },
+                      "description": "경로 예측 탐색 요약 결과 데이터"
+                    }
+                  }
+                },
+                "description": "경로 탐색 요약 결과"
+              }
+            },
+            "description": "경로 탐색 요약 API의 전체 응답"
+          }
+        }
+      }
+    },
+    "400": {
+      "description": "잘못된 요청",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    },
+    "404": {
+      "description": "API 없음",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    },
+    "415": {
+      "description": "허용되지 않는 메서드",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    },
+    "500": {
+      "description": "서버 내부 오류",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    }
+  },
+  "baseUrl": "https://imaps.inavi.com"
+}

@@ -1,0 +1,167 @@
+{
+  "operationId": "getProposerResult",
+  "method": "GET",
+  "path": "/maps/v3.0/appkeys/{APPKEY}/proposers",
+  "category": "search-place",
+  "tags": [
+    "장소/주소 검색"
+  ],
+  "summary": "검색어 추천",
+  "description": "입력한 키워드를 기반으로 연관 검색어 및 추천 검색어 목록을 제공합니다",
+  "deprecated": false,
+  "parameters": [
+    {
+      "name": "APPKEY",
+      "in": "path",
+      "description": "해당 API 사용 권한이 있는 API 키",
+      "required": true,
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "query",
+      "in": "query",
+      "description": "검색 키워드",
+      "required": true,
+      "schema": {
+        "type": "string",
+        "description": "검색 키워드",
+        "example": "아이나비"
+      },
+      "example": "아이나비"
+    }
+  ],
+  "responses": {
+    "200": {
+      "description": "OK",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": {
+                "type": "object",
+                "properties": {
+                  "isSuccessful": {
+                    "type": "boolean",
+                    "description": "API 요청 성공 여부",
+                    "example": true
+                  },
+                  "resultCode": {
+                    "type": "integer",
+                    "description": "API 응답 결과 코드",
+                    "format": "int32",
+                    "example": 0
+                  },
+                  "resultMessage": {
+                    "type": "string",
+                    "description": "API 응답 결과 문구",
+                    "example": "Success"
+                  }
+                },
+                "description": "API 응답 결과"
+              },
+              "proposer": {
+                "type": "object",
+                "properties": {
+                  "result": {
+                    "type": "boolean",
+                    "description": "검색 결과 성공 여부",
+                    "example": true
+                  },
+                  "count": {
+                    "type": "integer",
+                    "description": "총 응답 결과 개수",
+                    "format": "int32",
+                    "example": 102
+                  },
+                  "keyword": {
+                    "type": "array",
+                    "description": "검색어 추천 결과 목록(배열)",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "keyword": {
+                          "type": "string",
+                          "description": "추천 검색어",
+                          "example": "아이나비시스템즈"
+                        },
+                        "frequency": {
+                          "type": "integer",
+                          "description": "조희 빈도",
+                          "format": "int32",
+                          "example": 10230
+                        }
+                      },
+                      "description": "검색어 추천 결과 목록(배열)"
+                    }
+                  }
+                },
+                "description": "검색어 추천 결과"
+              }
+            },
+            "description": "검색어 추천 API의 전체 응답"
+          }
+        }
+      }
+    },
+    "400": {
+      "description": "잘못된 요청",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    },
+    "404": {
+      "description": "API 없음",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    },
+    "415": {
+      "description": "허용되지 않는 메서드",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    },
+    "500": {
+      "description": "서버 내부 오류",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    }
+  },
+  "baseUrl": "https://imaps.inavi.com"
+}

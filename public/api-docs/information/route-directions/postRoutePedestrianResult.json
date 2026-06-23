@@ -1,0 +1,409 @@
+{
+  "operationId": "postRoutePedestrianResult",
+  "method": "POST",
+  "path": "/maps/v3.0/appkeys/{APPKEY}/route-pedestrian",
+  "category": "route-directions",
+  "tags": [
+    "탐색"
+  ],
+  "summary": "도보/PM 경로 탐색",
+  "description": "출발/도착지 및 최대 5개의 경유지, 기타 설정을 통해 최적화된 도보/PM 경로 탐색 정보를 반환합니다",
+  "deprecated": false,
+  "parameters": [
+    {
+      "name": "APPKEY",
+      "in": "path",
+      "description": "해당 API 사용 권한이 있는 API 키",
+      "required": true,
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": {
+    "description": "도보/PM 경로 탐색 조건",
+    "content": {
+      "application/json": {
+        "schema": {
+          "required": [
+            "endX",
+            "endY",
+            "option",
+            "startX",
+            "startY"
+          ],
+          "type": "object",
+          "properties": {
+            "option": {
+              "type": "string",
+              "description": "경로 탐색 옵션<br>*하나만 선택 가능",
+              "example": "1",
+              "enum": [
+                "0",
+                "1",
+                "2",
+                "3",
+                "4"
+              ],
+              "x-enum-descriptions": {
+                "0": "최단 거리",
+                "1": "추천 경로",
+                "2": "편한 경로",
+                "3": "최소 시간",
+                "4": "큰길 위주"
+              }
+            },
+            "startX": {
+              "type": "string",
+              "description": "시작 지점(출발지)에 대한 X좌표(경도)<br>*wgs84",
+              "example": "127.110762"
+            },
+            "startY": {
+              "type": "string",
+              "description": "시작 지점(출발지)에 대한 Y좌표(위도)<br>*wgs84",
+              "example": "37.402184"
+            },
+            "endX": {
+              "type": "string",
+              "description": "끝 지점(도착지)에 대한 X좌표(경도)<br>*wgs84",
+              "example": "127.105399"
+            },
+            "endY": {
+              "type": "string",
+              "description": "끝 지점(도착지)에 대한 Y좌표(위도)<br>*wgs84",
+              "example": "37.5124518"
+            },
+            "viaList": {
+              "maxItems": 100,
+              "minItems": 0,
+              "type": "array",
+              "description": "경유지 정보를 담는 목록(배열)<br>*최대 100개 경유지 설정 가능",
+              "items": {
+                "required": [
+                  "viaX",
+                  "viaY"
+                ],
+                "type": "object",
+                "properties": {
+                  "viaX": {
+                    "type": "string",
+                    "description": "해당 지점의 X좌표(경도)",
+                    "example": "127.119387"
+                  },
+                  "viaY": {
+                    "type": "string",
+                    "description": "해당 지점의 Y좌표(위도)",
+                    "example": "37.394735"
+                  }
+                },
+                "description": "경유지 정보를 담는 목록(배열)<br>*최대 100개 경유지 설정 가능"
+              }
+            },
+            "type": {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "integer",
+              "description": "사용자 유형",
+              "format": "int32",
+              "example": 0,
+              "default": 0,
+              "enum": [
+                0,
+                1
+              ],
+              "x-enum-descriptions": {
+                "0": "PM",
+                "1": "보행자"
+              }
+            }
+          },
+          "description": "도보/PM 경로 탐색을 위한 요청 파라미터 집합<br>다양한 조건을 설정하여 경로를 탐색합니다"
+        },
+        "example": {
+          "option": "1",
+          "startX": "127.110762",
+          "startY": "37.402184",
+          "endX": "127.111412",
+          "endY": "37.39476",
+          "viaList": [
+            {
+              "viaX": "127.119387",
+              "viaY": "37.394735"
+            }
+          ]
+        }
+      }
+    },
+    "required": true
+  },
+  "responses": {
+    "200": {
+      "description": "OK",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": {
+                "type": "object",
+                "properties": {
+                  "isSuccessful": {
+                    "type": "boolean",
+                    "description": "API 요청 성공 여부",
+                    "example": true
+                  },
+                  "resultCode": {
+                    "type": "integer",
+                    "description": "API 응답 결과 코드",
+                    "format": "int32",
+                    "example": 0
+                  },
+                  "resultMessage": {
+                    "type": "string",
+                    "description": "API 응답 결과 문구",
+                    "example": "Success"
+                  }
+                },
+                "description": "API 응답 결과"
+              },
+              "route": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "object",
+                    "properties": {
+                      "option": {
+                        "type": "string",
+                        "description": "경로 탐색 시 사용된 옵션",
+                        "example": "short_distance_priority",
+                        "enum": [
+                          "short_distance_priority",
+                          "recommendation",
+                          "easy_way",
+                          "time_priority",
+                          "main_road"
+                        ],
+                        "x-enum-descriptions": {
+                          "short_distance_priority": "최단 거리",
+                          "easy_way": "편한 경로",
+                          "time_priority": "최소 시간",
+                          "recommendation": "추천 경로",
+                          "main_road": "큰길 위주"
+                        }
+                      },
+                      "spend_time": {
+                        "type": "integer",
+                        "description": "경로 전체의 총 예상 소요 시간(초)",
+                        "format": "int32",
+                        "example": 3720
+                      },
+                      "distance": {
+                        "type": "integer",
+                        "description": "경로 전체의 총 거리(m)",
+                        "format": "int32",
+                        "example": 72183
+                      },
+                      "paths": {
+                        "type": "array",
+                        "description": "경로를 구성하는 각 세부 구간에 대한 정보 목록(배열)",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "coords": {
+                              "type": "array",
+                              "description": "해당 구간을 구성하는 좌표 지점들의 목록(배열)",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "x": {
+                                    "type": "number",
+                                    "description": "해당 지점의 X좌표(경도)",
+                                    "example": 127.110762
+                                  },
+                                  "y": {
+                                    "type": "number",
+                                    "description": "해당 지점의 Y좌표(위도)",
+                                    "example": 37.402184
+                                  }
+                                },
+                                "description": "검색 할 좌표를 담는 목록(배열)<br>*최소 3개 이상 입력"
+                              }
+                            },
+                            "distance": {
+                              "type": "integer",
+                              "description": "해당 구간의 거리(m)",
+                              "format": "int32",
+                              "example": 120
+                            },
+                            "angle": {
+                              "type": "integer",
+                              "description": "해당 구간의 진행 각도",
+                              "format": "int32",
+                              "example": 30
+                            },
+                            "spend_time": {
+                              "type": "integer",
+                              "description": "해당 구간의 예상 소요 시간(초)",
+                              "format": "int32",
+                              "example": 2800
+                            },
+                            "point_type": {
+                              "type": "string",
+                              "description": "해당 구간의 속성",
+                              "example": "S",
+                              "enum": [
+                                "S",
+                                "V",
+                                "E",
+                                "N"
+                              ],
+                              "x-enum-descriptions": {
+                                "S": "출발지",
+                                "E": "도착지",
+                                "V": "경유지",
+                                "N": "일반"
+                              }
+                            },
+                            "walk_type": {
+                              "type": "integer",
+                              "description": "보행자 도로 타입 코드",
+                              "format": "int32",
+                              "example": 1,
+                              "x-enum-descriptions": {
+                                "0": "미정의",
+                                "1": "복선도로",
+                                "2": "차량겸용도로",
+                                "3": "자전거전용도로",
+                                "4": "보행전용도로",
+                                "5": "가상보행도로"
+                              }
+                            },
+                            "bicycle_type": {
+                              "type": "integer",
+                              "description": "자전거 도로 타입 코드",
+                              "format": "int32",
+                              "example": 2,
+                              "x-enum-descriptions": {
+                                "0": "미정의",
+                                "1": "자전거 전용 도로",
+                                "2": "보행자·차량 겸용 자전거 도로",
+                                "3": "보행 도로"
+                              }
+                            },
+                            "facility_type": {
+                              "type": "integer",
+                              "description": "시설물 타입 코드",
+                              "format": "int32",
+                              "example": 0,
+                              "x-enum-descriptions": {
+                                "0": "미정의",
+                                "1": "토끼굴",
+                                "2": "지하보도",
+                                "3": "육교",
+                                "4": "고가도로",
+                                "5": "교량",
+                                "6": "지하철역",
+                                "7": "철도",
+                                "8": "중앙버스정류장",
+                                "9": "지하상가",
+                                "10": "건물관통도로",
+                                "11": "단지도로_공원",
+                                "12": "단지도로_주거시설",
+                                "13": "지하단지도로_관광지상가",
+                                "14": "단지도로_기타"
+                              }
+                            },
+                            "gate_type": {
+                              "type": "integer",
+                              "description": "진입로 타입 코드",
+                              "format": "int32",
+                              "example": 0,
+                              "x-enum-descriptions": {
+                                "0": "미정의",
+                                "1": "경사로",
+                                "2": "계단",
+                                "3": "에스컬레이터",
+                                "4": "계단/에스컬레이터",
+                                "5": "엘리베이터",
+                                "6": "단순연결로",
+                                "7": "횡단보도",
+                                "8": "무빙워크",
+                                "9": "징검다리",
+                                "10": "의사횡단"
+                              }
+                            }
+                          },
+                          "description": "경로를 구성하는 각 세부 구간에 대한 정보 목록(배열)"
+                        }
+                      }
+                    },
+                    "description": "도보/PM 경로 탐색 결과 데이터"
+                  }
+                },
+                "description": "도보/PM 경로 탐색 결과"
+              }
+            },
+            "description": "도보/PM 경로 탐색 API의 전체 응답"
+          }
+        }
+      }
+    },
+    "400": {
+      "description": "잘못된 요청",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    },
+    "404": {
+      "description": "API 없음",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    },
+    "415": {
+      "description": "허용되지 않는 메서드",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    },
+    "500": {
+      "description": "서버 내부 오류",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    }
+  },
+  "baseUrl": "https://imaps.inavi.com"
+}

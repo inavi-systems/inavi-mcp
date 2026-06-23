@@ -1,0 +1,171 @@
+{
+  "200": {
+    "success": {
+      "summary": "성공",
+      "value": {
+        "header": {
+          "isSuccessful": true,
+          "resultCode": 0,
+          "resultMessage": "Success"
+        },
+        "cate": {
+          "result": true,
+          "totalcount": 1,
+          "count": 1,
+          "poi": [
+            {
+              "poiid": 8827198,
+              "depth": "0",
+              "dpx": "127.110762",
+              "dpy": "37.402184",
+              "rpx": "127.110862",
+              "rpy": "37.402334",
+              "routepoints": [
+                {
+                  "rpx": "127.110862",
+                  "rpy": "37.402334"
+                }
+              ],
+              "entrypoint": {
+                "px": "127.109987",
+                "py": "37.401942"
+              },
+              "name1": "아이나비시스템즈",
+              "name2": "INAVISYSTEMS",
+              "name3": "아이나비시스템즈판교캠퍼스",
+              "name4": "아이나비판교캠퍼스",
+              "admcode": "4113510900",
+              "haengcode": "4113565500",
+              "address": "경기도 성남시 분당구 삼평동",
+              "address_haeng": "삼평동",
+              "jibun": "678",
+              "roadname": "경기도 성남시 분당구 판교역로",
+              "roadjibun": "240",
+              "detailaddress": "삼환하이펙스 A동 8층",
+              "catecode": "130602",
+              "catename": "팅크웨어",
+              "dp_catecode": "000",
+              "distance": 21713,
+              "tel": "02-589-9610",
+              "hasoildata": false,
+              "hasdetailinfo": true,
+              "hassubpoi": false,
+              "islandmark": true,
+              "updateTS": "2023-08-17",
+              "subpoi": {
+                "count": 0,
+                "poi": []
+              },
+              "externallink": [
+                {
+                  "Site": "PLOG",
+                  "ID": "http://m.fivepin.co.kr/MyStory/Plog?pid=8827198",
+                  "ExtraInfo1": "단골 많은 팅크웨어(재방문54%)",
+                  "ExtraInfo2": "재방문54%기업"
+                }
+              ],
+              "popularity": false,
+              "pop_tv": false,
+              "pop_sns": false,
+              "pop_hot": false,
+              "pop_hit": false,
+              "pop_top": "경기_1,분당구_1"
+            }
+          ]
+        }
+      }
+    },
+    "argError": {
+      "summary": "파라미터 에러",
+      "description": "Argument Error",
+      "value": {
+        "header": {
+          "isSuccessful": false,
+          "resultCode": 101,
+          "resultMessage": "Argument Error"
+        }
+      }
+    },
+    "serverError": {
+      "summary": "IMPS 서버 에러",
+      "description": "IMPS Server Error",
+      "value": {
+        "header": {
+          "isSuccessful": false,
+          "resultCode": 102,
+          "resultMessage": "IMPS Server Error"
+        }
+      }
+    },
+    "authentication": {
+      "summary": "인증 실패",
+      "description": "Authentication Failed",
+      "value": {
+        "header": {
+          "isSuccessful": false,
+          "resultCode": 300,
+          "resultMessage": "Authentication Failed"
+        }
+      }
+    },
+    "badRequest": {
+      "summary": "부적절한 URL",
+      "description": "Inappropriate URL",
+      "value": {
+        "header": {
+          "isSuccessful": false,
+          "resultCode": 301,
+          "resultMessage": "Inappropriate URL"
+        }
+      }
+    }
+  },
+  "400": {
+    "400": {
+      "summary": "잘못된 요청",
+      "value": {
+        "header": {
+          "isSuccessful": false,
+          "resultCode": 400,
+          "resultMessage": "Invalid request parameter or body"
+        }
+      }
+    }
+  },
+  "404": {
+    "404": {
+      "summary": "API 없음",
+      "value": {
+        "header": {
+          "isSuccessful": false,
+          "resultCode": 404,
+          "resultMessage": "API endpoint not found"
+        }
+      }
+    }
+  },
+  "415": {
+    "415": {
+      "summary": "허용되지 않는 메서드",
+      "value": {
+        "header": {
+          "isSuccessful": false,
+          "resultCode": 415,
+          "resultMessage": "Unsupported content type"
+        }
+      }
+    }
+  },
+  "500": {
+    "500": {
+      "summary": "서버 내부 오류",
+      "value": {
+        "header": {
+          "isSuccessful": false,
+          "resultCode": 500,
+          "resultMessage": "Internal Server Error"
+        }
+      }
+    }
+  }
+}

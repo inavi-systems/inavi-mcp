@@ -1,0 +1,15 @@
+{
+  "operationId": "getGeoErrorCodes",
+  "method": "GET",
+  "path": "/docs/error-codes/geo",
+  "category": "search-spatial",
+  "tags": [
+    "공간 검색"
+  ],
+  "summary": "에러 코드",
+  "description": "| resultCode | message |\n|-----------:|---------|\n| 100 | Result Not Found |\n| 101 | Argument Error |\n| 102 | IMPS Server Error |\n| 201 | Searching for Security POI |\n| 202 | Longitude/Latitude |\n| 203 | Mobile Phone Number |\n| 204 | Invalid Query |\n| 205 | POI not in given Admin |\n| 206 | POI not in given Area |\n| 207 | POI not in given Category |\n| 208 | Neighbor Search Only |\n| 210 | Error handling for simulated driving queries |\n| 300 | Authentication Failed |\n| 301 | Inappropriate URL |\n| 400 | Invalid request parameter or body |\n| 401 | Authentication required |\n| 403 | Access denied |\n| 404 | API endpoint not found |\n| 405 | HTTP method not allowed |\n| 406 | Not acceptable response type |\n| 409 | Request conflict |\n| 415 | Unsupported content type |\n| 500 | Internal Server Error |\n",
+  "deprecated": false,
+  "parameters": [],
+  "responses": {},
+  "baseUrl": "https://imaps.inavi.com"
+}

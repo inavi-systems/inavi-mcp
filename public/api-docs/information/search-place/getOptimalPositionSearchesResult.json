@@ -1,0 +1,243 @@
+{
+  "operationId": "getOptimalPositionSearchesResult",
+  "method": "GET",
+  "path": "/maps/v3.0/appkeys/{APPKEY}/optimal-position-searches",
+  "category": "search-place",
+  "tags": [
+    "장소/주소 검색"
+  ],
+  "summary": "최적 지점 검색",
+  "description": "입력한 위치를 기준으로 실제 도로 네트워크에 매칭된 최적 진출입 지점을 탐색합니다<br>건물/단지/차량 진입 가능 지점 등 목적에 맞는 위치를 반환하며,<br>각 지점의 좌표, 속성 유형(type), 도로 매칭 각도(angle) 정보를 제공합니다",
+  "deprecated": false,
+  "parameters": [
+    {
+      "name": "APPKEY",
+      "in": "path",
+      "description": "해당 API 사용 권한이 있는 API 키",
+      "required": true,
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "posX",
+      "in": "query",
+      "description": "해당 지점의 X좌표(경도)",
+      "required": true,
+      "schema": {
+        "type": "string",
+        "description": "해당 지점의 X좌표(경도)",
+        "example": 127.11075
+      },
+      "example": 127.11075
+    },
+    {
+      "name": "posY",
+      "in": "query",
+      "description": "해당 지점의 Y좌표(위도)",
+      "required": true,
+      "schema": {
+        "type": "string",
+        "description": "해당 지점의 Y좌표(위도)",
+        "example": 37.402159
+      },
+      "example": 37.402159
+    },
+    {
+      "name": "type",
+      "in": "query",
+      "description": "최적 지점 속성",
+      "required": false,
+      "schema": {
+        "maximum": 3,
+        "minimum": 0,
+        "type": "string",
+        "description": "최적 지점 속성",
+        "default": "0",
+        "enum": [
+          "0",
+          "1",
+          "2",
+          "3"
+        ],
+        "x-enum-descriptions": {
+          "0": "전체",
+          "1": "차량 입구점",
+          "2": "택시 승하차 지점(건물)",
+          "3": "택시 승하차 지점(단지)"
+        }
+      },
+      "x-enum-descriptions": {
+        "0": "전체",
+        "1": "차량 입구점",
+        "2": "택시 승하차 지점(건물)",
+        "3": "택시 승하차 지점(단지)"
+      }
+    },
+    {
+      "name": "count",
+      "in": "query",
+      "description": "최대 결과 요청 수",
+      "required": false,
+      "schema": {
+        "type": "string",
+        "description": "최대 결과 요청 수"
+      }
+    }
+  ],
+  "responses": {
+    "200": {
+      "description": "OK",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": {
+                "type": "object",
+                "properties": {
+                  "isSuccessful": {
+                    "type": "boolean",
+                    "description": "API 요청 성공 여부",
+                    "example": true
+                  },
+                  "resultCode": {
+                    "type": "integer",
+                    "description": "API 응답 결과 코드",
+                    "format": "int32",
+                    "example": 0
+                  },
+                  "resultMessage": {
+                    "type": "string",
+                    "description": "API 응답 결과 문구",
+                    "example": "Success"
+                  }
+                },
+                "description": "API 응답 결과"
+              },
+              "data": {
+                "type": "object",
+                "properties": {
+                  "result": {
+                    "type": "boolean",
+                    "description": "검색 결과 성공 여부",
+                    "example": true
+                  },
+                  "count": {
+                    "type": "integer",
+                    "description": "최적 지점 개수",
+                    "format": "int32",
+                    "example": 102
+                  },
+                  "entrypoints": {
+                    "type": "array",
+                    "description": "최적 지점 정보 목록(배열)",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "x": {
+                          "type": "number",
+                          "description": "해당 지점의 X좌표(경도)",
+                          "example": 127.110762
+                        },
+                        "y": {
+                          "type": "number",
+                          "description": "해당 지점의 Y좌표(위도)",
+                          "example": 37.402184
+                        },
+                        "type": {
+                          "type": "integer",
+                          "description": "최적 지점 속성",
+                          "format": "int32",
+                          "example": 1,
+                          "enum": [
+                            0,
+                            1,
+                            2,
+                            3
+                          ],
+                          "x-enum-descriptions": {
+                            "0": "전체",
+                            "1": "차량 입구점",
+                            "2": "택시 승하차 지점(건물)",
+                            "3": "택시 승하차 지점(단지)"
+                          }
+                        },
+                        "angle": {
+                          "type": "integer",
+                          "description": "도로 매칭 각도<br>*매칭된 도로로 진출입 하는 차량의 예상 방향<br>*예: 0 -> 정북",
+                          "format": "int32",
+                          "example": 180
+                        }
+                      },
+                      "description": "최적 지점 정보 목록(배열)"
+                    }
+                  }
+                },
+                "description": "최적 지점 검색 결과"
+              }
+            },
+            "description": "최적 지점 검색 API의 전체 응답"
+          }
+        }
+      }
+    },
+    "400": {
+      "description": "잘못된 요청",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    },
+    "404": {
+      "description": "API 없음",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    },
+    "415": {
+      "description": "허용되지 않는 메서드",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    },
+    "500": {
+      "description": "서버 내부 오류",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    }
+  },
+  "baseUrl": "https://imaps.inavi.com"
+}

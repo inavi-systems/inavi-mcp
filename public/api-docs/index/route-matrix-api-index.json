@@ -1,0 +1,54 @@
+{
+  "category": "route-matrix",
+  "apis": [
+    {
+      "operationId": "getNormalRouteStartMultiSummaryResult",
+      "method": "POST",
+      "path": "/maps/v3.0/appkeys/{APPKEY}/route-start-multi-summary",
+      "category": "route-matrix",
+      "tags": [
+        "매트릭스"
+      ],
+      "summary": "다중 출발지-단일 목적지",
+      "description": "여러 출발지에서 지정된 목적지까지의 탐색된 요약 정보를 한 번에 계산해 제공합니다",
+      "deprecated": false
+    },
+    {
+      "operationId": "getNormalRouteMultiEndSummaryResult",
+      "method": "POST",
+      "path": "/maps/v3.0/appkeys/{APPKEY}/route-end-multi-summary",
+      "category": "route-matrix",
+      "tags": [
+        "매트릭스"
+      ],
+      "summary": "단일 출발지-다중 목적지",
+      "description": "출발지에서 지정된 여러 도착지까지의 탐색된 요약 정보를 한 번에 계산해 제공합니다",
+      "deprecated": false
+    },
+    {
+      "operationId": "postRouteDistanceMatrixResult",
+      "method": "POST",
+      "path": "/maps/v3.0/appkeys/{APPKEY}/route-distance-matrix",
+      "category": "route-matrix",
+      "tags": [
+        "매트릭스"
+      ],
+      "summary": "RDM(다중 경로 행렬)",
+      "description": "여러 출발/도착 지점 간의 주행 가능 경로를 탐색하여 거리와 시간 정보를 행렬 형태로 반환합니다",
+      "deprecated": false
+    },
+    {
+      "operationId": "getMatrixErrorCodes",
+      "method": "GET",
+      "path": "/docs/error-codes/matrix",
+      "category": "route-matrix",
+      "tags": [
+        "매트릭스"
+      ],
+      "summary": "에러 코드",
+      "description": "| resultCode | message |\n|-----------:|---------|\n| 100 | Result Not Found |\n| 101 | Argument Error |\n| 102 | IMPS Server Error |\n| 300 | Authentication Failed |\n| 301 | Inappropriate URL |\n| 400 | Invalid request parameter or body |\n| 401 | Authentication required |\n| 403 | Access denied |\n| 404 | API endpoint not found |\n| 405 | HTTP method not allowed |\n| 406 | Not acceptable response type |\n| 409 | Request conflict |\n| 415 | Unsupported content type |\n| 500 | Internal Server Error |\n| 650 | Memory allocation errors related to navigation extensions |\n| 651 | Failure to read navigation-related data (maps, options, etc.) files |\n| 670 | The starting point is not projected or the starting point is incorrect |\n| 671 | The destination is not projected or the destination is incorrect |\n| 672 | The waypoint is not projected or the waypoint is incorrect |\n| 690 | Navigation range exceeded |\n| 691 | Navigation timeout |\n| 692 | Exceeded number of expandable nodes |\n| 693 | Expansion failed |\n",
+      "deprecated": false
+    }
+  ],
+  "totalCount": 4
+}

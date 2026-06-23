@@ -1,0 +1,248 @@
+{
+  "operationId": "postPolygonToAdminResult",
+  "method": "POST",
+  "path": "/maps/v3.0/appkeys/{APPKEY}/polygonToAdmin",
+  "category": "search-spatial",
+  "tags": [
+    "공간 검색"
+  ],
+  "summary": "행정/법정동 영역 검색",
+  "description": "입력한 좌표(경도, 위도)를 기준으로 해당 위치가 포함되는 행정구역 정보를 조회합니다<br>행정동 및 법정동 등의 행정구역 정보를 반환합니다",
+  "deprecated": false,
+  "parameters": [
+    {
+      "name": "APPKEY",
+      "in": "path",
+      "description": "해당 API 사용 권한이 있는 API 키",
+      "required": true,
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": {
+    "description": "행정/법정동 영역 검색 조건",
+    "content": {
+      "application/json": {
+        "schema": {
+          "required": [
+            "polygon"
+          ],
+          "type": "object",
+          "properties": {
+            "polygon": {
+              "maxItems": 2147483647,
+              "minItems": 3,
+              "type": "array",
+              "description": "검색 할 좌표를 담는 목록(배열)<br>*최소 3개 이상 입력",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "x": {
+                    "type": "number",
+                    "description": "해당 지점의 X좌표(경도)",
+                    "example": 127.110762
+                  },
+                  "y": {
+                    "type": "number",
+                    "description": "해당 지점의 Y좌표(위도)",
+                    "example": 37.402184
+                  }
+                },
+                "description": "검색 할 좌표를 담는 목록(배열)<br>*최소 3개 이상 입력"
+              }
+            },
+            "coordtype": {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "string",
+              "description": "좌표 체계",
+              "default": "1",
+              "enum": [
+                "0",
+                "1"
+              ],
+              "x-enum-descriptions": {
+                "0": "TW 좌표",
+                "1": "WGS84 좌표"
+              }
+            },
+            "mode": {
+              "maximum": 2,
+              "minimum": 0,
+              "type": "integer",
+              "description": "검색 구역 범위",
+              "format": "int32",
+              "default": 0,
+              "enum": [
+                0,
+                1,
+                2
+              ],
+              "x-enum-descriptions": {
+                "0": "법정동,행정동",
+                "1": "법정동",
+                "2": "행정동"
+              }
+            }
+          },
+          "description": "행정/법정동 영역 검색을 위한 요청 파라미터 집합"
+        },
+        "example": {
+          "polygon": [
+            {
+              "x": "127.112576",
+              "y": "37.403078"
+            },
+            {
+              "x": "127.108285",
+              "y": "37.403078"
+            },
+            {
+              "x": "127.110685",
+              "y": "37.400726"
+            }
+          ]
+        }
+      }
+    },
+    "required": true
+  },
+  "responses": {
+    "200": {
+      "description": "OK",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": {
+                "type": "object",
+                "properties": {
+                  "isSuccessful": {
+                    "type": "boolean",
+                    "description": "API 요청 성공 여부",
+                    "example": true
+                  },
+                  "resultCode": {
+                    "type": "integer",
+                    "description": "API 응답 결과 코드",
+                    "format": "int32",
+                    "example": 0
+                  },
+                  "resultMessage": {
+                    "type": "string",
+                    "description": "API 응답 결과 문구",
+                    "example": "Success"
+                  }
+                },
+                "description": "API 응답 결과"
+              },
+              "adm": {
+                "type": "object",
+                "properties": {
+                  "result": {
+                    "type": "boolean",
+                    "description": "검색 결과 성공 여부",
+                    "example": true
+                  },
+                  "admincodes": {
+                    "type": "object",
+                    "properties": {
+                      "count": {
+                        "type": "integer",
+                        "description": "행정구역 개수",
+                        "format": "int32",
+                        "example": 192
+                      },
+                      "admincodelist": {
+                        "type": "array",
+                        "description": "행정구역 정보 목록(배열)",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "AdminCode": {
+                              "type": "string",
+                              "description": "행정동/법정동 코드",
+                              "example": "4113510900"
+                            },
+                            "Address": {
+                              "type": "string",
+                              "description": "법정동/행정동 주소",
+                              "example": "경기도 성남시 분당구 삼평동"
+                            }
+                          },
+                          "description": "행정구역 정보 목록(배열)"
+                        }
+                      }
+                    },
+                    "description": "행정구역 정보 목록(배열)"
+                  }
+                },
+                "description": "행정/법정동 영역 검색 결과"
+              }
+            },
+            "description": "행정/법정동 영역 검색 API의 전체 응답"
+          }
+        }
+      }
+    },
+    "400": {
+      "description": "잘못된 요청",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    },
+    "404": {
+      "description": "API 없음",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    },
+    "415": {
+      "description": "허용되지 않는 메서드",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    },
+    "500": {
+      "description": "서버 내부 오류",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    }
+  },
+  "baseUrl": "https://imaps.inavi.com"
+}

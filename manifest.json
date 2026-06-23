@@ -1,0 +1,56 @@
+{
+  "manifest_version": "0.2",
+  "name": "@inavi-maps/mcp-server",
+  "version": "0.3.7",
+  "description": "MCP Server for iNavi Maps - API Specifications and Map Visualization Templates for AI Assistants",
+  "author": {
+    "name": "iMPS",
+    "url": "https://mapsapi.inavisys.com/"
+  },
+  "server": {
+    "type": "node",
+    "entry_point": "dist/server.js",
+    "mcp_config": {
+      "command": "node",
+      "args": [
+        "${__dirname}/dist/server.js"
+      ],
+      "env": {}
+    }
+  },
+  "tools": [
+    {
+      "name": "list_api_specs",
+      "description": "Browse available iNavi Maps API specifications by category"
+    },
+    {
+      "name": "get_api_spec",
+      "description": "Get detailed specification of a specific API by operationId"
+    },
+    {
+      "name": "list_map_examples",
+      "description": "Browse available map visualization HTML examples"
+    },
+    {
+      "name": "get_map_example",
+      "description": "Get specific map example HTML template by ID"
+    }
+  ],
+  "keywords": [
+    "mcp",
+    "maps",
+    "geocoding",
+    "poi",
+    "route",
+    "navigation",
+    "inavi",
+    "korean-maps",
+    "location",
+    "gis"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/inavi-systems/inavi-mcp.git"
+  }
+}

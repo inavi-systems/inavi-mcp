@@ -1,0 +1,15 @@
+{
+  "operationId": "getW3WErrorCodes",
+  "method": "GET",
+  "path": "/docs/error-codes/w3w",
+  "category": "search-w3w",
+  "tags": [
+    "W3W"
+  ],
+  "summary": "에러 코드",
+  "description": "| resultCode | message |\n|-----------:|---------|\n| 100 | Result Not Found |\n| 101 | Argument Error |\n| 102 | IMPS Server Error |\n| 220 | Invalid or non-existent 3 word address |\n| 221 | Non-existent 3 word suggestions |\n| 222 | What 3 words API Error |\n| 300 | Authentication Failed |\n| 301 | Inappropriate URL |\n| 400 | Invalid request parameter or body |\n| 401 | Authentication required |\n| 403 | Access denied |\n| 404 | API endpoint not found |\n| 405 | HTTP method not allowed |\n| 406 | Not acceptable response type |\n| 409 | Request conflict |\n| 415 | Unsupported content type |\n| 500 | Internal Server Error |\n",
+  "deprecated": false,
+  "parameters": [],
+  "responses": {},
+  "baseUrl": "https://imaps.inavi.com"
+}

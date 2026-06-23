@@ -1,0 +1,829 @@
+{
+  "operationId": "getGlobalSearchesResult",
+  "method": "GET",
+  "path": "/maps/v3.0/appkeys/{APPKEY}/g-searches",
+  "category": "search-place",
+  "tags": [
+    "장소/주소 검색"
+  ],
+  "summary": "다국어 통합 검색",
+  "description": "언어를 선택하여 상호명, 건물명, 업종명, 초성, 주소(지번·도로명), 전화번호 등 다양한 형태의 키워드를 입력하여<br>관심지점(POI) 및 주소 정보를 통합 검색합니다<br>검색 결과에 따라 POI 또는 주소 항목이 반환될 수 있습니다",
+  "deprecated": false,
+  "parameters": [
+    {
+      "name": "APPKEY",
+      "in": "path",
+      "description": "해당 API 사용 권한이 있는 API 키",
+      "required": true,
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "query",
+      "in": "query",
+      "description": "검색 키워드",
+      "required": true,
+      "schema": {
+        "type": "string",
+        "description": "검색 키워드",
+        "example": "inavisystems"
+      },
+      "example": "inavisystems"
+    },
+    {
+      "name": "lang",
+      "in": "query",
+      "description": "검색 결과 반환 언어",
+      "required": true,
+      "schema": {
+        "pattern": "^(ko|KO|en|EN|ja|Ja|zh|ZH)$",
+        "type": "string",
+        "description": "검색 결과 반환 언어",
+        "example": "en",
+        "enum": [
+          "ko",
+          "en",
+          "ja",
+          "zh"
+        ],
+        "x-enum-descriptions": {
+          "ko": "국문",
+          "ja": "일문",
+          "en": "영문",
+          "zh": "중문(간체)"
+        }
+      },
+      "example": "en",
+      "x-enum-descriptions": {
+        "ko": "국문",
+        "ja": "일문",
+        "en": "영문",
+        "zh": "중문(간체)"
+      }
+    },
+    {
+      "name": "coordtype",
+      "in": "query",
+      "description": "좌표 체계",
+      "required": false,
+      "schema": {
+        "maximum": 1,
+        "minimum": 0,
+        "type": "string",
+        "description": "좌표 체계",
+        "default": "1",
+        "enum": [
+          "0",
+          "1"
+        ],
+        "x-enum-descriptions": {
+          "0": "TW 좌표",
+          "1": "WGS84 좌표"
+        }
+      },
+      "x-enum-descriptions": {
+        "0": "TW 좌표",
+        "1": "WGS84 좌표"
+      }
+    },
+    {
+      "name": "startposition",
+      "in": "query",
+      "description": "검색 시작 위치<br>*0은 첫 번째 위치를 의미",
+      "required": false,
+      "schema": {
+        "type": "string",
+        "description": "검색 시작 위치<br>*0은 첫 번째 위치를 의미",
+        "default": "0"
+      }
+    },
+    {
+      "name": "reqcount",
+      "in": "query",
+      "description": "요청 개수<br>*0~9999",
+      "required": false,
+      "schema": {
+        "maximum": 9999,
+        "minimum": 0,
+        "type": "string",
+        "description": "요청 개수<br>*0~9999",
+        "default": "100"
+      }
+    },
+    {
+      "name": "admcode",
+      "in": "query",
+      "description": "행정구역 코드",
+      "required": false,
+      "schema": {
+        "type": "string",
+        "description": "행정구역 코드"
+      }
+    },
+    {
+      "name": "spopt",
+      "in": "query",
+      "description": "공간 검색 옵션",
+      "required": false,
+      "schema": {
+        "type": "string",
+        "description": "공간 검색 옵션",
+        "default": "0",
+        "enum": [
+          "0",
+          "1",
+          "2"
+        ],
+        "x-enum-descriptions": {
+          "0": "전체 검색",
+          "1": "공간 검색",
+          "2": "반경 검색"
+        }
+      },
+      "x-enum-descriptions": {
+        "0": "전체 검색",
+        "1": "공간 검색",
+        "2": "반경 검색"
+      }
+    },
+    {
+      "name": "radius",
+      "in": "query",
+      "description": "검색 반경(m)<br>*반경 검색일 경우 사용",
+      "required": false,
+      "schema": {
+        "type": "string",
+        "description": "검색 반경(m)<br>*반경 검색일 경우 사용"
+      }
+    },
+    {
+      "name": "x1",
+      "in": "query",
+      "description": "X1 좌표값<br>*전체 검색인 경우 기준점 X좌표(경도)<br>*공간 검색인 경우 Extent 좌상단 X좌표(경도)<br>*반경 검색인 경우 중심 X좌표(경도)",
+      "required": false,
+      "schema": {
+        "type": "string",
+        "description": "X1 좌표값<br>*전체 검색인 경우 기준점 X좌표(경도)<br>*공간 검색인 경우 Extent 좌상단 X좌표(경도)<br>*반경 검색인 경우 중심 X좌표(경도)"
+      }
+    },
+    {
+      "name": "y1",
+      "in": "query",
+      "description": "Y1 좌표값<br>*전체 검색인 경우 기준점 Y좌표(위도)<br>*공간 검색인 경우 Extent 좌상단 Y좌표(위도)<br>*반경 검색인 경우 중심 Y좌표(위도)",
+      "required": false,
+      "schema": {
+        "type": "string",
+        "description": "Y1 좌표값<br>*전체 검색인 경우 기준점 Y좌표(위도)<br>*공간 검색인 경우 Extent 좌상단 Y좌표(위도)<br>*반경 검색인 경우 중심 Y좌표(위도)"
+      }
+    },
+    {
+      "name": "x2",
+      "in": "query",
+      "description": "X2 좌표값<br>*공간 검색인 경우 Extent 우하단 X좌표(경도)",
+      "required": false,
+      "schema": {
+        "type": "string",
+        "description": "X2 좌표값<br>*공간 검색인 경우 Extent 우하단 X좌표(경도)"
+      }
+    },
+    {
+      "name": "y2",
+      "in": "query",
+      "description": "Y2 좌표값<br>*공간 검색인 경우 Extent 우하단 Y좌표(위도)",
+      "required": false,
+      "schema": {
+        "type": "string",
+        "description": "Y2 좌표값<br>*공간 검색인 경우 Extent 우하단 Y좌표(위도)"
+      }
+    },
+    {
+      "name": "sortopt",
+      "in": "query",
+      "description": "검색 결과 정렬 옵션",
+      "required": false,
+      "schema": {
+        "type": "string",
+        "description": "검색 결과 정렬 옵션",
+        "default": "4",
+        "enum": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "x-enum-descriptions": {
+          "1": "명칭순",
+          "2": "거리순",
+          "3": "명칭→거리순",
+          "4": "추천→인기순",
+          "5": "추천순"
+        }
+      },
+      "x-enum-descriptions": {
+        "1": "명칭순",
+        "2": "거리순",
+        "3": "명칭→거리순",
+        "4": "추천→인기순",
+        "5": "추천순"
+      }
+    },
+    {
+      "name": "depth",
+      "in": "query",
+      "description": "하위 시설물 포함 수준",
+      "required": false,
+      "schema": {
+        "type": "string",
+        "description": "하위 시설물 포함 수준",
+        "default": "0",
+        "enum": [
+          "0",
+          "1",
+          "2",
+          "3"
+        ],
+        "x-enum-descriptions": {
+          "0": "사용 안함",
+          "1": "일반 시설물 포함",
+          "2": "하위 시설물 포함",
+          "3": "최하위 시설물 포함"
+        }
+      },
+      "x-enum-descriptions": {
+        "0": "사용 안함",
+        "1": "일반 시설물 포함",
+        "2": "하위 시설물 포함",
+        "3": "최하위 시설물 포함"
+      }
+    },
+    {
+      "name": "catecode",
+      "in": "query",
+      "description": "검색 대상 카테고리 코드",
+      "required": false,
+      "schema": {
+        "type": "string",
+        "description": "검색 대상 카테고리 코드"
+      }
+    },
+    {
+      "name": "addrext",
+      "in": "query",
+      "description": "주소 지번/건물번호 확장 검색 옵션",
+      "required": false,
+      "schema": {
+        "type": "string",
+        "description": "주소 지번/건물번호 확장 검색 옵션",
+        "default": "0",
+        "enum": [
+          "0",
+          "1",
+          "2"
+        ],
+        "x-enum-descriptions": {
+          "0": "지번/건물번호 확장 검색",
+          "1": "부번호 확장 검색",
+          "2": "본번호 확장 검색"
+        }
+      },
+      "x-enum-descriptions": {
+        "0": "지번/건물번호 확장 검색",
+        "1": "부번호 확장 검색",
+        "2": "본번호 확장 검색"
+      }
+    }
+  ],
+  "responses": {
+    "200": {
+      "description": "OK",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": {
+                "type": "object",
+                "properties": {
+                  "isSuccessful": {
+                    "type": "boolean",
+                    "description": "API 요청 성공 여부",
+                    "example": true
+                  },
+                  "resultCode": {
+                    "type": "integer",
+                    "description": "API 응답 결과 코드",
+                    "format": "int32",
+                    "example": 0
+                  },
+                  "resultMessage": {
+                    "type": "string",
+                    "description": "API 응답 결과 문구",
+                    "example": "Success"
+                  }
+                },
+                "description": "API 응답 결과"
+              },
+              "search": {
+                "type": "object",
+                "properties": {
+                  "result": {
+                    "type": "boolean",
+                    "description": "검색 결과 성공 여부",
+                    "example": true
+                  },
+                  "lang": {
+                    "type": "string",
+                    "description": "검색 결과 반환 언어",
+                    "example": "en",
+                    "enum": [
+                      "ko",
+                      "en",
+                      "ja",
+                      "zh"
+                    ],
+                    "x-enum-descriptions": {
+                      "ko": "국문",
+                      "ja": "일문",
+                      "en": "영문",
+                      "zh": "중문(간체)"
+                    }
+                  },
+                  "totalcount": {
+                    "type": "integer",
+                    "description": "총 검색 결과 개수",
+                    "format": "int32",
+                    "example": 192
+                  },
+                  "count": {
+                    "type": "integer",
+                    "description": "총 응답 결과 개수",
+                    "format": "int32",
+                    "example": 102
+                  },
+                  "poitotalcount": {
+                    "type": "integer",
+                    "description": "총 POI 검색 결과 개수",
+                    "format": "int32",
+                    "example": 190
+                  },
+                  "poicount": {
+                    "type": "integer",
+                    "description": "POI(명칭) 검색 결과 개수",
+                    "format": "int32",
+                    "example": 100
+                  },
+                  "admtotalcount": {
+                    "type": "integer",
+                    "description": "총 주소 검색 결과 개수",
+                    "format": "int32",
+                    "example": 2
+                  },
+                  "admcount": {
+                    "type": "integer",
+                    "description": "주소 검색 응답 개수",
+                    "format": "int32",
+                    "example": 2
+                  },
+                  "poi": {
+                    "type": "array",
+                    "description": "POI 검색 결과 목록(배열)",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "poiid": {
+                          "type": "integer",
+                          "description": "POI 고유 ID",
+                          "format": "int32",
+                          "example": 8827198
+                        },
+                        "depth": {
+                          "type": "string",
+                          "description": "계층 정보",
+                          "example": "0"
+                        },
+                        "dpx": {
+                          "type": "string",
+                          "description": "지도 표출용 X좌표(경도)",
+                          "example": "127.110762"
+                        },
+                        "dpy": {
+                          "type": "string",
+                          "description": "지도 표출용 Y좌표(위도)",
+                          "example": "37.402184"
+                        },
+                        "rpx": {
+                          "type": "string",
+                          "description": "차량 진입로 X좌표(경도)",
+                          "example": "127.110862"
+                        },
+                        "rpy": {
+                          "type": "string",
+                          "description": "차량 진입로 Y좌표(위도)",
+                          "example": "37.402334"
+                        },
+                        "routepoints": {
+                          "type": "array",
+                          "description": "차량 진입로 좌표 정보 목록(배열)<br>>*차량 경로 탐색 시 사용 가능",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "rpx": {
+                                "type": "string",
+                                "description": "차량 진입로 X좌표(경도)",
+                                "example": "127.110862"
+                              },
+                              "rpy": {
+                                "type": "string",
+                                "description": "차량 진입로 Y좌표(위도)",
+                                "example": "37.402334"
+                              }
+                            },
+                            "description": "차량 진입로 좌표 정보 목록(배열)<br>>*차량 경로 탐색 시 사용 가능"
+                          }
+                        },
+                        "entrypoint": {
+                          "type": "object",
+                          "properties": {
+                            "px": {
+                              "type": "string",
+                              "description": "진입 지점의 X좌표(경도)",
+                              "example": "127.109987"
+                            },
+                            "py": {
+                              "type": "string",
+                              "description": "진입 지점의 Y좌표(위도)",
+                              "example": "37.401942"
+                            }
+                          },
+                          "description": "진입 지점 정보"
+                        },
+                        "name1": {
+                          "type": "string",
+                          "description": "대표 명칭",
+                          "example": "INavi Systems"
+                        },
+                        "name1_ko": {
+                          "type": "string",
+                          "description": "국문 대표 명칭",
+                          "example": "아이나비시스템즈"
+                        },
+                        "name2": {
+                          "type": "string",
+                          "description": "축약 명칭"
+                        },
+                        "name2_ko": {
+                          "type": "string",
+                          "description": "국문 축약 명칭"
+                        },
+                        "name3": {
+                          "type": "string",
+                          "description": "확장 명칭1"
+                        },
+                        "name3_ko": {
+                          "type": "string",
+                          "description": "국문 확장 명칭1"
+                        },
+                        "name4": {
+                          "type": "string",
+                          "description": "확장 명칭2"
+                        },
+                        "name4_ko": {
+                          "type": "string",
+                          "description": "국문 확장 명칭2"
+                        },
+                        "admcode": {
+                          "type": "string",
+                          "description": "행정구역 코드(법정동/행정동)<br>*법정동 검색 → 법정동 코드<br>*행정동 검색 → 행정동 코드",
+                          "example": "4113510900"
+                        },
+                        "address": {
+                          "type": "string",
+                          "description": "전체 주소",
+                          "example": "Gyeonggi-do Seongnam-si Bundang-gu Sampyeong-dong"
+                        },
+                        "address_ko": {
+                          "type": "string",
+                          "description": "국문 전체 주소",
+                          "example": "경기도 성남시 분당구 삼평동"
+                        },
+                        "jibun": {
+                          "type": "string",
+                          "description": "지번 주소",
+                          "example": "678"
+                        },
+                        "jibun_ko": {
+                          "type": "string",
+                          "description": "국문 지번 주소"
+                        },
+                        "roadname": {
+                          "type": "string",
+                          "description": "도로명주소",
+                          "example": "Gyeonggi-do Seongnam-si Bundang-gu Pangyoyeok-ro"
+                        },
+                        "roadname_ko": {
+                          "type": "string",
+                          "description": "국문 도로명주소",
+                          "example": "경기도 성남시 분당구 판교역로"
+                        },
+                        "roadjibun": {
+                          "type": "string",
+                          "description": "건물 번호",
+                          "example": "240"
+                        },
+                        "roadjibun_ko": {
+                          "type": "string",
+                          "description": "국문 건물 번호"
+                        },
+                        "detailaddress": {
+                          "type": "string",
+                          "description": "상세 주소 정보"
+                        },
+                        "detailaddress_ko": {
+                          "type": "string",
+                          "description": "국문 상세 주소 정보"
+                        },
+                        "catecode": {
+                          "type": "string",
+                          "description": "카테고리 코드",
+                          "example": "130602"
+                        },
+                        "catename": {
+                          "type": "string",
+                          "description": "카테고리 명칭",
+                          "example": "Thinkware"
+                        },
+                        "catename_ko": {
+                          "type": "string",
+                          "description": "국문 카테고리 명칭",
+                          "example": "팅크웨어"
+                        },
+                        "dp_catecode": {
+                          "type": "string",
+                          "description": "전시용 카테고리 코드",
+                          "example": "000"
+                        },
+                        "distance": {
+                          "type": "integer",
+                          "description": "기준 좌표와의 거리(m)",
+                          "format": "int32",
+                          "example": 21713
+                        },
+                        "tel": {
+                          "type": "string",
+                          "description": "대표 전화번호",
+                          "example": "02-589-9610"
+                        },
+                        "hasoildata": {
+                          "type": "boolean",
+                          "description": "주유소 유가 정보 보유 여부"
+                        },
+                        "hasdetailinfo": {
+                          "type": "boolean",
+                          "description": "상세 정보 보유 여부"
+                        },
+                        "hassubpoi": {
+                          "type": "boolean",
+                          "description": "하위 POI 존재 여부"
+                        },
+                        "islandmark": {
+                          "type": "boolean",
+                          "description": "랜드마크 여부"
+                        },
+                        "updateTS": {
+                          "type": "string",
+                          "description": "데이터의 최종 갱신 시각",
+                          "example": "2023-08-17"
+                        },
+                        "subpoi": {
+                          "type": "object",
+                          "properties": {
+                            "count": {
+                              "type": "integer",
+                              "description": "하위 POI 개수",
+                              "format": "int32",
+                              "example": 2
+                            },
+                            "poi": {
+                              "type": "array",
+                              "description": "하위 POI 정보",
+                              "items": "[Circular Reference]"
+                            }
+                          },
+                          "description": "하위 POI 정보"
+                        },
+                        "popularity": {
+                          "type": "boolean",
+                          "description": "인기 여부"
+                        },
+                        "pop_tv": {
+                          "type": "boolean",
+                          "description": "TV 기반 인기 여부"
+                        },
+                        "pop_sns": {
+                          "type": "boolean",
+                          "description": "SNS 기반 인기 여부"
+                        },
+                        "pop_hot": {
+                          "type": "boolean",
+                          "description": "HOT 인기 여부"
+                        },
+                        "pop_hit": {
+                          "type": "boolean",
+                          "description": "HIT 인기 여부"
+                        },
+                        "pop_top": {
+                          "type": "string",
+                          "description": "TOP 인기 단계"
+                        }
+                      },
+                      "description": "POI 검색 결과 목록(배열)"
+                    }
+                  },
+                  "adm": {
+                    "type": "array",
+                    "description": "주소 검색 결과 목록(배열)",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "integer",
+                          "description": "검색 타입",
+                          "format": "int32",
+                          "example": 2,
+                          "enum": [
+                            1,
+                            2,
+                            3
+                          ],
+                          "x-enum-descriptions": {
+                            "1": "행정구역 검색",
+                            "2": "지번 검색",
+                            "3": "도로명 주소 검색"
+                          }
+                        },
+                        "posx": {
+                          "type": "string",
+                          "description": "X좌표(경도) 값",
+                          "example": "127.11065"
+                        },
+                        "posy": {
+                          "type": "string",
+                          "description": "Y좌표(위도) 값",
+                          "example": "37.402109"
+                        },
+                        "admcode": {
+                          "type": "string",
+                          "description": "법정구역 코드",
+                          "example": "4113510900"
+                        },
+                        "address": {
+                          "type": "string",
+                          "description": "전체 주소",
+                          "example": "Gyeonggi-do Seongnam-si Bundang-gu Sampyeong-dong"
+                        },
+                        "address_ko": {
+                          "type": "string",
+                          "description": "전체 국문 주소",
+                          "example": "경기도 성남시 분당구 삼평동"
+                        },
+                        "jibun": {
+                          "type": "string",
+                          "description": "지번 정보",
+                          "example": "678"
+                        },
+                        "jibun_ko": {
+                          "type": "string",
+                          "description": "국문 지번 주소"
+                        },
+                        "roadname": {
+                          "type": "string",
+                          "description": "도로명 주소",
+                          "example": "Gyeonggi-do Seongnam-si Bundang-gu Pangyoyeok-ro"
+                        },
+                        "roadname_ko": {
+                          "type": "string",
+                          "description": "국문 도로명 주소",
+                          "example": "경기도 성남시 분당구 판교역로"
+                        },
+                        "roadjibun": {
+                          "type": "string",
+                          "description": "건물 번호",
+                          "example": "240"
+                        },
+                        "roadjibun_ko": {
+                          "type": "string",
+                          "description": "국문 건물 번호",
+                          "example": "240"
+                        },
+                        "postcode": {
+                          "type": "string",
+                          "description": "우편번호<br>*주소+지번 검색 시 제공",
+                          "example": "13493"
+                        },
+                        "buildname": {
+                          "type": "string",
+                          "description": "건물 명칭<br>*도로명 주소 검색 시 제공"
+                        },
+                        "buildname_ko": {
+                          "type": "string",
+                          "description": "국문 건물 명칭<br>*도로명 주소 검색 시 제공",
+                          "example": "삼환하이펙스A동"
+                        },
+                        "accuracy": {
+                          "type": "integer",
+                          "description": "지번 정확도<br>*검색 된 방식에 따라 정확도가 결정",
+                          "format": "int32",
+                          "example": 0,
+                          "enum": [
+                            0,
+                            1,
+                            2,
+                            3
+                          ],
+                          "x-enum-descriptions": {
+                            "0": "지번 일치 검색",
+                            "1": "호지번 확장 검색",
+                            "2": "모지번 확장 검색",
+                            "3": "행정구역 검색"
+                          }
+                        },
+                        "distance": {
+                          "type": "integer",
+                          "description": "기준점과의 거리 정보(m)",
+                          "format": "int32",
+                          "example": 0
+                        }
+                      },
+                      "description": "주소 검색 결과 목록(배열)"
+                    }
+                  }
+                },
+                "description": "다국어 통합 검색 결과"
+              }
+            },
+            "description": "다국어 통합 검색 API의 전체 응답"
+          }
+        }
+      }
+    },
+    "400": {
+      "description": "잘못된 요청",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    },
+    "404": {
+      "description": "API 없음",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    },
+    "415": {
+      "description": "허용되지 않는 메서드",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    },
+    "500": {
+      "description": "서버 내부 오류",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    }
+  },
+  "baseUrl": "https://imaps.inavi.com"
+}

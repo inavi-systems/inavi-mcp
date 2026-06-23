@@ -1,0 +1,380 @@
+{
+  "operationId": "postRouteDistanceMatrixResult",
+  "method": "POST",
+  "path": "/maps/v3.0/appkeys/{APPKEY}/route-distance-matrix",
+  "category": "route-matrix",
+  "tags": [
+    "매트릭스"
+  ],
+  "summary": "RDM(다중 경로 행렬)",
+  "description": "여러 출발/도착 지점 간의 주행 가능 경로를 탐색하여 거리와 시간 정보를 행렬 형태로 반환합니다",
+  "deprecated": false,
+  "parameters": [
+    {
+      "name": "APPKEY",
+      "in": "path",
+      "description": "해당 API 사용 권한이 있는 API 키",
+      "required": true,
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": {
+    "description": "RDM(다중 경로 행렬) 조건",
+    "content": {
+      "application/json": {
+        "schema": {
+          "required": [
+            "points"
+          ],
+          "type": "object",
+          "properties": {
+            "points": {
+              "maxItems": 100,
+              "minItems": 2,
+              "type": "array",
+              "description": "좌표 목록<br>*최소 2개에서 최대 100개의 좌표 설정 가능",
+              "items": {
+                "required": [
+                  "posX",
+                  "posY"
+                ],
+                "type": "object",
+                "properties": {
+                  "posX": {
+                    "type": "string",
+                    "description": "해당 지점의 X좌표(경도)",
+                    "example": "127.11075"
+                  },
+                  "posY": {
+                    "type": "string",
+                    "description": "해당 지점의 Y좌표(위도)",
+                    "example": "37.402159"
+                  }
+                },
+                "description": "좌표 지점들의 목록(배열)<br>*최대 300개 까지 가능"
+              }
+            },
+            "dests": {
+              "maxItems": 100,
+              "minItems": 0,
+              "type": "array",
+              "description": "목적지 좌표 목록<br>*최대 100개의 좌표 설정 가능",
+              "items": "[Circular Reference]"
+            },
+            "traffic": {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "integer",
+              "description": "교통 정보 유형",
+              "format": "int32",
+              "example": 0,
+              "default": 0,
+              "enum": [
+                0,
+                1
+              ],
+              "x-enum-descriptions": {
+                "0": "미사용",
+                "1": "실시간"
+              }
+            },
+            "saveFileType": {
+              "maximum": 3,
+              "minimum": 0,
+              "type": "integer",
+              "description": "경로 정보 저장 유형<br>*목적지 없을 경우 동작",
+              "format": "int32",
+              "example": 0,
+              "default": 0,
+              "enum": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "x-enum-descriptions": {
+                "0": "미사용",
+                "1": "경로 요약 정보(RDM) 저장",
+                "2": "경로 선형 정보(RPM) 저장",
+                "3": "경로 요약 정보(RDM) 및 경로 선형 정보(RPM) 저장"
+              }
+            }
+          },
+          "description": "RDM(다중 경로 행렬)을 위한 요청 파라미터 집합<br>예상 소요 시간 및 거리를 탐색합니다"
+        },
+        "example": {
+          "points": [
+            {
+              "posX": "127.110762",
+              "posY": "37.402184"
+            },
+            {
+              "posX": "127.111412",
+              "posY": "37.39476"
+            },
+            {
+              "posX": "127.119387",
+              "posY": "37.394735"
+            }
+          ],
+          "dests": [
+            {
+              "posX": "126.9071869221794",
+              "posY": "37.53078938747262"
+            }
+          ]
+        }
+      }
+    },
+    "required": true
+  },
+  "responses": {
+    "200": {
+      "description": "OK",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": {
+                "type": "object",
+                "properties": {
+                  "isSuccessful": {
+                    "type": "boolean",
+                    "description": "API 요청 성공 여부",
+                    "example": true
+                  },
+                  "resultCode": {
+                    "type": "integer",
+                    "description": "API 응답 결과 코드",
+                    "format": "int32",
+                    "example": 0
+                  },
+                  "resultMessage": {
+                    "type": "string",
+                    "description": "API 응답 결과 문구",
+                    "example": "Success"
+                  }
+                },
+                "description": "API 응답 결과"
+              },
+              "mode": {
+                "type": "string",
+                "description": "이동 수단",
+                "example": "driving"
+              },
+              "origins": {
+                "type": "array",
+                "description": "요청에 사용된 경도/위도 좌표 목록",
+                "example": [
+                  127.0955,
+                  37.417,
+                  127.0978,
+                  37.4113,
+                  126.8465,
+                  37.5683
+                ],
+                "items": {
+                  "type": "string",
+                  "description": "sprp.response.route-distance-matrix.origins.description",
+                  "example": "[127.0955,37.417,127.0978,37.4113,126.8465,37.5683]"
+                }
+              },
+              "destinations": {
+                "type": "array",
+                "description": "요청에 사용된 목적지 경도/위도 좌표 목록",
+                "items": {
+                  "type": "string",
+                  "description": "sprp.response.route-distance-matrix.destinations.description"
+                }
+              },
+              "rows": {
+                "type": "array",
+                "description": "RDM 결과",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "elements": {
+                      "type": "array",
+                      "description": "경로 정보 목록<br>*요청 좌표 및 목적지 좌표의 순서와 동일하게 정렬",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "distance": {
+                            "type": "object",
+                            "properties": {
+                              "value": {
+                                "type": "integer",
+                                "description": "거리 값(m)",
+                                "format": "int64",
+                                "example": 19971
+                              },
+                              "text": {
+                                "type": "string",
+                                "description": "거리 값(km)",
+                                "example": "20.0 km"
+                              }
+                            },
+                            "description": "거리 정보"
+                          },
+                          "duration": {
+                            "type": "object",
+                            "properties": {
+                              "value": {
+                                "type": "integer",
+                                "description": "소요 시간 값(초)",
+                                "format": "int64",
+                                "example": 1437
+                              },
+                              "text": {
+                                "type": "string",
+                                "description": "소요 시간 값(분)",
+                                "example": "23 mins"
+                              }
+                            },
+                            "description": "소요 시간 정보"
+                          },
+                          "status": {
+                            "type": "string",
+                            "description": "결과 상태 값",
+                            "example": "OK"
+                          }
+                        },
+                        "description": "경로 정보 목록<br>*요청 좌표 및 목적지 좌표의 순서와 동일하게 정렬"
+                      }
+                    }
+                  },
+                  "description": "RDM 결과"
+                }
+              },
+              "rdm": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "description": "데이터 타입",
+                    "example": "file"
+                  },
+                  "form": {
+                    "type": "string",
+                    "description": "파일 포멧",
+                    "example": "bin"
+                  },
+                  "data": {
+                    "type": "string",
+                    "description": "파일 이름"
+                  },
+                  "size": {
+                    "type": "integer",
+                    "description": "파일 크기",
+                    "format": "int32",
+                    "example": 780
+                  },
+                  "created": {
+                    "type": "integer",
+                    "description": "파일 생성 시각",
+                    "format": "int64",
+                    "example": 1774423476
+                  }
+                },
+                "description": "경로 요약 정보 서버 저장 결과"
+              },
+              "rpm": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "description": "데이터 타입",
+                    "example": "file"
+                  },
+                  "form": {
+                    "type": "string",
+                    "description": "파일 포멧",
+                    "example": "bin"
+                  },
+                  "data": {
+                    "type": "string",
+                    "description": "파일 이름"
+                  },
+                  "size": {
+                    "type": "integer",
+                    "description": "파일 크기",
+                    "format": "int32",
+                    "example": 780
+                  },
+                  "created": {
+                    "type": "integer",
+                    "description": "파일 생성 시각",
+                    "format": "int64",
+                    "example": 1774423476
+                  }
+                },
+                "description": "경로 선형 정보 서버 저장 결과"
+              }
+            },
+            "description": "RDM(다중 경로 행렬)의 결과"
+          }
+        }
+      }
+    },
+    "400": {
+      "description": "잘못된 요청",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    },
+    "404": {
+      "description": "API 없음",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    },
+    "415": {
+      "description": "허용되지 않는 메서드",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    },
+    "500": {
+      "description": "서버 내부 오류",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    }
+  },
+  "baseUrl": "https://imaps.inavi.com"
+}

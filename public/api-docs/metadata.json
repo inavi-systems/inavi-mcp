@@ -1,0 +1,31 @@
+{
+  "generatedAt": "2026-04-28T01:56:15.844Z",
+  "sourceUrl": "https://imaps.inavi.com/v3/api-docs",
+  "openapiVersion": "3.0.1",
+  "apiVersion": "V2.0",
+  "totalApis": 39,
+  "categories": [
+    "search-place",
+    "search-geocoding",
+    "search-spatial",
+    "search-w3w",
+    "route-directions",
+    "route-optimization",
+    "route-map-matching",
+    "route-matrix"
+  ],
+  "tagMapping": {
+    "장소/주소 검색": "search-place",
+    "지오코딩": "search-geocoding",
+    "공간 검색": "search-spatial",
+    "W3W": "search-w3w",
+    "탐색": "route-directions",
+    "최적화": "route-optimization",
+    "복원": "route-map-matching",
+    "매트릭스": "route-matrix"
+  },
+  "ignoredTags": [
+    "WEB(JS)",
+    "StaticMap"
+  ]
+}

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>교통 색상 폴리라인 표시</title>
+    <style>
+      #map {
+        width: 100%;
+        height: 500px;
+      }
+    </style>
+  </head>
+  <body>
+    <!--
+    ╔══════════════════════════════════════════════════════════════╗
+    ║  CRITICAL NOTICE FOR AI ASSISTANTS                          ║
+    ║  This is a REFERENCE TEMPLATE with customizable data        ║
+    ║  ✅ ALLOWED: Replace sampleRouteData with actual route data ║
+    ║  ✅ ALLOWED: Replace coordinates, colors, line widths       ║
+    ║  ❌ FORBIDDEN: Modify iNavi Maps API calls/constructors     ║
+    ║  • DO NOT add options/parameters not shown in template      ║
+    ║  • DO NOT change API usage patterns                         ║
+    ║  • iNavi Maps API ≠ Google Maps API (different syntax)     ║
+    ╚══════════════════════════════════════════════════════════════╝
+    -->
+    <div id="map"></div>
+
+    <script>
+    function initMap() {
+      const map = new inavi.maps.Map({
+        center: [127.1025, 37.3950],
+        container: "map",
+        zoom: 14,
+      });
+
+      /*
+       * ──────────────────────────────────────────────────────────
+       * SAMPLE ROUTE DATA
+       * This mirrors the iNavi Route API response structure:
+       *   paths[] > coords[] (x, y) + traffic_color
+       *
+       * Replace this with actual route API data to visualize
+       * real navigation routes. Use the get_api_spec tool to
+       * look up the iNavi Route API specification.
+       * ──────────────────────────────────────────────────────────
+       */
+      const sampleRouteData = {
+        paths: [
+          {
+            traffic_color: "#06B010",
+            coords: [
+              { x: 127.1080, y: 37.4010 },
+              { x: 127.1065, y: 37.4000 },
+              { x: 127.1050, y: 37.3985 },
+            ],
+          },
+          {
+            traffic_color: "#06B010",
+            coords: [
+              { x: 127.1050, y: 37.3985 },
+              { x: 127.1035, y: 37.3970 },
+              { x: 127.1020, y: 37.3960 },
+            ],
+          },
+          {
+            traffic_color: "#FFAA00",
+            coords: [
+              { x: 127.1020, y: 37.3960 },
+              { x: 127.1005, y: 37.3945 },
+              { x: 127.0990, y: 37.3935 },
+            ],
+          },
+          {
+            traffic_color: "#FF0000",
+            coords: [
+              { x: 127.0990, y: 37.3935 },
+              { x: 127.0975, y: 37.3920 },
+              { x: 127.0965, y: 37.3910 },
+            ],
+          },
+          {
+            traffic_color: "#06B010",
+            coords: [
+              { x: 127.0965, y: 37.3910 },
+              { x: 127.0955, y: 37.3895 },
+              { x: 127.0950, y: 37.3880 },
+            ],
+          },
+        ],
+      };
+
+      // Collect all coordinates for outline polyline and map fitting
+      const allCoordinates = [];
+      for (var i = 0; i < sampleRouteData.paths.length; i++) {
+        for (var j = 0; j < sampleRouteData.paths[i].coords.length; j++) {
+          allCoordinates.push([
+            sampleRouteData.paths[i].coords[j].x,
+            sampleRouteData.paths[i].coords[j].y,
+          ]);
+        }
+      }
+
+      // Outline polyline for visual emphasis (darker, wider line behind traffic segments)
+      new inavi.maps.Polyline({
+        map: map,
+        path: allCoordinates,
+        style: {
+          lineCap: "round",
+          lineColor: "#474747",
+          lineJoin: "round",
+          lineWidth: 7,
+        },
+        zIndex: 0,
+      });
+
+      // Traffic-colored segment polylines
+      var paths = sampleRouteData.paths;
+      var joinPath = [
+        paths[0].coords.map(function (c) { return [c.x, c.y]; }),
+      ];
+
+      for (var i = 1; i < paths.length; i++) {
+        if (paths[i].traffic_color === paths[i - 1].traffic_color) {
+          joinPath.push(
+            paths[i].coords.map(function (c) { return [c.x, c.y]; })
+          );
+        } else {
+          var merged = joinPath.concat().reduce(function (a, b) {
+            return a.concat(b);
+          }, []);
+
+          new inavi.maps.Polyline({
+            map: map,
+            path: merged,
+            style: {
+              lineCap: "round",
+              lineColor: paths[i - 1].traffic_color,
+              lineJoin: "round",
+              lineWidth: 5,
+            },
+            zIndex: 1,
+          });
+
+          joinPath = [
+            paths[i].coords.map(function (c) { return [c.x, c.y]; }),
+          ];
+        }
+      }
+
+      // Render the last segment
+      if (joinPath.length > 0) {
+        var lastMerged = joinPath.concat().reduce(function (a, b) {
+          return a.concat(b);
+        }, []);
+
+        new inavi.maps.Polyline({
+          map: map,
+          path: lastMerged,
+          style: {
+            lineCap: "round",
+            lineColor: paths[paths.length - 1].traffic_color,
+            lineJoin: "round",
+            lineWidth: 5,
+          },
+          zIndex: 1,
+        });
+      }
+
+      // Fit map bounds to show the entire polyline
+      map.fitCoordinates(allCoordinates, {
+        duration: 300,
+        padding: 70,
+      });
+    }
+    </script>
+    <script type="text/javascript" src="{base_url}/appkeys/{appKey}/maps?callback=initMap"></script>
+  </body>
+</html>

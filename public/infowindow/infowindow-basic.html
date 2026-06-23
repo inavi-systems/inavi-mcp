@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>정보창 생성하기</title>
+    <style>
+      #map {
+        width: 100%;
+        height: 500px;
+      }
+    </style>
+  </head>
+  <body>
+    <!--
+    ╔══════════════════════════════════════════════════════════════╗
+    ║  CRITICAL NOTICE FOR AI ASSISTANTS                          ║
+    ║  This is a REFERENCE TEMPLATE with customizable data        ║
+    ║  ✅ ALLOWED: Replace data values (coordinates, labels)      ║
+    ║  ❌ FORBIDDEN: Modify iNavi Maps API calls/constructors     ║
+    ║  • DO NOT add options/parameters not shown in template      ║
+    ║  • DO NOT change API usage patterns                         ║
+    ║  • iNavi Maps API ≠ Google Maps API (different syntax)     ║
+    ╚══════════════════════════════════════════════════════════════╝
+    -->
+    <div id="map"></div>
+
+    <script>
+    function initMap() {
+      const map = new inavi.maps.Map({
+        center: [127.110749, 37.402158],
+        container: "map",
+        zoom: 13,
+      });
+
+      const markerPosition = map.getCenter();
+
+      /*
+       * ╔════════════════════════════════════════════════════════════════╗
+       * ║  InfoWindow vs CustomInfoWindow - IMPORTANT FOR AI           ║
+       * ╠════════════════════════════════════════════════════════════════╣
+       * ║  TWO TYPES OF INFO WINDOWS AVAILABLE:                         ║
+       * ║                                                                ║
+       * ║  1. inavi.maps.InfoWindow (Used in this example)              ║
+       * ║     - Provides DEFAULT white rectangular background           ║
+       * ║     - Automatic styling applied                               ║
+       * ║     - Quick implementation with built-in appearance           ║
+       * ║                                                                ║
+       * ║  2. inavi.maps.CustomInfoWindow (Alternative)                 ║
+       * ║     - FULLY CUSTOMIZABLE appearance                           ║
+       * ║     - NO default background - complete freedom                ║
+       * ║     - Control background color, shape, border, etc.           ║
+       * ║     - To use: Replace "InfoWindow" with "CustomInfoWindow"   ║
+       * ║       Example: new inavi.maps.CustomInfoWindow({ ... })      ║
+       * ╚════════════════════════════════════════════════════════════════╝
+       */
+      const infoWindow = new inavi.maps.InfoWindow({
+        content: `
+          <div style="padding: 10px; min-width: 150px;">
+            <p style="margin: 0; font-size: 13px; color: #333;">
+              <strong>위도:</strong> ${markerPosition.lat.toFixed(6)}
+            </p>
+            <p style="margin: 4px 0 0 0; font-size: 13px; color: #333;">
+              <strong>경도:</strong> ${markerPosition.lng.toFixed(6)}
+            </p>
+          </div>
+        `,
+        position: markerPosition,
+        offset: [0, -40],
+        zIndexOffSet: 999,
+        closeButton: false,
+      });
+
+      const marker = new inavi.maps.Marker({
+        map: map,
+        position: markerPosition,
+      });
+
+      // Associate info window with marker
+      marker.setInfoWindow(infoWindow);
+
+      // Show info window on mouse enter
+      marker.on('mouseenter', function(e) {
+        e.target.getInfoWindow().setMap(map);
+      });
+
+      // Hide info window on mouse leave
+      marker.on('mouseleave', function(e) {
+        e.target.getInfoWindow().setMap();
+      });
+    }
+    </script>
+    <script type="text/javascript" src="{base_url}/appkeys/{appKey}/maps?callback=initMap"></script>
+  </body>
+</html>

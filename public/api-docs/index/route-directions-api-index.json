@@ -1,0 +1,78 @@
+{
+  "category": "route-directions",
+  "apis": [
+    {
+      "operationId": "postRouteNormalResult",
+      "method": "GET, POST",
+      "path": "/maps/v3.0/appkeys/{APPKEY}/route-normal",
+      "category": "route-directions",
+      "tags": [
+        "탐색"
+      ],
+      "summary": "경로 탐색",
+      "description": "출발/도착지 및 최대 5개의 경유지, 기타 설정을 통해 최적화된 경로 탐색 정보를 반환합니다",
+      "deprecated": false
+    },
+    {
+      "operationId": "postRouteSummaryResult",
+      "method": "GET, POST",
+      "path": "/maps/v3.0/appkeys/{APPKEY}/route-summary",
+      "category": "route-directions",
+      "tags": [
+        "탐색"
+      ],
+      "summary": "경로 탐색 요약",
+      "description": "출발/도착지 및 최대 5개의 경유지, 기타 설정을 통해 탐색된 요약 정보를 반환합니다",
+      "deprecated": false
+    },
+    {
+      "operationId": "postRouteTimeResult",
+      "method": "GET, POST",
+      "path": "/maps/v3.0/appkeys/{APPKEY}/route-time",
+      "category": "route-directions",
+      "tags": [
+        "탐색"
+      ],
+      "summary": "경로 예측 탐색",
+      "description": "출발, 도착 예정시간을 기준으로 예상 도착시간 및 출발지와 목적지 (경유지 옵션) 좌표를 이용하여 탐색된 상세 정보와 경로 정보를 반환합니다",
+      "deprecated": false
+    },
+    {
+      "operationId": "postRouteNormalViaResult",
+      "method": "POST",
+      "path": "/maps/v3.0/appkeys/{APPKEY}/route-normal-via",
+      "category": "route-directions",
+      "tags": [
+        "탐색"
+      ],
+      "summary": "다중 경유지 탐색 100",
+      "description": "출발지, 도착지 및 최대 100개의 경유지와 각종 옵션을 설정하여 최적화된 경로 탐색 결과를 반환합니다",
+      "deprecated": false
+    },
+    {
+      "operationId": "postRoutePedestrianResult",
+      "method": "POST",
+      "path": "/maps/v3.0/appkeys/{APPKEY}/route-pedestrian",
+      "category": "route-directions",
+      "tags": [
+        "탐색"
+      ],
+      "summary": "도보/PM 경로 탐색",
+      "description": "출발/도착지 및 최대 5개의 경유지, 기타 설정을 통해 최적화된 도보/PM 경로 탐색 정보를 반환합니다",
+      "deprecated": false
+    },
+    {
+      "operationId": "getNavigationErrorCodes",
+      "method": "GET",
+      "path": "/docs/error-codes/navigation",
+      "category": "route-directions",
+      "tags": [
+        "탐색"
+      ],
+      "summary": "에러 코드",
+      "description": "| resultCode | message |\n|-----------:|---------|\n| 100 | Result Not Found |\n| 101 | Argument Error |\n| 102 | IMPS Server Error |\n| 300 | Authentication Failed |\n| 301 | Inappropriate URL |\n| 400 | Invalid request parameter or body |\n| 401 | Authentication required |\n| 403 | Access denied |\n| 404 | API endpoint not found |\n| 405 | HTTP method not allowed |\n| 406 | Not acceptable response type |\n| 409 | Request conflict |\n| 415 | Unsupported content type |\n| 500 | Internal Server Error |\n| 501 | Navigation Fail |\n| 502 | Apply Smart Re-navigation |\n| 503 | Canceled navigation by user |\n| 504 | Error due to Checksum |\n| 505 | Navigation fails for all routes |\n| 510 | Wrong Parameter |\n| 517 | Memory allocation failure |\n| 518 | File open failure |\n| 519 | File read failure |\n| 520 | File write failure |\n| 521 | Socket connection failure |\n| 532 | Request parameter is invalid |\n| 533 | The starting point is not selected, or the wrong starting point |\n| 534 | Destination is not selected or wrong destination |\n| 535 | Wrong stopover |\n| 536 | Link Projection failure |\n| 537 | Exceeding the navigational distance (1000km, walking navigation: 20km) |\n| 538 | Exceeds the number of expandable nodes |\n| 539 | Expansion failure |\n| 540 | Expansion failure due to inactivity or traffic control |\n| 541 | Expansion failure due to vehicle height/weight restrictions near the starting point |\n| 542 | Expansion failed due to a part-time curfew near the departure point |\n| 543 | The destination is a physical island road, and there are no established ferry routes |\n| 544 | The departure or destination is a logical (transportation) island, and there are more than one destination |\n| 548 | node Heap Size is Max |\n| 549 | node does not exist (Search FW)  |\n| 550 | node does not exist (Search FW in Main Loop RoutePlanL) |\n| 551 | node does not exist (Search BW) |\n| 552 | node does not exist (Search BW in Main Loop RoutePlanL) |\n| 553 | node does not exist (searchOnedirection) |\n| 554 | node does not exist (searchOnedirection in Main Loop) |\n| 555 | In check_force_restriction_fw, when there is no restriction on the progress direction && Not direction search && HP_NOPASSING |\n| 556 | When check_force_restriction_fw passes entry/exit restriction |\n| 557 | In check_force_restriction_bw, the forward direction is backwards, the disadvantage of the bidirectional link is U-turn, when the entry/exit restriction is passed. |\n| 558 | node does not exist (Search FW in Main Loop RoutePlanU) |\n| 559 | node does not exist (Search BW in Main Loop RoutePlanU) |\n",
+      "deprecated": false
+    }
+  ],
+  "totalCount": 6
+}

@@ -1,0 +1,274 @@
+{
+  "operationId": "postMatchToRoads1000Result",
+  "method": "POST",
+  "path": "/maps/v3.0/appkeys/{APPKEY}/matchToRoads1000",
+  "category": "route-map-matching",
+  "tags": [
+    "복원"
+  ],
+  "summary": "MTR 1000",
+  "description": "차량 주행 좌표 목록을 도로 네트워크에 매칭하여 실제 주행 경로에 맞게 보정합니다<br>*최대 1000개의 좌표 요청 가능",
+  "deprecated": false,
+  "parameters": [
+    {
+      "name": "APPKEY",
+      "in": "path",
+      "description": "해당 API 사용 권한이 있는 API 키",
+      "required": true,
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": {
+    "description": "MTR 1000 조건",
+    "content": {
+      "application/json": {
+        "schema": {
+          "required": [
+            "coords"
+          ],
+          "type": "object",
+          "properties": {
+            "coords": {
+              "type": "string",
+              "description": "맵매칭 요청 할 좌표<br>*경도와 위도 사이는 ‘,’로 구분, 좌표와 좌표 사이는 ‘|’ 로 구분<br>*최대 1000개 까지 가능",
+              "example": "126.95042955033101,37.39952907832974|126.95100890747277,37.39935861417968"
+            },
+            "responseType": {
+              "maximum": 2,
+              "minimum": 1,
+              "type": "integer",
+              "description": "데이터 요청 타입",
+              "format": "int32",
+              "default": 1,
+              "enum": [
+                1,
+                2
+              ],
+              "x-enum-descriptions": {
+                "1": "전체 데이터 요청",
+                "2": "요청좌표 및 매치된좌표를 제외한 데이터 요청"
+              }
+            }
+          }
+        },
+        "example": {
+          "coords": "126.95042955033101,37.39952907832974|126.95100890747277,37.39935861417968|126.95184575668353,37.399171103167795|126.95238219849246,37.39836991446609|126.95221053711612,37.39727892033366|126.95343362442138,37.39680160540712|126.95515023819372,37.397790325810476|126.95680247894435,37.397994887024126|126.95695268264977,37.39847219435172|126.95695268264977,37.39956317111266|126.95645915619167,37.400790500985025|126.95703851334244,37.40133597447641|126.95800410858769,37.40179621464611|126.95937739959838,37.40169393929715|126.96064340225449,37.40106323822738|126.96074264399483,37.4001811001235|126.96189062945639,37.39907308586036|126.96211593503247,37.398126999177244|126.96302788610492,37.39865118381423"
+        }
+      }
+    },
+    "required": true
+  },
+  "responses": {
+    "200": {
+      "description": "OK",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": {
+                "type": "object",
+                "properties": {
+                  "isSuccessful": {
+                    "type": "boolean",
+                    "description": "API 요청 성공 여부",
+                    "example": true
+                  },
+                  "resultCode": {
+                    "type": "integer",
+                    "description": "API 응답 결과 코드",
+                    "format": "int32",
+                    "example": 0
+                  },
+                  "resultMessage": {
+                    "type": "string",
+                    "description": "API 응답 결과 문구",
+                    "example": "Success"
+                  }
+                },
+                "description": "API 응답 결과"
+              },
+              "roadMatch": {
+                "type": "object",
+                "properties": {
+                  "requestPointCount": {
+                    "type": "integer",
+                    "description": "요청한 좌표의 개수",
+                    "format": "int32"
+                  },
+                  "totalDistance": {
+                    "type": "integer",
+                    "description": "맵매칭 경로의 총 거리(m)",
+                    "format": "int32"
+                  },
+                  "totalPointCount": {
+                    "type": "integer",
+                    "description": "총 좌표의 개수",
+                    "format": "int32"
+                  },
+                  "matchedLinkCount": {
+                    "type": "integer",
+                    "description": "매칭 된 링크의 개수",
+                    "format": "int32"
+                  },
+                  "matchedPoints": {
+                    "type": "array",
+                    "description": "맵매칭 된 정보 데이터에 대한 정보 목록(배열)",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "idxName": {
+                          "type": "string",
+                          "description": "링크의 Mesh ID",
+                          "example": "185316"
+                        },
+                        "linkId": {
+                          "type": "string",
+                          "description": "매칭된 링크의 ID",
+                          "example": "185316000665004661"
+                        },
+                        "sourceIndex": {
+                          "type": "integer",
+                          "description": "요청된 좌표의 순번<br>*보간점의 경우 sourceIndex가 없음",
+                          "format": "int32"
+                        },
+                        "sourceLocation": {
+                          "type": "object",
+                          "properties": {
+                            "latitude": {
+                              "type": "string",
+                              "description": "좌표의 위도",
+                              "example": "37.399343674475396"
+                            },
+                            "longitude": {
+                              "type": "string",
+                              "description": "좌표의 경도",
+                              "example": "126.95049099397443"
+                            }
+                          },
+                          "description": "매칭된 좌표의 정보<br>*보간점의 경우 이전의 매칭된 링크의 연결성을 유지하기 위한 정보"
+                        },
+                        "matchedLocation": "[Circular Reference]",
+                        "speed": {
+                          "type": "integer",
+                          "description": "매칭된 링크의 제한속도(km/h)",
+                          "format": "int32",
+                          "example": 20
+                        },
+                        "roadCategory": {
+                          "type": "integer",
+                          "description": "도로 속성",
+                          "format": "int32",
+                          "example": 6,
+                          "enum": [
+                            0,
+                            1,
+                            2,
+                            3,
+                            4,
+                            5,
+                            6,
+                            7,
+                            8,
+                            9,
+                            10,
+                            11,
+                            12,
+                            13
+                          ],
+                          "x-enum-descriptions": {
+                            "0": "고속국도",
+                            "1": "도시고속화도로",
+                            "2": "국도",
+                            "3": "국가지원지방도",
+                            "4": "지방도",
+                            "5": "주요도로 1",
+                            "6": "주요도로 2",
+                            "7": "주요도로 3",
+                            "8": "기타도로 1",
+                            "9": "이면도로",
+                            "10": "페리항로",
+                            "11": "단지내 도로",
+                            "12": "이면도로 2(세도로)",
+                            "13": "도로 아님(오프로드)"
+                          }
+                        },
+                        "endPoint": {
+                          "type": "string",
+                          "description": "매칭 종료 포인트",
+                          "example": "Y"
+                        }
+                      },
+                      "description": "맵매칭 된 정보 데이터에 대한 정보 목록(배열)"
+                    }
+                  }
+                },
+                "description": "MTR 100 결과"
+              }
+            },
+            "description": "MTR 1000 의 전체 응답"
+          }
+        }
+      }
+    },
+    "400": {
+      "description": "잘못된 요청",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    },
+    "404": {
+      "description": "API 없음",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    },
+    "415": {
+      "description": "허용되지 않는 메서드",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    },
+    "500": {
+      "description": "서버 내부 오류",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    }
+  },
+  "baseUrl": "https://imaps.inavi.com"
+}

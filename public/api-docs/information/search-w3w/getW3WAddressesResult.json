@@ -1,0 +1,183 @@
+{
+  "operationId": "getW3WAddressesResult",
+  "method": "GET",
+  "path": "/maps/v3.0/appkeys/{APPKEY}/w3w-addresses",
+  "category": "search-w3w",
+  "tags": [
+    "W3W"
+  ],
+  "summary": "W3W 리버스 지오코딩",
+  "description": "W3W 리버스 지오코딩 결과에 대한 상세 정보를 제공합니다",
+  "deprecated": false,
+  "parameters": [
+    {
+      "name": "APPKEY",
+      "in": "path",
+      "description": "해당 API 사용 권한이 있는 API 키",
+      "required": true,
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "posX",
+      "in": "query",
+      "description": "해당 지점의 X좌표(경도)<br>*wgs84",
+      "required": true,
+      "schema": {
+        "type": "string",
+        "description": "해당 지점의 X좌표(경도)<br>*wgs84",
+        "example": 127.11075
+      },
+      "example": 127.11075
+    },
+    {
+      "name": "posY",
+      "in": "query",
+      "description": "해당 지점의 Y좌표(위도)<br>*wgs84",
+      "required": true,
+      "schema": {
+        "type": "string",
+        "description": "해당 지점의 Y좌표(위도)<br>*wgs84",
+        "example": 37.402159
+      },
+      "example": 37.402159
+    }
+  ],
+  "responses": {
+    "200": {
+      "description": "OK",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": {
+                "type": "object",
+                "properties": {
+                  "isSuccessful": {
+                    "type": "boolean",
+                    "description": "API 요청 성공 여부",
+                    "example": true
+                  },
+                  "resultCode": {
+                    "type": "integer",
+                    "description": "API 응답 결과 코드",
+                    "format": "int32",
+                    "example": 0
+                  },
+                  "resultMessage": {
+                    "type": "string",
+                    "description": "API 응답 결과 문구",
+                    "example": "Success"
+                  }
+                },
+                "description": "API 응답 결과"
+              },
+              "address": {
+                "type": "object",
+                "properties": {
+                  "result": {
+                    "type": "boolean",
+                    "description": "검색 결과 성공 여부",
+                    "example": true
+                  },
+                  "adm": {
+                    "type": "object",
+                    "properties": {
+                      "keyword": {
+                        "type": "string",
+                        "description": "해당 지점의 w3w(what3words) 키워드",
+                        "example": "승차.수영.왼발"
+                      },
+                      "posX": {
+                        "type": "string",
+                        "description": "X좌표(경도) 값",
+                        "example": "127.110766"
+                      },
+                      "posY": {
+                        "type": "string",
+                        "description": "Y좌표(위도) 값",
+                        "example": "37.402153"
+                      },
+                      "address": {
+                        "type": "string",
+                        "description": "법정동 주소",
+                        "example": "경기도 성남시 분당구 삼평동 678"
+                      },
+                      "roadname": {
+                        "type": "string",
+                        "description": "도로명 주소",
+                        "example": "경기도 성남시 분당구 판교역로 240"
+                      }
+                    },
+                    "description": "w3w 리버스 지오코딩 결과 정보"
+                  }
+                },
+                "description": "W3W 리버스 지오코딩 결과"
+              }
+            },
+            "description": "W3W 리버스 지오코딩 API의 전체 응답"
+          }
+        }
+      }
+    },
+    "400": {
+      "description": "잘못된 요청",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    },
+    "404": {
+      "description": "API 없음",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    },
+    "415": {
+      "description": "허용되지 않는 메서드",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    },
+    "500": {
+      "description": "서버 내부 오류",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    }
+  },
+  "baseUrl": "https://imaps.inavi.com"
+}

@@ -1,0 +1,54 @@
+{
+  "category": "search-spatial",
+  "apis": [
+    {
+      "operationId": "postAdminToPolygonResult",
+      "method": "GET, POST",
+      "path": "/maps/v3.0/appkeys/{APPKEY}/adminToPolygon",
+      "category": "search-spatial",
+      "tags": [
+        "공간 검색"
+      ],
+      "summary": "공간 검색",
+      "description": "지정한 행정구역에 대한 공간(Polygon) 정보를 조회합니다<br>행정구역 코드 또는 명칭을 기준으로 해당 구역의 공간 좌표 목록을 반환합니다",
+      "deprecated": false
+    },
+    {
+      "operationId": "postPolygonToAdminResult",
+      "method": "POST",
+      "path": "/maps/v3.0/appkeys/{APPKEY}/polygonToAdmin",
+      "category": "search-spatial",
+      "tags": [
+        "공간 검색"
+      ],
+      "summary": "행정/법정동 영역 검색",
+      "description": "입력한 좌표(경도, 위도)를 기준으로 해당 위치가 포함되는 행정구역 정보를 조회합니다<br>행정동 및 법정동 등의 행정구역 정보를 반환합니다",
+      "deprecated": false
+    },
+    {
+      "operationId": "getTransCoordinatesResult",
+      "method": "GET",
+      "path": "/maps/v3.0/appkeys/{APPKEY}/trans-coordinates",
+      "category": "search-spatial",
+      "tags": [
+        "공간 검색"
+      ],
+      "summary": "좌표(계) 변환",
+      "description": "입력한 좌표를 지정한 좌표계로 변환합니다<br>좌표 변환 방식에 따라 WGS84, TM, TW, BESSEL 간 상호 변환을 지원합니다",
+      "deprecated": false
+    },
+    {
+      "operationId": "getGeoErrorCodes",
+      "method": "GET",
+      "path": "/docs/error-codes/geo",
+      "category": "search-spatial",
+      "tags": [
+        "공간 검색"
+      ],
+      "summary": "에러 코드",
+      "description": "| resultCode | message |\n|-----------:|---------|\n| 100 | Result Not Found |\n| 101 | Argument Error |\n| 102 | IMPS Server Error |\n| 201 | Searching for Security POI |\n| 202 | Longitude/Latitude |\n| 203 | Mobile Phone Number |\n| 204 | Invalid Query |\n| 205 | POI not in given Admin |\n| 206 | POI not in given Area |\n| 207 | POI not in given Category |\n| 208 | Neighbor Search Only |\n| 210 | Error handling for simulated driving queries |\n| 300 | Authentication Failed |\n| 301 | Inappropriate URL |\n| 400 | Invalid request parameter or body |\n| 401 | Authentication required |\n| 403 | Access denied |\n| 404 | API endpoint not found |\n| 405 | HTTP method not allowed |\n| 406 | Not acceptable response type |\n| 409 | Request conflict |\n| 415 | Unsupported content type |\n| 500 | Internal Server Error |\n",
+      "deprecated": false
+    }
+  ],
+  "totalCount": 4
+}

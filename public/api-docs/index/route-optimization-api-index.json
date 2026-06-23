@@ -1,0 +1,66 @@
+{
+  "category": "route-optimization",
+  "apis": [
+    {
+      "operationId": "postRouteOptimizePoints10Result",
+      "method": "POST",
+      "path": "/maps/v3.0/appkeys/{APPKEY}/route-optimize-points-10",
+      "category": "route-optimization",
+      "tags": [
+        "최적화"
+      ],
+      "summary": "TSP(다중 경유지 최적화) 10",
+      "description": "여러 경유지의 방문 순서를 최적화하여 전체 이동 거리가 최소가 되도록 계산하여 최적의 경유지 방문 순서를 제공합니다<br>출발지, 도착지, 경유지 포함 최소 3개 이상 요청 해야 합니다",
+      "deprecated": false
+    },
+    {
+      "operationId": "postRouteOptimizePoints30Result",
+      "method": "POST",
+      "path": "/maps/v3.0/appkeys/{APPKEY}/route-optimize-points-30",
+      "category": "route-optimization",
+      "tags": [
+        "최적화"
+      ],
+      "summary": "TSP(다중 경유지 최적화) 30",
+      "description": "여러 경유지의 방문 순서를 최적화하여 전체 이동 거리가 최소가 되도록 계산하여 최적의 경유지 방문 순서를 제공합니다<br>출발지, 도착지, 경유지 포함 최소 3개 이상 요청 해야 합니다",
+      "deprecated": false
+    },
+    {
+      "operationId": "postRouteOptimizePoints50Result",
+      "method": "POST",
+      "path": "/maps/v3.0/appkeys/{APPKEY}/route-optimize-points-50",
+      "category": "route-optimization",
+      "tags": [
+        "최적화"
+      ],
+      "summary": "TSP(다중 경유지 최적화) 50",
+      "description": "여러 경유지의 방문 순서를 최적화하여 전체 이동 거리가 최소가 되도록 계산하여 최적의 경유지 방문 순서를 제공합니다<br>출발지, 도착지, 경유지 포함 최소 3개 이상 요청 해야 합니다",
+      "deprecated": false
+    },
+    {
+      "operationId": "postRouteOptimizePoints100Result",
+      "method": "POST",
+      "path": "/maps/v3.0/appkeys/{APPKEY}/route-optimize-points-100",
+      "category": "route-optimization",
+      "tags": [
+        "최적화"
+      ],
+      "summary": "TSP(다중 경유지 최적화) 100",
+      "description": "여러 경유지의 방문 순서를 최적화하여 전체 이동 거리가 최소가 되도록 계산하여 최적의 경유지 방문 순서를 제공합니다<br>출발지, 도착지, 경유지 포함 최소 3개 이상 요청 해야 합니다",
+      "deprecated": false
+    },
+    {
+      "operationId": "getOptimizeErrorCodes",
+      "method": "GET",
+      "path": "/docs/error-codes/optimize",
+      "category": "route-optimization",
+      "tags": [
+        "최적화"
+      ],
+      "summary": "에러 코드",
+      "description": "| resultCode | message |\n|-----------:|---------|\n| 100 | Result Not Found |\n| 101 | Argument Error |\n| 102 | IMPS Server Error |\n| 300 | Authentication Failed |\n| 301 | Inappropriate URL |\n| 400 | Invalid request parameter or body |\n| 401 | Authentication required |\n| 403 | Access denied |\n| 404 | API endpoint not found |\n| 405 | HTTP method not allowed |\n| 406 | Not acceptable response type |\n| 409 | Request conflict |\n| 415 | Unsupported content type |\n| 500 | Internal Server Error |\n| 650 | Memory allocation errors related to navigation extensions |\n| 651 | Failure to read navigation-related data (maps, options, etc.) files |\n| 670 | The starting point is not projected or the starting point is incorrect |\n| 671 | The destination is not projected or the destination is incorrect |\n| 672 | The waypoint is not projected or the waypoint is incorrect |\n| 690 | Navigation range exceeded |\n| 691 | Navigation timeout |\n| 692 | Exceeded number of expandable nodes |\n| 693 | Expansion failed |\n| 700 | Clustering failed |\n| 701 | Allocation recalculation limit exceeded |\n| 702 | Allocation failed within the specified quantity |\n| 703 | Allocation failed within the specified deviation |\n| 704 | Data has expired |\n",
+      "deprecated": false
+    }
+  ],
+  "totalCount": 5
+}

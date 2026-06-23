@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>멀티 폴리곤 생성하기</title>
+    <style>
+      #map {
+        width: 100%;
+        height: 500px;
+      }
+    </style>
+  </head>
+  <body>
+    <!--
+    ╔══════════════════════════════════════════════════════════════╗
+    ║  CRITICAL NOTICE FOR AI ASSISTANTS                          ║
+    ║  This is a REFERENCE TEMPLATE with customizable data        ║
+    ║  ✅ ALLOWED: Replace data values (coordinates, colors,      ║
+    ║              opacity, path points)                           ║
+    ║  ❌ FORBIDDEN: Modify iNavi Maps API calls/constructors     ║
+    ║  • DO NOT add options/parameters not shown in template      ║
+    ║  • DO NOT change API usage patterns                         ║
+    ║  • iNavi Maps API ≠ Google Maps API (different syntax)     ║
+    ╚══════════════════════════════════════════════════════════════╝
+    -->
+    <div id="map"></div>
+
+    <script>
+    function initMap() {
+      const map = new inavi.maps.Map({
+        center: [127.077832, 37.395130],
+        container: "map",
+        zoom: 14,
+      });
+
+      // MultiPolygon: Outer polygon with inner hole
+      // First array: Outer boundary
+      // Second array: Inner hole (cut out from outer polygon)
+      const multiPolygon = new inavi.maps.Polygon({
+        map: map,
+        path: [
+          [
+            {lat: 37.400244274886, lng: 127.069292031503},
+            {lat: 37.390015837233, lng: 127.068176232549},
+            {lat: 37.389265696868, lng: 127.086029015756},
+            {lat: 37.401607961106, lng: 127.08748813746},
+          ],
+          [
+            {lat: 37.397312265476, lng: 127.073240243175},
+            {lat: 37.392061636424, lng: 127.073583565925},
+            {lat: 37.391447902529, lng: 127.082338296146},
+            {lat: 37.398130512197, lng: 127.081479989271},
+          ],
+        ],
+        style: {
+          fillOpacity: 0.8,
+          fillColor: "#55DD55",
+          fillOutlineColor: "#55DD55",
+        },
+      });
+    }
+    </script>
+    <script type="text/javascript" src="{base_url}/appkeys/{appKey}/maps?callback=initMap"></script>
+  </body>
+</html>
+

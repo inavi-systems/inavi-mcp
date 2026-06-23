@@ -1,0 +1,303 @@
+{
+  "operationId": "postRouteOptimizePoints100Result",
+  "method": "POST",
+  "path": "/maps/v3.0/appkeys/{APPKEY}/route-optimize-points-100",
+  "category": "route-optimization",
+  "tags": [
+    "최적화"
+  ],
+  "summary": "TSP(다중 경유지 최적화) 100",
+  "description": "여러 경유지의 방문 순서를 최적화하여 전체 이동 거리가 최소가 되도록 계산하여 최적의 경유지 방문 순서를 제공합니다<br>출발지, 도착지, 경유지 포함 최소 3개 이상 요청 해야 합니다",
+  "deprecated": false,
+  "parameters": [
+    {
+      "name": "APPKEY",
+      "in": "path",
+      "description": "해당 API 사용 권한이 있는 API 키",
+      "required": true,
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": {
+    "description": "TSP(다중 경유지 최적화) 조건",
+    "content": {
+      "application/json": {
+        "schema": {
+          "required": [
+            "routeType",
+            "viaList"
+          ],
+          "type": "object",
+          "properties": {
+            "routeType": {
+              "maximum": 2,
+              "minimum": 0,
+              "type": "integer",
+              "description": "경로 최적화 유형",
+              "format": "int32",
+              "default": 0,
+              "enum": [
+                0,
+                1,
+                2
+              ],
+              "x-enum-descriptions": {
+                "0": "출발지 고정",
+                "1": "도착지 고정",
+                "2": "출-도착지 고정"
+              }
+            },
+            "viaList": {
+              "maxItems": 100,
+              "minItems": 1,
+              "type": "array",
+              "description": "경유지 좌표 목록<br>*출발지, 도착지, 경유지 포함 최소 3개 이상 요청<br>*최대 100개 경유지 설정 가능",
+              "items": {
+                "required": [
+                  "viaX",
+                  "viaY"
+                ],
+                "type": "object",
+                "properties": {
+                  "viaX": {
+                    "type": "string",
+                    "description": "해당 지점의 X좌표(경도)",
+                    "example": "127.119387"
+                  },
+                  "viaY": {
+                    "type": "string",
+                    "description": "해당 지점의 Y좌표(위도)",
+                    "example": "37.394735"
+                  }
+                },
+                "description": "경유지 정보를 담는 목록(배열)<br>*최대 100개 경유지 설정 가능"
+              }
+            },
+            "startX": {
+              "type": "string",
+              "description": "시작 지점(출발지)에 대한 X좌표(경도)<br>*출발지 고정, 출-도착지 고정 시 필요<br>*wgs84",
+              "example": "127.110762"
+            },
+            "startY": {
+              "type": "string",
+              "description": "시작 지점(출발지)에 대한 Y좌표(위도)<br>*출발지 고정, 출-도착지 고정 시 필요<br>*wgs84",
+              "example": "37.402184"
+            },
+            "endX": {
+              "type": "string",
+              "description": "끝 지점(도착지)에 대한 X좌표(경도)<br>*도착지 고정, 출-도착지 고정 시 필요<br>*wgs84",
+              "example": "127.105399"
+            },
+            "endY": {
+              "type": "string",
+              "description": "끝 지점(도착지)에 대한 Y좌표(위도)<br>*도착지 고정, 출-도착지 고정 시 필요<br>*wgs84",
+              "example": "37.5124518"
+            },
+            "matrix": {
+              "type": "array",
+              "description": "경로 요약(거리) 행렬(M:M) 정보<br>*M: 출발지, 도착지, 좌표 개수의 합",
+              "items": {
+                "type": "array",
+                "description": "sprp.request.route-optimize-points.matrix.description",
+                "items": {
+                  "type": "integer",
+                  "description": "sprp.request.route-optimize-points.matrix.description",
+                  "format": "int32"
+                }
+              }
+            }
+          },
+          "description": "TSP(다중 경유지 최적화)를 위한 요청 파라미터 집합"
+        },
+        "example": {
+          "routeType": 2,
+          "startX": "127.07906170100584",
+          "startY": "37.4973545579455",
+          "endX": "127.01038360300306",
+          "endY": "37.4857125930867",
+          "viaList": [
+            {
+              "viaX": 126.99500909167297,
+              "viaY": 37.50977641452363
+            },
+            {
+              "viaX": 127.00676563040908,
+              "viaY": 37.47260049875861
+            },
+            {
+              "viaX": 127.04530205470796,
+              "viaY": 37.520269143865214
+            },
+            {
+              "viaX": 127.06837357126065,
+              "viaY": 37.498849546491435
+            },
+            {
+              "viaX": 127.04943242234208,
+              "viaY": 37.5048863772718
+            }
+          ]
+        }
+      }
+    },
+    "required": true
+  },
+  "responses": {
+    "200": {
+      "description": "OK",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": {
+                "type": "object",
+                "properties": {
+                  "isSuccessful": {
+                    "type": "boolean",
+                    "description": "API 요청 성공 여부",
+                    "example": true
+                  },
+                  "resultCode": {
+                    "type": "integer",
+                    "description": "API 응답 결과 코드",
+                    "format": "int32",
+                    "example": 0
+                  },
+                  "resultMessage": {
+                    "type": "string",
+                    "description": "API 응답 결과 문구",
+                    "example": "Success"
+                  }
+                },
+                "description": "API 응답 결과"
+              },
+              "route": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "object",
+                    "properties": {
+                      "distance": {
+                        "type": "integer",
+                        "description": "경로 전체의 총 거리(m)",
+                        "format": "int32",
+                        "example": 4030
+                      },
+                      "spend_time": {
+                        "type": "integer",
+                        "description": "경로 전체의 총 예상 소요 시간(초)",
+                        "format": "int32",
+                        "example": 1020
+                      },
+                      "optimize": {
+                        "type": "array",
+                        "description": "다중 경유지 최적화 결과 정보 목록(배열)",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "index": {
+                              "type": "integer",
+                              "description": "요청한 좌표의 최적화 전 순서",
+                              "format": "int32",
+                              "example": 0
+                            },
+                            "x": {
+                              "type": "number",
+                              "description": "해당 지점의 X좌표(경도)",
+                              "example": 127.110762
+                            },
+                            "y": {
+                              "type": "number",
+                              "description": "해당 지점의 Y좌표(위도)",
+                              "example": 37.402184
+                            },
+                            "distance": {
+                              "type": "integer",
+                              "description": "이전 경유지로 부터의 이동 거리(m)",
+                              "format": "int32",
+                              "example": 482
+                            },
+                            "spend_time": {
+                              "type": "integer",
+                              "description": "이전 경유지로 부터의 이동 시간(초)",
+                              "format": "int32",
+                              "example": 1571
+                            }
+                          },
+                          "description": "다중 경유지 최적화 결과 정보 목록(배열)"
+                        }
+                      }
+                    },
+                    "description": "다중 경유지 최적화 결과 데이터"
+                  }
+                },
+                "description": "TSP(다중 경유지 최적화) 결과"
+              }
+            },
+            "description": "TSP(다중 경유지 최적화) API 의 전체 응답"
+          }
+        }
+      }
+    },
+    "400": {
+      "description": "잘못된 요청",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    },
+    "404": {
+      "description": "API 없음",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    },
+    "415": {
+      "description": "허용되지 않는 메서드",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    },
+    "500": {
+      "description": "서버 내부 오류",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    }
+  },
+  "baseUrl": "https://imaps.inavi.com"
+}

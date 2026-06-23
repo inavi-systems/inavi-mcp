@@ -1,0 +1,314 @@
+{
+  "operationId": "getNormalRouteStartMultiSummaryResult",
+  "method": "POST",
+  "path": "/maps/v3.0/appkeys/{APPKEY}/route-start-multi-summary",
+  "category": "route-matrix",
+  "tags": [
+    "매트릭스"
+  ],
+  "summary": "다중 출발지-단일 목적지",
+  "description": "여러 출발지에서 지정된 목적지까지의 탐색된 요약 정보를 한 번에 계산해 제공합니다",
+  "deprecated": false,
+  "parameters": [
+    {
+      "name": "APPKEY",
+      "in": "path",
+      "description": "해당 API 사용 권한이 있는 API 키",
+      "required": true,
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": {
+    "description": "다중 출발지-단일 목적지 조건",
+    "content": {
+      "application/json": {
+        "schema": {
+          "required": [
+            "data",
+            "endX",
+            "endY"
+          ],
+          "type": "object",
+          "properties": {
+            "data": {
+              "maxItems": 100,
+              "minItems": 1,
+              "type": "array",
+              "description": "출발지 정보를 담는 목록(배열)<br>*최대 100개까지 설정 가능",
+              "items": {
+                "required": [
+                  "startIdx",
+                  "startX",
+                  "startY"
+                ],
+                "type": "object",
+                "properties": {
+                  "startIdx": {
+                    "type": "string",
+                    "description": "출발지를 구분하기 위한 고유 식별 ID",
+                    "example": "1"
+                  },
+                  "startX": {
+                    "type": "string",
+                    "description": "시작 지점(출발지)에 대한 X좌표(경도)",
+                    "example": "127.110762"
+                  },
+                  "startY": {
+                    "type": "string",
+                    "description": "시작 지점(출발지)에 대한 Y좌표(위도)",
+                    "example": "37.402184"
+                  },
+                  "speed": {
+                    "type": "integer",
+                    "description": "차량의 이동 속도 (단위: km/h)",
+                    "format": "int32",
+                    "nullable": true
+                  },
+                  "angle": {
+                    "maximum": 359,
+                    "minimum": 0,
+                    "type": "integer",
+                    "description": "주행 각도<br>*정북 방향을 0으로 하여 시계 방향으로 0~359도<br>*'useAngle'이 true일 때 적용",
+                    "format": "int32",
+                    "nullable": true
+                  }
+                },
+                "description": "출발지 정보를 담는 목록(배열)<br>*최대 100개까지 설정 가능"
+              }
+            },
+            "endX": {
+              "type": "string",
+              "description": "끝 지점(도착지)에 대한 X좌표(경도)",
+              "example": "127.105399"
+            },
+            "endY": {
+              "type": "string",
+              "description": "끝 지점(도착지)에 대한 Y좌표(위도)",
+              "example": "37.5124518"
+            },
+            "orderby": {
+              "maximum": 3,
+              "minimum": 0,
+              "type": "integer",
+              "description": "정렬 기준",
+              "format": "int32",
+              "example": 0,
+              "default": 0,
+              "enum": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "x-enum-descriptions": {
+                "0": "거리 내림차순",
+                "1": "거리 오름차순",
+                "2": "시간 내림차순",
+                "3": "시간 오름차순"
+              }
+            },
+            "useAngle": {
+              "type": "boolean",
+              "description": "출발 지점의 주행 각도 설정 여부",
+              "default": false,
+              "enum": [
+                false,
+                true
+              ],
+              "x-enum-descriptions": {
+                "false": "주행 방향 비우선",
+                "true": "주행 방향 우선"
+              }
+            },
+            "usageType": {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "integer",
+              "description": "사용 용도",
+              "format": "int32",
+              "default": 0,
+              "enum": [
+                0,
+                1
+              ],
+              "x-enum-descriptions": {
+                "0": "일반",
+                "1": "택시"
+              }
+            },
+            "resultCount": {
+              "minimum": 0,
+              "type": "integer",
+              "description": "탐색 결과 개수<br>*값이 3일 경우, 모든 결과 중 상위 3개만 응답",
+              "format": "int32",
+              "example": 0,
+              "default": 0
+            }
+          },
+          "description": "다중 출발지-단일 목적지를 위한 요청 파라미터 집합<br>여러 출발지를 설정하여 예상 소요 시간 및 거리를 탐색합니다"
+        },
+        "example": {
+          "data": [
+            {
+              "startIdx": "example1",
+              "startX": "127.111412",
+              "startY": "37.39476"
+            },
+            {
+              "startIdx": "example2",
+              "startX": "127.119387",
+              "startY": "37.394735"
+            }
+          ],
+          "endX": "127.110762",
+          "endY": "37.402184"
+        }
+      }
+    },
+    "required": true
+  },
+  "responses": {
+    "200": {
+      "description": "OK",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": {
+                "type": "object",
+                "properties": {
+                  "isSuccessful": {
+                    "type": "boolean",
+                    "description": "API 요청 성공 여부",
+                    "example": true
+                  },
+                  "resultCode": {
+                    "type": "integer",
+                    "description": "API 응답 결과 코드",
+                    "format": "int32",
+                    "example": 0
+                  },
+                  "resultMessage": {
+                    "type": "string",
+                    "description": "API 응답 결과 문구",
+                    "example": "Success"
+                  }
+                },
+                "description": "API 응답 결과"
+              },
+              "route": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "array",
+                    "description": "다중 출발지-단일 목적지 결과 목록(배열)",
+                    "items": {
+                      "required": [
+                        "startIdx",
+                        "startX",
+                        "startY"
+                      ],
+                      "type": "object",
+                      "properties": {
+                        "startIdx": {
+                          "type": "string",
+                          "description": "출발지를 구분하기 위한 고유 식별 ID",
+                          "example": "1"
+                        },
+                        "startX": {
+                          "type": "string",
+                          "description": "시작 지점(출발지)에 대한 X좌표(경도)",
+                          "example": "127.110762"
+                        },
+                        "startY": {
+                          "type": "string",
+                          "description": "시작 지점(출발지)에 대한 Y좌표(위도)",
+                          "example": "37.402184"
+                        },
+                        "spend_time": {
+                          "type": "integer",
+                          "description": "경로 전체의 총 예상 소요 시간(초)",
+                          "format": "int32",
+                          "example": 3720
+                        },
+                        "distance": {
+                          "type": "integer",
+                          "description": "경로 전체의 총 거리(m)",
+                          "format": "int32",
+                          "example": 72183
+                        }
+                      },
+                      "description": "다중 출발지-단일 목적지 결과 목록(배열)"
+                    }
+                  }
+                },
+                "description": "다중 출발지-단일 목적지 결과"
+              }
+            },
+            "description": "다중 출발지-단일 목적지 API의 전체 응답"
+          }
+        }
+      }
+    },
+    "400": {
+      "description": "잘못된 요청",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    },
+    "404": {
+      "description": "API 없음",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    },
+    "415": {
+      "description": "허용되지 않는 메서드",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    },
+    "500": {
+      "description": "서버 내부 오류",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    }
+  },
+  "baseUrl": "https://imaps.inavi.com"
+}

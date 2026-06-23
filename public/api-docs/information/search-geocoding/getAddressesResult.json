@@ -1,0 +1,328 @@
+{
+  "operationId": "getAddressesResult",
+  "method": "GET",
+  "path": "/maps/v3.0/appkeys/{APPKEY}/addresses",
+  "category": "search-geocoding",
+  "tags": [
+    "지오코딩"
+  ],
+  "summary": "리버스 지오코딩",
+  "description": "입력한 좌표(경도, 위도)를 기준으로 해당 위치의 주소 정보를 조회합니다<br>도로명 주소는 좌표와 가장 가까운 건물 기준으로 반환됩니다",
+  "deprecated": false,
+  "parameters": [
+    {
+      "name": "APPKEY",
+      "in": "path",
+      "description": "해당 API 사용 권한이 있는 API 키",
+      "required": true,
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "posX",
+      "in": "query",
+      "description": "해당 지점의 X좌표(경도)",
+      "required": true,
+      "schema": {
+        "type": "string",
+        "description": "해당 지점의 X좌표(경도)",
+        "example": 127.11075
+      },
+      "example": 127.11075
+    },
+    {
+      "name": "posY",
+      "in": "query",
+      "description": "해당 지점의 Y좌표(위도)",
+      "required": true,
+      "schema": {
+        "type": "string",
+        "description": "해당 지점의 Y좌표(위도)",
+        "example": 37.402159
+      },
+      "example": 37.402159
+    },
+    {
+      "name": "coordtype",
+      "in": "query",
+      "description": "좌표 체계",
+      "required": false,
+      "schema": {
+        "maximum": 1,
+        "minimum": 0,
+        "type": "string",
+        "description": "좌표 체계",
+        "default": "1",
+        "enum": [
+          "0",
+          "1"
+        ],
+        "x-enum-descriptions": {
+          "0": "TW 좌표",
+          "1": "WGS84 좌표"
+        }
+      },
+      "x-enum-descriptions": {
+        "0": "TW 좌표",
+        "1": "WGS84 좌표"
+      }
+    }
+  ],
+  "responses": {
+    "200": {
+      "description": "OK",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": {
+                "type": "object",
+                "properties": {
+                  "isSuccessful": {
+                    "type": "boolean",
+                    "description": "API 요청 성공 여부",
+                    "example": true
+                  },
+                  "resultCode": {
+                    "type": "integer",
+                    "description": "API 응답 결과 코드",
+                    "format": "int32",
+                    "example": 0
+                  },
+                  "resultMessage": {
+                    "type": "string",
+                    "description": "API 응답 결과 문구",
+                    "example": "Success"
+                  }
+                },
+                "description": "API 응답 결과"
+              },
+              "location": {
+                "type": "object",
+                "properties": {
+                  "result": {
+                    "type": "boolean",
+                    "description": "검색 결과 성공 여부",
+                    "example": true
+                  },
+                  "hasAdmAddress": {
+                    "type": "boolean",
+                    "description": "행정동 주소 반환 여부",
+                    "example": true
+                  },
+                  "adm": {
+                    "type": "object",
+                    "properties": {
+                      "posx": {
+                        "type": "string",
+                        "description": "X좌표(경도) 값",
+                        "example": "127.11065"
+                      },
+                      "posy": {
+                        "type": "string",
+                        "description": "Y좌표(위도) 값",
+                        "example": "37.402109"
+                      },
+                      "address": {
+                        "type": "string",
+                        "description": "전체 주소",
+                        "example": "경기도 성남시 분당구 삼평동"
+                      },
+                      "jibun": {
+                        "type": "string",
+                        "description": "지번 정보",
+                        "example": "678"
+                      },
+                      "roadname": {
+                        "type": "string",
+                        "description": "도로명 주소",
+                        "example": "경기도 성남시 분당구 판교역로"
+                      },
+                      "roadjibun": {
+                        "type": "string",
+                        "description": "건물 번호",
+                        "example": "240"
+                      },
+                      "admcode": {
+                        "type": "string",
+                        "description": "법정구역 코드",
+                        "example": "4113510900"
+                      },
+                      "postcode": {
+                        "type": "string",
+                        "description": "우편번호<br>*주소+지번 검색 시 제공",
+                        "example": "13493"
+                      },
+                      "bldname": {
+                        "type": "string",
+                        "description": "건물 명칭<br>*도로명 주소 검색 시 제공",
+                        "example": "삼환하이펙스A동"
+                      },
+                      "bldnum": {
+                        "type": "string",
+                        "description": "동호수 정보",
+                        "example": "102동"
+                      }
+                    },
+                    "description": "기본(법정동) 주소 정보"
+                  },
+                  "adm_address": {
+                    "type": "object",
+                    "properties": {
+                      "address": {
+                        "type": "string",
+                        "description": "전체 주소",
+                        "example": "경기도 성남시 분당구 삼평동"
+                      },
+                      "jibun": {
+                        "type": "string",
+                        "description": "지번 정보",
+                        "example": "678"
+                      },
+                      "cut_address": {
+                        "type": "string",
+                        "description": "축약 주소",
+                        "example": "경기 성남시 분당구 삼평동"
+                      },
+                      "admcode": {
+                        "type": "string",
+                        "description": "법정구역 코드",
+                        "example": "4113510900"
+                      },
+                      "address_category1": {
+                        "type": "string",
+                        "description": "시도 정보",
+                        "example": "경기도"
+                      },
+                      "address_category2": {
+                        "type": "string",
+                        "description": "시군구 정보",
+                        "example": "성남시 분당구"
+                      },
+                      "address_category3": {
+                        "type": "string",
+                        "description": "읍면동 정보",
+                        "example": "삼평동"
+                      },
+                      "address_category4": {
+                        "type": "string",
+                        "description": "리 정보"
+                      }
+                    },
+                    "description": "행정동 주소 정보"
+                  },
+                  "legal_address": {
+                    "type": "object",
+                    "properties": {
+                      "address": {
+                        "type": "string",
+                        "description": "전체 주소",
+                        "example": "경기도 성남시 분당구 삼평동"
+                      },
+                      "jibun": {
+                        "type": "string",
+                        "description": "지번 정보",
+                        "example": "678"
+                      },
+                      "cut_address": {
+                        "type": "string",
+                        "description": "축약 주소",
+                        "example": "경기 성남시 분당구 삼평동"
+                      },
+                      "admcode": {
+                        "type": "string",
+                        "description": "법정구역 코드",
+                        "example": "4113510900"
+                      },
+                      "address_category1": {
+                        "type": "string",
+                        "description": "시도 정보",
+                        "example": "경기도"
+                      },
+                      "address_category2": {
+                        "type": "string",
+                        "description": "시군구 정보",
+                        "example": "성남시 분당구"
+                      },
+                      "address_category3": {
+                        "type": "string",
+                        "description": "읍면동 정보",
+                        "example": "삼평동"
+                      },
+                      "address_category4": {
+                        "type": "string",
+                        "description": "리 정보"
+                      }
+                    },
+                    "description": "법정동 주소 정보"
+                  }
+                },
+                "description": "다중 리버스 지오코딩 정보 목록(배열)"
+              }
+            },
+            "description": "리버스 지오코딩 API의 전체 응답"
+          }
+        }
+      }
+    },
+    "400": {
+      "description": "잘못된 요청",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    },
+    "404": {
+      "description": "API 없음",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    },
+    "415": {
+      "description": "허용되지 않는 메서드",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    },
+    "500": {
+      "description": "서버 내부 오류",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    }
+  },
+  "baseUrl": "https://imaps.inavi.com"
+}

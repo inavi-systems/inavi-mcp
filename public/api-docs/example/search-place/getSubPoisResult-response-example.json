@@ -1,0 +1,152 @@
+{
+  "200": {
+    "success": {
+      "summary": "성공",
+      "value": {
+        "header": {
+          "isSuccessful": true,
+          "resultCode": 0,
+          "resultMessage": "Success"
+        },
+        "subpoi": {
+          "result": true,
+          "totalcount": 1,
+          "count": 1,
+          "poi": [
+            {
+              "poiid": 1415980,
+              "subflag": "1",
+              "dpx": "127.110862",
+              "dpy": "37.402334",
+              "rpx": "127.110862",
+              "rpy": "37.402334",
+              "routepoints": [
+                {
+                  "rpx": "127.110862",
+                  "rpy": "37.402334"
+                }
+              ],
+              "name1": "입구",
+              "name2": "팅크웨어정문",
+              "name3": "",
+              "name4": "",
+              "admcode": "4113510900",
+              "address": "경기도 성남시 분당구 삼평동",
+              "jibun": "",
+              "roadname": "",
+              "roadjibun": "",
+              "detailaddress": "",
+              "catecode": "181104",
+              "catename": "도로시설",
+              "dp_catecode": "000",
+              "distance": 0,
+              "tel": "",
+              "hasoildata": false,
+              "islandmark": false,
+              "updateTS": "2023-08-17",
+              "externallink": [],
+              "popularity": false,
+              "pop_tv": false,
+              "pop_sns": false,
+              "pop_hot": false,
+              "pop_hit": false,
+              "pop_top": ""
+            }
+          ]
+        }
+      }
+    },
+    "argError": {
+      "summary": "파라미터 에러",
+      "description": "Argument Error",
+      "value": {
+        "header": {
+          "isSuccessful": false,
+          "resultCode": 101,
+          "resultMessage": "Argument Error"
+        }
+      }
+    },
+    "serverError": {
+      "summary": "IMPS 서버 에러",
+      "description": "IMPS Server Error",
+      "value": {
+        "header": {
+          "isSuccessful": false,
+          "resultCode": 102,
+          "resultMessage": "IMPS Server Error"
+        }
+      }
+    },
+    "authentication": {
+      "summary": "인증 실패",
+      "description": "Authentication Failed",
+      "value": {
+        "header": {
+          "isSuccessful": false,
+          "resultCode": 300,
+          "resultMessage": "Authentication Failed"
+        }
+      }
+    },
+    "badRequest": {
+      "summary": "부적절한 URL",
+      "description": "Inappropriate URL",
+      "value": {
+        "header": {
+          "isSuccessful": false,
+          "resultCode": 301,
+          "resultMessage": "Inappropriate URL"
+        }
+      }
+    }
+  },
+  "400": {
+    "400": {
+      "summary": "잘못된 요청",
+      "value": {
+        "header": {
+          "isSuccessful": false,
+          "resultCode": 400,
+          "resultMessage": "Invalid request parameter or body"
+        }
+      }
+    }
+  },
+  "404": {
+    "404": {
+      "summary": "API 없음",
+      "value": {
+        "header": {
+          "isSuccessful": false,
+          "resultCode": 404,
+          "resultMessage": "API endpoint not found"
+        }
+      }
+    }
+  },
+  "415": {
+    "415": {
+      "summary": "허용되지 않는 메서드",
+      "value": {
+        "header": {
+          "isSuccessful": false,
+          "resultCode": 415,
+          "resultMessage": "Unsupported content type"
+        }
+      }
+    }
+  },
+  "500": {
+    "500": {
+      "summary": "서버 내부 오류",
+      "value": {
+        "header": {
+          "isSuccessful": false,
+          "resultCode": 500,
+          "resultMessage": "Internal Server Error"
+        }
+      }
+    }
+  }
+}

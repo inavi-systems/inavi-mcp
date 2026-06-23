@@ -1,0 +1,54 @@
+{
+  "category": "route-map-matching",
+  "apis": [
+    {
+      "operationId": "postMapMatchResult",
+      "method": "POST",
+      "path": "/maps/v3.0/appkeys/{APPKEY}/map-match",
+      "category": "route-map-matching",
+      "tags": [
+        "복원"
+      ],
+      "summary": "Special Map Matching",
+      "description": "차량 주행 좌표와 함께 속도, 각도, 시간 정보 목록을 입력받아<br>도로 네트워크에 보다 정밀하게 매칭하여 실제 주행 경로를 복원합니다",
+      "deprecated": false
+    },
+    {
+      "operationId": "postMatchToRoadsResult",
+      "method": "POST",
+      "path": "/maps/v3.0/appkeys/{APPKEY}/matchToRoads",
+      "category": "route-map-matching",
+      "tags": [
+        "복원"
+      ],
+      "summary": "MTR 100",
+      "description": "차량 주행 좌표 목록을 도로 네트워크에 매칭하여 실제 주행 경로에 맞게 보정합니다<br>*최대 100개의 좌표 요청 가능",
+      "deprecated": false
+    },
+    {
+      "operationId": "postMatchToRoads1000Result",
+      "method": "POST",
+      "path": "/maps/v3.0/appkeys/{APPKEY}/matchToRoads1000",
+      "category": "route-map-matching",
+      "tags": [
+        "복원"
+      ],
+      "summary": "MTR 1000",
+      "description": "차량 주행 좌표 목록을 도로 네트워크에 매칭하여 실제 주행 경로에 맞게 보정합니다<br>*최대 1000개의 좌표 요청 가능",
+      "deprecated": false
+    },
+    {
+      "operationId": "getMapMatchErrorCodes",
+      "method": "GET",
+      "path": "/docs/error-codes/map-match",
+      "category": "route-map-matching",
+      "tags": [
+        "복원"
+      ],
+      "summary": "에러 코드",
+      "description": "| resultCode | message |\n|-----------:|---------|\n| 100 | Result Not Found |\n| 101 | Argument Error |\n| 102 | IMPS Server Error |\n| 300 | Authentication Failed |\n| 301 | Inappropriate URL |\n| 400 | Invalid request parameter or body |\n| 401 | Authentication required |\n| 403 | Access denied |\n| 404 | API endpoint not found |\n| 405 | HTTP method not allowed |\n| 406 | Not acceptable response type |\n| 409 | Request conflict |\n| 415 | Unsupported content type |\n| 500 | Internal Server Error |\n| 810 | Map-Matching Argument Error |\n| 830 | Map-Matching Error |\n| 831 | No Valid GPS |\n| 850 | Internal module error |\n| 899 | Due to high number of requests |\n",
+      "deprecated": false
+    }
+  ],
+  "totalCount": 4
+}

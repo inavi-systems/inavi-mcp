@@ -1,0 +1,201 @@
+{
+  "operationId": "getTransCoordinatesResult",
+  "method": "GET",
+  "path": "/maps/v3.0/appkeys/{APPKEY}/trans-coordinates",
+  "category": "search-spatial",
+  "tags": [
+    "공간 검색"
+  ],
+  "summary": "좌표(계) 변환",
+  "description": "입력한 좌표를 지정한 좌표계로 변환합니다<br>좌표 변환 방식에 따라 WGS84, TM, TW, BESSEL 간 상호 변환을 지원합니다",
+  "deprecated": false,
+  "parameters": [
+    {
+      "name": "APPKEY",
+      "in": "path",
+      "description": "해당 API 사용 권한이 있는 API 키",
+      "required": true,
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "posX",
+      "in": "query",
+      "description": "X좌표(경도) <br>*입력 좌표계에 따라 경도(Longitude) 또는 Easting",
+      "required": true,
+      "schema": {
+        "type": "string",
+        "description": "X좌표(경도) <br>*입력 좌표계에 따라 경도(Longitude) 또는 Easting",
+        "example": 127.11075
+      },
+      "example": 127.11075
+    },
+    {
+      "name": "posY",
+      "in": "query",
+      "description": "Y좌표(위도) <br>*입력 좌표계에 따라 위도(Latitude) 또는 Northing",
+      "required": true,
+      "schema": {
+        "type": "string",
+        "description": "Y좌표(위도) <br>*입력 좌표계에 따라 위도(Latitude) 또는 Northing",
+        "example": 37.402159
+      },
+      "example": 37.402159
+    },
+    {
+      "name": "coordtype",
+      "in": "query",
+      "description": "좌표 변환 방식 코드",
+      "required": true,
+      "schema": {
+        "maximum": 5,
+        "minimum": 0,
+        "pattern": "^([0-5]{1})$",
+        "type": "string",
+        "description": "좌표 변환 방식 코드",
+        "example": 0,
+        "enum": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "x-enum-descriptions": {
+          "0": "WGS84→TM",
+          "1": "TM→WGS84",
+          "2": "WGS84→TW",
+          "3": "TW→WGS84",
+          "4": "WGS84→BESSEL",
+          "5": "BESSEL→WGS84"
+        }
+      },
+      "example": 0,
+      "x-enum-descriptions": {
+        "0": "WGS84→TM",
+        "1": "TM→WGS84",
+        "2": "WGS84→TW",
+        "3": "TW→WGS84",
+        "4": "WGS84→BESSEL",
+        "5": "BESSEL→WGS84"
+      }
+    }
+  ],
+  "responses": {
+    "200": {
+      "description": "OK",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": {
+                "type": "object",
+                "properties": {
+                  "isSuccessful": {
+                    "type": "boolean",
+                    "description": "API 요청 성공 여부",
+                    "example": true
+                  },
+                  "resultCode": {
+                    "type": "integer",
+                    "description": "API 응답 결과 코드",
+                    "format": "int32",
+                    "example": 0
+                  },
+                  "resultMessage": {
+                    "type": "string",
+                    "description": "API 응답 결과 문구",
+                    "example": "Success"
+                  }
+                },
+                "description": "API 응답 결과"
+              },
+              "coordinate": {
+                "type": "object",
+                "properties": {
+                  "x": {
+                    "type": "string",
+                    "description": "X좌표(경도) 값<br>*입력 좌표계에 따라 경도(Longitude) 또는 Easting",
+                    "example": "209991.93"
+                  },
+                  "y": {
+                    "type": "string",
+                    "description": "Y좌표(위도) 값<br>*입력 좌표계에 따라 위도(Latitude) 또는 Northing",
+                    "example": "433345.71"
+                  },
+                  "coordtype": {
+                    "type": "string",
+                    "description": "변환된 좌표 형식",
+                    "example": "TM"
+                  }
+                },
+                "description": "좌표(계) 변환 결과"
+              }
+            },
+            "description": "좌표(계) 변환 API의 전체 응답"
+          }
+        }
+      }
+    },
+    "400": {
+      "description": "잘못된 요청",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    },
+    "404": {
+      "description": "API 없음",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    },
+    "415": {
+      "description": "허용되지 않는 메서드",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    },
+    "500": {
+      "description": "서버 내부 오류",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    }
+  },
+  "baseUrl": "https://imaps.inavi.com"
+}

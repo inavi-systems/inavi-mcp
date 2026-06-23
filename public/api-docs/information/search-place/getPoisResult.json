@@ -1,0 +1,441 @@
+{
+  "operationId": "getPoisResult",
+  "method": "GET",
+  "path": "/maps/v3.0/appkeys/{APPKEY}/pois",
+  "category": "search-place",
+  "tags": [
+    "장소/주소 검색"
+  ],
+  "summary": "장소 상세 조회",
+  "description": "POIID를 입력하여 해당 POI의 상세 정보를 조회합니다<br>POI의 명칭, 주소, 좌표, 카테고리 등 관련 정보를 반환합니다",
+  "deprecated": false,
+  "parameters": [
+    {
+      "name": "APPKEY",
+      "in": "path",
+      "description": "해당 API 사용 권한이 있는 API 키",
+      "required": true,
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "poiid",
+      "in": "query",
+      "description": "POI 고유 ID<br>*구분자(\",\") 와 함께 입력 가능<br>*예: 123,1234,234",
+      "required": true,
+      "schema": {
+        "pattern": "^[0-9]+(\\s*,\\s*[0-9]+)*$",
+        "type": "string",
+        "description": "POI 고유 ID<br>*구분자(\",\") 와 함께 입력 가능<br>*예: 123,1234,234",
+        "example": 8827198
+      },
+      "example": 8827198
+    },
+    {
+      "name": "coordtype",
+      "in": "query",
+      "description": "좌표 체계",
+      "required": false,
+      "schema": {
+        "maximum": 1,
+        "minimum": 0,
+        "type": "string",
+        "description": "좌표 체계",
+        "default": "1",
+        "enum": [
+          "0",
+          "1"
+        ],
+        "x-enum-descriptions": {
+          "0": "TW 좌표",
+          "1": "WGS84 좌표"
+        }
+      },
+      "x-enum-descriptions": {
+        "0": "TW 좌표",
+        "1": "WGS84 좌표"
+      }
+    }
+  ],
+  "responses": {
+    "200": {
+      "description": "OK",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": {
+                "type": "object",
+                "properties": {
+                  "isSuccessful": {
+                    "type": "boolean",
+                    "description": "API 요청 성공 여부",
+                    "example": true
+                  },
+                  "resultCode": {
+                    "type": "integer",
+                    "description": "API 응답 결과 코드",
+                    "format": "int32",
+                    "example": 0
+                  },
+                  "resultMessage": {
+                    "type": "string",
+                    "description": "API 응답 결과 문구",
+                    "example": "Success"
+                  }
+                },
+                "description": "API 응답 결과"
+              },
+              "poi": {
+                "type": "object",
+                "properties": {
+                  "result": {
+                    "type": "boolean",
+                    "description": "검색 결과 성공 여부",
+                    "example": true
+                  },
+                  "totalcount": {
+                    "type": "integer",
+                    "description": "총 검색 결과 개수",
+                    "format": "int32",
+                    "example": 192
+                  },
+                  "count": {
+                    "type": "integer",
+                    "description": "총 응답 결과 개수",
+                    "format": "int32",
+                    "example": 102
+                  },
+                  "poiinfo": {
+                    "type": "array",
+                    "description": "POI 검색 결과 목록(배열)",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "poiid": {
+                          "type": "integer",
+                          "description": "POI 고유 ID",
+                          "format": "int32",
+                          "example": 8827198
+                        },
+                        "dpx": {
+                          "type": "string",
+                          "description": "지도 표출용 X좌표(경도)",
+                          "example": "127.110762"
+                        },
+                        "dpy": {
+                          "type": "string",
+                          "description": "지도 표출용 Y좌표(위도)",
+                          "example": "37.402184"
+                        },
+                        "rpx": {
+                          "type": "string",
+                          "description": "차량 진입로 X좌표(경도)",
+                          "example": "127.110862"
+                        },
+                        "rpy": {
+                          "type": "string",
+                          "description": "차량 진입로 Y좌표(위도)",
+                          "example": "37.402334"
+                        },
+                        "routepoints": {
+                          "type": "array",
+                          "description": "차량 진입로 좌표 정보 목록(배열)<br>>*차량 경로 탐색 시 사용 가능",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "rpx": {
+                                "type": "string",
+                                "description": "차량 진입로 X좌표(경도)",
+                                "example": "127.110862"
+                              },
+                              "rpy": {
+                                "type": "string",
+                                "description": "차량 진입로 Y좌표(위도)",
+                                "example": "37.402334"
+                              }
+                            },
+                            "description": "차량 진입로 좌표 정보 목록(배열)<br>>*차량 경로 탐색 시 사용 가능"
+                          }
+                        },
+                        "entrypoint": {
+                          "type": "object",
+                          "properties": {
+                            "px": {
+                              "type": "string",
+                              "description": "진입 지점의 X좌표(경도)",
+                              "example": "127.109987"
+                            },
+                            "py": {
+                              "type": "string",
+                              "description": "진입 지점의 Y좌표(위도)",
+                              "example": "37.401942"
+                            }
+                          },
+                          "description": "진입 지점 정보"
+                        },
+                        "name1": {
+                          "type": "string",
+                          "description": "대표 명칭",
+                          "example": "아이나비시스템즈"
+                        },
+                        "name2": {
+                          "type": "string",
+                          "description": "축약 명칭",
+                          "example": "INAVISYSTEMS"
+                        },
+                        "name3": {
+                          "type": "string",
+                          "description": "확장 명칭1",
+                          "example": "아이나비시스템즈판교캠퍼스"
+                        },
+                        "name4": {
+                          "type": "string",
+                          "description": "확장 명칭2",
+                          "example": "아이나비판교캠퍼스"
+                        },
+                        "admcode": {
+                          "type": "string",
+                          "description": "행정구역 코드(법정동/행정동)<br>*법정동 검색 → 법정동 코드<br>*행정동 검색 → 행정동 코드",
+                          "example": "4113510900"
+                        },
+                        "address": {
+                          "type": "string",
+                          "description": "전체 주소",
+                          "example": "경기도 성남시 분당구 삼평동"
+                        },
+                        "jibun": {
+                          "type": "string",
+                          "description": "지번 주소",
+                          "example": "678"
+                        },
+                        "roadname": {
+                          "type": "string",
+                          "description": "도로명주소",
+                          "example": "경기도 성남시 분당구 판교역로"
+                        },
+                        "roadjibun": {
+                          "type": "string",
+                          "description": "건물 번호",
+                          "example": "240"
+                        },
+                        "detailaddress": {
+                          "type": "string",
+                          "description": "상세 주소 정보",
+                          "example": "삼환하이펙스 A동 8층"
+                        },
+                        "catecode": {
+                          "type": "string",
+                          "description": "카테고리 코드",
+                          "example": "130602"
+                        },
+                        "catename": {
+                          "type": "string",
+                          "description": "카테고리 명칭",
+                          "example": "팅크웨어"
+                        },
+                        "fulladdress": {
+                          "type": "string",
+                          "description": "전체 주소(행정주소+지번+상세주소)",
+                          "example": "경기도 성남시 분당구 삼평동 678 삼환하이펙스 A동 8층"
+                        },
+                        "zip": {
+                          "type": "string",
+                          "description": "우편번호",
+                          "example": "13493"
+                        },
+                        "homepage": {
+                          "type": "string",
+                          "description": "홈페이지 URL",
+                          "example": "https://www.inavisys.com"
+                        },
+                        "email": {
+                          "type": "string",
+                          "description": "E-mail 정보"
+                        },
+                        "howtogo": {
+                          "type": "string",
+                          "description": "교통편"
+                        },
+                        "tel1": {
+                          "type": "string",
+                          "description": "전화번호1",
+                          "example": "02-589-9610"
+                        },
+                        "tel2": {
+                          "type": "string",
+                          "description": "전화번호2"
+                        },
+                        "fax1": {
+                          "type": "string",
+                          "description": "팩스번호1",
+                          "example": "02-2107-7470"
+                        },
+                        "fax2": {
+                          "type": "string",
+                          "description": "팩스번호2"
+                        },
+                        "detail_count": {
+                          "type": "integer",
+                          "description": "분류 상세 항목 개수",
+                          "format": "int32",
+                          "example": 0
+                        },
+                        "etc_count": {
+                          "type": "integer",
+                          "description": "분류 기타 항목 개수",
+                          "format": "int32",
+                          "example": 0
+                        },
+                        "detailinfo": {
+                          "type": "array",
+                          "description": "분류 상세 항목",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "name": {
+                                "type": "string",
+                                "description": "분류 항목 설명"
+                              },
+                              "value": {
+                                "type": "string",
+                                "description": "분류 항목 내용"
+                              }
+                            },
+                            "description": "분류 기타 항목"
+                          }
+                        },
+                        "etcinfo": {
+                          "type": "array",
+                          "description": "분류 기타 항목",
+                          "items": "[Circular Reference]"
+                        },
+                        "hasoildata": {
+                          "type": "boolean",
+                          "description": "주유소 유가 정보 보유 여부"
+                        },
+                        "externallink": {
+                          "type": "array",
+                          "description": "연동 Site 정보 목록(배열)",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "Site": {
+                                "type": "string",
+                                "description": "연동 Site"
+                              },
+                              "ID": {
+                                "type": "string",
+                                "description": "연동 ID"
+                              },
+                              "ExtraInfo1": {
+                                "type": "string",
+                                "description": "추가정보1"
+                              },
+                              "ExtraInfo2": {
+                                "type": "string",
+                                "description": "추가정보2"
+                              }
+                            },
+                            "description": "연동 Site 정보 목록(배열)"
+                          }
+                        },
+                        "popularity": {
+                          "type": "boolean",
+                          "description": "인기 여부"
+                        },
+                        "pop_tv": {
+                          "type": "boolean",
+                          "description": "TV 기반 인기 여부"
+                        },
+                        "pop_sns": {
+                          "type": "boolean",
+                          "description": "SNS 기반 인기 여부"
+                        },
+                        "pop_hot": {
+                          "type": "boolean",
+                          "description": "HOT 인기 여부"
+                        },
+                        "pop_hit": {
+                          "type": "boolean",
+                          "description": "HIT 인기 여부"
+                        },
+                        "pop_top": {
+                          "type": "string",
+                          "description": "TOP 인기 단계",
+                          "example": "경기_1,분당구_1"
+                        }
+                      },
+                      "description": "POI 검색 결과 목록(배열)"
+                    }
+                  }
+                },
+                "description": "장소 상세 조회 결과"
+              }
+            },
+            "description": "장소 상세 조회 API의 전체 응답"
+          }
+        }
+      }
+    },
+    "400": {
+      "description": "잘못된 요청",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    },
+    "404": {
+      "description": "API 없음",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    },
+    "415": {
+      "description": "허용되지 않는 메서드",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    },
+    "500": {
+      "description": "서버 내부 오류",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "header": "[Circular Reference]"
+            },
+            "description": "API 응답 결과의 상태"
+          }
+        }
+      }
+    }
+  },
+  "baseUrl": "https://imaps.inavi.com"
+}
