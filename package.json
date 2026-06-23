@@ -1,6 +1,6 @@
 {
   "name": "@inavi-maps/mcp-server",
-  "version": "0.3.7",
+  "version": "0.3.8",
   "description": "MCP Server for iNavi Maps API - Geocoding, POI Search, Route Planning for Claude AI",
   "main": "dist/server.js",
   "bin": {
