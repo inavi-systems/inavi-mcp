@@ -264,4 +264,4 @@ MIT License - 자유롭게 사용, 수정, 배포할 수 있습니다. 자세한
 
 - [Model Context Protocol](https://modelcontextprotocol.io/) - MCP 공식 문서
 - [Claude Desktop](https://claude.ai/download) - Claude Desktop 다운로드
-- [iNavi Maps API](https://imapsapi.inavi.com/) - iNavi Maps API 공식 문서
+- [iNavi Maps API](https://mapsapi.inavisys.com/) - iNavi Maps API 공식 문서

@@ -74,7 +74,7 @@ copy .env.example .env
 ```env
 # Optional (uncomment to override defaults)
 # NODE_ENV=development
-# INAVI_BASE_URL=https://dev-imaps.inavi.com/maps/v3.0
+# INAVI_DOMAIN=https://imaps.inavi.com
 ```
 
 ### 환경 변수 설명
@@ -82,7 +82,7 @@ copy .env.example .env
 | 변수명 | 설명 | 기본값 | 필수 |
 |--------|------|--------|------|
 | `NODE_ENV` | 실행 환경 (`development` \| `production` \| `test`) | `development` | ❌ |
-| `INAVI_BASE_URL` | iNavi Maps API 베이스 URL | `https://dev-imaps.inavi.com/maps/v3.0` | ❌ |
+| `INAVI_DOMAIN` | iNavi Maps API 도메인 (`/maps/v3.0` 자동 추가) | `https://imaps.inavi.com` | ❌ |
 
 ---
 
