@@ -1,6 +1,7 @@
 {
   "name": "@inavi-maps/mcp-server",
   "version": "0.3.8",
+  "mcpName": "io.github.inavi-systems/inavi-mcp",
   "description": "MCP Server for iNavi Maps API - Geocoding, POI Search, Route Planning for Claude AI",
   "main": "dist/server.js",
   "bin": {
@@ -29,7 +30,7 @@
     "update-api-docs": "node scripts/update-api-docs.js",
     "validate-api-docs": "vitest run test/scripts/validate-api-docs.test.ts",
     "prepublishOnly": "npm run lint && npm run type-check && npm run build",
-    "version": "node scripts/sync-version.js && git add manifest.json",
+    "version": "node scripts/sync-version.js && git add manifest.json server.json",
     "release": "echo 'Use GitHub Actions: Actions > Release > Run workflow' && exit 1"
   },
   "publishConfig": {

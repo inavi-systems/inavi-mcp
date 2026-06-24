@@ -21,6 +21,7 @@ jobs:
 
     permissions:
       contents: write
+      id-token: write # Required for MCP Registry OIDC authentication
 
     steps:
       - name: Checkout code
@@ -57,6 +58,17 @@ jobs:
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      # Publish to the official MCP Registry (GitHub OIDC, no secret required).
+      # server.json is kept in sync by scripts/sync-version.js during "npm version".
+      - name: Install mcp-publisher
+        run: |
+          curl -L "https://github.com/modelcontextprotocol/registry/releases/latest/download/mcp-publisher_$(uname -s | tr '[:upper:]' '[:lower:]')_$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/').tar.gz" | tar xz mcp-publisher
+
+      - name: Publish to MCP Registry
+        run: |
+          ./mcp-publisher login github-oidc
+          ./mcp-publisher publish
 
       # Create MCPB bundle
       - name: Install MCPB CLI
