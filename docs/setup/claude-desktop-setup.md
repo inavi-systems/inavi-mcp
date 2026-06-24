@@ -78,7 +78,7 @@ npx를 사용하면 별도의 다운로드 없이 최신 버전을 자동으로 
 
 ### 방법 3: 로컬 빌드
 
-개발자이거나 프로젝트에 기여하려는 경우 로컬에서 빌드하여 사용할 수 있습니다.
+소스에서 직접 빌드하려는 개발자는 로컬에서 빌드하여 사용할 수 있습니다.
 
 #### 단계
 
@@ -192,7 +192,7 @@ npx 방법을 사용할 때 Node.js가 설치되어 있지 않으면:
 
 - **사용 방법**: [API Reference](../guides/api-reference.md)에서 사용 가능한 모든 도구 확인
 - **예제**: README의 "사용 예시" 섹션 참고
-- **기여하기**: [Local Development Guide](./local-development.md) 참고
+- **로컬 빌드**: [Local Development Guide](./local-development.md) 참고
 
 ---
 

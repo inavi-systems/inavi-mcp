@@ -1,6 +1,6 @@
 # 로컬 개발 가이드
 
-프로젝트에 기여하거나 로컬에서 개발하려는 개발자를 위한 가이드입니다.
+소스에서 직접 빌드하여 개발·실행하려는 개발자를 위한 가이드입니다.
 
 ## 목차
 - [필수 요구사항](#필수-요구사항)
@@ -341,7 +341,7 @@ inavi-maps-mcp-server/
 
 ## 다음 단계
 
-- **기여하기**: Pull Request를 생성하여 기능 개선이나 버그 수정에 기여하세요
+- **기여 정책**: 현재 외부 기여(Pull Request)는 받고 있지 않습니다
 - **문서 확인**: [CLAUDE.md](../../CLAUDE.md)에서 상세한 개발 가이드 확인
 - **API 레퍼런스**: [API Reference](../guides/api-reference.md)에서 모든 도구 확인
 - **문제 해결**: [Troubleshooting Guide](../troubleshooting.md) 참고

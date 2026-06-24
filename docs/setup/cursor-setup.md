@@ -54,7 +54,7 @@ Cursor의 MCP 설정 파일을 열고 다음 내용을 추가합니다:
 
 ### 방법 2: 로컬 빌드
 
-개발자이거나 프로젝트에 기여하려는 경우 로컬에서 빌드하여 사용할 수 있습니다.
+소스에서 직접 빌드하려는 개발자는 로컬에서 빌드하여 사용할 수 있습니다.
 
 #### 단계
 
@@ -204,7 +204,7 @@ Cline의 MCP 설정에 위와 동일한 형식으로 설정을 추가합니다.
 
 - **사용 방법**: [API Reference](../guides/api-reference.md)에서 사용 가능한 모든 도구 확인
 - **예제**: README의 "사용 예시" 섹션 참고
-- **기여하기**: [Local Development Guide](./local-development.md) 참고
+- **로컬 빌드**: [Local Development Guide](./local-development.md) 참고
 
 ---
 
