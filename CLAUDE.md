@@ -80,7 +80,7 @@ Environment variables are validated at startup in `config/env.config.ts` using Z
 **Optional (with defaults):**
 - `NODE_ENV` - Environment mode (default: `development`, options: `development` | `production` | `test`)
 - `PORT` - Server port (default: `3000`)
-- `INAVI_BASE_URL` - iNavi Maps API base URL (default: `https://dev-imaps.inavi.com/maps/v3.0`)
+- `INAVI_DOMAIN` - iNavi Maps API domain (default: `https://imaps.inavi.com`; `/maps/v3.0` is appended automatically)
 
 **Removed environment variables:**
 - `MCP_SERVER_NAME` - Now read from `package.json` `name` field
