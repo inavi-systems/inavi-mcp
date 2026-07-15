@@ -29,27 +29,39 @@ class Logger {
    * @param data - Log data (string or JSON-serializable object)
    */
   log(level: LogLevel, data: unknown): void {
+    const formatted = this.formatData(data);
+
     if (!this.server?.server) {
       const timestamp = new Date().toISOString();
-      const dataStr = typeof data === 'string' ? data : JSON.stringify(data);
+      const dataStr = typeof formatted === 'string' ? formatted : JSON.stringify(formatted);
       process.stderr.write(`[${timestamp}] [${level.toUpperCase()}]: ${dataStr}\n`);
       return;
     }
 
-    void this.server.server.sendLoggingMessage({ level, data: this.formatData(data) });
+    void this.server.server.sendLoggingMessage({ level, data: formatted });
   }
 
   /**
    * Format data for JSON serialization
-   * Converts Error objects to serializable format
+   * Recursively traverses objects/arrays and converts any Error instance (at any
+   * depth) to a serializable format. This is required because Error's own
+   * `message`/`stack` properties are non-enumerable, so a nested Error would
+   * otherwise serialize to `{}` via JSON.stringify.
    */
   private formatData(data: unknown): unknown {
     if (data instanceof Error) {
       return {
         error: data.message,
-        stack: data.stack,
         name: data.name,
       };
+    }
+    if (Array.isArray(data)) {
+      return data.map((item) => this.formatData(item));
+    }
+    if (data !== null && typeof data === 'object') {
+      return Object.fromEntries(
+        Object.entries(data).map(([key, value]) => [key, this.formatData(value)]),
+      );
     }
     return data;
   }
