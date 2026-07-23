@@ -88,6 +88,24 @@ Environment variables are validated at startup in `config/env.config.ts` using Z
 
 The config object is typed and exported as a singleton for use throughout the application.
 
+## Code Conventions
+
+These conventions apply to all source files (including scripts). Follow them when adding or editing code.
+
+### Function ordering (top-to-bottom by call order)
+
+Order functions in **call order, from top to bottom**: the highest-level function comes first, and each helper it calls appears **below** it (relying on JS function-declaration hoisting). The entry point (`main`) is the single exception — it goes at the **very bottom** of the file.
+
+- ✅ Correct: `main` at the bottom; above it, functions ordered so a caller always appears above the helpers it invokes (e.g. `transformReferenceApis` before `parseErrorTable`/`buildErrorTable`).
+- ❌ Wrong: helpers defined first and the function that uses them placed below them (bottom-to-top).
+
+### Prefer stream (array) methods over `for` loops
+
+Prefer `map`/`filter`/`reduce`/`forEach`/`flatMap` over imperative `for`/`for...of` loops in production and pipeline code. Reach for a plain loop only when a stream form is clearly less readable.
+
+- ✅ `items.filter(pred).forEach(fn)` / `lines.map(parse).filter(Boolean).reduce(build, {})`
+- ❌ `for (const item of items) { if (pred(item)) fn(item); }`
+
 ## Available MCP Tools
 
 ### HTML Example Tools
