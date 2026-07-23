@@ -249,6 +249,76 @@ function getCategoryFromTag(tag) {
   return CONFIG.tagToCategory[tag] || null;
 }
 
+// Step 3.5: Transform Reference APIs (error codes, category codes)
+
+const UNKNOWN_ERROR_MESSAGE = 'Unknown Error';
+const ERROR_TABLE_HEADER = ['| resultCode | message |', '|-----------:|---------|'];
+
+/**
+ * Transform reference APIs (error codes, category codes) in place so they follow
+ * the same list/get pattern as regular APIs: a brief `listDescription` is shown by
+ * list_api_specs, while the full `description` (detail) is served by get_api_spec.
+ * Reference docs are not callable endpoints, so their `path` is emptied.
+ *
+ * - Error codes: detail = cleaned table (Unknown Error rows dropped);
+ *   summary = "{tag} 에러 코드"; list description = summary.
+ * - Category codes: detail = original table (kept as-is);
+ *   list description = "{tag}에서 사용되는 {summary}".
+ *
+ * Mutates operations. `listDescription` is consumed by toApiSummary and stripped
+ * from the spec (detail) file by writeSpecFile.
+ */
+function transformReferenceApis(operations) {
+  operations
+    .filter((op) => isErrorCodeApi(op.operationId))
+    .forEach((op) => {
+      op.description = buildErrorTable(parseErrorTable(op.description));
+      op.summary = `${op.tags?.[0] || ''} 에러 코드`;
+      op.listDescription = op.summary;
+      op.path = '';
+    });
+
+  operations
+    .filter((op) => isCategoryCodeApi(op.operationId))
+    .forEach((op) => {
+      op.listDescription = `${op.tags?.[0] || ''}에서 사용되는 ${op.summary}`;
+      op.path = '';
+    });
+}
+
+/** Check if an operationId is an error-code reference API */
+function isErrorCodeApi(operationId) {
+  return operationId.endsWith('ErrorCodes');
+}
+
+/** Check if an operationId is the category-code reference API */
+function isCategoryCodeApi(operationId) {
+  return operationId === 'CategoryCodes';
+}
+
+/**
+ * Parse a markdown error-code table into { code: message }.
+ * Rows whose message is "Unknown Error" are dropped (they carry no information).
+ */
+function parseErrorTable(description) {
+  return (description || '')
+    .split('\n')
+    .map((line) => line.match(/^\|\s*(\d+)\s*\|\s*(.+?)\s*\|$/))
+    .filter((match) => match !== null && match[2] !== UNKNOWN_ERROR_MESSAGE)
+    .reduce((map, [, code, message]) => {
+      map[code] = message;
+      return map;
+    }, {});
+}
+
+/** Build a markdown error-code table string from { code: message } (sorted by code) */
+function buildErrorTable(map) {
+  const rows = Object.keys(map)
+    .sort((a, b) => Number(a) - Number(b))
+    .map((code) => `| ${code} | ${map[code]} |`);
+  return [...ERROR_TABLE_HEADER, ...rows].join('\n');
+}
+
 // Step 4: Build Output Data
 
 /** Build output data structure */
@@ -288,7 +358,8 @@ function toApiSummary(op) {
     category: op.category,
     tags: op.tags,
     summary: op.summary,
-    description: op.description,
+    // Reference APIs expose a brief listDescription; regular APIs use their full description.
+    description: op.listDescription ?? op.description,
     deprecated: op.deprecated,
   };
 }
@@ -376,7 +447,7 @@ function writeIndexFile(category, index) {
 }
 
 function writeSpecFile(spec) {
-  const { _responseExamples, ...specWithoutExamples } = spec;
+  const { _responseExamples, listDescription, ...specWithoutExamples } = spec;
   const filePath = path.join(CONFIG.apiInfoDir, spec.category, `${spec.operationId}.json`);
   writeJsonFile(filePath, removeCircularRefs(specWithoutExamples));
 }
@@ -502,6 +573,7 @@ async function main() {
     const originalSpec = structuredClone(spec);
     const dereferenced = await dereferenceSpec(spec);
     const operations = extractOperations(dereferenced);
+    transformReferenceApis(operations);
     const outputData = buildOutputData(operations, dereferenced);
     writeAllFiles(originalSpec, outputData);
     generateSchemaFile(outputData.indexes);

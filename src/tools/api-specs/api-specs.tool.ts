@@ -26,7 +26,7 @@ export function registerListApiSpecsTool(server: McpServer): void {
         'USAGE: First browse available APIs with this tool, then use get_api_spec to retrieve detailed specifications. ' +
         'FILTERING: Filter by category (e.g., search-place, route-directions). ' +
         'IMPORTANT: Some APIs may be categorized differently than expected. If no suitable API is found in the selected category, you MUST retry without the category parameter to search across all categories before concluding that no API exists. ' +
-        'NOTE: Each category also includes reference documents (error codes, category codes) with full content already in the description field — no additional tool call needed.',
+        'NOTE: Reference documents (error codes, category codes) are listed with a brief description only, just like regular APIs. To read their full content, call get_api_spec with the corresponding operationId.',
       inputSchema: listApiSpecsInputSchema,
       outputSchema: listApiSpecsOutputSchema,
     },

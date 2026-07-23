@@ -28,6 +28,11 @@ function readJson<T>(filePath: string): T {
   return JSON.parse(content) as T;
 }
 
+/** Reference documents (error codes, category codes) are not callable endpoints */
+function isReferenceApi(operationId: string): boolean {
+  return operationId.endsWith('ErrorCodes') || operationId === 'CategoryCodes';
+}
+
 describe('validate-api-docs', () => {
   beforeAll(() => {
     if (!fs.existsSync(OUTPUT_DIR)) {
@@ -134,7 +139,14 @@ describe('validate-api-docs', () => {
         index.apis.forEach((api, i) => {
           expect(api.operationId, `${name}: apis[${i}] is missing operationId`).toBeTruthy();
           expect(api.method, `${name}: apis[${i}] (${api.operationId}) is missing method`).toBeTruthy();
-          expect(api.path, `${name}: apis[${i}] (${api.operationId}) is missing path`).toBeTruthy();
+          // Reference docs carry an empty path (not callable); regular APIs must have one.
+          expect(
+            typeof api.path === 'string',
+            `${name}: apis[${i}] (${api.operationId}) path should be a string`,
+          ).toBe(true);
+          if (!isReferenceApi(api.operationId)) {
+            expect(api.path, `${name}: apis[${i}] (${api.operationId}) is missing path`).toBeTruthy();
+          }
           expect(
             api.category,
             `${name}: apis[${i}] (${api.operationId}) has incorrect category "${api.category}"`,
@@ -194,7 +206,11 @@ describe('validate-api-docs', () => {
 
           expect(spec.operationId, `${fileName}: operationId mismatch`).toBe(api.operationId);
           expect(spec.method, `${fileName}: "method" field is missing`).toBeTruthy();
-          expect(spec.path, `${fileName}: "path" field is missing`).toBeTruthy();
+          // Reference docs carry an empty path (not callable); regular APIs must have one.
+          expect(typeof spec.path === 'string', `${fileName}: "path" should be a string`).toBe(true);
+          if (!isReferenceApi(api.operationId)) {
+            expect(spec.path, `${fileName}: "path" field is missing`).toBeTruthy();
+          }
           expect(spec.category, `${fileName}: category should be "${category}"`).toBe(category);
           expect(spec.responses, `${fileName}: "responses" field is missing`).toBeDefined();
 
@@ -389,6 +405,75 @@ describe('validate-api-docs', () => {
         metadata.totalApis,
         `metadata.totalApis (${metadata.totalApis}) does not match sum of all categories (${totalApiCount})`,
       ).toBe(totalApiCount);
+    });
+  });
+
+  describe('Step 8: reference API list/detail pattern', () => {
+    /** All reference-API index entries with their owning category */
+    function referenceEntries(): { category: string; api: ApiSpecSummary }[] {
+      return Object.entries(indexes).flatMap(([category, index]) =>
+        (index?.apis ?? [])
+          .filter((api) => isReferenceApi(api.operationId))
+          .map((api) => ({ category, api })),
+      );
+    }
+
+    it('should list reference APIs with a brief (non-table) description', () => {
+      for (const { category, api } of referenceEntries()) {
+        expect(
+          api.description.includes('|'),
+          `${category}/${api.operationId}: list description should be brief, not a full table`,
+        ).toBe(false);
+      }
+    });
+
+    it('should label error-code APIs as "{tag} 에러 코드" with matching list description', () => {
+      for (const { category, api } of referenceEntries()) {
+        if (!api.operationId.endsWith('ErrorCodes')) continue;
+        expect(
+          api.summary.endsWith('에러 코드'),
+          `${category}/${api.operationId}: summary "${api.summary}" should end with "에러 코드"`,
+        ).toBe(true);
+        expect(
+          api.description,
+          `${category}/${api.operationId}: list description should equal summary`,
+        ).toBe(api.summary);
+      }
+    });
+
+    it('should describe CategoryCodes in list as "...에서 사용되는..."', () => {
+      for (const { category, api } of referenceEntries()) {
+        if (api.operationId !== 'CategoryCodes') continue;
+        expect(
+          api.description.includes('에서 사용되는'),
+          `${category}/CategoryCodes: unexpected list description "${api.description}"`,
+        ).toBe(true);
+      }
+    });
+
+    it('should serve full, Unknown-Error-free tables via get_api_spec detail files', () => {
+      for (const { category, api } of referenceEntries()) {
+        const specPath = path.join(API_INFO_DIR, category, `${api.operationId}.json`);
+        expect(
+          fs.existsSync(specPath),
+          `Missing detail file: ${category}/${api.operationId}.json`,
+        ).toBe(true);
+
+        const spec = readJson<{ description?: string }>(specPath);
+        const detail = spec.description ?? '';
+
+        expect(
+          detail.includes('|'),
+          `${category}/${api.operationId}: detail should contain the full table`,
+        ).toBe(true);
+
+        if (api.operationId.endsWith('ErrorCodes')) {
+          expect(
+            detail.includes('Unknown Error'),
+            `${category}/${api.operationId}: detail still contains Unknown Error rows`,
+          ).toBe(false);
+        }
+      }
     });
   });
 });

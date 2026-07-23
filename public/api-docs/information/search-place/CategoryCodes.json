@@ -1,7 +1,7 @@
 {
   "operationId": "CategoryCodes",
   "method": "GET",
-  "path": "/docs/category-codes",
+  "path": "",
   "category": "search-place",
   "tags": [
     "장소/주소 검색"
