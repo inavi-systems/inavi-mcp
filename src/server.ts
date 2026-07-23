@@ -58,6 +58,52 @@ function registerAllTools(): void {
 }
 
 /**
+ * Recursively delete `$schema` dialect declarations from a JSON Schema value.
+ */
+function deleteSchemaDialect(value: unknown): void {
+  if (Array.isArray(value)) {
+    value.forEach(deleteSchemaDialect);
+    return;
+  }
+  if (value !== null && typeof value === 'object') {
+    const obj = value as Record<string, unknown>;
+    delete obj.$schema;
+    Object.values(obj).forEach(deleteSchemaDialect);
+  }
+}
+
+/**
+ * Strip the JSON Schema dialect (`$schema`) from tool schemas in an outgoing
+ * `tools/list` response, mutating the message in place.
+ *
+ * The MCP SDK converts Zod schemas with a fixed `draft-07` target and stamps
+ * `"$schema": "http://json-schema.org/draft-07/schema#"` onto every tool
+ * input/output schema, with no option to change it. MCP Hosts that compile these
+ * schemas with a draft-2020-12 validator (e.g. recent Claude Desktop builds)
+ * throw at compile time ("no schema with ref draft-07"), which aborts the tool
+ * call before it is sent to the server. These schemas only use keywords shared by
+ * both drafts, so removing the dialect tag lets either validator compile them.
+ * Server-side output validation is unaffected — the SDK validates against Zod.
+ */
+function stripToolSchemaDialect(message: unknown): void {
+  if (message === null || typeof message !== 'object') {
+    return;
+  }
+  const result = (message as { result?: { tools?: unknown[] } }).result;
+  if (!result || !Array.isArray(result.tools)) {
+    return;
+  }
+  for (const tool of result.tools) {
+    const { inputSchema, outputSchema } = tool as {
+      inputSchema?: unknown;
+      outputSchema?: unknown;
+    };
+    deleteSchemaDialect(inputSchema);
+    deleteSchemaDialect(outputSchema);
+  }
+}
+
+/**
  * Start MCP Server
  * Uses stdio transport to communicate with MCP Host.
  */
@@ -66,6 +112,15 @@ async function startServer(): Promise<void> {
     registerAllTools();
 
     const transport = new StdioServerTransport();
+
+    // Remove the draft-07 `$schema` tag from tool schemas before they leave the
+    // server (see stripToolSchemaDialect for why). Wraps the transport's send.
+    const originalSend = transport.send.bind(transport);
+    transport.send = (message): Promise<void> => {
+      stripToolSchemaDialect(message);
+      return originalSend(message);
+    };
+
     await server.connect(transport);
 
     logger.log('info', {
