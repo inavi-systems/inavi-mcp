@@ -1,6 +1,6 @@
 # Claude Desktop 설정 가이드
 
-Claude Desktop에서 iNavi Maps MCP Server를 사용하기 위한 설정 가이드입니다.
+Claude Desktop에서 iNavi MCP Server를 사용하기 위한 설정 가이드입니다.
 
 ## 목차
 - [설치 방법](#설치-방법)
@@ -48,7 +48,7 @@ npx를 사용하면 별도의 다운로드 없이 최신 버전을 자동으로 
 
 #### 필수 요구사항
 
-- Node.js 18 이상 설치
+- Node.js 22 이상 설치
 
 #### 설정 파일 위치
 
@@ -64,7 +64,7 @@ npx를 사용하면 별도의 다운로드 없이 최신 버전을 자동으로 
   "mcpServers": {
     "inavi-maps-mcp": {
       "command": "npx",
-      "args": ["-y", "inavi-maps-mcp"]
+      "args": ["-y", "@inavi-maps/mcp-server"]
     }
   }
 }
@@ -178,7 +178,7 @@ Claude Desktop의 설정 메뉴에서 MCP 서버가 올바르게 등록되었는
 
 npx 방법을 사용할 때 Node.js가 설치되어 있지 않으면:
 
-1. [Node.js 공식 사이트](https://nodejs.org/)에서 Node.js 18 이상 다운로드 및 설치
+1. [Node.js 공식 사이트](https://nodejs.org/)에서 Node.js 22 이상 다운로드 및 설치
 2. 터미널에서 `node --version` 명령어로 설치 확인
 3. Claude Desktop 재시작
 
@@ -198,5 +198,5 @@ npx 방법을 사용할 때 Node.js가 설치되어 있지 않으면:
 
 ## 추가 지원
 
-- **GitHub Issues**: [문제 보고](https://github.com/inavi-systems/inavi-mcp/issues)
-- **GitHub Discussions**: [질문하기](https://github.com/inavi-systems/inavi-mcp/discussions)
+- **개발자 문의**: [devbaek@inavi.kr](mailto:devbaek@inavi.kr)로 이메일 문의
+- **공식 문의 채널**: [iNavi Maps API 커뮤니티](https://mapsapi.inavisys.com/community/)로 문의 전달
