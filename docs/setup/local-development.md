@@ -18,7 +18,7 @@
 
 로컬 개발을 시작하기 전에 다음 도구들이 설치되어 있어야 합니다:
 
-- **Node.js 18 이상**
+- **Node.js 22 이상**
   - [Node.js 다운로드](https://nodejs.org/)
   - 버전 확인: `node --version`
 
@@ -74,6 +74,7 @@ copy .env.example .env
 ```env
 # Optional (uncomment to override defaults)
 # NODE_ENV=development
+# PORT=3000
 # INAVI_DOMAIN=https://imaps.inavi.com
 ```
 
@@ -82,6 +83,7 @@ copy .env.example .env
 | 변수명 | 설명 | 기본값 | 필수 |
 |--------|------|--------|------|
 | `NODE_ENV` | 실행 환경 (`development` \| `production` \| `test`) | `development` | ❌ |
+| `PORT` | 서버 포트 (stdio 서버에서는 사용되지 않음) | `3000` | ❌ |
 | `INAVI_DOMAIN` | iNavi Maps API 도메인 (`/maps/v3.0` 자동 추가) | `https://imaps.inavi.com` | ❌ |
 
 ---
@@ -226,7 +228,7 @@ npm run test:watch
 ### 특정 테스트 파일 실행
 
 ```bash
-npm test -- searches.tool.integration.test.ts
+npm test -- metadata-transformer.test.ts
 ```
 
 ---
@@ -325,11 +327,11 @@ inavi-maps-mcp-server/
 ├── src/
 │   ├── config/           # 환경 변수 설정
 │   ├── tools/            # MCP 도구 정의
-│   ├── services/         # 비즈니스 로직
 │   ├── utils/            # 유틸리티
 │   └── server.ts         # 진입점
 ├── test/                 # 테스트 코드
-├── public/               # HTML 예제 파일
+├── scripts/              # 빌드·API 문서 생성 스크립트
+├── public/               # HTML 예제 및 API 문서
 ├── dist/                 # 빌드 출력 (gitignore)
 ├── .env                  # 환경 변수 (gitignore)
 └── package.json          # 의존성 및 스크립트
@@ -350,5 +352,5 @@ inavi-maps-mcp-server/
 
 ## 추가 지원
 
-- **GitHub Issues**: [문제 보고](https://github.com/inavi-systems/inavi-mcp/issues)
-- **GitHub Discussions**: [질문하기](https://github.com/inavi-systems/inavi-mcp/discussions)
+- **개발자 문의**: [devbaek@inavi.kr](mailto:devbaek@inavi.kr)로 이메일 문의
+- **공식 문의 채널**: [iNavi Maps API 커뮤니티](https://mapsapi.inavisys.com/community/)로 문의 전달
