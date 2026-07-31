@@ -1,0 +1,107 @@
+{
+  "id": "LineStyle",
+  "category": "style",
+  "kind": "type",
+  "name": "LineStyle",
+  "description": "폴리라인에 설정할 수 있는 스타일입니다.",
+  "type": [
+    "Object"
+  ],
+  "properties": [
+    {
+      "name": "lineBlur",
+      "type": [
+        "number"
+      ],
+      "description": "폴리라인의 블러입니다.",
+      "optional": true,
+      "default": "0"
+    },
+    {
+      "name": "lineCap",
+      "type": [
+        "string"
+      ],
+      "description": "폴리라인의 끝점 모양입니다. `butt` 는 끝점 기준 정사각형, `round` 는 끝점을 넘어 선 너비의 절반을 반경으로 하는 원, `square` 는 끝점을 넘어 선 너비의 절반을 끝점과의 거리로 하는 사각형으로 설정합니다.",
+      "optional": true,
+      "default": "\"butt\""
+    },
+    {
+      "name": "lineColor",
+      "type": [
+        "Color"
+      ],
+      "description": "폴리라인의 색상입니다.",
+      "optional": true,
+      "default": "\"blue\""
+    },
+    {
+      "name": "lineDasharray",
+      "type": [
+        "Array.<number>"
+      ],
+      "description": "대시 배열입니다. 대시 패턴을 설정하며, 대시의 길이는 두께에 비례합니다.",
+      "optional": true
+    },
+    {
+      "name": "lineJoin",
+      "type": [
+        "string"
+      ],
+      "description": "폴리라인의 접점 모양입니다. `miter` 는 각진 모서리가 있는 모양, `round` 는 끝점을 넘어 선 너비의 절반을 반경으로 하는 원, `bevel` 은 선 너비의 절반을 접점과의 거리로 하는 사각형으로 설정합니다.",
+      "optional": true,
+      "default": "\"miter\""
+    },
+    {
+      "name": "lineOffset",
+      "type": [
+        "number"
+      ],
+      "description": "폴리라인의 오프셋입니다. 양수인 경우 라인의 오른쪽에, 음수인경우 라인의 왼쪽에 오프셋을 설정합니다.",
+      "optional": true,
+      "default": "0"
+    },
+    {
+      "name": "lineOpacity",
+      "type": [
+        "number"
+      ],
+      "description": "폴리라인의 투명도입니다.",
+      "optional": true,
+      "default": "1"
+    },
+    {
+      "name": "lineTranslate",
+      "type": [
+        "Array.<number>"
+      ],
+      "description": "폴리라인의 이동 속성입니다. 양수인 경우 오른쪽 아래로, 음수인 경우 왼쪽 위로 입력한 픽셀만큼 이동합니다.",
+      "optional": true,
+      "default": "[0, 0]"
+    },
+    {
+      "name": "lineTranslateAnchor",
+      "type": [
+        "string"
+      ],
+      "description": "fillTranslate 의 기준을 지정합니다. `map` 인 경우 지도의 북쪽을 기준으로, `viewport` 인 경우 지도 엘리먼트의 중심을 기준으로 이동합니다.",
+      "optional": true,
+      "default": "\"map\""
+    },
+    {
+      "name": "lineWidth",
+      "type": [
+        "number"
+      ],
+      "description": "폴리라인의 두께입니다.",
+      "optional": true,
+      "default": "1"
+    }
+  ],
+  "examples": [
+    "{\n  lineBlur: 0,\n  lineCap: \"butt\",\n  lineColor: \"#000000\",\n  lineDasharray: [1, 1] // (1픽셀 x lineWidth) 라인, (1픽셀 x lineWidth) 공백 표시 반복.\n  lineJoin: \"miter\",\n  lineOffset: 0,\n  lineOpacity: 1,\n  lineTranslate: [0, 0],\n  lineTranslateAnchor: \"map\",\n  lineWidth: 1,\n};"
+  ],
+  "relatedTypes": {
+    "Color": "Color"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "id": "TWLngLatBoundsLike",
+  "category": "coordinates",
+  "kind": "type",
+  "name": "TWLngLatBoundsLike",
+  "description": "팅크웨어 좌표 단위의 경계 좌표를 갖는 유연한 데이터 타입",
+  "type": [
+    "Array.<TWLngLatLike, TWLngLatLike>"
+  ],
+  "properties": [],
+  "examples": [
+    "let v1 = [{lat: 517922, lng: 169030}, {lat: 518022, lng: 169130}];\nlet v2 = [[169030, 517922], [169130, 518022]];"
+  ],
+  "relatedTypes": {}
+}

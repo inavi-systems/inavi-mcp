@@ -1,0 +1,120 @@
+{
+  "category": "coordinates",
+  "docs": [
+    {
+      "id": "inavi.maps.LngLat",
+      "category": "coordinates",
+      "kind": "class",
+      "name": "LngLat",
+      "summary": "정규화 좌표를 나타내는 클래스입니다.",
+      "methods": [
+        "convertToPixel",
+        "convertToTWLngLat"
+      ]
+    },
+    {
+      "id": "inavi.maps.LngLatBounds",
+      "category": "coordinates",
+      "kind": "class",
+      "name": "LngLatBounds",
+      "summary": "정규화 좌표 단위로 지도의 경계 좌표를 나타내는 클래스입니다.",
+      "methods": [
+        "convertToPixelBounds",
+        "convertToTWLngLatBounds"
+      ]
+    },
+    {
+      "id": "inavi.maps.Pixel",
+      "category": "coordinates",
+      "kind": "class",
+      "name": "Pixel",
+      "summary": "캔버스 좌표를 나타내는 클래스입니다.",
+      "methods": [
+        "convertToLngLat",
+        "convertToTWLngLat"
+      ]
+    },
+    {
+      "id": "inavi.maps.PixelBounds",
+      "category": "coordinates",
+      "kind": "class",
+      "name": "PixelBounds",
+      "summary": "캔버스 좌표 단위로 지도의 경계 좌표를 나타내는 클래스입니다.",
+      "methods": [
+        "convertToLngLatBounds",
+        "convertToTWLngLatBounds"
+      ]
+    },
+    {
+      "id": "inavi.maps.TWLngLat",
+      "category": "coordinates",
+      "kind": "class",
+      "name": "TWLngLat",
+      "summary": "팅크웨어 좌표를 나타내는 클래스입니다.",
+      "methods": [
+        "convertToLngLat",
+        "convertToPixel"
+      ]
+    },
+    {
+      "id": "inavi.maps.TWLngLatBounds",
+      "category": "coordinates",
+      "kind": "class",
+      "name": "TWLngLatBounds",
+      "summary": "팅크웨어 좌표 단위로 지도의 경계 좌표를 나타내는 클래스입니다.",
+      "methods": [
+        "convertToLngLatBounds",
+        "convertToPixelBounds"
+      ]
+    },
+    {
+      "id": "LngLatBoundsLike",
+      "category": "coordinates",
+      "kind": "type",
+      "name": "LngLatBoundsLike",
+      "summary": "정규화 좌표 단위의 경계 좌표를 갖는 유연한 데이터 타입입니다.",
+      "methods": []
+    },
+    {
+      "id": "LngLatLike",
+      "category": "coordinates",
+      "kind": "type",
+      "name": "LngLatLike",
+      "summary": "정규화 좌표를 갖는 유연한 데이터 타입입니다.",
+      "methods": []
+    },
+    {
+      "id": "PixelBoundsLike",
+      "category": "coordinates",
+      "kind": "type",
+      "name": "PixelBoundsLike",
+      "summary": "픽셀 좌표 단위의 경계 좌표를 갖는 유연한 데이터 타입입니다.",
+      "methods": []
+    },
+    {
+      "id": "PixelLike",
+      "category": "coordinates",
+      "kind": "type",
+      "name": "PixelLike",
+      "summary": "픽셀 위치 값을 갖는 유연한 데이터 타입",
+      "methods": []
+    },
+    {
+      "id": "TWLngLatBoundsLike",
+      "category": "coordinates",
+      "kind": "type",
+      "name": "TWLngLatBoundsLike",
+      "summary": "팅크웨어 좌표 단위의 경계 좌표를 갖는 유연한 데이터 타입",
+      "methods": []
+    },
+    {
+      "id": "TWLngLatLike",
+      "category": "coordinates",
+      "kind": "type",
+      "name": "TWLngLatLike",
+      "summary": "팅크웨어 좌표를 갖는 유연한 데이터 타입입니다.",
+      "methods": []
+    }
+  ],
+  "totalCount": 12
+}

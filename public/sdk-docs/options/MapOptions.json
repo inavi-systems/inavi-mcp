@@ -1,0 +1,187 @@
+{
+  "id": "MapOptions",
+  "category": "options",
+  "kind": "type",
+  "name": "MapOptions",
+  "description": "지도 객체 초기화에 사용되는 옵션 값입니다.",
+  "type": [
+    "Object"
+  ],
+  "properties": [
+    {
+      "name": "container",
+      "type": [
+        "string"
+      ],
+      "description": "지도를 표시할 DOM 엘리먼트 ID입니다."
+    },
+    {
+      "name": "type",
+      "type": [
+        "string"
+      ],
+      "description": "지도의 타입입니다. `NORMAL`, `SATELLITE`",
+      "optional": true,
+      "default": "\"NORMAL\""
+    },
+    {
+      "name": "center",
+      "type": [
+        "LngLatLike"
+      ],
+      "description": "지도의 중심 좌표입니다.",
+      "optional": true,
+      "default": "[127.1105, 37.4022]"
+    },
+    {
+      "name": "zoom",
+      "type": [
+        "number"
+      ],
+      "description": "줌 레벨입니다.",
+      "optional": true,
+      "default": "15"
+    },
+    {
+      "name": "heading",
+      "type": [
+        "number"
+      ],
+      "description": "북쪽을 기준으로 반시계 방향으로 회전한 각도입니다.",
+      "optional": true,
+      "default": "0"
+    },
+    {
+      "name": "tilt",
+      "type": [
+        "number"
+      ],
+      "description": "지도의 기울기입니다.",
+      "optional": true,
+      "default": "0"
+    },
+    {
+      "name": "maxZoom",
+      "type": [
+        "number"
+      ],
+      "description": "최대 확대 레벨입니다.",
+      "optional": true,
+      "default": "18"
+    },
+    {
+      "name": "minZoom",
+      "type": [
+        "number"
+      ],
+      "description": "최대 축소 레벨입니다.",
+      "optional": true,
+      "default": "1"
+    },
+    {
+      "name": "hash",
+      "type": [
+        "boolean"
+      ],
+      "description": "주소 표시줄에 레벨, 좌표 값 표시 여부입니다. 둘 이상의 지도를 사용할 경우, 마지막에 이동한 지도의 정보로 표시됩니다.",
+      "optional": true,
+      "default": "false"
+    },
+    {
+      "name": "zoomable",
+      "type": [
+        "boolean"
+      ],
+      "description": "확대 가능 여부입니다.",
+      "optional": true,
+      "default": "true"
+    },
+    {
+      "name": "draggable",
+      "type": [
+        "boolean"
+      ],
+      "description": "드래그 가능 여부입니다.",
+      "optional": true,
+      "default": "true"
+    },
+    {
+      "name": "rotatable",
+      "type": [
+        "boolean"
+      ],
+      "description": "회전 가능 여부입니다.",
+      "optional": true,
+      "default": "true"
+    },
+    {
+      "name": "keyboard",
+      "type": [
+        "boolean"
+      ],
+      "description": "키보드 컨트롤 사용 여부입니다.",
+      "optional": true,
+      "default": "false"
+    },
+    {
+      "name": "indoor",
+      "type": [
+        "boolean"
+      ],
+      "description": "실내 지도 표출 여부입니다.",
+      "optional": true,
+      "default": "true"
+    },
+    {
+      "name": "disableDefaultUI",
+      "type": [
+        "boolean"
+      ],
+      "description": "기본 컨트롤 숨김 여부입니다.",
+      "optional": true,
+      "default": "false"
+    },
+    {
+      "name": "logoScaleControl",
+      "type": [
+        "LogoScaleControlOptions"
+      ],
+      "description": "로고 및 스케일 컨트롤의 옵션입니다.",
+      "optional": true
+    },
+    {
+      "name": "compassControl",
+      "type": [
+        "CompassControlOptions"
+      ],
+      "description": "콤파스 컨트롤의 옵션입니다.",
+      "optional": true
+    },
+    {
+      "name": "zoomControl",
+      "type": [
+        "ZoomControlOptions"
+      ],
+      "description": "줌 컨트롤 옵션입니다.",
+      "optional": true
+    },
+    {
+      "name": "language",
+      "type": [
+        "string"
+      ],
+      "description": "지도의 언어입니다. 허용 타입: \"KO\", \"EN\", \"JA\", \"ZH\"",
+      "optional": true,
+      "default": "\"KO\""
+    }
+  ],
+  "examples": [
+    "let mapOptions = {\n  type: \"NORMAL\",\n  center: [127.1105, 37.4022],\n  zoom: 15,\n  heading: 0,\n  tilt: 0, // 최대 설정 값은 60입니다.\n  maxZoom: 18, // 최대 설정 값은 18입니다.\n  minZoom: 6,\n  hash: false,\n  zoomable: true,\n  draggable: true,\n  rotatable: true,\n  keyboard: false,\n  indoor: true,\n  language: \"KO\",\n  logoScaleControl: {\n    position: \"bottom-right\",\n    showScale: false,\n  },\n};"
+  ],
+  "relatedTypes": {
+    "LngLatLike": "LngLatLike",
+    "LogoScaleControlOptions": "LogoScaleControlOptions",
+    "CompassControlOptions": "CompassControlOptions",
+    "ZoomControlOptions": "ZoomControlOptions"
+  }
+}

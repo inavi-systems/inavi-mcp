@@ -1,0 +1,742 @@
+{
+  "id": "inavi.maps.Map",
+  "category": "map",
+  "kind": "class",
+  "name": "Map",
+  "description": "지도 클래스입니다. 지정한 엘리먼트에 지도를 생성한 후 표시합니다.",
+  "ctor": {
+    "signature": "new Map(mapOptions)",
+    "params": [
+      {
+        "name": "mapOptions",
+        "type": [
+          "MapOptions"
+        ],
+        "description": "지도 초기화를 위한 옵션입니다."
+      }
+    ]
+  },
+  "methods": [
+    {
+      "name": "fitBounds",
+      "signature": "fitBounds(lngLatBoundsLike, fitOptions?={padding: 0, duration: 300})",
+      "description": "경계 좌표가 화면에 표시되도록 중심 좌표와 줌을 변경합니다.",
+      "params": [
+        {
+          "name": "lngLatBoundsLike",
+          "type": [
+            "LngLatBoundsLike"
+          ],
+          "description": "경계 좌표 데이터입니다."
+        },
+        {
+          "name": "fitOptions",
+          "type": [
+            "FitOptions"
+          ],
+          "description": "이동에 대한 옵션입니다.",
+          "optional": true,
+          "default": "{padding: 0, duration: 300}"
+        }
+      ],
+      "returns": []
+    },
+    {
+      "name": "fitCoordinates",
+      "signature": "fitCoordinates(lngLatLikeArray, fitOptions?={padding: 0, duration: 500})",
+      "description": "주어진 좌표 배열이 화면에 표시되도록 중심 좌표와 줌을 변경합니다.",
+      "params": [
+        {
+          "name": "lngLatLikeArray",
+          "type": [
+            "Array.<LngLatLike>"
+          ],
+          "description": "좌표 배열입니다."
+        },
+        {
+          "name": "fitOptions",
+          "type": [
+            "FitOptions"
+          ],
+          "description": "이동에 대한 옵션입니다.",
+          "optional": true,
+          "default": "{padding: 0, duration: 500}"
+        }
+      ],
+      "returns": []
+    },
+    {
+      "name": "flyTo",
+      "signature": "flyTo(lngLatLike, flyOptions?={duration:300})",
+      "description": "지도의 중심을 지정한 좌표와 주어진 옵션을 반영하여 이동시킵니다.",
+      "params": [
+        {
+          "name": "lngLatLike",
+          "type": [
+            "LngLatLike"
+          ],
+          "description": "지도의 중심으로 설정할 좌표입니다."
+        },
+        {
+          "name": "flyOptions",
+          "type": [
+            "FitOptions"
+          ],
+          "description": "이동에 대한 옵션입니다.",
+          "optional": true,
+          "default": "{duration:300}"
+        }
+      ],
+      "returns": []
+    },
+    {
+      "name": "getBounds",
+      "signature": "getBounds() ⇒ LngLatBounds",
+      "description": "지도의 경계 좌표를 반환합니다.",
+      "params": [],
+      "returns": [
+        {
+          "type": [
+            "LngLatBounds"
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "getCanvas",
+      "signature": "getCanvas() ⇒ HTMLElement",
+      "description": "지도가 표시되는 캔버스를 반환합니다.",
+      "params": [],
+      "returns": [
+        {
+          "type": [
+            "HTMLElement"
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "getCenter",
+      "signature": "getCenter() ⇒ LngLat",
+      "description": "지도의 중심 좌표를 반환합니다.",
+      "params": [],
+      "returns": [
+        {
+          "type": [
+            "LngLat"
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "getDraggable",
+      "signature": "getDraggable() ⇒ boolean",
+      "description": "드래그 가능 여부를 반환합니다.",
+      "params": [],
+      "returns": [
+        {
+          "type": [
+            "boolean"
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "getFeatures",
+      "signature": "getFeatures() ⇒ Array",
+      "description": "지도에 등록된 사용자 피쳐를 반환합니다.",
+      "params": [],
+      "returns": [
+        {
+          "type": [
+            "Array"
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "getHeading",
+      "signature": "getHeading() ⇒ number",
+      "description": "지도의 회전 각을 반환합니다. 단위는 degree 입니다.",
+      "params": [],
+      "returns": [
+        {
+          "type": [
+            "number"
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "getIndoor",
+      "signature": "getIndoor() ⇒ boolean",
+      "description": "지도의 실내 지도 표출 여부를 반환합니다.",
+      "params": [],
+      "returns": [
+        {
+          "type": [
+            "boolean"
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "getLanguage",
+      "signature": "getLanguage() ⇒ string",
+      "description": "지도의 언어를 반환합니다.",
+      "params": [],
+      "returns": [
+        {
+          "type": [
+            "string"
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "getMaxZoom",
+      "signature": "getMaxZoom() ⇒ number",
+      "description": "지도의 최대 줌을 반환합니다. 기본 값은 18입니다.",
+      "params": [],
+      "returns": [
+        {
+          "type": [
+            "number"
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "getMinZoom",
+      "signature": "getMinZoom() ⇒ number",
+      "description": "지도의 최소 줌을 반환합니다.",
+      "params": [],
+      "returns": [
+        {
+          "type": [
+            "number"
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "getRotatable",
+      "signature": "getRotatable() ⇒ boolean",
+      "description": "회전 가능 여부를 반환합니다.",
+      "params": [],
+      "returns": [
+        {
+          "type": [
+            "boolean"
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "getTilt",
+      "signature": "getTilt() ⇒ number",
+      "description": "지도의 기울기를 반환합니다. 단위는 degree 입니다.",
+      "params": [],
+      "returns": [
+        {
+          "type": [
+            "number"
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "getType",
+      "signature": "getType() ⇒ string",
+      "description": "지도의 타입을 반환합니다.",
+      "params": [],
+      "returns": [
+        {
+          "type": [
+            "string"
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "getZoom",
+      "signature": "getZoom() ⇒ number",
+      "description": "지도의 줌을 반환합니다.",
+      "params": [],
+      "returns": [
+        {
+          "type": [
+            "number"
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "getZoomable",
+      "signature": "getZoomable() ⇒ boolean",
+      "description": "확대, 축소 가능 여부를 반환합니다.",
+      "params": [],
+      "returns": [
+        {
+          "type": [
+            "boolean"
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "off",
+      "signature": "off(eventType?, listener?) ⇒ Map",
+      "description": "지도에 등록된 이벤트 리스너를 제거합니다.",
+      "params": [
+        {
+          "name": "eventType",
+          "type": [
+            "string"
+          ],
+          "description": "제거할 이벤트 타입입니다. 전달하지 않으면, 지도에 등록한 모든 리스너를 제거합니다.",
+          "optional": true
+        },
+        {
+          "name": "listener",
+          "type": [
+            "function"
+          ],
+          "description": "제거할 리스너입니다. 전달하지 않으면, 이벤트 타입에 대한 모든 리스너를 제거합니다.",
+          "optional": true
+        }
+      ],
+      "returns": [
+        {
+          "type": [
+            "Map"
+          ],
+          "description": "이벤트 리스너가 등록되었던 지도 객체입니다."
+        }
+      ]
+    },
+    {
+      "name": "on",
+      "signature": "on(eventType, listener) ⇒ Map",
+      "description": "지도에 이벤트 리스너를 등록합니다.",
+      "params": [
+        {
+          "name": "eventType",
+          "type": [
+            "string"
+          ],
+          "description": "이벤트 타입입니다. 사용 가능한 이벤트 타입은 다음과 같습니다.<br>\n `load`, `zoomstart`, `zoom`, `zoomend`, `rotatestart`, `rotate`, `rotateend`, `tiltstart`, `tilt`, `tiltend`,\n `mousedown`, `mouseup`, `click`, `dblclick`, `mousemove`, `mouseenter`, `mouseleave`, `mouseover`, `mouseout`,\n `contextmenu`, `touchstart`, `touchend`, `touchcancel`, `wheel`, `touchmove`,\n `movestart`, `move`, `moveend`, `dragstart`, `drag`, `dragend`, `idle`, `render`."
+        },
+        {
+          "name": "listener",
+          "type": [
+            "function"
+          ],
+          "description": "이벤트 리스너입니다."
+        }
+      ],
+      "returns": [
+        {
+          "type": [
+            "Map"
+          ],
+          "description": "이벤트 리스너가 등록된 지도 객체입니다."
+        }
+      ]
+    },
+    {
+      "name": "once",
+      "signature": "once(eventType, listener) ⇒ Map",
+      "description": "지도에 한 번만 실행되는 이벤트 리스너를 등록합니다.",
+      "params": [
+        {
+          "name": "eventType",
+          "type": [
+            "string"
+          ],
+          "description": "한 번만 실행할 이벤트 타입입니다. 사용 가능한 이벤트 타입은 다음과 같습니다.<br>\n `load`, `zoomstart`, `zoom`, `zoomend`, `rotatestart`, `rotate`, `rotateend`, `tiltstart`, `tilt`, `tiltend`,\n `mousedown`, `mouseup`, `click`, `dblclick`, `mousemove`, `mouseenter`, `mouseleave`, `mouseover`, `mouseout`,\n `contextmenu`, `touchstart`, `touchend`, `touchcancel`, `wheel`, `touchmove`,\n `movestart`, `move`, `moveend`, `dragstart`, `drag`, `dragend`, `idle`, `render`."
+        },
+        {
+          "name": "listener",
+          "type": [
+            "function"
+          ],
+          "description": "이벤트 리스너입니다."
+        }
+      ],
+      "returns": [
+        {
+          "type": [
+            "Map"
+          ],
+          "description": "이벤트 리스너가 등록된 지도 객체입니다."
+        }
+      ]
+    },
+    {
+      "name": "panBy",
+      "signature": "panBy(offset, panOptions?={duration: 300})",
+      "description": "지도 왼쪽 상단을 기준으로 지정한 오프셋만큼 이동시킵니다.",
+      "params": [
+        {
+          "name": "offset",
+          "type": [
+            "Array.<number, number>"
+          ],
+          "description": "이동할 오프셋입니다. 단위는 픽셀입니다."
+        },
+        {
+          "name": "panOptions",
+          "type": [
+            "PanOptions"
+          ],
+          "description": "이동에 대한 옵션입니다.",
+          "optional": true,
+          "default": "{duration: 300}"
+        }
+      ],
+      "returns": []
+    },
+    {
+      "name": "panTo",
+      "signature": "panTo(lngLatLike, panOptions?={duration:300})",
+      "description": "지도의 중심을 지정한 좌표로 이동시킵니다.",
+      "params": [
+        {
+          "name": "lngLatLike",
+          "type": [
+            "LngLatLike"
+          ],
+          "description": "지도의 중심으로 설정할 좌표입니다."
+        },
+        {
+          "name": "panOptions",
+          "type": [
+            "PanOptions"
+          ],
+          "description": "이동에 대한 옵션입니다.",
+          "optional": true,
+          "default": "{duration:300}"
+        }
+      ],
+      "returns": []
+    },
+    {
+      "name": "remove",
+      "signature": "remove()",
+      "description": "지도를 제거합니다.",
+      "params": [],
+      "returns": []
+    },
+    {
+      "name": "setCenter",
+      "signature": "setCenter(lngLatLike)",
+      "description": "지도의 중심 좌표를 설정합니다.",
+      "params": [
+        {
+          "name": "lngLatLike",
+          "type": [
+            "LngLatLike"
+          ],
+          "description": "지도 중심으로 설정할 좌표입니다."
+        }
+      ],
+      "returns": []
+    },
+    {
+      "name": "setDraggable",
+      "signature": "setDraggable(draggability?=false)",
+      "description": "드래그 가능 여부를 설정합니다.",
+      "params": [
+        {
+          "name": "draggability",
+          "type": [
+            "boolean"
+          ],
+          "description": "드래그 가능 여부입니다.",
+          "optional": true,
+          "default": "false"
+        }
+      ],
+      "returns": []
+    },
+    {
+      "name": "setHeading",
+      "signature": "setHeading(degree?=0, options?={duration:0})",
+      "description": "지도의 회전 각을 설정합니다.",
+      "params": [
+        {
+          "name": "degree",
+          "type": [
+            "number"
+          ],
+          "description": "지도의 회전 각입니다. 단위는 degree 이며, 반시계 방향으로 회전합니다.",
+          "optional": true,
+          "default": "0"
+        },
+        {
+          "name": "options",
+          "type": [
+            "Object"
+          ],
+          "description": "회전각 설정의 부가적인 옵션입니다.",
+          "optional": true,
+          "default": "{duration:0}"
+        }
+      ],
+      "returns": []
+    },
+    {
+      "name": "setIndoor",
+      "signature": "setIndoor(isIndoor)",
+      "description": "지도의 실내 지도 표출 여부를 설정합니다.",
+      "params": [
+        {
+          "name": "isIndoor",
+          "type": [
+            "boolean"
+          ],
+          "description": "실내 지도 표출 여부입니다."
+        }
+      ],
+      "returns": []
+    },
+    {
+      "name": "setLanguage",
+      "signature": "setLanguage(lang)",
+      "description": "지도의 언어를 설정합니다.",
+      "params": [
+        {
+          "name": "lang",
+          "type": [
+            "string"
+          ],
+          "description": "언어입니다. 허용 타입: \"KO\", \"EN\", \"JA\", \"ZH\""
+        }
+      ],
+      "returns": []
+    },
+    {
+      "name": "setMaxZoom",
+      "signature": "setMaxZoom(zoom)",
+      "description": "지도의 최대 줌을 설정합니다. 설정 가능한 최대 줌은 18입니다.",
+      "params": [
+        {
+          "name": "zoom",
+          "type": [
+            "number"
+          ],
+          "description": "설정할 최대 줌입니다."
+        }
+      ],
+      "returns": []
+    },
+    {
+      "name": "setMinZoom",
+      "signature": "setMinZoom(zoom)",
+      "description": "지도의 최소 줌을 설정합니다.",
+      "params": [
+        {
+          "name": "zoom",
+          "type": [
+            "number"
+          ],
+          "description": "설정할 최소 줌입니다."
+        }
+      ],
+      "returns": []
+    },
+    {
+      "name": "setRotatable",
+      "signature": "setRotatable(rotatability?=false)",
+      "description": "회전 가능 여부를 설정합니다. 기울이기 가능 여부가 함께 설정됩니다.",
+      "params": [
+        {
+          "name": "rotatability",
+          "type": [
+            "boolean"
+          ],
+          "description": "회전 가능 여부입니다.",
+          "optional": true,
+          "default": "false"
+        }
+      ],
+      "returns": []
+    },
+    {
+      "name": "setTilt",
+      "signature": "setTilt(degree?=0, options?={duration:0})",
+      "description": "지도의 기울기를 설정합니다.",
+      "params": [
+        {
+          "name": "degree",
+          "type": [
+            "number"
+          ],
+          "description": "설정할 지도의 기울기입니다. 단위는 degree 이며, 유효값의 범위는 `0` ~ `60` 입니다.",
+          "optional": true,
+          "default": "0"
+        },
+        {
+          "name": "options",
+          "type": [
+            "Object"
+          ],
+          "description": "기울기 설정의 부가적인 옵션입니다.",
+          "optional": true,
+          "default": "{duration:0}"
+        }
+      ],
+      "returns": []
+    },
+    {
+      "name": "setType",
+      "signature": "setType(type)",
+      "description": "지도의 타입을 변경합니다.",
+      "params": [
+        {
+          "name": "type",
+          "type": [
+            "string"
+          ],
+          "description": "지도의 타입입니다."
+        }
+      ],
+      "returns": []
+    },
+    {
+      "name": "setZoom",
+      "signature": "setZoom(zoom)",
+      "description": "지도의 줌을 설정합니다.",
+      "params": [
+        {
+          "name": "zoom",
+          "type": [
+            "number"
+          ],
+          "description": "설정할 줌 레벨입니다."
+        }
+      ],
+      "returns": []
+    },
+    {
+      "name": "setZoomable",
+      "signature": "setZoomable(zoomability?=false)",
+      "description": "확대, 축소 가능 여부를 설정합니다.",
+      "params": [
+        {
+          "name": "zoomability",
+          "type": [
+            "boolean"
+          ],
+          "description": "확대, 축소 가능 여부입니다.\n{Object} [option={around: \"\"}] 확대축소 기준점입니다. {touchAround: center} 설정 시, 터치에 대한 확대축소 기준점을 지도의 중심으로 제한합니다.",
+          "optional": true,
+          "default": "false"
+        }
+      ],
+      "returns": []
+    },
+    {
+      "name": "update",
+      "signature": "update()",
+      "description": "지도의 상태를 업데이트합니다. 컨테이너의 표시 여부가 달라진 경우 또는 프로그래밍적으로 컨테이너의 크기가 달라진 경우 호출합니다.",
+      "params": [],
+      "returns": []
+    },
+    {
+      "name": "zoomIn",
+      "signature": "zoomIn(zoomOptions?={duration:300})",
+      "description": "지도의 줌을 `1` 증가시킵니다.",
+      "params": [
+        {
+          "name": "zoomOptions",
+          "type": [
+            "ZoomOptions"
+          ],
+          "description": "줌에 대한 옵션입니다.",
+          "optional": true,
+          "default": "{duration:300}"
+        }
+      ],
+      "returns": []
+    },
+    {
+      "name": "zoomOut",
+      "signature": "zoomOut(zoomOptions?={duration:300})",
+      "description": "지도의 줌을 `1` 감소시킵니다.",
+      "params": [
+        {
+          "name": "zoomOptions",
+          "type": [
+            "ZoomOptions"
+          ],
+          "description": "줌에 대한 옵션입니다.",
+          "optional": true,
+          "default": "{duration:300}"
+        }
+      ],
+      "returns": []
+    }
+  ],
+  "members": [],
+  "events": [
+    "load",
+    "zoomstart",
+    "zoom",
+    "zoomend",
+    "rotatestart",
+    "rotate",
+    "rotateend",
+    "tiltstart",
+    "tilt",
+    "tiltend",
+    "mousedown",
+    "mouseup",
+    "click",
+    "dblclick",
+    "mousemove",
+    "mouseenter",
+    "mouseleave",
+    "mouseover",
+    "mouseout",
+    "contextmenu",
+    "touchstart",
+    "touchend",
+    "touchcancel",
+    "wheel",
+    "touchmove",
+    "movestart",
+    "move",
+    "moveend",
+    "dragstart",
+    "drag",
+    "dragend",
+    "idle",
+    "render"
+  ],
+  "relatedTypes": {
+    "LngLatBoundsLike": "LngLatBoundsLike",
+    "FitOptions": "FitOptions",
+    "LngLatLike": "LngLatLike",
+    "LngLatBounds": "inavi.maps.LngLatBounds",
+    "LngLat": "inavi.maps.LngLat",
+    "PanOptions": "PanOptions",
+    "ZoomOptions": "ZoomOptions",
+    "MapOptions": "MapOptions"
+  }
+}

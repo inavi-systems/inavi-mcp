@@ -1,0 +1,358 @@
+{
+  "id": "inavi.maps.Circle",
+  "category": "overlay",
+  "kind": "class",
+  "name": "Circle",
+  "description": "원 클래스입니다. 지도상에 원을 추가할 수 있습니다.",
+  "ctor": {
+    "signature": "new Circle(circleOptions?={})",
+    "params": [
+      {
+        "name": "circleOptions",
+        "type": [
+          "CircleOptions"
+        ],
+        "description": "원 생성을 위한 옵션입니다.",
+        "optional": true,
+        "default": "{}"
+      }
+    ]
+  },
+  "methods": [
+    {
+      "name": "getDraggable",
+      "signature": "getDraggable() ⇒ boolean",
+      "description": "원의 드래그 가능 여부를 반환합니다.",
+      "params": [],
+      "returns": [
+        {
+          "type": [
+            "boolean"
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "getMap",
+      "signature": "getMap() ⇒ Map | undefined",
+      "description": "원이 추가된 지도를 반환합니다.",
+      "params": [],
+      "returns": [
+        {
+          "type": [
+            "Map",
+            "undefined"
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "getPath",
+      "signature": "getPath() ⇒ Array.<LngLatLike>",
+      "description": "원을 구성하는 좌표를 배열로 반환합니다.",
+      "params": [],
+      "returns": [
+        {
+          "type": [
+            "Array.<LngLatLike>"
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "getPosition",
+      "signature": "getPosition() ⇒ LngLat",
+      "description": "원의 위치를 좌표로 반환합니다.",
+      "params": [],
+      "returns": [
+        {
+          "type": [
+            "LngLat"
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "getRadius",
+      "signature": "getRadius() ⇒ number",
+      "description": "원의 반경을 반환합니다. 킬로미터 단위입니다.",
+      "params": [],
+      "returns": [
+        {
+          "type": [
+            "number"
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "getStyle",
+      "signature": "getStyle() ⇒ FillStyle",
+      "description": "원의 스타일을 반환합니다.",
+      "params": [],
+      "returns": [
+        {
+          "type": [
+            "FillStyle"
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "getVisible",
+      "signature": "getVisible() ⇒ boolean",
+      "description": "원의 표시 여부를 반환합니다.",
+      "params": [],
+      "returns": [
+        {
+          "type": [
+            "boolean"
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "getZIndex",
+      "signature": "getZIndex() ⇒ number",
+      "description": "원의 z-index를 반환합니다.",
+      "params": [],
+      "returns": [
+        {
+          "type": [
+            "number"
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "off",
+      "signature": "off(eventType?, listener?) ⇒ Circle",
+      "description": "원에 등록된 이벤트 리스너를 제거합니다. 파라미터에 따라 특정 이벤트에 대한 리스너를 제거하거나 모든 리스너를 제거할 수 있습니다.",
+      "params": [
+        {
+          "name": "eventType",
+          "type": [
+            "string"
+          ],
+          "description": "이벤트 타입입니다. 값이 없으면 원에 등록된 모든 리스너를 제거합니다.",
+          "optional": true
+        },
+        {
+          "name": "listener",
+          "type": [
+            "function"
+          ],
+          "description": "이벤트 리스너입니다. 값이 없으면 이벤트 타입에 대한 모든 리스너를 제거합니다.",
+          "optional": true
+        }
+      ],
+      "returns": [
+        {
+          "type": [
+            "Circle"
+          ],
+          "description": "이벤트 리스너가 등록되었던 원 객체입니다."
+        }
+      ]
+    },
+    {
+      "name": "on",
+      "signature": "on(eventType, listener) ⇒ Circle",
+      "description": "원에 이벤트 리스너를 등록합니다.",
+      "params": [
+        {
+          "name": "eventType",
+          "type": [
+            "string"
+          ],
+          "description": "이벤트 타입입니다. 사용 가능한 이벤트 타입은 다음과 같습니다.<br>\n `mousedown`, `mouseup`, `click`, `dblclick`, `mousemove`, `mouseenter`, `mouseleave`,\n `mouseover`, `mouseout`, `contextmenu`, `touchstart`, `touchend`, `touchcancel`."
+        },
+        {
+          "name": "listener",
+          "type": [
+            "function"
+          ],
+          "description": "이벤트 리스너입니다."
+        }
+      ],
+      "returns": [
+        {
+          "type": [
+            "Circle"
+          ],
+          "description": "이벤트 리스너가 등록된 원 객체입니다."
+        }
+      ]
+    },
+    {
+      "name": "once",
+      "signature": "once(eventType, listener) ⇒ Circle",
+      "description": "원에 한 번만 실행되는 이벤트 리스너를 등록합니다.",
+      "params": [
+        {
+          "name": "eventType",
+          "type": [
+            "string"
+          ],
+          "description": "이벤트 타입입니다. 사용 가능한 이벤트 타입은 다음과 같습니다.<br>\n `mousedown`, `mouseup`, `click`, `dblclick`, `mousemove`, `mouseenter`, `mouseleave`,\n `mouseover`, `mouseout`, `contextmenu`, `touchstart`, `touchend`, `touchcancel`."
+        },
+        {
+          "name": "listener",
+          "type": [
+            "function"
+          ],
+          "description": "이벤트 리스너입니다."
+        }
+      ],
+      "returns": [
+        {
+          "type": [
+            "Circle"
+          ],
+          "description": "이벤트 리스너가 등록된 원 객체입니다."
+        }
+      ]
+    },
+    {
+      "name": "setDraggable",
+      "signature": "setDraggable(draggability)",
+      "description": "원의 드래그 가능 여부를 설정합니다.",
+      "params": [
+        {
+          "name": "draggability",
+          "type": [
+            "boolean"
+          ],
+          "description": "드래그 가능 여부입니다."
+        }
+      ],
+      "returns": []
+    },
+    {
+      "name": "setMap",
+      "signature": "setMap(map?)",
+      "description": "원을 추가할 지도를 설정합니다. 파라미터를 전달하지 않으면 원이 지도에서 제거됩니다.",
+      "params": [
+        {
+          "name": "map",
+          "type": [
+            "Map"
+          ],
+          "description": "지도 객체입니다.",
+          "optional": true
+        }
+      ],
+      "returns": []
+    },
+    {
+      "name": "setPosition",
+      "signature": "setPosition(position)",
+      "description": "원의 좌표를 설정합니다.",
+      "params": [
+        {
+          "name": "position",
+          "type": [
+            "LngLatLike"
+          ],
+          "description": "위치로 설정할 좌표입니다."
+        }
+      ],
+      "returns": []
+    },
+    {
+      "name": "setRadius",
+      "signature": "setRadius(radius)",
+      "description": "원의 반경을 설정합니다.",
+      "params": [
+        {
+          "name": "radius",
+          "type": [
+            "number"
+          ],
+          "description": "원의 반경입니다. 킬로미터 단위입니다."
+        }
+      ],
+      "returns": []
+    },
+    {
+      "name": "setStyle",
+      "signature": "setStyle(style?={})",
+      "description": "원의 스타일을 설정합니다. 파라미터로 전달한 스타일은 이전 스타일에 영향을 주지 않습니다.\n파라미터를 전달하지 않으면 기본 스타일이 적용됩니다.",
+      "params": [
+        {
+          "name": "style",
+          "type": [
+            "FillStyle"
+          ],
+          "description": "원의 스타일입니다.",
+          "optional": true,
+          "default": "{}"
+        }
+      ],
+      "returns": []
+    },
+    {
+      "name": "setVisible",
+      "signature": "setVisible(visibility?=false)",
+      "description": "원의 표시 여부를 설정합니다.",
+      "params": [
+        {
+          "name": "visibility",
+          "type": [
+            "boolean"
+          ],
+          "description": "표시 여부입니다.",
+          "optional": true,
+          "default": "false"
+        }
+      ],
+      "returns": []
+    },
+    {
+      "name": "setZIndex",
+      "signature": "setZIndex(zIndex)",
+      "description": "원의 z-index를 설정합니다.",
+      "params": [
+        {
+          "name": "zIndex",
+          "type": [
+            "number"
+          ],
+          "description": "z-index 값입니다."
+        }
+      ],
+      "returns": []
+    }
+  ],
+  "members": [],
+  "events": [
+    "mousedown",
+    "mouseup",
+    "click",
+    "dblclick",
+    "mousemove",
+    "mouseenter",
+    "mouseleave",
+    "mouseover",
+    "mouseout",
+    "contextmenu",
+    "touchstart",
+    "touchend",
+    "touchcancel"
+  ],
+  "relatedTypes": {
+    "Map": "inavi.maps.Map",
+    "LngLatLike": "LngLatLike",
+    "LngLat": "inavi.maps.LngLat",
+    "FillStyle": "FillStyle",
+    "CircleOptions": "CircleOptions"
+  }
+}

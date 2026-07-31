@@ -1,0 +1,52 @@
+{
+  "id": "ClusterStyle",
+  "category": "style",
+  "kind": "type",
+  "name": "ClusterStyle",
+  "description": "클러스터에 설정할 수 있는 스타일입니다.",
+  "type": [
+    "Object"
+  ],
+  "properties": [
+    {
+      "name": "steps",
+      "type": [
+        "Array.<number>"
+      ],
+      "description": "클러스터링 아이콘을 구분할 기준입니다.<br>\n  배열의 각 값은 전체 마커 중 클러스터링 마커의 비율을 나타냅니다(클러스터링된 마커 수 / 전체 마커 수).",
+      "optional": true
+    },
+    {
+      "name": "icons",
+      "type": [
+        "Array.<Object>"
+      ],
+      "description": "step 별 클러스터링 아이콘 정보 배열입니다.",
+      "optional": true
+    },
+    {
+      "name": "textColor",
+      "type": [
+        "Color"
+      ],
+      "description": "텍스트의 색상입니다.",
+      "optional": true,
+      "default": "\"black\""
+    },
+    {
+      "name": "textSize",
+      "type": [
+        "number"
+      ],
+      "description": "텍스트의 크기입니다.",
+      "optional": true,
+      "default": "12"
+    }
+  ],
+  "examples": [
+    "{\n  steps: [0.1, 0.05, 0.025, 0.0125],\n  icons: [\n  {\n    url: iconURL,\n    size: [iconWidth, iconHeight],\n    position: [0, 0], // sprites 기법 사용 시 활용\n  },\n  {\n    url: iconURL,\n    size: [iconWidth, iconHeight],\n    position: [iconWidth, 0], // sprites 기법 사용 시 활용\n  },\n  ...],\n  textColor: \"black\",\n  textSize: 12,\n};"
+  ],
+  "relatedTypes": {
+    "Color": "Color"
+  }
+}

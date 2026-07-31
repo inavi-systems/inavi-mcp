@@ -11,6 +11,7 @@ import {
   registerGetMapExampleTool,
 } from '@/tools/map-examples/map-examples.tool';
 import { registerListApiSpecsTool, registerGetApiSpecTool } from '@/tools/api-specs/api-specs.tool';
+import { registerListSdkDocsTool, registerGetSdkDocTool } from '@/tools/sdk-docs/sdk-docs.tool';
 
 /**
  * Read package.json to get server name and version
@@ -55,6 +56,8 @@ function registerAllTools(): void {
   registerGetMapExampleTool(server);
   registerListApiSpecsTool(server); // API spec tools
   registerGetApiSpecTool(server);
+  registerListSdkDocsTool(server); // SDK doc tools
+  registerGetSdkDocTool(server);
 }
 
 /**

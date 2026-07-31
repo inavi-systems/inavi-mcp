@@ -1,0 +1,39 @@
+{
+  "generatedAt": "2026-07-31T05:11:43.952Z",
+  "sourceUrl": "https://mapsapi.inavisys.com/docs/",
+  "totalDocs": 44,
+  "categories": [
+    "map",
+    "overlay",
+    "control",
+    "coordinates",
+    "options",
+    "style"
+  ],
+  "categoryMeta": {
+    "map": {
+      "label": "지도 본체",
+      "guidance": "지도 인스턴스 생성 및 제어(중심 좌표, 줌, 기울기, 회전, 화면 이동, 이벤트 바인딩). 지도 위에 얹는 요소는 overlay, UI 컨트롤은 control 사용"
+    },
+    "overlay": {
+      "label": "오버레이",
+      "guidance": "지도 위에 표시하는 시각 요소(마커, 마커 클러스터, 원, 폴리곤, 폴리라인, 라벨, 정보창). 생성 옵션 타입은 options, 스타일 타입은 style 사용"
+    },
+    "control": {
+      "label": "지도 컨트롤",
+      "guidance": "지도 UI 컨트롤 클래스. 각 컨트롤의 옵션 타입은 options 사용"
+    },
+    "coordinates": {
+      "label": "좌표/기하",
+      "guidance": "좌표·경계 표현과 좌표계 변환(정규화/픽셀/팅크웨어 좌표 및 상호 변환), 유연한 입력 타입(*Like)"
+    },
+    "options": {
+      "label": "옵션 타입",
+      "guidance": "클래스·메서드 생성/설정에 사용하는 옵션 객체 타입(*Options)"
+    },
+    "style": {
+      "label": "스타일 타입",
+      "guidance": "오버레이의 시각 스타일 정의 및 값 타입(색상 등)"
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "id": "PanOptions",
+  "category": "options",
+  "kind": "type",
+  "name": "PanOptions",
+  "description": "panTo, panBy 의 이동 옵션입니다. `heading` 과 `tilt` 는 현재 지도의 방향과 기울기가 기본값입니다.",
+  "type": [
+    "Object"
+  ],
+  "properties": [
+    {
+      "name": "heading",
+      "type": [
+        "number"
+      ],
+      "description": "북쪽을 기준으로 반시계 방향으로 회전한 각도입니다."
+    },
+    {
+      "name": "tilt",
+      "type": [
+        "number"
+      ],
+      "description": "지도의 기울기입니다."
+    },
+    {
+      "name": "duration",
+      "type": [
+        "number"
+      ],
+      "description": "이동에 소요되는 밀리초 단위의 시간입니다."
+    }
+  ],
+  "examples": [
+    "let panOptions = {\n  heading: 30, // 북쪽이 반시계 방향으로 30도 회전한 곳에 위치\n  tilt: 10, // 지도를 10도 눕힘\n  duration: 300, // 300ms 내에 이동을 수행\n};"
+  ],
+  "relatedTypes": {}
+}

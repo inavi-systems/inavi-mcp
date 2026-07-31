@@ -1,0 +1,439 @@
+{
+  "id": "inavi.maps.MarkerClusterer",
+  "category": "overlay",
+  "kind": "class",
+  "name": "MarkerClusterer",
+  "description": "클러스터 클래스입니다. 지도상에 클러스터를 추가할 수 있습니다.",
+  "ctor": {
+    "signature": "new MarkerClusterer(map, markers?, markerClustererOptions?={})",
+    "params": [
+      {
+        "name": "map",
+        "type": [
+          "Map"
+        ],
+        "description": "마커 클러스터를 추가할 지도 객체입니다."
+      },
+      {
+        "name": "markers",
+        "type": [
+          "Array.<Marker>"
+        ],
+        "description": "클러스터에 추가할 마커 객체 배열입니다.",
+        "optional": true
+      },
+      {
+        "name": "markerClustererOptions",
+        "type": [
+          "MarkerClustererOptions"
+        ],
+        "description": "클러스터 생성을 위한 옵션입니다.",
+        "optional": true,
+        "default": "{}"
+      }
+    ]
+  },
+  "methods": [
+    {
+      "name": "addMarker",
+      "signature": "addMarker(marker)",
+      "description": "클러스터에 마커를 추가합니다.",
+      "params": [
+        {
+          "name": "marker",
+          "type": [
+            "Marker"
+          ],
+          "description": "Marker 객체입니다."
+        }
+      ],
+      "returns": []
+    },
+    {
+      "name": "addMarkers",
+      "signature": "addMarkers(markers)",
+      "description": "클러스터에 여러 마커를 추가합니다.",
+      "params": [
+        {
+          "name": "markers",
+          "type": [
+            "Array.<Marker>"
+          ],
+          "description": "Marker 객체의 배열입니다."
+        }
+      ],
+      "returns": []
+    },
+    {
+      "name": "clearMarkers",
+      "signature": "clearMarkers()",
+      "description": "클러스터러에서 모든 마커를 제거합니다.",
+      "params": [],
+      "returns": []
+    },
+    {
+      "name": "getClusterChildren",
+      "signature": "getClusterChildren(clusterMarker, callback)",
+      "description": "클러스터 마커에 포함된 하위 마커의 정보를 콜백을 통해 반환합니다.",
+      "params": [
+        {
+          "name": "clusterMarker",
+          "type": [
+            "Marker"
+          ],
+          "description": "클러스터 마커입니다."
+        },
+        {
+          "name": "callback",
+          "type": [
+            "function"
+          ],
+          "description": "하위 마커의 정보를 사용할 콜백함수입니다."
+        }
+      ],
+      "returns": []
+    },
+    {
+      "name": "getClusters",
+      "signature": "getClusters() ⇒ Array.<Marker>",
+      "description": "현재 지도 범위 내에 표시된 클러스터 마커를 반환합니다.",
+      "params": [],
+      "returns": [
+        {
+          "type": [
+            "Array.<Marker>"
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "getGridSize",
+      "signature": "getGridSize() ⇒ number",
+      "description": "클러스터의 기준 거리를 반환합니다.",
+      "params": [],
+      "returns": [
+        {
+          "type": [
+            "number"
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "getMap",
+      "signature": "getMap() ⇒ Map | undefined",
+      "description": "클러스터가 추가된 지도를 반환합니다.",
+      "params": [],
+      "returns": [
+        {
+          "type": [
+            "Map",
+            "undefined"
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "getMarkers",
+      "signature": "getMarkers() ⇒ Array.<Marker>",
+      "description": "클러스터에 추가된 마커를 반환합니다.",
+      "params": [],
+      "returns": [
+        {
+          "type": [
+            "Array.<Marker>"
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "getMaxZoom",
+      "signature": "getMaxZoom() ⇒ number",
+      "description": "클러스터의 최대 줌을 반환합니다.",
+      "params": [],
+      "returns": [
+        {
+          "type": [
+            "number"
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "getStyles",
+      "signature": "getStyles() ⇒ ClusterStyle",
+      "description": "클러스터의 스타일을 반환합니다.",
+      "params": [],
+      "returns": [
+        {
+          "type": [
+            "ClusterStyle"
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "getTotalClusters",
+      "signature": "getTotalClusters() ⇒ number",
+      "description": "현재 지도 범위 내에 표시된 클러스터 마커의 수를 반환합니다.",
+      "params": [],
+      "returns": [
+        {
+          "type": [
+            "number"
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "getTotalMarkers",
+      "signature": "getTotalMarkers() ⇒ number",
+      "description": "클러스터에 추가된 마커의 수를 반환합니다.",
+      "params": [],
+      "returns": [
+        {
+          "type": [
+            "number"
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "isZoomOnClick",
+      "signature": "isZoomOnClick() ⇒ boolean",
+      "description": "클러스터 클릭 시 확대할지 여부를 반환합니다.",
+      "params": [],
+      "returns": [
+        {
+          "type": [
+            "boolean"
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "off",
+      "signature": "off(eventType?, listener?) ⇒ MarkerClusterer",
+      "description": "클러스터에 등록된 이벤트 리스너를 제거합니다.",
+      "params": [
+        {
+          "name": "eventType",
+          "type": [
+            "string"
+          ],
+          "description": "제거할 이벤트 타입입니다. 전달하지 않으면, 클러스터에 등록한 모든 리스너를 제거합니다.",
+          "optional": true
+        },
+        {
+          "name": "listener",
+          "type": [
+            "function"
+          ],
+          "description": "제거할 리스너입니다. 전달하지 않으면, 이벤트 타입에 대한 모든 리스너를 제거합니다.",
+          "optional": true
+        }
+      ],
+      "returns": [
+        {
+          "type": [
+            "MarkerClusterer"
+          ],
+          "description": "이벤트 리스너가 등록되었던 클러스터 객체입니다."
+        }
+      ]
+    },
+    {
+      "name": "on",
+      "signature": "on(eventType, listener, stopPropagation?=true) ⇒ MarkerClusterer",
+      "description": "클러스터에 이벤트 리스너를 설정합니다.",
+      "params": [
+        {
+          "name": "eventType",
+          "type": [
+            "string"
+          ],
+          "description": "이벤트 타입입니다. 사용 가능한 이벤트 타입은 다음과 같습니다.<br>\n 표준 마우스 이벤트 타입."
+        },
+        {
+          "name": "listener",
+          "type": [
+            "function"
+          ],
+          "description": "이벤트 리스너입니다."
+        },
+        {
+          "name": "stopPropagation",
+          "type": [
+            "boolean"
+          ],
+          "description": "이벤트 전파 방지 여부입니다.\n `false` 인 경우, 화면상의 이벤트 발생 위치를 기준으로 정보창 엘리먼트 아래에 놓인 객체의 이벤트도 함께 실행합니다.",
+          "optional": true,
+          "default": "true"
+        }
+      ],
+      "returns": [
+        {
+          "type": [
+            "MarkerClusterer"
+          ],
+          "description": "이벤트 리스너가 등록된 마커 객체입니다."
+        }
+      ]
+    },
+    {
+      "name": "once",
+      "signature": "once(eventType, listener, stopPropagation?=true) ⇒ MarkerClusterer",
+      "description": "클러스터에 한 번만 실행되는 이벤트 리스너를 설정합니다.",
+      "params": [
+        {
+          "name": "eventType",
+          "type": [
+            "string"
+          ],
+          "description": "한 번만 실행할 이벤트 타입입니다. 사용 가능한 이벤트 타입은 다음과 같습니다.<br>\n 표준 마우스 이벤트 타입."
+        },
+        {
+          "name": "listener",
+          "type": [
+            "function"
+          ],
+          "description": "이벤트 리스너입니다."
+        },
+        {
+          "name": "stopPropagation",
+          "type": [
+            "boolean"
+          ],
+          "description": "이벤트 전파 방지 여부입니다.\n `false` 인 경우, 화면상의 이벤트 발생 위치를 기준으로 정보창 엘리먼트 아래에 놓인 객체의 이벤트도 함께 실행합니다.",
+          "optional": true,
+          "default": "true"
+        }
+      ],
+      "returns": [
+        {
+          "type": [
+            "MarkerClusterer"
+          ],
+          "description": "이벤트 리스너가 등록된 클러스터 객체입니다."
+        }
+      ]
+    },
+    {
+      "name": "removeMarker",
+      "signature": "removeMarker(marker)",
+      "description": "클러스터러에서 마커를 제거합니다.",
+      "params": [
+        {
+          "name": "marker",
+          "type": [
+            "Marker"
+          ],
+          "description": "Marker 객체입니다."
+        }
+      ],
+      "returns": []
+    },
+    {
+      "name": "setGridSize",
+      "signature": "setGridSize(gridSize)",
+      "description": "클러스터의 기준 거리를 설정합니다.",
+      "params": [
+        {
+          "name": "gridSize",
+          "type": [
+            "number"
+          ],
+          "description": "클러스터 기준 거리입니다."
+        }
+      ],
+      "returns": []
+    },
+    {
+      "name": "setMap",
+      "signature": "setMap(map?)",
+      "description": "클러스터를 추가할 지도를 설정합니다.",
+      "params": [
+        {
+          "name": "map",
+          "type": [
+            "Map",
+            "undefined"
+          ],
+          "description": "지도 객체입니다.",
+          "optional": true
+        }
+      ],
+      "returns": []
+    },
+    {
+      "name": "setMaxZoom",
+      "signature": "setMaxZoom(maxZoom, callback?)",
+      "description": "클러스터의 최대 줌을 설정합니다.<br>\n  최대 줌을 설정한 후 리클러스터링이 이루어지는데, 리클러스터링이 끝나고 실행할 함수를 설정할 수 있습니다.",
+      "params": [
+        {
+          "name": "maxZoom",
+          "type": [
+            "number"
+          ],
+          "description": "최대 줌입니다."
+        },
+        {
+          "name": "callback",
+          "type": [
+            "function"
+          ],
+          "description": "리클러스터링 후 실행할 함수입니다.",
+          "optional": true
+        }
+      ],
+      "returns": []
+    },
+    {
+      "name": "setStyles",
+      "signature": "setStyles(styles)",
+      "description": "클러스터의 스타일을 설정합니다.",
+      "params": [
+        {
+          "name": "styles",
+          "type": [
+            "ClusterStyle"
+          ],
+          "description": "클러스터의 스타일입니다."
+        }
+      ],
+      "returns": []
+    },
+    {
+      "name": "setZoomOnClick",
+      "signature": "setZoomOnClick(zoomOnClick)",
+      "description": "클러스터 클릭 시 확대할지 여부를 설정합니다.",
+      "params": [
+        {
+          "name": "zoomOnClick",
+          "type": [
+            "boolean"
+          ],
+          "description": "클릭 시 확대 여부"
+        }
+      ],
+      "returns": []
+    }
+  ],
+  "members": [],
+  "events": [],
+  "relatedTypes": {
+    "Marker": "inavi.maps.Marker",
+    "Map": "inavi.maps.Map",
+    "ClusterStyle": "ClusterStyle",
+    "MarkerClustererOptions": "MarkerClustererOptions"
+  }
+}

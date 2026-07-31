@@ -1,0 +1,87 @@
+{
+  "id": "inavi.maps.Pixel",
+  "category": "coordinates",
+  "kind": "class",
+  "name": "Pixel",
+  "description": "캔버스 좌표를 나타내는 클래스입니다.",
+  "ctor": {
+    "signature": "new Pixel(x, y)",
+    "params": [
+      {
+        "name": "x",
+        "type": [
+          "number"
+        ],
+        "description": "지도 캔버스 상의 픽셀 x 위치입니다."
+      },
+      {
+        "name": "y",
+        "type": [
+          "number"
+        ],
+        "description": "지도 캔버스 상의 픽셀 y 위치입니다."
+      }
+    ]
+  },
+  "methods": [
+    {
+      "name": "convertToLngLat",
+      "signature": "convertToLngLat(map) ⇒ LngLat",
+      "description": "지도 캔버스상의 픽셀 위치를 정규화 좌표로 반환합니다.",
+      "params": [
+        {
+          "name": "map",
+          "type": [
+            "Map"
+          ],
+          "description": "기준이 되는 지도 객체입니다."
+        }
+      ],
+      "returns": [
+        {
+          "type": [
+            "LngLat"
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "convertToTWLngLat",
+      "signature": "convertToTWLngLat(map, precision?=false) ⇒ LngLat",
+      "description": "지도 캔버스상의 픽셀 위치를 팅크웨어 좌표로 반환합니다.",
+      "params": [
+        {
+          "name": "map",
+          "type": [
+            "Map"
+          ],
+          "description": "기준이 되는 지도 객체입니다."
+        },
+        {
+          "name": "precision",
+          "type": [
+            "boolean"
+          ],
+          "description": "정밀 계산 여부입니다.",
+          "optional": true,
+          "default": "false"
+        }
+      ],
+      "returns": [
+        {
+          "type": [
+            "LngLat"
+          ],
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "members": [],
+  "events": [],
+  "relatedTypes": {
+    "Map": "inavi.maps.Map",
+    "LngLat": "inavi.maps.LngLat"
+  }
+}

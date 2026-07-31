@@ -1,0 +1,54 @@
+{
+  "id": "LabelStyle",
+  "category": "style",
+  "kind": "type",
+  "name": "LabelStyle",
+  "description": "라벨에 설정할 수 있는 스타일입니다.",
+  "type": [
+    "Object"
+  ],
+  "properties": [
+    {
+      "name": "textColor",
+      "type": [
+        "Color"
+      ],
+      "description": "텍스트의 색상입니다.",
+      "optional": true,
+      "default": "\"black\""
+    },
+    {
+      "name": "textOpacity",
+      "type": [
+        "number"
+      ],
+      "description": "텍스트의 투명도입니다.",
+      "optional": true,
+      "default": "1"
+    },
+    {
+      "name": "textHaloColor",
+      "type": [
+        "Color"
+      ],
+      "description": "텍스트의 테두리 색상입니다.",
+      "optional": true,
+      "default": "\"white\""
+    },
+    {
+      "name": "textHaloWidth",
+      "type": [
+        "number"
+      ],
+      "description": "텍스트의 테두리 두께입니다.",
+      "optional": true,
+      "default": "2"
+    }
+  ],
+  "examples": [
+    "{\n  textColor: \"black\",\n  textOpacity: 1,\n  textHaloColor: \"white\",\n  textHaloWidth: 2,\n};"
+  ],
+  "relatedTypes": {
+    "Color": "Color"
+  }
+}

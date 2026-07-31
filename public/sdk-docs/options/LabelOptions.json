@@ -1,0 +1,67 @@
+{
+  "id": "LabelOptions",
+  "category": "options",
+  "kind": "type",
+  "name": "LabelOptions",
+  "description": "라벨을 생성할 때 설정할 수 있는 옵션입니다.",
+  "type": [
+    "Object"
+  ],
+  "properties": [
+    {
+      "name": "map",
+      "type": [
+        "Map"
+      ],
+      "description": "지도 객체입니다.",
+      "optional": true
+    },
+    {
+      "name": "position",
+      "type": [
+        "LngLatLike"
+      ],
+      "description": "라벨의 위치입니다.",
+      "optional": true
+    },
+    {
+      "name": "text",
+      "type": [
+        "string"
+      ],
+      "description": "라벨에 표시할 텍스트입니다.",
+      "optional": true,
+      "default": "\"\""
+    },
+    {
+      "name": "style",
+      "type": [
+        "LabelStyle"
+      ],
+      "description": "라벨의 스타일입니다.",
+      "optional": true
+    },
+    {
+      "name": "draggable",
+      "type": [
+        "boolean"
+      ],
+      "description": "드래그 가능 여부입니다."
+    },
+    {
+      "name": "zIndex",
+      "type": [
+        "number"
+      ],
+      "description": "라벨의 `z-index` 입니다. CSS 에서와 동일합니다."
+    }
+  ],
+  "examples": [
+    "{\n  map: map,\n  position: [127.110, 37.402],\n  text: \"라벨\",\n  style: {\n    textColor: \"red\",\n  },\n  draggable: false,\n  zIndex: 2\n};"
+  ],
+  "relatedTypes": {
+    "Map": "inavi.maps.Map",
+    "LngLatLike": "LngLatLike",
+    "LabelStyle": "LabelStyle"
+  }
+}

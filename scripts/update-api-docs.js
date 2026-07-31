@@ -561,8 +561,6 @@ function generateSchemaFile(indexes) {
   const content = lines.join('\n');
 
   fs.writeFileSync(CONFIG.schemaOutputPath, content, 'utf-8');
-
-  fs.writeFileSync(CONFIG.schemaOutputPath, content, 'utf-8');
 }
 
 // Main Pipeline

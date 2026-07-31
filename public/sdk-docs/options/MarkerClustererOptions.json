@@ -1,0 +1,61 @@
+{
+  "id": "MarkerClustererOptions",
+  "category": "options",
+  "kind": "type",
+  "name": "MarkerClustererOptions",
+  "description": "마커 클러스터를 생성할 때 설정할 수 있는 옵션입니다.",
+  "type": [
+    "Object"
+  ],
+  "properties": [
+    {
+      "name": "gridSize",
+      "type": [
+        "number"
+      ],
+      "description": "클러스터링을 시작할 마커 사이의 거리입니다.",
+      "optional": true,
+      "default": "80"
+    },
+    {
+      "name": "zoomOnClick",
+      "type": [
+        "boolean"
+      ],
+      "description": "클러스터링을 클릭했을 때 줌 확대에 대한 여부입니다.",
+      "optional": true,
+      "default": "false"
+    },
+    {
+      "name": "maxZoom",
+      "type": [
+        "number"
+      ],
+      "description": "클러스터링의 최대 줌입니다.",
+      "optional": true,
+      "default": "18"
+    },
+    {
+      "name": "callback",
+      "type": [
+        "function"
+      ],
+      "description": "클러스터 객체 생성 후 실행시킬 콜백 함수입니다.",
+      "optional": true
+    },
+    {
+      "name": "style",
+      "type": [
+        "ClusterStyle"
+      ],
+      "description": "클러스터의 스타일입니다.",
+      "optional": true
+    }
+  ],
+  "examples": [
+    "{\n  gridSize: 80,\n  zoomOnClick: false,\n  maxZoom: 18,\n  callback: () => { console.log(\"클러스터 객체 생성 완료\"); },\n  styles: {\n    steps: [0.1, 0.05, 0.025, 0.0125],\n    icons: [\n    {\n      url: iconURL,\n      size: [iconWidth, iconHeight],\n      position: [0, 0], // sprites 기법 사용 시 활용\n    },\n    {\n      url: iconURL,\n      size: [iconWidth, iconHeight],\n      position: [iconWidth, 0], // sprites 기법 사용 시 활용\n    },\n    ...],\n    textColor: \"black\",\n    textSize: 12,\n  }\n}"
+  ],
+  "relatedTypes": {
+    "ClusterStyle": "ClusterStyle"
+  }
+}

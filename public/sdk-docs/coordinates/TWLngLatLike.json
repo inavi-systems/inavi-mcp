@@ -1,0 +1,17 @@
+{
+  "id": "TWLngLatLike",
+  "category": "coordinates",
+  "kind": "type",
+  "name": "TWLngLatLike",
+  "description": "팅크웨어 좌표를 갖는 유연한 데이터 타입입니다.",
+  "type": [
+    "TWLngLat",
+    "Object",
+    "Array.<number, number>"
+  ],
+  "properties": [],
+  "examples": [
+    "let v1 = new inavi.maps.TWLngLat(169030, 517922);\nlet v2 = {lat: 517922, lng: 169030};\nlet v3 = [169030, 517922]; // 경도, 위도 순"
+  ],
+  "relatedTypes": {}
+}

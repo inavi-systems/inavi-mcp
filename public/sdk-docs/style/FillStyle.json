@@ -1,0 +1,63 @@
+{
+  "id": "FillStyle",
+  "category": "style",
+  "kind": "type",
+  "name": "FillStyle",
+  "description": "폴리곤에 설정할 수 있는 스타일입니다.",
+  "type": [
+    "Object"
+  ],
+  "properties": [
+    {
+      "name": "fillColor",
+      "type": [
+        "Color"
+      ],
+      "description": "폴리곤의 채우기 색상입니다.",
+      "optional": true,
+      "default": "\"blue\""
+    },
+    {
+      "name": "fillOpacity",
+      "type": [
+        "number"
+      ],
+      "description": "폴리곤의 채우기 투명도입니다.",
+      "optional": true,
+      "default": "1"
+    },
+    {
+      "name": "fillOutlineColor",
+      "type": [
+        "Color"
+      ],
+      "description": "폴리곤의 테두리 색상입니다.",
+      "optional": true,
+      "default": "\"blue\""
+    },
+    {
+      "name": "fillTranslate",
+      "type": [
+        "Array.<number, number>"
+      ],
+      "description": "폴리곤의 이동 속성입니다. 양수인 경우 오른쪽 아래로, 음수인 경우 왼쪽 위로 입력한 픽셀만큼 이동합니다.",
+      "optional": true,
+      "default": "[0, 0]"
+    },
+    {
+      "name": "fillTranslateAnchor",
+      "type": [
+        "string"
+      ],
+      "description": "fillTranslate 의 기준을 지정합니다. `map` 인 경우 지도의 북쪽을 기준으로, `viewport` 인 경우 지도 엘리먼트의 중심을 기준으로 이동합니다.",
+      "optional": true,
+      "default": "\"map\""
+    }
+  ],
+  "examples": [
+    "{\n  fillColor: \"#000000\",\n  fillOpacity: 1,\n  fillOutlineColor: \"#000000\",\n  fillTranslate: [0, 0],\n  fillTranslateAnchor: \"map\",\n};"
+  ],
+  "relatedTypes": {
+    "Color": "Color"
+  }
+}

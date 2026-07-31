@@ -1,0 +1,23 @@
+{
+  "id": "ZoomControlOptions",
+  "category": "options",
+  "kind": "type",
+  "name": "ZoomControlOptions",
+  "description": "줌 컨트롤 객체 초기화에 사용되는 옵션 값입니다.",
+  "type": [
+    "Object"
+  ],
+  "properties": [
+    {
+      "name": "position",
+      "type": [
+        "string"
+      ],
+      "description": "쥼 컨트롤을 배치할 위치입니다. `bottom-left`, `bottom-right`, `top-left`, `top-right`"
+    }
+  ],
+  "examples": [
+    "let zoomControlOptions = {\n  position: \"top-right\",\n};"
+  ],
+  "relatedTypes": {}
+}
