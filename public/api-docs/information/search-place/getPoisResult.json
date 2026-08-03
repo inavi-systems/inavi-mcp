@@ -310,7 +310,20 @@
                         "etcinfo": {
                           "type": "array",
                           "description": "분류 기타 항목",
-                          "items": "[Circular Reference]"
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "name": {
+                                "type": "string",
+                                "description": "분류 항목 설명"
+                              },
+                              "value": {
+                                "type": "string",
+                                "description": "분류 항목 내용"
+                              }
+                            },
+                            "description": "분류 기타 항목"
+                          }
                         },
                         "hasoildata": {
                           "type": "boolean",
@@ -387,7 +400,28 @@
           "schema": {
             "type": "object",
             "properties": {
-              "header": "[Circular Reference]"
+              "header": {
+                "type": "object",
+                "properties": {
+                  "isSuccessful": {
+                    "type": "boolean",
+                    "description": "API 요청 성공 여부",
+                    "example": true
+                  },
+                  "resultCode": {
+                    "type": "integer",
+                    "description": "API 응답 결과 코드",
+                    "format": "int32",
+                    "example": 0
+                  },
+                  "resultMessage": {
+                    "type": "string",
+                    "description": "API 응답 결과 문구",
+                    "example": "Success"
+                  }
+                },
+                "description": "API 응답 결과"
+              }
             },
             "description": "API 응답 결과의 상태"
           }
@@ -401,7 +435,28 @@
           "schema": {
             "type": "object",
             "properties": {
-              "header": "[Circular Reference]"
+              "header": {
+                "type": "object",
+                "properties": {
+                  "isSuccessful": {
+                    "type": "boolean",
+                    "description": "API 요청 성공 여부",
+                    "example": true
+                  },
+                  "resultCode": {
+                    "type": "integer",
+                    "description": "API 응답 결과 코드",
+                    "format": "int32",
+                    "example": 0
+                  },
+                  "resultMessage": {
+                    "type": "string",
+                    "description": "API 응답 결과 문구",
+                    "example": "Success"
+                  }
+                },
+                "description": "API 응답 결과"
+              }
             },
             "description": "API 응답 결과의 상태"
           }
@@ -415,7 +470,28 @@
           "schema": {
             "type": "object",
             "properties": {
-              "header": "[Circular Reference]"
+              "header": {
+                "type": "object",
+                "properties": {
+                  "isSuccessful": {
+                    "type": "boolean",
+                    "description": "API 요청 성공 여부",
+                    "example": true
+                  },
+                  "resultCode": {
+                    "type": "integer",
+                    "description": "API 응답 결과 코드",
+                    "format": "int32",
+                    "example": 0
+                  },
+                  "resultMessage": {
+                    "type": "string",
+                    "description": "API 응답 결과 문구",
+                    "example": "Success"
+                  }
+                },
+                "description": "API 응답 결과"
+              }
             },
             "description": "API 응답 결과의 상태"
           }
@@ -429,7 +505,28 @@
           "schema": {
             "type": "object",
             "properties": {
-              "header": "[Circular Reference]"
+              "header": {
+                "type": "object",
+                "properties": {
+                  "isSuccessful": {
+                    "type": "boolean",
+                    "description": "API 요청 성공 여부",
+                    "example": true
+                  },
+                  "resultCode": {
+                    "type": "integer",
+                    "description": "API 응답 결과 코드",
+                    "format": "int32",
+                    "example": 0
+                  },
+                  "resultMessage": {
+                    "type": "string",
+                    "description": "API 응답 결과 문구",
+                    "example": "Success"
+                  }
+                },
+                "description": "API 응답 결과"
+              }
             },
             "description": "API 응답 결과의 상태"
           }
