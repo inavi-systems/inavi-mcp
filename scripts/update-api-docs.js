@@ -488,14 +488,18 @@ function removeCircularRefs(obj, seen = new WeakSet()) {
   if (seen.has(obj)) return '[Circular Reference]';
   seen.add(obj);
 
-  if (Array.isArray(obj)) {
-    return obj.map((item) => removeCircularRefs(item, seen));
-  }
+  const result = Array.isArray(obj)
+    ? obj.map((item) => removeCircularRefs(item, seen))
+    : Object.entries(obj).reduce((acc, [key, value]) => {
+        acc[key] = removeCircularRefs(value, seen);
+        return acc;
+      }, {});
 
-  return Object.entries(obj).reduce((result, [key, value]) => {
-    result[key] = removeCircularRefs(value, seen);
-    return result;
-  }, {});
+  // Leave the current path once children are processed so schemas reused across
+  // siblings (e.g. the shared response `header`) serialize fully; only genuine
+  // ancestor cycles are cut.
+  seen.delete(obj);
+  return result;
 }
 
 // Step 6: Generate Schema File
