@@ -113,40 +113,32 @@ export const DYNAMIC_MAPS_EXAMPLES: readonly MapExampleMetadata[] = [
   {
     id: 'dynamic-map-type',
     category: 'dynamic-maps',
-    title: 'Switch Map Style Dynamically (iNavi Maps)',
+    title: 'Switch Map Type Dynamically (iNavi Maps)',
     description:
-      'Dynamically switch between different map styles using interactive buttons. ' +
-      'Supports five map types: Normal, Satellite, Hybrid, DEM Normal, and DEM Hybrid. ' +
-      'Each button dynamically changes the map style by loading external style URLs.',
+      'Dynamically switch the map type using interactive buttons. ' +
+      'Calls Map#setType with the two supported values: NORMAL and SATELLITE.',
     filename: 'dynamic-maps/dynamic-map-type.html',
     keywords: [
-      'map style',
       'map type',
-      'switch style',
+      'switch type',
       'change type',
       'normal',
       'satellite',
-      'hybrid',
-      'dem',
-      'terrain',
-      'setStyle',
-      'style change',
+      'aerial',
+      'setType',
       'map view',
-      'style selection',
+      'type selection',
     ],
     useCases: [
-      'Switch between different map styles',
+      'Switch between normal and satellite map views',
       'Provide users with multiple map view options',
-      'Toggle between terrain and standard views',
       'Allow satellite imagery view',
-      'Enable hybrid map visualization',
     ],
     features: [
-      'Dynamic button generation for style switching',
-      'Five map style options (Normal, Satellite, Hybrid, DEM Normal, DEM Hybrid)',
-      'External style URL loading',
-      'Interactive style change via button clicks',
-      'Real-time map style transformation',
+      'Dynamic button generation for type switching',
+      'Two map type options (NORMAL, SATELLITE)',
+      'Interactive type change via button clicks',
+      'Real-time map type transformation',
     ],
   },
   {

@@ -31,43 +31,22 @@
           zoom: 13,
         });
 
-        const mapStyleBtnsConst = [
-          {
-            id: 'normal_btn',
-            title: '일반 지도',
-            type: 'https://timbase.inavi.com/resources/web/inavi_5595128678a34daabf6dc772dad1e7e4.json',
-          },
-          {
-            id: 'satellite_btn',
-            title: '항공 지도',
-            type: 'https://timbase.inavi.com/resources/web/type/S9f2K8mQ1r6Z4xB3nH7jL5pW2vR9dT3u.json',
-          },
-          {
-            id: 'hybrid_btn',
-            title: '하이브리드 지도',
-            type: 'https://timbase.inavi.com/resources/web/type/H32sateghkqwlxptzyrjdbvmcdfinavi.json',
-          },
-          {
-            id: 'dem_normal_btn',
-            title: '일반 지형 지도',
-            type: 'https://timbase.inavi.com/resources/web/type/inavi_DNK9f7D8k34lQ8sNfB2jM6xT5rH0uQ3y1bZ4.json',
-          },
-          {
-            id: 'dem_hybrid_btn',
-            title: '하이브리드 지형 지도',
-            type: 'https://timbase.inavi.com/resources/web/type/H32sateghkqwlxptzyrjdbvmcdfinavi.json',
-          },
+        // 지도 유형은 setType(type)으로 바꾼다. 사용 가능한 값은 NORMAL, SATELLITE 두 가지다.
+        const mapTypeBtnsConst = [
+          { id: 'normal_btn', title: '일반 지도', type: 'NORMAL' },
+          { id: 'satellite_btn', title: '항공 지도', type: 'SATELLITE' },
         ];
+
         // 버튼 요소 생성 및 추가
-        mapStyleBtnsConst.forEach((btn) => {
+        mapTypeBtnsConst.forEach((btn) => {
           const button = document.createElement('button');
           button.id = btn.id;
           button.innerText = btn.title;
           document.body.appendChild(button);
 
-          // 버튼 클릭 시 지도 스타일 변경
+          // 버튼 클릭 시 지도 유형 변경
           button.addEventListener('click', () => {
-            map.setStyle(btn.type);
+            map.setType(btn.type);
           });
         });
       }
