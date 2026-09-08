@@ -22,7 +22,7 @@
       "category": "style",
       "kind": "type",
       "name": "FillStyle",
-      "summary": "폴리곤에 설정할 수 있는 스타일입니다.",
+      "summary": "폴리곤, 원에 공통으로 설정할 수 있는 채우기 스타일입니다.",
       "methods": []
     },
     {

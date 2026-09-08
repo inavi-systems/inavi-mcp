@@ -48,7 +48,7 @@
     },
     {
       "name": "convertToTWLngLat",
-      "signature": "convertToTWLngLat(map, precision?=false) ⇒ LngLat",
+      "signature": "convertToTWLngLat(map, precision?=false) ⇒ TWLngLat",
       "description": "지도 캔버스상의 픽셀 위치를 팅크웨어 좌표로 반환합니다.",
       "params": [
         {
@@ -71,7 +71,7 @@
       "returns": [
         {
           "type": [
-            "LngLat"
+            "TWLngLat"
           ],
           "description": ""
         }
@@ -82,6 +82,7 @@
   "events": [],
   "relatedTypes": {
     "Map": "inavi.maps.Map",
-    "LngLat": "inavi.maps.LngLat"
+    "LngLat": "inavi.maps.LngLat",
+    "TWLngLat": "inavi.maps.TWLngLat"
   }
 }

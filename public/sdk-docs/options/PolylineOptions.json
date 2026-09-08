@@ -48,7 +48,7 @@
     }
   ],
   "examples": [
-    "{\n  map: map,\n  path: [\n    [127.110, 37.402],\n    [127.2, 37.5],\n  ],\n  draggable: false,\n  zIndex: 2\n  style: {\n    lineColor: \"red\",\n  },\n};"
+    "{\n  map: map,\n  path: [\n    [127.110, 37.402],\n    [127.2, 37.5],\n  ],\n  draggable: false,\n  zIndex: 2,\n  style: {\n    lineColor: \"red\",\n  },\n};"
   ],
   "relatedTypes": {
     "Map": "inavi.maps.Map",

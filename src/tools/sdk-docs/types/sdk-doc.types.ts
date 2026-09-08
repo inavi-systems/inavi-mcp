@@ -44,6 +44,11 @@ export interface SdkDoc extends Record<string, unknown> {
   methods?: SdkMethod[];
   members?: SdkMember[];
   events?: string[];
+  /**
+   * 이벤트 콜백의 `target`이 emitter 자신이 아닌 클래스에만 붙는 실측 보강 명세.
+   * 소스 JSDoc에 없어 파이프라인의 EVENT_TARGET_SPECS에서 주입한다.
+   */
+  eventTarget?: { description: string; properties: SdkParam[] };
   // typedef
   type?: string[];
   properties?: SdkParam[];

@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-07-31T05:11:43.952Z",
-  "sourceUrl": "https://mapsapi.inavisys.com/docs/",
-  "totalDocs": 44,
+  "generatedAt": "2026-09-08T06:33:32.844Z",
+  "sourceUrl": "http://localhost:8080/docs/v1.3.2/",
+  "totalDocs": 45,
   "categories": [
     "map",
     "overlay",

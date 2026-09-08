@@ -147,13 +147,13 @@
     },
     {
       "name": "getFeatures",
-      "signature": "getFeatures() ⇒ Array",
-      "description": "지도에 등록된 사용자 피쳐를 반환합니다.",
+      "signature": "getFeatures() ⇒ Array.<(Circle|Polygon|Polyline|Label)>",
+      "description": "지도에 등록된 사용자 피쳐를 반환합니다. `Circle`, `Polygon`, `Polyline`, `Label` 객체만 포함됩니다.",
       "params": [],
       "returns": [
         {
           "type": [
-            "Array"
+            "Array.<(Circle|Polygon|Polyline|Label)>"
           ],
           "description": ""
         }
@@ -347,7 +347,7 @@
           "type": [
             "function"
           ],
-          "description": "이벤트 리스너입니다."
+          "description": "이벤트 리스너입니다. 콜백 인자는 EventPayload 를 참고하세요."
         }
       ],
       "returns": [
@@ -376,7 +376,7 @@
           "type": [
             "function"
           ],
-          "description": "이벤트 리스너입니다."
+          "description": "이벤트 리스너입니다. 콜백 인자는 EventPayload 를 참고하세요."
         }
       ],
       "returns": [
@@ -644,7 +644,7 @@
           "type": [
             "boolean"
           ],
-          "description": "확대, 축소 가능 여부입니다.\n{Object} [option={around: \"\"}] 확대축소 기준점입니다. {touchAround: center} 설정 시, 터치에 대한 확대축소 기준점을 지도의 중심으로 제한합니다.",
+          "description": "확대, 축소 가능 여부입니다.",
           "optional": true,
           "default": "false"
         }
@@ -735,8 +735,13 @@
     "LngLatLike": "LngLatLike",
     "LngLatBounds": "inavi.maps.LngLatBounds",
     "LngLat": "inavi.maps.LngLat",
+    "Circle": "inavi.maps.Circle",
+    "Polygon": "inavi.maps.Polygon",
+    "Polyline": "inavi.maps.Polyline",
+    "Label": "inavi.maps.Label",
     "PanOptions": "PanOptions",
     "ZoomOptions": "ZoomOptions",
-    "MapOptions": "MapOptions"
+    "MapOptions": "MapOptions",
+    "EventPayload": "EventPayload"
   }
 }

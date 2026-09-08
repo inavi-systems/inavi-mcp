@@ -3,7 +3,7 @@
   "category": "style",
   "kind": "type",
   "name": "FillStyle",
-  "description": "폴리곤에 설정할 수 있는 스타일입니다.",
+  "description": "폴리곤, 원에 공통으로 설정할 수 있는 채우기 스타일입니다.",
   "type": [
     "Object"
   ],
@@ -13,7 +13,7 @@
       "type": [
         "Color"
       ],
-      "description": "폴리곤의 채우기 색상입니다.",
+      "description": "채우기 색상입니다.",
       "optional": true,
       "default": "\"blue\""
     },
@@ -22,7 +22,7 @@
       "type": [
         "number"
       ],
-      "description": "폴리곤의 채우기 투명도입니다.",
+      "description": "채우기 투명도입니다.",
       "optional": true,
       "default": "1"
     },
@@ -31,7 +31,7 @@
       "type": [
         "Color"
       ],
-      "description": "폴리곤의 테두리 색상입니다.",
+      "description": "테두리 색상입니다.",
       "optional": true,
       "default": "\"blue\""
     },
@@ -40,7 +40,7 @@
       "type": [
         "Array.<number, number>"
       ],
-      "description": "폴리곤의 이동 속성입니다. 양수인 경우 오른쪽 아래로, 음수인 경우 왼쪽 위로 입력한 픽셀만큼 이동합니다.",
+      "description": "이동 속성입니다. 양수인 경우 오른쪽 아래로, 음수인 경우 왼쪽 위로 입력한 픽셀만큼 이동합니다.",
       "optional": true,
       "default": "[0, 0]"
     },

@@ -79,6 +79,50 @@ const CATEGORY_META = {
 };
 const CATEGORY_ORDER = ['map', 'overlay', 'control', 'coordinates', 'options', 'style'];
 
+/**
+ * Measured supplement, not present in the source JSDoc.
+ *
+ * Every emitter passes `target` to its event callbacks, and for all of them but one it is the
+ * emitter instance itself — nothing to read out of it. `MarkerClusterer` is the exception: it
+ * hands over a separate object for the clicked cluster or marker, and without the properties
+ * below there is no way to tell the two apart or to trace a marker back to its source data.
+ * Verified in a browser against the live SDK (2026-09-08); the source docs describe none of it.
+ *
+ * This is the one place the pipeline carries a symbol name on purpose. `applyEventTargetSpecs`
+ * warns when a target symbol is missing so a renamed or newly documented symbol surfaces
+ * instead of silently dropping the supplement.
+ */
+const EVENT_TARGET_SPECS = {
+  'inavi.maps.MarkerClusterer': {
+    description:
+      '이 클래스의 이벤트 콜백에서 `target` 은 MarkerClusterer 인스턴스가 아니라, ' +
+      '클릭·호버한 클러스터 또는 개별 마커를 나타내는 별도 객체입니다. ' +
+      'Marker 와 같은 메서드를 가지며, 아래 속성으로 둘을 구분합니다.',
+    properties: [
+      {
+        name: 'cluster',
+        type: ['boolean'],
+        description: '클러스터이면 `true`. 개별 마커에는 이 속성 자체가 없습니다.',
+        optional: true,
+      },
+      {
+        name: 'cluster_count',
+        type: ['number'],
+        description: '클러스터에 묶인 마커 개수. 개별 마커에는 이 속성 자체가 없습니다.',
+        optional: true,
+      },
+      {
+        name: 'id',
+        type: ['string'],
+        description:
+          '`cluster_<소스ID>_<인덱스>` 형태의 식별자입니다. 개별 마커는 끝에 `s` 가 붙습니다 ' +
+          '(예: 클러스터 `cluster_9757289586_21`, 개별 마커 `cluster_9757289586_6s`). ' +
+          '`<인덱스>` 는 생성자에 넘긴 markers 배열의 인덱스라 원본 데이터를 되찾는 데 쓸 수 있습니다.',
+      },
+    ],
+  },
+};
+
 // Step 1: Extract Structured Data
 
 /** Navigate to the SPA and wait for the Docma content + data to be ready */
@@ -187,12 +231,46 @@ function buildDocs(doclets) {
       documentedMap[d.name] = d.longname;
     });
 
-  return doclets
+  const styleValueTypeNames = collectStyleValueTypeNames(doclets);
+
+  const docs = doclets
     .filter((d) => d.kind === 'class' || d.kind === 'typedef')
     .map((d) =>
-      d.kind === 'class' ? buildClassDoc(d, doclets, documentedMap) : buildTypedefDoc(d, documentedMap),
+      d.kind === 'class'
+        ? buildClassDoc(d, doclets, documentedMap)
+        : buildTypedefDoc(d, documentedMap, styleValueTypeNames),
     )
     .sort((a, b) => a.id.localeCompare(b.id));
+
+  return applyEventTargetSpecs(docs);
+}
+
+/** Attach the measured `EVENT_TARGET_SPECS` supplement to the classes it describes */
+function applyEventTargetSpecs(docs) {
+  const byId = new Map(docs.map((d) => [d.id, d]));
+  Object.keys(EVENT_TARGET_SPECS).forEach((id) => {
+    const doc = byId.get(id);
+    if (!doc) {
+      logger.warn(`event target spec has no matching symbol (renamed?): ${id}`);
+      return;
+    }
+    doc.eventTarget = EVENT_TARGET_SPECS[id];
+  });
+  return docs;
+}
+
+/**
+ * Names used as property types by `*Style` typedefs (e.g. `Color`). These are style value
+ * types even though their own name carries no suffix, so they must not hit the default.
+ */
+function collectStyleValueTypeNames(doclets) {
+  return new Set(
+    doclets
+      .filter((d) => d.kind === 'typedef' && /Style$/.test(d.longname))
+      .flatMap((d) => d.properties || [])
+      .flatMap((p) => p.type || [])
+      .flatMap((t) => extractTypeNames(t)),
+  );
 }
 
 /** Class doc: description + constructor + methods (signature/params/returns) + members + events */
@@ -276,7 +354,7 @@ function mergeInheritedDoclets(ancestry, doclets, kind) {
 }
 
 /** Typedef doc: option object (properties) or value type (type union) + kept examples */
-function buildTypedefDoc(td, documentedMap) {
+function buildTypedefDoc(td, documentedMap, styleValueTypeNames) {
   const doc = {
     id: td.longname,
     category: '',
@@ -287,7 +365,7 @@ function buildTypedefDoc(td, documentedMap) {
     properties: (td.properties || []).map(cleanParam),
     examples: td.examples || [],
   };
-  doc.category = assignCategory(doc);
+  doc.category = assignCategory(doc, styleValueTypeNames);
   doc.relatedTypes = collectRelatedTypes(doc, documentedMap);
   return sanitizeDescriptions(doc);
 }
@@ -296,14 +374,16 @@ function buildTypedefDoc(td, documentedMap) {
  * Derive a category from the symbol id/structure (no symbol-name lists; naming and
  * structure rules + a safe default so new symbols never silently vanish).
  */
-function assignCategory(doc) {
+function assignCategory(doc, styleValueTypeNames = new Set()) {
   const { id, kind } = doc;
   if (kind === 'type') {
     if (/Options$/.test(id)) return 'options';
     if (/Style$/.test(id)) return 'style';
     if (/Like$/.test(id)) return 'coordinates';
-    logger.warn(`unmatched typedef -> style (default): ${id}`);
-    return 'style';
+    // A type consumed by `*Style` properties is a style value type (e.g. Color).
+    if (styleValueTypeNames.has(id)) return 'style';
+    logger.warn(`unmatched typedef -> map (default): ${id}`);
+    return 'map';
   }
   // class
   if (id === CORE_CLASS) return 'map';
@@ -432,7 +512,37 @@ function gatherReferencedNames(doc) {
   });
   if (doc.ctor) scan(doc.ctor.params);
   (doc.augments || []).forEach((n) => names.add(n));
+  gatherLinkedNames(doc).forEach((n) => names.add(n));
   return names;
+}
+
+/**
+ * Names referenced from `{@link X}` inside description text. The source puts some type
+ * references in prose rather than in a type field (e.g. the `EventPayload` callback
+ * payload), and this runs before descriptions are flattened, so the tags are still intact.
+ */
+function gatherLinkedNames(node, names = new Set()) {
+  if (Array.isArray(node)) {
+    node.forEach((n) => gatherLinkedNames(n, names));
+  } else if (node && typeof node === 'object') {
+    Object.keys(node).forEach((k) => {
+      if (k === 'description' && typeof node[k] === 'string') {
+        extractLinkTargets(node[k]).forEach((n) => names.add(n));
+      } else {
+        gatherLinkedNames(node[k], names);
+      }
+    });
+  }
+  return names;
+}
+
+/** Extract the namepath from `{@link X}` / `{@link X|text}` / `{@link X text}` tags */
+function extractLinkTargets(text) {
+  return (text.match(/\{@link(?:code|plain)?\s+([^}]+)\}/g) || [])
+    .map((tag) => tag.replace(/^\{@link(?:code|plain)?\s+/, '').replace(/\}$/, ''))
+    .map((body) => body.trim().split(/[|\s]/)[0])
+    .filter(Boolean)
+    .map((namepath) => namepath.split('.').pop());
 }
 
 /** Extract identifiers from a type string like `Array.<LngLatLike>` */

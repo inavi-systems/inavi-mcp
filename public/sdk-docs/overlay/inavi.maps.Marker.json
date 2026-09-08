@@ -174,14 +174,14 @@
           "type": [
             "string"
           ],
-          "description": "이벤트 타입입니다. 사용 가능한 이벤트 타입은 다음과 같습니다.<br>\n  `dragstart`, `drag`, `dragend`,\n 표준 마우스 이벤트 타입."
+          "description": "이벤트 타입입니다. 사용 가능한 이벤트 타입은 다음과 같습니다.<br>\n  `dragstart`, `drag`, `dragend`, `mousedown`, `mouseup`, `click`, `dblclick`, `mousemove`, `mouseenter`, `mouseleave`,\n  `mouseover`, `mouseout`, `contextmenu`, `touchstart`, `touchend`, `touchcancel`."
         },
         {
           "name": "listener",
           "type": [
             "function"
           ],
-          "description": "이벤트 리스너입니다."
+          "description": "이벤트 리스너입니다. 콜백 인자는 EventPayload 를 참고하세요."
         },
         {
           "name": "stopPropagation",
@@ -212,14 +212,14 @@
           "type": [
             "string"
           ],
-          "description": "한 번만 실행할 이벤트 타입입니다. 사용 가능한 이벤트 타입은 다음과 같습니다.<br>\n  `dragstart`, `drag`, `dragend`,\n 표준 마우스 이벤트 타입."
+          "description": "한 번만 실행할 이벤트 타입입니다. 사용 가능한 이벤트 타입은 다음과 같습니다.<br>\n  `dragstart`, `drag`, `dragend`, `mousedown`, `mouseup`, `click`, `dblclick`, `mousemove`, `mouseenter`, `mouseleave`,\n  `mouseover`, `mouseout`, `contextmenu`, `touchstart`, `touchend`, `touchcancel`."
         },
         {
           "name": "listener",
           "type": [
             "function"
           ],
-          "description": "이벤트 리스너입니다."
+          "description": "이벤트 리스너입니다. 콜백 인자는 EventPayload 를 참고하세요."
         },
         {
           "name": "stopPropagation",
@@ -376,7 +376,20 @@
   "events": [
     "dragstart",
     "drag",
-    "dragend"
+    "dragend",
+    "mousedown",
+    "mouseup",
+    "click",
+    "dblclick",
+    "mousemove",
+    "mouseenter",
+    "mouseleave",
+    "mouseover",
+    "mouseout",
+    "contextmenu",
+    "touchstart",
+    "touchend",
+    "touchcancel"
   ],
   "relatedTypes": {
     "InfoWindow": "inavi.maps.InfoWindow",
@@ -384,6 +397,7 @@
     "Map": "inavi.maps.Map",
     "LngLat": "inavi.maps.LngLat",
     "LngLatLike": "LngLatLike",
-    "MarkerOptions": "MarkerOptions"
+    "MarkerOptions": "MarkerOptions",
+    "EventPayload": "EventPayload"
   }
 }

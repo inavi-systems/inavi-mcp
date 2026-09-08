@@ -13,7 +13,7 @@
       "type": [
         "string"
       ],
-      "description": "쥼 컨트롤을 배치할 위치입니다. `bottom-left`, `bottom-right`, `top-left`, `top-right`"
+      "description": "줌 컨트롤을 배치할 위치입니다. `bottom-left`, `bottom-right`, `top-left`, `top-right`"
     }
   ],
   "examples": [

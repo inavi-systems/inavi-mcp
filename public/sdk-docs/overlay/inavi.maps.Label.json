@@ -166,7 +166,7 @@
           "type": [
             "function"
           ],
-          "description": "이벤트 리스너입니다."
+          "description": "이벤트 리스너입니다. 콜백 인자는 EventPayload 를 참고하세요."
         }
       ],
       "returns": [
@@ -195,7 +195,7 @@
           "type": [
             "function"
           ],
-          "description": "이벤트 리스너입니다."
+          "description": "이벤트 리스너입니다. 콜백 인자는 EventPayload 를 참고하세요."
         }
       ],
       "returns": [
@@ -341,6 +341,7 @@
     "LngLat": "inavi.maps.LngLat",
     "LabelStyle": "LabelStyle",
     "LngLatLike": "LngLatLike",
-    "LabelOptions": "LabelOptions"
+    "LabelOptions": "LabelOptions",
+    "EventPayload": "EventPayload"
   }
 }

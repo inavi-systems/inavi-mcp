@@ -84,7 +84,7 @@
       "type": [
         "string"
       ],
-      "description": "fillTranslate 의 기준을 지정합니다. `map` 인 경우 지도의 북쪽을 기준으로, `viewport` 인 경우 지도 엘리먼트의 중심을 기준으로 이동합니다.",
+      "description": "lineTranslate 의 기준을 지정합니다. `map` 인 경우 지도의 북쪽을 기준으로, `viewport` 인 경우 지도 엘리먼트의 중심을 기준으로 이동합니다.",
       "optional": true,
       "default": "\"map\""
     },
@@ -99,7 +99,7 @@
     }
   ],
   "examples": [
-    "{\n  lineBlur: 0,\n  lineCap: \"butt\",\n  lineColor: \"#000000\",\n  lineDasharray: [1, 1] // (1픽셀 x lineWidth) 라인, (1픽셀 x lineWidth) 공백 표시 반복.\n  lineJoin: \"miter\",\n  lineOffset: 0,\n  lineOpacity: 1,\n  lineTranslate: [0, 0],\n  lineTranslateAnchor: \"map\",\n  lineWidth: 1,\n};"
+    "{\n  lineBlur: 0,\n  lineCap: \"butt\",\n  lineColor: \"#000000\",\n  lineDasharray: [1, 1], // (1픽셀 x lineWidth) 라인, (1픽셀 x lineWidth) 공백 표시 반복.\n  lineJoin: \"miter\",\n  lineOffset: 0,\n  lineOpacity: 1,\n  lineTranslate: [0, 0],\n  lineTranslateAnchor: \"map\",\n  lineWidth: 1,\n};"
   ],
   "relatedTypes": {
     "Color": "Color"

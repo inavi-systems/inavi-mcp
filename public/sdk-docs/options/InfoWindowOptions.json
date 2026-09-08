@@ -57,7 +57,7 @@
         "string",
         "HTMLElement"
       ],
-      "description": "정보창에 표시할 HTML 텍스트 또는 HTML 엘리먼트입니다.<br>\n  커스텀 정보창에서는 HTML 텍스트와 HTML 엘리먼트"
+      "description": "정보창에 표시할 HTML 텍스트 또는 HTML 엘리먼트입니다.<br>\n  커스텀 정보창에서는 HTML 텍스트와 HTML 엘리먼트 모두 그대로 사용되지 않고 복제되어 표시됩니다."
     },
     {
       "name": "closeButton",

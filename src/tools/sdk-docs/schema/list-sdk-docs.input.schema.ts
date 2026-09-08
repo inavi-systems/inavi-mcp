@@ -10,7 +10,7 @@ export const listSdkDocsInputSchema = {
     .describe(
       'Optional category filter. Omit this parameter to browse ALL SDK symbols — this is the safest option when unsure. ' +
         'Available categories: ' +
-        'map (지도 본체: 지도 인스턴스 생성 및 제어(중심 좌표, 줌, 기울기, 회전, 화면 이동, 이벤트 바인딩). 지도 위에 얹는 요소는 overlay, UI 컨트롤은 control 사용. 심볼: Map), ' +
+        'map (지도 본체: 지도 인스턴스 생성 및 제어(중심 좌표, 줌, 기울기, 회전, 화면 이동, 이벤트 바인딩). 지도 위에 얹는 요소는 overlay, UI 컨트롤은 control 사용. 심볼: EventPayload, Map), ' +
         'overlay (오버레이: 지도 위에 표시하는 시각 요소(마커, 마커 클러스터, 원, 폴리곤, 폴리라인, 라벨, 정보창). 생성 옵션 타입은 options, 스타일 타입은 style 사용. 심볼: Circle, CustomInfoWindow, InfoWindow, Label, Marker, MarkerClusterer, Polygon, Polyline), ' +
         'control (지도 컨트롤: 지도 UI 컨트롤 클래스. 각 컨트롤의 옵션 타입은 options 사용. 심볼: CompassControl, LogoScaleControl, ZoomControl), ' +
         'coordinates (좌표/기하: 좌표·경계 표현과 좌표계 변환(정규화/픽셀/팅크웨어 좌표 및 상호 변환), 유연한 입력 타입(*Like). 심볼: LngLat, LngLatBounds, Pixel, PixelBounds, TWLngLat, TWLngLatBounds, LngLatBoundsLike, LngLatLike, PixelBoundsLike, PixelLike, TWLngLatBoundsLike, TWLngLatLike), ' +

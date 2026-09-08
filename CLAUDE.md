@@ -150,3 +150,13 @@ The `list_sdk_docs` input schema (`schema/list-sdk-docs.input.schema.ts`) is aut
 pipeline — do not edit by hand. Method-level usage examples are intentionally omitted (use
 `get_map_example` for render-ready examples); typedef examples are kept to disambiguate data shapes.
 Validate output with `npm run validate-sdk-docs`.
+
+**One deliberate exception to "no hardcoded symbol lists":** `EVENT_TARGET_SPECS` in
+`scripts/update-sdk-docs.js` injects an `eventTarget` block into `inavi.maps.MarkerClusterer`.
+Every other emitter passes itself as the event callback's `target`, so there is nothing to read
+out of it; `MarkerClusterer` alone passes a separate object for the clicked cluster or marker,
+carrying `cluster` / `cluster_count` / `id` — none of which the source JSDoc documents. The values
+were measured by binding `on('click')`/`on('mouseenter')` to every emitter in a live browser page
+and dumping the callback payload. `applyEventTargetSpecs` warns when the target symbol is missing,
+so a rename or a fixed upstream doc surfaces instead of silently dropping the supplement. Remove the
+entry once the SDK documents this itself.

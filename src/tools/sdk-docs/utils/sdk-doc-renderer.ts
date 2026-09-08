@@ -80,6 +80,16 @@ function renderClass(doc: SdkDoc): string {
     );
   }
 
+  if (doc.eventTarget) {
+    lines.push(
+      '',
+      '## Event callback `target`',
+      '',
+      doc.eventTarget.description,
+      ...renderParams(doc.eventTarget.properties, links),
+    );
+  }
+
   return joinLines(lines);
 }
 
