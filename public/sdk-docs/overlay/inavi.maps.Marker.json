@@ -242,7 +242,7 @@
     },
     {
       "name": "setDraggable",
-      "signature": "setDraggable(draggability?=false)",
+      "signature": "setDraggable(draggability?=false) ⇒ void",
       "description": "마커의 드래그 가능 여부를 설정합니다.",
       "params": [
         {
@@ -259,7 +259,7 @@
     },
     {
       "name": "setIcon",
-      "signature": "setIcon(icon?)",
+      "signature": "setIcon(icon?) ⇒ void",
       "description": "마커의 아이콘 URL을 설정합니다. 파라미터를 전달하지 않으면 기본 아이콘을 사용합니다.",
       "params": [
         {
@@ -276,7 +276,7 @@
     },
     {
       "name": "setInfoWindow",
-      "signature": "setInfoWindow(infoWindow)",
+      "signature": "setInfoWindow(infoWindow) ⇒ void",
       "description": "마커에 정보창 객체를 연동합니다.",
       "params": [
         {
@@ -291,7 +291,7 @@
     },
     {
       "name": "setMap",
-      "signature": "setMap(map?)",
+      "signature": "setMap(map?) ⇒ void",
       "description": "마커를 추가할 지도를 설정합니다. 파라미터를 전달하지 않으면 마커가 지도에서 제거됩니다.",
       "params": [
         {
@@ -307,7 +307,7 @@
     },
     {
       "name": "setOpacity",
-      "signature": "setOpacity(opacity?=1)",
+      "signature": "setOpacity(opacity?=1) ⇒ void",
       "description": "마커의 투명도를 설정합니다.",
       "params": [
         {
@@ -324,7 +324,7 @@
     },
     {
       "name": "setPosition",
-      "signature": "setPosition(position)",
+      "signature": "setPosition(position) ⇒ void",
       "description": "마커의 위치를 설정합니다.",
       "params": [
         {
@@ -339,7 +339,7 @@
     },
     {
       "name": "setVisible",
-      "signature": "setVisible(visibility?=false)",
+      "signature": "setVisible(visibility?=false) ⇒ void",
       "description": "마커의 표시 여부를 설정합니다.",
       "params": [
         {
@@ -356,7 +356,7 @@
     },
     {
       "name": "setZIndex",
-      "signature": "setZIndex(zIndex?=0)",
+      "signature": "setZIndex(zIndex?=0) ⇒ void",
       "description": "마커의 `z-index` 를 설정합니다.",
       "params": [
         {

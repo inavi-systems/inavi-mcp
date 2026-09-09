@@ -21,7 +21,7 @@
   "methods": [
     {
       "name": "addTo",
-      "signature": "addTo(map)",
+      "signature": "addTo(map) ⇒ void",
       "description": "지도에 콤파스 컨트롤을 추가합니다.",
       "params": [
         {
@@ -36,7 +36,7 @@
     },
     {
       "name": "remove",
-      "signature": "remove()",
+      "signature": "remove() ⇒ void",
       "description": "콤파스 컨트롤을 지도에서 제거합니다.",
       "params": [],
       "returns": []

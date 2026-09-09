@@ -123,6 +123,23 @@ const EVENT_TARGET_SPECS = {
   },
 };
 
+/**
+ * Caveats appended to a documented property, keyed by symbol id then property name.
+ *
+ * `EventPayload.target` reads "the object the event fired on", which holds for every emitter
+ * but `MarkerClusterer`. That correction lives on the class itself (EVENT_TARGET_SPECS), yet
+ * every emitter now links `EventPayload` from its `relatedTypes` — so a reader arriving from
+ * `Marker` lands here and never sees it. The caveat has to be visible from this side too.
+ */
+const PROPERTY_NOTES = {
+  EventPayload: {
+    target:
+      ' 단, `MarkerClusterer` 는 예외입니다. 클러스터러 인스턴스가 아니라 클릭·호버한 ' +
+      '클러스터 또는 개별 마커를 나타내는 별도 객체가 전달되며, `cluster`·`cluster_count`·`id` ' +
+      '속성으로 둘을 구분합니다. `inavi.maps.MarkerClusterer` 문서의 "Event callback `target`" 절을 보세요.',
+  },
+};
+
 // Step 1: Extract Structured Data
 
 /** Navigate to the SPA and wait for the Docma content + data to be ready */
@@ -242,7 +259,7 @@ function buildDocs(doclets) {
     )
     .sort((a, b) => a.id.localeCompare(b.id));
 
-  return applyEventTargetSpecs(docs);
+  return applyPropertyNotes(applyEventTargetSpecs(docs));
 }
 
 /** Attach the measured `EVENT_TARGET_SPECS` supplement to the classes it describes */
@@ -255,6 +272,27 @@ function applyEventTargetSpecs(docs) {
       return;
     }
     doc.eventTarget = EVENT_TARGET_SPECS[id];
+  });
+  return docs;
+}
+
+/** Append the measured `PROPERTY_NOTES` caveats to the properties they qualify */
+function applyPropertyNotes(docs) {
+  const byId = new Map(docs.map((d) => [d.id, d]));
+  Object.keys(PROPERTY_NOTES).forEach((id) => {
+    const doc = byId.get(id);
+    if (!doc) {
+      logger.warn(`property note has no matching symbol (renamed?): ${id}`);
+      return;
+    }
+    Object.keys(PROPERTY_NOTES[id]).forEach((name) => {
+      const prop = (doc.properties || []).find((p) => p.name === name);
+      if (!prop) {
+        logger.warn(`property note has no matching property: ${id}.${name}`);
+        return;
+      }
+      prop.description = `${prop.description}${PROPERTY_NOTES[id][name]}`;
+    });
   });
   return docs;
 }
@@ -298,7 +336,10 @@ function buildClassDoc(cls, doclets, documentedMap) {
     name: cls.name,
     description: cls.classdesc || cls.description || '',
     ctor: {
-      signature: buildSignature({ name: `new ${cls.name}`, params: cls.constructorParams || cls.params }),
+      signature: buildSignature(
+        { name: `new ${cls.name}`, params: cls.constructorParams || cls.params },
+        true,
+      ),
       params: (cls.constructorParams || cls.params || []).map(cleanParam),
     },
     methods,
@@ -392,8 +433,11 @@ function assignCategory(doc, styleValueTypeNames = new Set()) {
   return 'overlay';
 }
 
-/** Build a `name(p1, p2?, p3?=default) ⇒ ReturnType` signature string */
-function buildSignature(m) {
+/**
+ * Build a `name(p1, p2?, p3?=default) ⇒ ReturnType` signature string.
+ * Pass `omitReturn` for constructors, which yield the instance and carry no `@return`.
+ */
+function buildSignature(m, omitReturn = false) {
   const params = (m.params || [])
     .map((p) => {
       let s = p.name;
@@ -402,11 +446,14 @@ function buildSignature(m) {
       return s;
     })
     .join(', ');
-  const ret =
-    Array.isArray(m.returns) && m.returns.length && m.returns[0].type
-      ? ` ⇒ ${m.returns[0].type.join(' | ')}`
-      : '';
-  return `${m.name}(${params})${ret}`;
+  // A doclet with no `@return` means the method returns nothing. The Docma template the
+  // official site renders from prints `void` in that case, so mirror it — omitting the
+  // arrow entirely reads as "return type unknown" rather than "returns nothing".
+  if (omitReturn) return `${m.name}(${params})`;
+
+  const types =
+    Array.isArray(m.returns) && m.returns.length && m.returns[0].type ? m.returns[0].type : [];
+  return `${m.name}(${params}) ⇒ ${types.length ? types.join(' | ') : 'void'}`;
 }
 
 /**

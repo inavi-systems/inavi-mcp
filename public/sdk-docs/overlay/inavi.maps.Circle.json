@@ -223,7 +223,7 @@
     },
     {
       "name": "setDraggable",
-      "signature": "setDraggable(draggability)",
+      "signature": "setDraggable(draggability) ⇒ void",
       "description": "원의 드래그 가능 여부를 설정합니다.",
       "params": [
         {
@@ -238,7 +238,7 @@
     },
     {
       "name": "setMap",
-      "signature": "setMap(map?)",
+      "signature": "setMap(map?) ⇒ void",
       "description": "원을 추가할 지도를 설정합니다. 파라미터를 전달하지 않으면 원이 지도에서 제거됩니다.",
       "params": [
         {
@@ -254,7 +254,7 @@
     },
     {
       "name": "setPosition",
-      "signature": "setPosition(position)",
+      "signature": "setPosition(position) ⇒ void",
       "description": "원의 좌표를 설정합니다.",
       "params": [
         {
@@ -269,7 +269,7 @@
     },
     {
       "name": "setRadius",
-      "signature": "setRadius(radius)",
+      "signature": "setRadius(radius) ⇒ void",
       "description": "원의 반경을 설정합니다.",
       "params": [
         {
@@ -284,7 +284,7 @@
     },
     {
       "name": "setStyle",
-      "signature": "setStyle(style?={})",
+      "signature": "setStyle(style?={}) ⇒ void",
       "description": "원의 스타일을 설정합니다. 파라미터로 전달한 스타일은 이전 스타일에 영향을 주지 않습니다.\n파라미터를 전달하지 않으면 기본 스타일이 적용됩니다.",
       "params": [
         {
@@ -301,7 +301,7 @@
     },
     {
       "name": "setVisible",
-      "signature": "setVisible(visibility?=false)",
+      "signature": "setVisible(visibility?=false) ⇒ void",
       "description": "원의 표시 여부를 설정합니다.",
       "params": [
         {
@@ -318,7 +318,7 @@
     },
     {
       "name": "setZIndex",
-      "signature": "setZIndex(zIndex)",
+      "signature": "setZIndex(zIndex) ⇒ void",
       "description": "원의 z-index를 설정합니다.",
       "params": [
         {

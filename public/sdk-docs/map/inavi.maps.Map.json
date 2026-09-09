@@ -19,7 +19,7 @@
   "methods": [
     {
       "name": "fitBounds",
-      "signature": "fitBounds(lngLatBoundsLike, fitOptions?={padding: 0, duration: 300})",
+      "signature": "fitBounds(lngLatBoundsLike, fitOptions?={padding: 0, duration: 300}) ⇒ void",
       "description": "경계 좌표가 화면에 표시되도록 중심 좌표와 줌을 변경합니다.",
       "params": [
         {
@@ -43,7 +43,7 @@
     },
     {
       "name": "fitCoordinates",
-      "signature": "fitCoordinates(lngLatLikeArray, fitOptions?={padding: 0, duration: 500})",
+      "signature": "fitCoordinates(lngLatLikeArray, fitOptions?={padding: 0, duration: 500}) ⇒ void",
       "description": "주어진 좌표 배열이 화면에 표시되도록 중심 좌표와 줌을 변경합니다.",
       "params": [
         {
@@ -67,7 +67,7 @@
     },
     {
       "name": "flyTo",
-      "signature": "flyTo(lngLatLike, flyOptions?={duration:300})",
+      "signature": "flyTo(lngLatLike, flyOptions?={duration:300}) ⇒ void",
       "description": "지도의 중심을 지정한 좌표와 주어진 옵션을 반영하여 이동시킵니다.",
       "params": [
         {
@@ -390,7 +390,7 @@
     },
     {
       "name": "panBy",
-      "signature": "panBy(offset, panOptions?={duration: 300})",
+      "signature": "panBy(offset, panOptions?={duration: 300}) ⇒ void",
       "description": "지도 왼쪽 상단을 기준으로 지정한 오프셋만큼 이동시킵니다.",
       "params": [
         {
@@ -414,7 +414,7 @@
     },
     {
       "name": "panTo",
-      "signature": "panTo(lngLatLike, panOptions?={duration:300})",
+      "signature": "panTo(lngLatLike, panOptions?={duration:300}) ⇒ void",
       "description": "지도의 중심을 지정한 좌표로 이동시킵니다.",
       "params": [
         {
@@ -438,14 +438,14 @@
     },
     {
       "name": "remove",
-      "signature": "remove()",
+      "signature": "remove() ⇒ void",
       "description": "지도를 제거합니다.",
       "params": [],
       "returns": []
     },
     {
       "name": "setCenter",
-      "signature": "setCenter(lngLatLike)",
+      "signature": "setCenter(lngLatLike) ⇒ void",
       "description": "지도의 중심 좌표를 설정합니다.",
       "params": [
         {
@@ -460,7 +460,7 @@
     },
     {
       "name": "setDraggable",
-      "signature": "setDraggable(draggability?=false)",
+      "signature": "setDraggable(draggability?=false) ⇒ void",
       "description": "드래그 가능 여부를 설정합니다.",
       "params": [
         {
@@ -477,7 +477,7 @@
     },
     {
       "name": "setHeading",
-      "signature": "setHeading(degree?=0, options?={duration:0})",
+      "signature": "setHeading(degree?=0, options?={duration:0}) ⇒ void",
       "description": "지도의 회전 각을 설정합니다.",
       "params": [
         {
@@ -503,7 +503,7 @@
     },
     {
       "name": "setIndoor",
-      "signature": "setIndoor(isIndoor)",
+      "signature": "setIndoor(isIndoor) ⇒ void",
       "description": "지도의 실내 지도 표출 여부를 설정합니다.",
       "params": [
         {
@@ -518,7 +518,7 @@
     },
     {
       "name": "setLanguage",
-      "signature": "setLanguage(lang)",
+      "signature": "setLanguage(lang) ⇒ void",
       "description": "지도의 언어를 설정합니다.",
       "params": [
         {
@@ -533,7 +533,7 @@
     },
     {
       "name": "setMaxZoom",
-      "signature": "setMaxZoom(zoom)",
+      "signature": "setMaxZoom(zoom) ⇒ void",
       "description": "지도의 최대 줌을 설정합니다. 설정 가능한 최대 줌은 18입니다.",
       "params": [
         {
@@ -548,7 +548,7 @@
     },
     {
       "name": "setMinZoom",
-      "signature": "setMinZoom(zoom)",
+      "signature": "setMinZoom(zoom) ⇒ void",
       "description": "지도의 최소 줌을 설정합니다.",
       "params": [
         {
@@ -563,7 +563,7 @@
     },
     {
       "name": "setRotatable",
-      "signature": "setRotatable(rotatability?=false)",
+      "signature": "setRotatable(rotatability?=false) ⇒ void",
       "description": "회전 가능 여부를 설정합니다. 기울이기 가능 여부가 함께 설정됩니다.",
       "params": [
         {
@@ -580,7 +580,7 @@
     },
     {
       "name": "setTilt",
-      "signature": "setTilt(degree?=0, options?={duration:0})",
+      "signature": "setTilt(degree?=0, options?={duration:0}) ⇒ void",
       "description": "지도의 기울기를 설정합니다.",
       "params": [
         {
@@ -606,7 +606,7 @@
     },
     {
       "name": "setType",
-      "signature": "setType(type)",
+      "signature": "setType(type) ⇒ void",
       "description": "지도의 타입을 변경합니다.",
       "params": [
         {
@@ -621,7 +621,7 @@
     },
     {
       "name": "setZoom",
-      "signature": "setZoom(zoom)",
+      "signature": "setZoom(zoom) ⇒ void",
       "description": "지도의 줌을 설정합니다.",
       "params": [
         {
@@ -636,7 +636,7 @@
     },
     {
       "name": "setZoomable",
-      "signature": "setZoomable(zoomability?=false)",
+      "signature": "setZoomable(zoomability?=false) ⇒ void",
       "description": "확대, 축소 가능 여부를 설정합니다.",
       "params": [
         {
@@ -653,14 +653,14 @@
     },
     {
       "name": "update",
-      "signature": "update()",
+      "signature": "update() ⇒ void",
       "description": "지도의 상태를 업데이트합니다. 컨테이너의 표시 여부가 달라진 경우 또는 프로그래밍적으로 컨테이너의 크기가 달라진 경우 호출합니다.",
       "params": [],
       "returns": []
     },
     {
       "name": "zoomIn",
-      "signature": "zoomIn(zoomOptions?={duration:300})",
+      "signature": "zoomIn(zoomOptions?={duration:300}) ⇒ void",
       "description": "지도의 줌을 `1` 증가시킵니다.",
       "params": [
         {
@@ -677,7 +677,7 @@
     },
     {
       "name": "zoomOut",
-      "signature": "zoomOut(zoomOptions?={duration:300})",
+      "signature": "zoomOut(zoomOptions?={duration:300}) ⇒ void",
       "description": "지도의 줌을 `1` 감소시킵니다.",
       "params": [
         {

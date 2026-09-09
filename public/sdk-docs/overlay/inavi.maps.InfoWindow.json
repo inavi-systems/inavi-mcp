@@ -213,7 +213,7 @@
     },
     {
       "name": "setContent",
-      "signature": "setContent(content)",
+      "signature": "setContent(content) ⇒ void",
       "description": "정보창의 내용을 설정합니다.",
       "params": [
         {
@@ -229,7 +229,7 @@
     },
     {
       "name": "setMap",
-      "signature": "setMap(map?)",
+      "signature": "setMap(map?) ⇒ void",
       "description": "정보창을 등록할 지도 객체를 설정합니다. 파라미터를 전달하지 않으면 정보창이 지도에서 제거됩니다.",
       "params": [
         {
@@ -245,7 +245,7 @@
     },
     {
       "name": "setOpacity",
-      "signature": "setOpacity(opacity?=1)",
+      "signature": "setOpacity(opacity?=1) ⇒ void",
       "description": "정보창의 투명도를 설정합니다.",
       "params": [
         {
@@ -262,7 +262,7 @@
     },
     {
       "name": "setPosition",
-      "signature": "setPosition(position)",
+      "signature": "setPosition(position) ⇒ void",
       "description": "정보창의 위치를 설정합니다.",
       "params": [
         {
@@ -277,7 +277,7 @@
     },
     {
       "name": "setVisible",
-      "signature": "setVisible(visibility?=false)",
+      "signature": "setVisible(visibility?=false) ⇒ void",
       "description": "정보창의 표시 여부를 설정합니다.",
       "params": [
         {
@@ -294,7 +294,7 @@
     },
     {
       "name": "setZIndex",
-      "signature": "setZIndex(zIndex?=0)",
+      "signature": "setZIndex(zIndex?=0) ⇒ void",
       "description": "정보창의 `z-index` 를 설정합니다.",
       "params": [
         {
