@@ -49,8 +49,11 @@
        * ║     - FULLY CUSTOMIZABLE appearance                           ║
        * ║     - NO default background - complete freedom                ║
        * ║     - Control background color, shape, border, etc.           ║
-       * ║     - To use: Replace "InfoWindow" with "CustomInfoWindow"   ║
-       * ║       Example: new inavi.maps.CustomInfoWindow({ ... })      ║
+       * ║     - NOT a drop-in rename. Two options behave differently:   ║
+       * ║       * closeButton has NO effect on CustomInfoWindow         ║
+       * ║       * content is CLONED, so listeners attached beforehand   ║
+       * ║         are lost - use inline handlers or bind after display  ║
+       * ║       Verify both with get_sdk_doc("InfoWindowOptions")       ║
        * ╚════════════════════════════════════════════════════════════════╝
        */
       const infoWindow = new inavi.maps.InfoWindow({

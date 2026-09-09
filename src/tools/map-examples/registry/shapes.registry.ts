@@ -121,7 +121,7 @@ export const SHAPES_EXAMPLES: readonly MapExampleMetadata[] = [
     description:
       'Dynamically change shape styles using setStyle() method. ' +
       'Demonstrates how to update fill color, opacity, and outline color at runtime. ' +
-      'The setStyle() method works identically for Circle, Polygon, and Multi-Polygon shapes.',
+      'The setStyle() method works identically for Circle and Polygon shapes.',
     filename: 'shapes/shapes-style.html',
     keywords: [
       'style',
@@ -144,12 +144,12 @@ export const SHAPES_EXAMPLES: readonly MapExampleMetadata[] = [
       'Change shape colors dynamically based on user input',
       'Update shape styles at runtime',
       'Interactive shape styling with color picker',
-      'Apply consistent styling to Circle, Polygon, and Multi-Polygon',
+      'Apply consistent styling to Circle and Polygon',
     ],
     features: [
       'setStyle() method for dynamic style updates',
       'Color picker integration for interactive styling',
-      'Works with Circle, Polygon, and Multi-Polygon',
+      'Works with Circle and Polygon',
       'Fill color, opacity, and outline configuration',
     ],
   },

@@ -12,9 +12,9 @@ export const INFOWINDOW_EXAMPLES: readonly MapExampleMetadata[] = [
     category: 'infowindow',
     title: 'Basic InfoWindow Usage (iNavi Maps)',
     description:
-      'Demonstrate basic InfoWindow creation, display, and visibility toggle. ' +
-      'Shows how to create an InfoWindow, associate it with a marker, and handle open/close events properly. ' +
-      'Use map click to close InfoWindow.',
+      'Show and hide an InfoWindow by hovering a marker. ' +
+      'A single InfoWindow instance is attached to the marker and retrieved with Marker#getInfoWindow(), ' +
+      'then shown on mouseenter and hidden on mouseleave.',
     filename: 'infowindow/infowindow-basic.html',
     keywords: [
       'infowindow',
@@ -30,15 +30,14 @@ export const INFOWINDOW_EXAMPLES: readonly MapExampleMetadata[] = [
     ],
     useCases: [
       'Display marker information in a popup',
-      'Show location details on marker click',
-      'Toggle InfoWindow visibility',
-      'Close InfoWindow via map click',
+      'Show location details while hovering a marker',
+      'Show and hide an InfoWindow without a close button',
     ],
     features: [
-      'InfoWindow creation with custom content',
-      'InfoWindow visibility toggle',
-      'State management for currently open InfoWindow',
-      'Map click handler to close InfoWindow',
+      'InfoWindow creation with custom HTML content',
+      'Attaching an InfoWindow to a marker and reading it back with Marker#getInfoWindow()',
+      'Show on mouseenter, hide on mouseleave',
+      'closeButton disabled (hover drives visibility)',
     ],
   },
   {
@@ -77,7 +76,7 @@ export const INFOWINDOW_EXAMPLES: readonly MapExampleMetadata[] = [
       'Marker cluster click handling (zoom in to expand)',
       'Individual marker hover handling (show InfoWindow)',
       'Shared single InfoWindow instance for performance',
-      'Position-based marker matching',
+      'Marker id index-based matching',
       'Automatic marker clustering and declustering',
     ],
   },

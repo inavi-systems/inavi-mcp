@@ -42,6 +42,12 @@
        * Replace this with actual route API data to visualize
        * real navigation routes. Use the get_api_spec tool to
        * look up the iNavi Route API specification.
+       *
+       * NOTE: the API returns {x, y}, which is NOT a LngLatLike.
+       * LngLatLike accepts {lat, lng} or [lng, lat], so every
+       * coordinate must be converted with c => [c.x, c.y] before
+       * it is handed to Polyline. Passing {x, y} straight through
+       * fails.
        * ──────────────────────────────────────────────────────────
        */
       const sampleRouteData = {
