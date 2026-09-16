@@ -151,12 +151,26 @@ pipeline — do not edit by hand. Method-level usage examples are intentionally 
 `get_map_example` for render-ready examples); typedef examples are kept to disambiguate data shapes.
 Validate output with `npm run validate-sdk-docs`.
 
-**One deliberate exception to "no hardcoded symbol lists":** `EVENT_TARGET_SPECS` in
-`scripts/update-sdk-docs.js` injects an `eventTarget` block into `inavi.maps.MarkerClusterer`.
-Every other emitter passes itself as the event callback's `target`, so there is nothing to read
-out of it; `MarkerClusterer` alone passes a separate object for the clicked cluster or marker,
-carrying `cluster` / `cluster_count` / `id` — none of which the source JSDoc documents. The values
-were measured by binding `on('click')`/`on('mouseenter')` to every emitter in a live browser page
-and dumping the callback payload. `applyEventTargetSpecs` warns when the target symbol is missing,
-so a rename or a fixed upstream doc surfaces instead of silently dropping the supplement. Remove the
-entry once the SDK documents this itself.
+**Automation:** `.github/workflows/update-sdk-docs.yml` (manual `workflow_dispatch`, mirroring
+`update-api-docs.yml`) runs the scraper, validates the output, and opens a PR when anything but
+`metadata.json` changed — `generatedAt` moves on every run, so it alone never triggers a PR. The
+scraper drives the SPA with puppeteer, so the workflow caches `~/.cache/puppeteer` and installs
+Chrome explicitly. Read the run log for `unmatched typedef` (a new type fell back to a default
+category) and `event target spec` / `property note` warnings (a hardcoded supplement below no
+longer matches and was dropped).
+
+**Two deliberate exceptions to "no hardcoded symbol lists",** both in
+`scripts/update-sdk-docs.js` and both measured by binding `on('click')`/`on('mouseenter')` to every
+emitter in a live browser page and dumping the callback payload. Each applier warns when its target
+symbol or property is missing, so a rename or a fixed upstream doc surfaces instead of silently
+dropping the supplement — drop an entry once the source covers it.
+
+- `EVENT_TARGET_SPECS` injects an `eventTarget` block into `inavi.maps.MarkerClusterer`. Upstream
+  now describes the `target` object (`cluster` / `cluster_count` / `id`, and the trailing `s` on an
+  individual marker), so only the part it still omits is kept: the index segment of `id` is the
+  position in the `markers` array passed to the constructor, which is the only route from a clicked
+  marker back to its source record.
+- `PROPERTY_NOTES` appends a caveat to `EventPayload.target`. That typedef says "the object the
+  event fired on", which holds for every emitter but `MarkerClusterer`; upstream put the correction
+  on `MarkerClusterer#on` only, so a reader arriving from any other emitter's `relatedTypes` link
+  never sees it.

@@ -82,42 +82,31 @@ const CATEGORY_ORDER = ['map', 'overlay', 'control', 'coordinates', 'options', '
 /**
  * Measured supplement, not present in the source JSDoc.
  *
- * Every emitter passes `target` to its event callbacks, and for all of them but one it is the
- * emitter instance itself — nothing to read out of it. `MarkerClusterer` is the exception: it
- * hands over a separate object for the clicked cluster or marker, and without the properties
- * below there is no way to tell the two apart or to trace a marker back to its source data.
- * Verified in a browser against the live SDK (2026-09-08); the source docs describe none of it.
+ * `MarkerClusterer#on`/`#once` now describe the `target` object itself — that it carries
+ * `cluster`, `cluster_count` and `id`, and that an individual marker drops the first two and
+ * gains a trailing `s`. What they still leave out is how `id` is composed: its index segment
+ * is the position in the `markers` array handed to the constructor, which is the only way to
+ * get from a clicked marker back to the record it came from. That one fact is kept here.
+ * Verified in a browser against the live SDK (2026-09-08).
  *
  * This is the one place the pipeline carries a symbol name on purpose. `applyEventTargetSpecs`
  * warns when a target symbol is missing so a renamed or newly documented symbol surfaces
- * instead of silently dropping the supplement.
+ * instead of silently dropping the supplement. Remove the entry once the source spells the
+ * index out.
  */
 const EVENT_TARGET_SPECS = {
   'inavi.maps.MarkerClusterer': {
     description:
-      '이 클래스의 이벤트 콜백에서 `target` 은 MarkerClusterer 인스턴스가 아니라, ' +
-      '클릭·호버한 클러스터 또는 개별 마커를 나타내는 별도 객체입니다. ' +
-      'Marker 와 같은 메서드를 가지며, 아래 속성으로 둘을 구분합니다.',
+      '`target` 에 담기는 `cluster`·`cluster_count`·`id` 는 `on`/`once` 설명을 보세요. ' +
+      '아래는 그중 `id` 의 구성으로, 클릭한 마커에서 원본 데이터를 되찾으려면 필요합니다.',
     properties: [
-      {
-        name: 'cluster',
-        type: ['boolean'],
-        description: '클러스터이면 `true`. 개별 마커에는 이 속성 자체가 없습니다.',
-        optional: true,
-      },
-      {
-        name: 'cluster_count',
-        type: ['number'],
-        description: '클러스터에 묶인 마커 개수. 개별 마커에는 이 속성 자체가 없습니다.',
-        optional: true,
-      },
       {
         name: 'id',
         type: ['string'],
         description:
-          '`cluster_<소스ID>_<인덱스>` 형태의 식별자입니다. 개별 마커는 끝에 `s` 가 붙습니다 ' +
+          '`cluster_<소스ID>_<인덱스>` 형태입니다 ' +
           '(예: 클러스터 `cluster_9757289586_21`, 개별 마커 `cluster_9757289586_6s`). ' +
-          '`<인덱스>` 는 생성자에 넘긴 markers 배열의 인덱스라 원본 데이터를 되찾는 데 쓸 수 있습니다.',
+          '`<인덱스>` 는 생성자에 넘긴 markers 배열의 인덱스이므로, 이 값으로 원본 데이터를 되찾을 수 있습니다.',
       },
     ],
   },
