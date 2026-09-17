@@ -115,7 +115,7 @@ API 스펙 조회와 지도 시각화를 함께 사용하면 더 복잡한 기�
 
 ## 사용 가능한 도구
 
-이 MCP 서버는 두 종류, 총 **4개의 도구**를 제공합니다. 각 도구 쌍은 **탐색 → 상세 조회**의 2단계 워크플로우로 설계되어 있습니다.
+이 MCP 서버는 세 종류, 총 **6개의 도구**를 제공합니다. 각 도구 쌍은 **탐색 → 상세 조회**의 2단계 워크플로우로 설계되어 있습니다.
 
 ### API 스펙 도구
 
@@ -167,16 +167,45 @@ iNavi Maps API 사양을 AI에게 제공하여, API 문서를 직접 읽지 않�
 
 </details>
 
+### SDK 문서 도구 (Web JS SDK 레퍼런스)
+
+iNavi Maps Web JS SDK의 클래스와 옵션/타입 정의를 제공합니다. 예제 템플릿에 없는 옵션·메서드·이벤트를 AI가 기억에 의존해 추측하지 않고, 실제 시그니처를 확인한 뒤 작성하도록 합니다.
+
+| 도구 | 설명 | 주요 입력 |
+|------|------|-----------|
+| `list_sdk_docs` | SDK 심볼 목록 조회 (클래스는 메서드명 포함) | `category` (선택) |
+| `get_sdk_doc` | 특정 심볼 또는 단일 메서드 문서 조회 | `docId` (필수) |
+
+**워크플로우:** 지도를 만들 때는 `list_map_examples`로 실행 가능한 템플릿을 먼저 확보하고, 템플릿에 없는 기능이 필요할 때 `list_sdk_docs` → `get_sdk_doc`으로 정확한 시그니처를 확인합니다. **SDK 로더 스크립트는 예제에만 있으므로 레퍼런스만으로는 동작하는 페이지를 만들 수 없습니다.**
+
+`docId`는 클래스/타입 id(`inavi.maps.Map`, `MapOptions`)와 메서드 롱네임(`inavi.maps.Map#fitBounds`)을 모두 받습니다.
+
+<details>
+<summary><b>SDK 문서 카테고리 (6개, 총 45개 심볼)</b></summary>
+
+| 카테고리 | 심볼 수 | 포함 심볼 |
+|---------|--------|----------|
+| `map` | 2 | Map, EventPayload |
+| `overlay` | 8 | Circle, CustomInfoWindow, InfoWindow, Label, Marker, MarkerClusterer, Polygon, Polyline |
+| `control` | 3 | CompassControl, LogoScaleControl, ZoomControl |
+| `coordinates` | 12 | LngLat, LngLatBounds, Pixel, PixelBounds, TWLngLat, TWLngLatBounds 및 각 `*Like` 입력 타입 |
+| `options` | 15 | MapOptions, MarkerOptions, CircleOptions 등 `*Options` 타입 |
+| `style` | 5 | ClusterStyle, Color, FillStyle, LabelStyle, LineStyle |
+
+</details>
+
 ---
 
 ## Tools
 
-This server exposes **4 tools**, arranged as two discovery → detail pairs.
+This server exposes **6 tools**, arranged as three discovery → detail pairs.
 
 - `list_api_specs` — Browse available iNavi Maps API specifications by category.
 - `get_api_spec` — Get the detailed specification of a specific API by `operationId`.
 - `list_map_examples` — Browse available map visualization HTML examples.
 - `get_map_example` — Get a specific map example's HTML template by `id`.
+- `list_sdk_docs` — Browse Web JS SDK symbols (classes and option/type definitions) by category.
+- `get_sdk_doc` — Get one SDK symbol, or a single method, by `docId`.
 
 ---
 

@@ -34,6 +34,14 @@
     {
       "name": "get_map_example",
       "description": "Get specific map example HTML template by ID"
+    },
+    {
+      "name": "list_sdk_docs",
+      "description": "Browse iNavi Maps Web JS SDK symbols by category"
+    },
+    {
+      "name": "get_sdk_doc",
+      "description": "Get SDK documentation for one symbol or method by docId"
     }
   ],
   "keywords": [
