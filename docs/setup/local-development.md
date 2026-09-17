@@ -148,14 +148,16 @@ dir dist\
 3. Claude에게 다음과 같이 요청하여 확인:
 
 ```
-"서울시청"의 좌표를 알려줘
+iNavi 지도에 마커를 표시하는 HTML 페이지를 만들어줘
 ```
 
 또는
 
 ```
-강남역에서 잠실역까지의 경로를 계산해줘
+iNavi Maps의 경로 탐색 API 명세를 보여줘
 ```
+
+두 요청 모두 이 서버의 도구를 거치지 않으면 답할 수 없습니다. 응답 과정에 도구 호출이 표시되면 정상적으로 등록된 것입니다.
 
 ---
 
@@ -267,57 +269,6 @@ npm run format:check
 
 ---
 
-## 개발 워크플로우
-
-일반적인 개발 워크플로우는 다음과 같습니다:
-
-### 1. 기능 개발
-
-```bash
-# 새 브랜치 생성
-git checkout -b feature/my-new-feature
-
-# 코드 작성
-# ...
-
-# 타입 체크
-npm run type-check
-
-# Lint 자동 수정
-npm run lint:fix
-
-# 테스트 실행
-npm test
-```
-
-### 2. 빌드 및 테스트
-
-```bash
-# 빌드
-npm run build
-
-# MCP Host 재시작하여 테스트
-# Claude Desktop 등에서 직접 테스트
-```
-
-### 3. 커밋 전 체크리스트
-
-- [ ] `npm run type-check` 통과
-- [ ] `npm run lint` 통과
-- [ ] `npm test` 통과
-- [ ] `npm run format:check` 통과
-- [ ] 실제 MCP Host에서 동작 확인
-
-### 4. 커밋 및 푸시
-
-```bash
-git add .
-git commit -m "feat: add new feature"
-git push origin feature/my-new-feature
-```
-
----
-
 ## 프로젝트 구조
 
 간략한 프로젝트 구조:
@@ -330,8 +281,8 @@ inavi-maps-mcp-server/
 │   ├── utils/            # 유틸리티
 │   └── server.ts         # 진입점
 ├── test/                 # 테스트 코드
-├── scripts/              # 빌드·API 문서 생성 스크립트
-├── public/               # HTML 예제 및 API 문서
+├── scripts/              # API·SDK 문서 생성 스크립트
+├── public/               # HTML 예제, API 문서, SDK 문서
 ├── dist/                 # 빌드 출력 (gitignore)
 ├── .env                  # 환경 변수 (gitignore)
 └── package.json          # 의존성 및 스크립트
