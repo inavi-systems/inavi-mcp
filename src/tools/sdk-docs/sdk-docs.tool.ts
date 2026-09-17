@@ -9,6 +9,7 @@ import { readSdkIndex, readSdkDoc } from './utils/sdk-doc-reader';
 import { listSdkDocsInputSchema } from './schema/list-sdk-docs.input.schema';
 import { listSdkDocsOutputSchema } from './schema/list-sdk-docs.output.schema';
 import { getSdkDocInputSchema } from './schema/get-sdk-doc.input.schema';
+import { KOREA_ONLY_SCOPE } from '@/tools/shared/tool-scope';
 
 /**
  * Register list_sdk_docs tool
@@ -20,14 +21,17 @@ export function registerListSdkDocsTool(server: McpServer): void {
     {
       title: 'Browse iNavi Maps SDK Documentation',
       description:
-        'Lists iNavi Maps JavaScript SDK symbols (classes and option/type definitions), each with its ' +
-        'method names so you can infer capability before fetching details. ' +
-        'Can be filtered by category. ' +
+        'Lists iNavi Maps JavaScript SDK symbols — classes and option/type definitions. ' +
+        'Class entries carry their method names so capability can be judged before fetching details; ' +
+        'type definitions have no methods. ' +
         'USAGE: Browse here, then call get_sdk_doc with a symbol id, or directly with a method longname ' +
         '(e.g., inavi.maps.Map#fitBounds) shown in the methods list. ' +
+        'FILTERING: Optionally filter by category. ' +
         'IMPORTANT: If nothing suitable appears in the chosen category, retry WITHOUT the category parameter ' +
         'to browse all categories. ' +
-        'NOTE: For building a map, START from list_map_examples (render-ready templates); use this tool to look up the exact options/methods/events/types needed to customize or extend beyond what an example shows.',
+        'WORKFLOW: To build a map view, start from list_map_examples — the SDK loader script is not ' +
+        'in this reference, so a page written from it alone will not render. ' +
+        KOREA_ONLY_SCOPE,
       inputSchema: listSdkDocsInputSchema,
       outputSchema: listSdkDocsOutputSchema,
     },
@@ -77,14 +81,14 @@ export function registerGetSdkDocTool(server: McpServer): void {
     {
       title: 'Get iNavi Maps SDK Documentation',
       description:
-        'Retrieves SDK documentation for a specific symbol as clean Markdown. ' +
-        'Provide a class/type id for the whole symbol (description, constructor, method signatures, ' +
+        'Retrieves SDK documentation for one symbol as Markdown. ' +
+        'Pass a class/type id for the whole symbol (description, constructor, method signatures, ' +
         'parameters, return types, events, referenced value types), or a method longname ' +
-        '(e.g., inavi.maps.Map#fitBounds) to get just that method. ' +
+        '(e.g., inavi.maps.Map#fitBounds) for just that method. ' +
         'PREREQUISITE: Use list_sdk_docs to obtain ids and method names. ' +
-        'NOTE: Referenced option/complex types are shown as Markdown links whose target is the docId to pass ' +
-        'back into this tool. For a render-ready base use get_map_example; use this to fill in the exact ' +
-        'signatures/options/events an example does not show. Method-level usage examples are omitted here.',
+        'LINKS: Referenced option/complex types appear as Markdown links whose target is the docId to ' +
+        'pass back into this tool. ' +
+        'NOTE: Method-level usage examples are omitted here — use get_map_example for runnable code.',
       inputSchema: getSdkDocInputSchema,
     },
     async ({ docId }) => {
