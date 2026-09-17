@@ -2,7 +2,7 @@
   "name": "@inavi-maps/mcp-server",
   "version": "0.3.10",
   "mcpName": "io.github.inavi-systems/inavi-mcp",
-  "description": "MCP Server for iNavi Maps API - Geocoding, POI Search, Route Planning for Claude AI",
+  "description": "Documentation MCP server for iNavi Maps (South Korea) - API specifications, Web JS SDK reference, and render-ready HTML map templates. Provides the specs an AI needs to write correct code; it does not call the APIs itself.",
   "main": "dist/server.js",
   "bin": {
     "inavi-maps-mcp": "dist/server.js"
@@ -55,7 +55,14 @@
     "claude",
     "ai",
     "llm",
-    "korean-maps"
+    "korean-maps",
+    "documentation",
+    "api-documentation",
+    "openapi",
+    "web-map-sdk",
+    "south-korea",
+    "map-visualization",
+    "html-template"
   ],
   "author": "inavi-webservice",
   "license": "MIT",

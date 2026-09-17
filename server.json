@@ -1,11 +1,13 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.inavi-systems/inavi-mcp",
-  "description": "MCP Server for iNavi Maps API - Geocoding, POI Search, Route Planning for Claude AI",
+  "title": "iNavi Maps Docs",
+  "description": "iNavi Maps docs for AI (South Korea): API specs, Web JS SDK reference, HTML map templates",
   "repository": {
     "url": "https://github.com/inavi-systems/inavi-mcp",
     "source": "github"
   },
+  "websiteUrl": "https://mapsapi.inavisys.com/",
   "version": "0.3.10",
   "packages": [
     {
