@@ -134,7 +134,7 @@ Provide iNavi Maps API specifications for reference.
 Provide iNavi Maps Web JS SDK documentation (classes and option/type definitions),
 filtered by category (`map`, `overlay`, `control`, `coordinates`, `options`, `style`).
 1. `list_sdk_docs` - Browse SDK symbols by category; each item includes its method names.
-2. `get_sdk_doc` - Get a symbol as Markdown + structured JSON. `docId` may be a class/type id
+2. `get_sdk_doc` - Get a symbol as Markdown. `docId` may be a class/type id
    (e.g., `inavi.maps.Map`) for the whole symbol, or a method longname (e.g.,
    `inavi.maps.Map#fitBounds`) for just that method.
 
