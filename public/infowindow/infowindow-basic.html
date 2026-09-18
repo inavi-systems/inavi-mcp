@@ -11,17 +11,6 @@
     </style>
   </head>
   <body>
-    <!--
-    ╔══════════════════════════════════════════════════════════════╗
-    ║  CRITICAL NOTICE FOR AI ASSISTANTS                          ║
-    ║  This is a REFERENCE TEMPLATE with customizable data        ║
-    ║  ✅ ALLOWED: Replace data values (coordinates, labels)      ║
-    ║  ❌ FORBIDDEN: Modify iNavi Maps API calls/constructors     ║
-    ║  • DO NOT add options/parameters not shown in template      ║
-    ║  • DO NOT change API usage patterns                         ║
-    ║  • iNavi Maps API ≠ Google Maps API (different syntax)     ║
-    ╚══════════════════════════════════════════════════════════════╝
-    -->
     <div id="map"></div>
 
     <script>
@@ -49,8 +38,11 @@
        * ║     - FULLY CUSTOMIZABLE appearance                           ║
        * ║     - NO default background - complete freedom                ║
        * ║     - Control background color, shape, border, etc.           ║
-       * ║     - To use: Replace "InfoWindow" with "CustomInfoWindow"   ║
-       * ║       Example: new inavi.maps.CustomInfoWindow({ ... })      ║
+       * ║     - NOT a drop-in rename. Two options behave differently:   ║
+       * ║       * closeButton has NO effect on CustomInfoWindow         ║
+       * ║       * content is CLONED, so listeners attached beforehand   ║
+       * ║         are lost - use inline handlers or bind after display  ║
+       * ║       Verify both with get_sdk_doc("InfoWindowOptions")       ║
        * ╚════════════════════════════════════════════════════════════════╝
        */
       const infoWindow = new inavi.maps.InfoWindow({
@@ -66,7 +58,7 @@
         `,
         position: markerPosition,
         offset: [0, -40],
-        zIndexOffSet: 999,
+        zIndex: 999,
         closeButton: false,
       });
 

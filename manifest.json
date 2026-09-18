@@ -2,7 +2,7 @@
   "manifest_version": "0.2",
   "name": "@inavi-maps/mcp-server",
   "version": "0.3.10",
-  "description": "MCP Server for iNavi Maps - API Specifications and Map Visualization Templates for AI Assistants",
+  "description": "Documentation for building with iNavi Maps (South Korea) - API specifications, Web JS SDK reference, and render-ready HTML map templates. The server provides specs and code templates; it does not call the APIs.",
   "author": {
     "name": "iMPS",
     "url": "https://mapsapi.inavisys.com/"
@@ -34,6 +34,14 @@
     {
       "name": "get_map_example",
       "description": "Get specific map example HTML template by ID"
+    },
+    {
+      "name": "list_sdk_docs",
+      "description": "Browse iNavi Maps Web JS SDK symbols by category"
+    },
+    {
+      "name": "get_sdk_doc",
+      "description": "Get SDK documentation for one symbol or method by docId"
     }
   ],
   "keywords": [
@@ -46,7 +54,14 @@
     "inavi",
     "korean-maps",
     "location",
-    "gis"
+    "gis",
+    "documentation",
+    "api-documentation",
+    "openapi",
+    "web-map-sdk",
+    "south-korea",
+    "map-visualization",
+    "html-template"
   ],
   "license": "MIT",
   "repository": {

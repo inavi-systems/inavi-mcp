@@ -1,0 +1,61 @@
+{
+  "id": "MarkerClustererOptions",
+  "category": "options",
+  "kind": "type",
+  "name": "MarkerClustererOptions",
+  "description": "마커 클러스터를 생성할 때 설정할 수 있는 옵션입니다.",
+  "type": [
+    "Object"
+  ],
+  "properties": [
+    {
+      "name": "gridSize",
+      "type": [
+        "number"
+      ],
+      "description": "클러스터링을 시작할 마커 사이의 거리입니다.",
+      "optional": true,
+      "default": "80"
+    },
+    {
+      "name": "zoomOnClick",
+      "type": [
+        "boolean"
+      ],
+      "description": "클러스터링을 클릭했을 때 줌 확대에 대한 여부입니다.",
+      "optional": true,
+      "default": "false"
+    },
+    {
+      "name": "maxZoom",
+      "type": [
+        "number"
+      ],
+      "description": "클러스터링의 최대 줌입니다.",
+      "optional": true,
+      "default": "18"
+    },
+    {
+      "name": "callback",
+      "type": [
+        "function"
+      ],
+      "description": "클러스터 객체 생성 후 실행시킬 콜백 함수입니다.<br>\n  클러스터 소스의 데이터 로드가 완료된 시점에 한 번만 실행되며, 인자로 이 `MarkerClusterer` 객체가 전달됩니다.",
+      "optional": true
+    },
+    {
+      "name": "styles",
+      "type": [
+        "ClusterStyle"
+      ],
+      "description": "클러스터의 스타일입니다.",
+      "optional": true
+    }
+  ],
+  "examples": [
+    "{\n  gridSize: 80,\n  zoomOnClick: false,\n  maxZoom: 18,\n  callback: () => { console.log(\"클러스터 객체 생성 완료\"); },\n  styles: {\n    steps: [0.5, 0.3, 0.1],\n    icons: [\n    {\n      url: \"https://example.com/images/cluster-large.png\",\n      size: [66, 65],\n      position: [0, 0],\n    },\n    {\n      url: \"https://example.com/images/cluster-medium.png\",\n      size: [56, 55],\n      position: [0, 0],\n    },\n    {\n      url: \"https://example.com/images/cluster-small.png\",\n      size: [48, 47],\n      position: [0, 0],\n    },\n    {\n      url: \"https://example.com/images/cluster-default.png\",\n      size: [40, 39],\n      position: [0, 0],\n    }],\n    textColor: \"black\",\n    textSize: 12,\n  }\n};"
+  ],
+  "relatedTypes": {
+    "ClusterStyle": "ClusterStyle"
+  }
+}

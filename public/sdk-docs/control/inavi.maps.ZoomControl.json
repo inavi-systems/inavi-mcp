@@ -1,0 +1,51 @@
+{
+  "id": "inavi.maps.ZoomControl",
+  "category": "control",
+  "kind": "class",
+  "name": "ZoomControl",
+  "description": "줌 컨트롤 클래스입니다. 줌을 표시하는 컨트롤을 다룹니다.",
+  "ctor": {
+    "signature": "new ZoomControl(options?={})",
+    "params": [
+      {
+        "name": "options",
+        "type": [
+          "ZoomControlOptions"
+        ],
+        "description": "줌 컨트롤 옵션입니다.",
+        "optional": true,
+        "default": "{}"
+      }
+    ]
+  },
+  "methods": [
+    {
+      "name": "addTo",
+      "signature": "addTo(map) ⇒ void",
+      "description": "지도에 줌 컨트롤을 추가합니다.",
+      "params": [
+        {
+          "name": "map",
+          "type": [
+            "Map"
+          ],
+          "description": "지도 객체입니다."
+        }
+      ],
+      "returns": []
+    },
+    {
+      "name": "remove",
+      "signature": "remove() ⇒ void",
+      "description": "줌 컨트롤을 지도에서 제거합니다.",
+      "params": [],
+      "returns": []
+    }
+  ],
+  "members": [],
+  "events": [],
+  "relatedTypes": {
+    "Map": "inavi.maps.Map",
+    "ZoomControlOptions": "ZoomControlOptions"
+  }
+}

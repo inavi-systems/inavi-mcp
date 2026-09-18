@@ -1,0 +1,44 @@
+{
+  "id": "PaddingOptions",
+  "category": "options",
+  "kind": "type",
+  "name": "PaddingOptions",
+  "description": "Padding 설정을 위한 옵션입니다. 단위는 픽셀입니다.",
+  "type": [
+    "Object"
+  ],
+  "properties": [
+    {
+      "name": "top",
+      "type": [
+        "number"
+      ],
+      "description": "상단에 적용할 여백입니다."
+    },
+    {
+      "name": "bottom",
+      "type": [
+        "number"
+      ],
+      "description": "하단에 적용할 여백입니다."
+    },
+    {
+      "name": "left",
+      "type": [
+        "number"
+      ],
+      "description": "좌측에 적용할 여백입니다."
+    },
+    {
+      "name": "right",
+      "type": [
+        "number"
+      ],
+      "description": "우측에 적용할 여백입니다."
+    }
+  ],
+  "examples": [
+    "let paddingOptions = {\n  top: 10,\n  bottom: 10,\n  left: 10,\n  right: 10,\n};"
+  ],
+  "relatedTypes": {}
+}

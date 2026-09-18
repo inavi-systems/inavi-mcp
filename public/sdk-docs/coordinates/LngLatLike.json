@@ -1,0 +1,17 @@
+{
+  "id": "LngLatLike",
+  "category": "coordinates",
+  "kind": "type",
+  "name": "LngLatLike",
+  "description": "정규화 좌표를 갖는 유연한 데이터 타입입니다.",
+  "type": [
+    "LngLat",
+    "Object",
+    "Array.<number, number>"
+  ],
+  "properties": [],
+  "examples": [
+    "let v1 = new inavi.maps.LngLat(127.110, 37.402);\nlet v2 = {lat: 37.402, lng: 127.110};\nlet v3 = [127.110, 37.402]; // 경도, 위도 순"
+  ],
+  "relatedTypes": {}
+}

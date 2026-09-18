@@ -36,7 +36,7 @@ export const MARKER_EXAMPLES: readonly MapExampleMetadata[] = [
     features: [
       'Map initialization',
       'Marker creation with position settings',
-      'Custom marker icon configuration',
+      'Custom marker icon placeholder (commented out in the template)',
     ],
   },
   {

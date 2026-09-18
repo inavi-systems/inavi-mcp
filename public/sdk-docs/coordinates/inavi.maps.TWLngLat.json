@@ -1,0 +1,71 @@
+{
+  "id": "inavi.maps.TWLngLat",
+  "category": "coordinates",
+  "kind": "class",
+  "name": "TWLngLat",
+  "description": "팅크웨어 좌표를 나타내는 클래스입니다.",
+  "ctor": {
+    "signature": "new TWLngLat(lat, lng)",
+    "params": [
+      {
+        "name": "lat",
+        "type": [
+          "number"
+        ],
+        "description": "팅크웨어 좌표 단위의 Latitude(위도) 입니다."
+      },
+      {
+        "name": "lng",
+        "type": [
+          "number"
+        ],
+        "description": "팅크웨어 좌표 단위의 Longitude(경도) 입니다."
+      }
+    ]
+  },
+  "methods": [
+    {
+      "name": "convertToLngLat",
+      "signature": "convertToLngLat() ⇒ LngLat",
+      "description": "팅크웨어 좌표 데이터를 정규화 좌표 데이터로 변환합니다.",
+      "params": [],
+      "returns": [
+        {
+          "type": [
+            "LngLat"
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "convertToPixel",
+      "signature": "convertToPixel(map) ⇒ Pixel",
+      "description": "팅크웨어 좌표 데이터를 픽셀 위치 데이터로 변환합니다.",
+      "params": [
+        {
+          "name": "map",
+          "type": [
+            "Map"
+          ],
+          "description": "대상 지도 객체입니다."
+        }
+      ],
+      "returns": [
+        {
+          "type": [
+            "Pixel"
+          ],
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "members": [],
+  "events": [],
+  "relatedTypes": {
+    "LngLat": "inavi.maps.LngLat",
+    "Map": "inavi.maps.Map",
+    "Pixel": "inavi.maps.Pixel"
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "id": "inavi.maps.LngLatBounds",
+  "category": "coordinates",
+  "kind": "class",
+  "name": "LngLatBounds",
+  "description": "정규화 좌표 단위로 지도의 경계 좌표를 나타내는 클래스입니다.",
+  "ctor": {
+    "signature": "new LngLatBounds(southWest, northEast)",
+    "params": [
+      {
+        "name": "southWest",
+        "type": [
+          "LngLatLike"
+        ],
+        "description": "남서쪽 좌표입니다."
+      },
+      {
+        "name": "northEast",
+        "type": [
+          "LngLatLike"
+        ],
+        "description": "북동쪽 좌표입니다."
+      }
+    ]
+  },
+  "methods": [
+    {
+      "name": "convertToPixelBounds",
+      "signature": "convertToPixelBounds(map, precision?=false) ⇒ PixelBounds",
+      "description": "정규화 좌표 경계 데이터를 픽셀 좌표 경계 데이터로 변환합니다.",
+      "params": [
+        {
+          "name": "map",
+          "type": [
+            "Map"
+          ],
+          "description": "지도 객체입니다."
+        },
+        {
+          "name": "precision",
+          "type": [
+            "boolean"
+          ],
+          "description": "정밀 계산 여부입니다. `true` 인 경우, 변환된 좌표를 실수형으로 반환합니다.",
+          "optional": true,
+          "default": "false"
+        }
+      ],
+      "returns": [
+        {
+          "type": [
+            "PixelBounds"
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "convertToTWLngLatBounds",
+      "signature": "convertToTWLngLatBounds(precision?=false) ⇒ TWLngLatBounds",
+      "description": "정규화 좌표 좌표의 데이터를 팅크웨어 좌표 경계 데이터로 변환합니다.",
+      "params": [
+        {
+          "name": "precision",
+          "type": [
+            "boolean"
+          ],
+          "description": "정밀 계산 여부입니다. `true` 인 경우, 변환된 좌표를 실수형으로 반환합니다.",
+          "optional": true,
+          "default": "false"
+        }
+      ],
+      "returns": [
+        {
+          "type": [
+            "TWLngLatBounds"
+          ],
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "members": [
+    {
+      "name": "northEast",
+      "type": [
+        "LngLat"
+      ],
+      "description": "북동쪽 좌표를 `LngLat` 포맷으로 설정합니다."
+    },
+    {
+      "name": "northWest",
+      "type": [
+        "LngLat"
+      ],
+      "description": "북서쪽 좌표를 `LngLat` 포맷으로 설정합니다."
+    },
+    {
+      "name": "southEast",
+      "type": [
+        "LngLat"
+      ],
+      "description": "남동쪽 좌표를 `LngLat` 포맷으로 설정합니다."
+    },
+    {
+      "name": "southWest",
+      "type": [
+        "LngLat"
+      ],
+      "description": "남서쪽 좌표를 `LngLat` 포맷으로 설정합니다."
+    }
+  ],
+  "events": [],
+  "relatedTypes": {
+    "LngLat": "inavi.maps.LngLat",
+    "Map": "inavi.maps.Map",
+    "PixelBounds": "inavi.maps.PixelBounds",
+    "TWLngLatBounds": "inavi.maps.TWLngLatBounds",
+    "LngLatLike": "LngLatLike"
+  }
+}

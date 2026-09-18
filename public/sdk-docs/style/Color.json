@@ -1,0 +1,15 @@
+{
+  "id": "Color",
+  "category": "style",
+  "kind": "type",
+  "name": "Color",
+  "description": "색상으로 사용할 수 있는 옵션입니다. 허용 타입은 다음과 같습니다.<br>\n`rgb(r, g, b)`, `rgba(r, g, b, a)`, `#fff`, `#ffffff`, `hsl(h, s, l)`, `hsla(h, s, l, a)`, `color`",
+  "type": [
+    "string"
+  ],
+  "properties": [],
+  "examples": [
+    "{\n  strokeColor: \"rgb(255, 255, 255)\",\n  fillColor: \"#fff\",\n  textColor: \"black\",\n}"
+  ],
+  "relatedTypes": {}
+}

@@ -1,0 +1,42 @@
+{
+  "category": "control",
+  "docs": [
+    {
+      "id": "inavi.maps.CompassControl",
+      "category": "control",
+      "kind": "class",
+      "name": "CompassControl",
+      "summary": "콤파스 컨트롤 클래스입니다.",
+      "methods": [
+        "addTo",
+        "remove"
+      ]
+    },
+    {
+      "id": "inavi.maps.LogoScaleControl",
+      "category": "control",
+      "kind": "class",
+      "name": "LogoScaleControl",
+      "summary": "로고 및 스케일 컨트롤 클래스입니다.",
+      "methods": [
+        "addTo",
+        "getOptions",
+        "remove",
+        "setOptions",
+        "setShowScale"
+      ]
+    },
+    {
+      "id": "inavi.maps.ZoomControl",
+      "category": "control",
+      "kind": "class",
+      "name": "ZoomControl",
+      "summary": "줌 컨트롤 클래스입니다.",
+      "methods": [
+        "addTo",
+        "remove"
+      ]
+    }
+  ],
+  "totalCount": 3
+}

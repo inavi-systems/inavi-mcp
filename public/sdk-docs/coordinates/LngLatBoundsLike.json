@@ -1,0 +1,15 @@
+{
+  "id": "LngLatBoundsLike",
+  "category": "coordinates",
+  "kind": "type",
+  "name": "LngLatBoundsLike",
+  "description": "정규화 좌표 단위의 경계 좌표를 갖는 유연한 데이터 타입입니다. [남서쪽 좌표, 북동쪽 좌표] 순서입니다.",
+  "type": [
+    "Array.<LngLatLike, LngLatLike>"
+  ],
+  "properties": [],
+  "examples": [
+    "let v1 = [{lat: 37.402, lng: 127.110}, {lat: 37.412, lng: 127.120}];\nlet v2 = [[127.110, 37.402], [127.120, 37.412]];"
+  ],
+  "relatedTypes": {}
+}

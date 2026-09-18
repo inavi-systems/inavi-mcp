@@ -1,0 +1,80 @@
+{
+  "id": "InfoWindowOptions",
+  "category": "options",
+  "kind": "type",
+  "name": "InfoWindowOptions",
+  "description": "정보창 생성을 위한 옵션입니다.",
+  "type": [
+    "Object"
+  ],
+  "properties": [
+    {
+      "name": "position",
+      "type": [
+        "LngLatLike"
+      ],
+      "description": "정보창의 위치입니다."
+    },
+    {
+      "name": "map",
+      "type": [
+        "Map"
+      ],
+      "description": "정보창을 추가할 지도입니다."
+    },
+    {
+      "name": "anchor",
+      "type": [
+        "string"
+      ],
+      "description": "정보창의 기준점입니다. 사용 가능한 값은 다음과 같습니다.<br>\n  `top-left` , `top` , `top-right` , `left` , `center` ,\n  `right` , `bottom-left` , `bottom` , `bottom-right`.<br>\n  기본값은 `bottom` 입니다."
+    },
+    {
+      "name": "offset",
+      "type": [
+        "number",
+        "Array.<number, number>"
+      ],
+      "description": "좌표를 기준으로 이동할 픽셀 단위의 오프셋입니다.<br>\n  단일 값을 전달하는 경우, `anchor` 를 기준으로 x, y 픽셀 오프셋을 설정합니다."
+    },
+    {
+      "name": "zIndex",
+      "type": [
+        "number"
+      ],
+      "description": "정보창의 `z-index` 입니다. CSS 에서와 동일합니다."
+    },
+    {
+      "name": "opacity",
+      "type": [
+        "number"
+      ],
+      "description": "정보창의 투명도입니다. 유효값의 범위는 `0` ~ `1` 입니다."
+    },
+    {
+      "name": "content",
+      "type": [
+        "string",
+        "HTMLElement"
+      ],
+      "description": "정보창에 표시할 HTML 텍스트 또는 HTML 엘리먼트입니다.<br>\n  커스텀 정보창에서는 HTML 텍스트와 HTML 엘리먼트 모두 그대로 사용되지 않고 복제되어 표시됩니다."
+    },
+    {
+      "name": "closeButton",
+      "type": [
+        "boolean"
+      ],
+      "description": "닫기 버튼의 표시 여부입니다. 기본값은 `true` 입니다.<br>\n  커스텀 정보창에서는 무효합니다."
+    }
+  ],
+  "examples": [
+    "// anchor 사용 설명\n{anchor: \"top\"} // position 으로 설정한 위치가 마커의 중앙 상단에 위치합니다.\n{anchor: \"left\"} // position 으로 설정한 위치가 마커의 좌측 중단에 위치합니다.",
+    "// 단일 값의 offset 사용 설명\n{offset: 10, anchor: \"top\"} // 마커의 상단을 기준으로 10 픽셀 아래에 마커를 위치.\n{offset: 10, anchor: \"top-left\"} // 마커의 좌측 상단을 기준으로 [10, 10] 픽셀 오른쪽 아래에 마커를 위치.",
+    "let infoWindowOptions = {\n  position: [127.1105, 37.4022],\n  map: map, // 지도 객체\n  anchor: \"bottom\",\n  offset: [0, 0],\n  zIndex: 0,\n  opacity: 1,\n  content: \"정보창입니다.\",\n  closeButton: true,\n};",
+    "// 주의: CustomInfoWindow 에서의 content 사용 설명\ncustomInfoWindow.setContent(\"custom infoWindow\"); // 에러: 단순 텍스트\ncustomInfoWindow.setContent(\"<div>custom infoWindow</div>\"); // ok: HTML 텍스트\nlet elem = document.createElement(\"div\");\nelem.innerText = \"custom infoWindow\";\ncustomInfoWindow.setContent(elem); // ok: HTML 엘리먼트"
+  ],
+  "relatedTypes": {
+    "LngLatLike": "LngLatLike",
+    "Map": "inavi.maps.Map"
+  }
+}

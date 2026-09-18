@@ -1,0 +1,83 @@
+{
+  "id": "MarkerOptions",
+  "category": "options",
+  "kind": "type",
+  "name": "MarkerOptions",
+  "description": "마커 생성을 위한 옵션",
+  "type": [
+    "Object"
+  ],
+  "properties": [
+    {
+      "name": "icon",
+      "type": [
+        "string",
+        "HTMLElement"
+      ],
+      "description": "마커 아이콘입니다. 이미지 URL 문자열 또는 DOM 엘리먼트를 전달할 수 있습니다."
+    },
+    {
+      "name": "anchor",
+      "type": [
+        "string"
+      ],
+      "description": "마커의 좌표가 위치할 기준점입니다. 사용 가능한 값은 다음과 같습니다.<br>\n  `top-left`, `top`, `top-right`, `left`, `center`,\n  `right`, `bottom-left`, `bottom`, `bottom-right`.<br>\n  기본 값은 `bottom` 입니다."
+    },
+    {
+      "name": "offset",
+      "type": [
+        "Array.<number, number>"
+      ],
+      "description": "좌표를 기준으로 이동할 픽셀 단위의 오프셋입니다."
+    },
+    {
+      "name": "draggable",
+      "type": [
+        "boolean"
+      ],
+      "description": "드래그 가능 여부입니다."
+    },
+    {
+      "name": "position",
+      "type": [
+        "LngLatLike"
+      ],
+      "description": "마커의 위치입니다."
+    },
+    {
+      "name": "map",
+      "type": [
+        "Map"
+      ],
+      "description": "마커를 추가할 지도 객체 입니다."
+    },
+    {
+      "name": "zIndex",
+      "type": [
+        "number"
+      ],
+      "description": "마커의 `z-index` 입니다. CSS 에서와 동일합니다."
+    },
+    {
+      "name": "opacity",
+      "type": [
+        "number"
+      ],
+      "description": "마커의 투명도입니다. 유효한 값은 `0` ~ `1` 입니다."
+    },
+    {
+      "name": "title",
+      "type": [
+        "string"
+      ],
+      "description": "마커에 마우스를 올렸을 때 나오는 제목입니다."
+    }
+  ],
+  "examples": [
+    "let markerOptions = {\n  anchor: \"bottom\",\n  offset: [0, 0],\n  draggable: false,\n  position: map.getCenter(), // 기본 위치는 지도의 중심입니다.\n  map: map,\n  zIndex: 0,\n  opacity: 1,\n  title: \"아이나비 마커\"\n};"
+  ],
+  "relatedTypes": {
+    "LngLatLike": "LngLatLike",
+    "Map": "inavi.maps.Map"
+  }
+}
