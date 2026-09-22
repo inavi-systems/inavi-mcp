@@ -40,7 +40,7 @@ npm run lint         # Check code style
 npm run lint:fix     # Auto-fix linting issues
 npm run format       # Format code with Prettier
 npm run format:check # Check formatting
-npm run type-check   # TypeScript type checking without emit
+npm run type-check   # TypeScript type checking without emit (src + test)
 ```
 
 ### API Docs
