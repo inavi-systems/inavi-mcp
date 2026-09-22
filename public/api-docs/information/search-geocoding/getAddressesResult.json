@@ -188,8 +188,8 @@
                       },
                       "admcode": {
                         "type": "string",
-                        "description": "법정구역 코드",
-                        "example": "4113510900"
+                        "description": "행정구역 코드",
+                        "example": "4113565500"
                       },
                       "address_category1": {
                         "type": "string",

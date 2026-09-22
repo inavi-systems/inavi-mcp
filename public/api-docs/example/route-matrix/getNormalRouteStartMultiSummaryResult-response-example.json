@@ -40,13 +40,13 @@
       }
     },
     "serverError": {
-      "summary": "IMPS 서버 에러",
-      "description": "IMPS Server Error",
+      "summary": "INAVI Maps 서버 에러",
+      "description": "IMaps Server Error",
       "value": {
         "header": {
           "isSuccessful": false,
           "resultCode": 102,
-          "resultMessage": "IMPS Server Error"
+          "resultMessage": "IMaps Server Error"
         }
       }
     },
