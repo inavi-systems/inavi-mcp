@@ -1,7 +1,7 @@
 {
   "manifest_version": "0.2",
   "name": "@inavi-maps/mcp-server",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Documentation for building with iNavi Maps (South Korea) - API specifications, Web JS SDK reference, and render-ready HTML map templates. The server provides specs and code templates; it does not call the APIs.",
   "author": {
     "name": "iMPS",

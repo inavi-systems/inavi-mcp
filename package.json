@@ -1,6 +1,6 @@
 {
   "name": "@inavi-maps/mcp-server",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "mcpName": "io.github.inavi-systems/inavi-mcp",
   "description": "Documentation MCP server for iNavi Maps (South Korea) - API specifications, Web JS SDK reference, and render-ready HTML map templates. Provides the specs an AI needs to write correct code; it does not call the APIs itself.",
   "main": "dist/server.js",
