@@ -1,0 +1,126 @@
+{
+  "category": "options",
+  "docs": [
+    {
+      "id": "CircleOptions",
+      "category": "options",
+      "kind": "type",
+      "name": "CircleOptions",
+      "summary": "원을 생성할 때 설정할 수 있는 옵션입니다.",
+      "methods": []
+    },
+    {
+      "id": "CompassControlOptions",
+      "category": "options",
+      "kind": "type",
+      "name": "CompassControlOptions",
+      "summary": "콤파스 컨트롤 객체 초기화에 사용되는 옵션 값입니다.",
+      "methods": []
+    },
+    {
+      "id": "FitOptions",
+      "category": "options",
+      "kind": "type",
+      "name": "FitOptions",
+      "summary": "fitBounds, fitCoordinates, flyTo 의 이동 옵션입니다.",
+      "methods": []
+    },
+    {
+      "id": "InfoWindowOptions",
+      "category": "options",
+      "kind": "type",
+      "name": "InfoWindowOptions",
+      "summary": "정보창 생성을 위한 옵션입니다.",
+      "methods": []
+    },
+    {
+      "id": "LabelOptions",
+      "category": "options",
+      "kind": "type",
+      "name": "LabelOptions",
+      "summary": "라벨을 생성할 때 설정할 수 있는 옵션입니다.",
+      "methods": []
+    },
+    {
+      "id": "LogoScaleControlOptions",
+      "category": "options",
+      "kind": "type",
+      "name": "LogoScaleControlOptions",
+      "summary": "로고 및 스케일 컨트롤 객체 초기화에 사용되는 옵션 값입니다.",
+      "methods": []
+    },
+    {
+      "id": "MapOptions",
+      "category": "options",
+      "kind": "type",
+      "name": "MapOptions",
+      "summary": "지도 객체 초기화에 사용되는 옵션 값입니다.",
+      "methods": []
+    },
+    {
+      "id": "MarkerClustererOptions",
+      "category": "options",
+      "kind": "type",
+      "name": "MarkerClustererOptions",
+      "summary": "마커 클러스터를 생성할 때 설정할 수 있는 옵션입니다.",
+      "methods": []
+    },
+    {
+      "id": "MarkerOptions",
+      "category": "options",
+      "kind": "type",
+      "name": "MarkerOptions",
+      "summary": "마커 생성을 위한 옵션",
+      "methods": []
+    },
+    {
+      "id": "PaddingOptions",
+      "category": "options",
+      "kind": "type",
+      "name": "PaddingOptions",
+      "summary": "Padding 설정을 위한 옵션입니다.",
+      "methods": []
+    },
+    {
+      "id": "PanOptions",
+      "category": "options",
+      "kind": "type",
+      "name": "PanOptions",
+      "summary": "panTo, panBy 의 이동 옵션입니다.",
+      "methods": []
+    },
+    {
+      "id": "PolygonOptions",
+      "category": "options",
+      "kind": "type",
+      "name": "PolygonOptions",
+      "summary": "폴리곤을 생성할 때 설정할 수 있는 옵션입니다.",
+      "methods": []
+    },
+    {
+      "id": "PolylineOptions",
+      "category": "options",
+      "kind": "type",
+      "name": "PolylineOptions",
+      "summary": "폴리라인을 생성할 때 설정할 수 있는 옵션입니다.",
+      "methods": []
+    },
+    {
+      "id": "ZoomControlOptions",
+      "category": "options",
+      "kind": "type",
+      "name": "ZoomControlOptions",
+      "summary": "줌 컨트롤 객체 초기화에 사용되는 옵션 값입니다.",
+      "methods": []
+    },
+    {
+      "id": "ZoomOptions",
+      "category": "options",
+      "kind": "type",
+      "name": "ZoomOptions",
+      "summary": "zoomIn, zoomOut 의 이동 옵션입니다.",
+      "methods": []
+    }
+  ],
+  "totalCount": 15
+}

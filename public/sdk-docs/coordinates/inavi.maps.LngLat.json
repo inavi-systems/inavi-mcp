@@ -1,0 +1,90 @@
+{
+  "id": "inavi.maps.LngLat",
+  "category": "coordinates",
+  "kind": "class",
+  "name": "LngLat",
+  "description": "정규화 좌표를 나타내는 클래스입니다.",
+  "ctor": {
+    "signature": "new LngLat(lng, lat)",
+    "params": [
+      {
+        "name": "lng",
+        "type": [
+          "number"
+        ],
+        "description": "정규화 좌표 단위의 Longitude(경도) 입니다."
+      },
+      {
+        "name": "lat",
+        "type": [
+          "number"
+        ],
+        "description": "정규화 좌표 단위의 Latitude(위도) 입니다."
+      }
+    ]
+  },
+  "methods": [
+    {
+      "name": "convertToPixel",
+      "signature": "convertToPixel(map, precision?=false) ⇒ Pixel",
+      "description": "정규화 좌표 데이터를 지도상의 픽셀 위치 데이터로 변환합니다.",
+      "params": [
+        {
+          "name": "map",
+          "type": [
+            "Map"
+          ],
+          "description": "기준 지도 객체입니다."
+        },
+        {
+          "name": "precision",
+          "type": [
+            "boolean"
+          ],
+          "description": "정밀 계산 여부입니다. `true` 인 경우, 변환된 좌표를 실수형으로 반환합니다.",
+          "optional": true,
+          "default": "false"
+        }
+      ],
+      "returns": [
+        {
+          "type": [
+            "Pixel"
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "convertToTWLngLat",
+      "signature": "convertToTWLngLat(precision?=false) ⇒ TWLngLat",
+      "description": "정규화 좌표 데이터를 팅크웨어 좌표 데이터로 변환합니다.",
+      "params": [
+        {
+          "name": "precision",
+          "type": [
+            "boolean"
+          ],
+          "description": "정밀 계산 여부입니다. `true` 인 경우, 변환된 좌표를 실수형으로 반환합니다.",
+          "optional": true,
+          "default": "false"
+        }
+      ],
+      "returns": [
+        {
+          "type": [
+            "TWLngLat"
+          ],
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "members": [],
+  "events": [],
+  "relatedTypes": {
+    "Map": "inavi.maps.Map",
+    "Pixel": "inavi.maps.Pixel",
+    "TWLngLat": "inavi.maps.TWLngLat"
+  }
+}

@@ -13,20 +13,24 @@ import { listMapExamplesOutputSchema } from './schema/list-map-examples.output.s
 import { getMapExampleInputSchema } from './schema/get-map-example.input.schema';
 import { getMapExampleOutputSchema } from './schema/get-map-example.output.schema';
 import { toSummary, toFullMetadata } from './utils/metadata-transformer';
+import { KOREA_ONLY_SCOPE } from '@/tools/shared/tool-scope';
 
 // Calculate project root directory (dist/tools/map-examples -> project root)
 // __dirname points to the built dist/tools/map-examples directory
 const projectRoot = resolve(__dirname, '../../..');
 
 /**
- * Common warning message for all map example tools
- * Applied to all HTML example tools to prevent API misuse
+ * Customization policy returned with every example.
+ *
+ * Lives here rather than in the HTML files: it used to be duplicated as a banner comment in 16 of
+ * the 18 templates, which made it expensive to change and — once the SDK doc tools arrived — wrong,
+ * since the banner forbade exactly the extension the doc tools exist to support.
  */
 const MAP_EXAMPLE_COMMON_WARNING =
-  'IMPORTANT: This is the official iNavi Maps visualization tool. Unless the user explicitly requests another map provider (Google Maps, OpenStreetMap, etc.), use this tool for visualization requests. ' +
-  '⚠️ This HTML template allows data customization only. ' +
-  'You may replace data values (coordinates, zoom, labels) but DO NOT modify or add any options(like icon, styles, etc.) to iNavi Maps API constructors, methods, or add options not shown in the template. ' +
-  'iNavi API ≠ Google Maps API. ';
+  'CUSTOMIZING: Data values (coordinates, zoom, labels, colors) can be replaced freely. ' +
+  'Options, methods, events or styles the template does not show may be added, but verify each one ' +
+  'with get_sdk_doc first — never invent API from memory or another provider, as iNavi Maps and ' +
+  'Google Maps differ in syntax.';
 
 /**
  * Replace placeholder values in HTML with actual environment variable values
@@ -47,12 +51,15 @@ export function registerListMapExamplesTool(server: McpServer): void {
     {
       title: 'Browse iNavi Map Examples',
       description:
-        'Browse and discover available iNavi Maps HTML examples. ' +
-        'Returns lightweight summaries optimized for discovery (two-tier metadata system). ' +
-        'Each summary includes ID, title, brief description, and essential tags. ' +
-        'Use this tool to explore available examples before retrieving specific HTML templates. ' +
-        'USAGE: Call this tool first to see what examples are available, then use get_map_example with the desired ID. ' +
-        'FILTERING: Optionally filter by category (dynamic-maps, marker, infowindow, shapes) to narrow results.',
+        'Browse render-ready iNavi Maps HTML examples. ' +
+        'Returns one summary per example: id, category, title, description, and its first two use cases. ' +
+        'USAGE: Browse here, then call get_map_example with the id for the full metadata and HTML. ' +
+        'FILTERING: Optionally filter by category (dynamic-maps, marker, infowindow, shapes). ' +
+        'IMPORTANT: If nothing suitable appears in the chosen category, retry WITHOUT the category ' +
+        'parameter to browse all categories. ' +
+        'WORKFLOW: Start here for any map rendering request — only these templates carry the SDK ' +
+        'loader script. For anything a template omits, look it up with list_sdk_docs / get_sdk_doc. ' +
+        KOREA_ONLY_SCOPE,
       inputSchema: listMapExamplesInputSchema,
       outputSchema: listMapExamplesOutputSchema,
     },
@@ -105,11 +112,11 @@ export function registerGetMapExampleTool(server: McpServer): void {
     {
       title: 'Get iNavi Map Example HTML',
       description:
-        'Retrieve a specific iNavi Maps HTML example by ID with complete metadata. ' +
-        'Returns full metadata (description, use cases, features, keywords) and HTML template code. ' +
-        'PREREQUISITE: Use list_map_examples first to browse available examples and get the ID. ' +
-        'USAGE: Provide the example ID from list_map_examples to retrieve complete details and HTML. ' +
-        'CUSTOMIZATION: AI assistants can customize the template by replacing data values (coordinates, labels, etc.). ' +
+        'Retrieve one iNavi Maps HTML example by id, with its full metadata ' +
+        '(description, keywords, use cases, features) and the complete HTML template. ' +
+        'PREREQUISITE: Use list_map_examples to find the id. ' +
+        'LOADER: The template ends with the SDK loader script. Its domain is filled in, but ' +
+        '{appKey} is left as a placeholder — substitute a real application key before the page will run. ' +
         MAP_EXAMPLE_COMMON_WARNING,
       inputSchema: getMapExampleInputSchema,
       outputSchema: getMapExampleOutputSchema,

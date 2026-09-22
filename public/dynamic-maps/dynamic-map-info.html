@@ -11,17 +11,6 @@
     </style>
   </head>
   <body>
-    <!--
-    ╔══════════════════════════════════════════════════════════════╗
-    ║  CRITICAL NOTICE FOR AI ASSISTANTS                          ║
-    ║  This is a REFERENCE TEMPLATE with customizable data        ║
-    ║  ✅ ALLOWED: Replace data values (coordinates, labels)      ║
-    ║  ❌ FORBIDDEN: Modify iNavi Maps API calls/constructors     ║
-    ║  • DO NOT add options/parameters not shown in template      ║
-    ║  • DO NOT change API usage patterns                         ║
-    ║  • iNavi Maps API ≠ Google Maps API (different syntax)     ║
-    ╚══════════════════════════════════════════════════════════════╝
-    -->
     <div id="map"></div>
     <button id="information"> 지도 정보 얻어 오기 </button>
     <p>현재 레벨 : <span id="level">' '</span></p>
@@ -39,10 +28,17 @@
           const level = document.querySelector("#level");
           const center = document.querySelector("#center");
           const bounds = document.querySelector("#bounds");
-          level.innerText =  map.getZoom();
-          center.innerText =  '[' + map.getCenter().lng + ', ' + map.getCenter().lat + ']';
-          bounds.innerText =  '{' + 'south : ' + map.getBounds().south + ', ' + 'west : ' + map.getBounds().west
- + ',' + 'north : ' + map.getBounds().north + ','  + 'east : ' + map.getBounds().east + '}';
+          const mapCenter = map.getCenter();
+          // 영역은 코너 좌표(LngLat)로 제공된다. 남/서는 southWest, 북/동은 northEast 에서 꺼낸다.
+          const mapBounds = map.getBounds();
+
+          level.innerText = map.getZoom();
+          center.innerText = '[' + mapCenter.lng + ', ' + mapCenter.lat + ']';
+          bounds.innerText =
+            '{south : ' + mapBounds.southWest.lat +
+            ', west : ' + mapBounds.southWest.lng +
+            ', north : ' + mapBounds.northEast.lat +
+            ', east : ' + mapBounds.northEast.lng + '}';
         });
       }
     </script>

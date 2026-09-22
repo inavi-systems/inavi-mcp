@@ -1,0 +1,30 @@
+{
+  "id": "LogoScaleControlOptions",
+  "category": "options",
+  "kind": "type",
+  "name": "LogoScaleControlOptions",
+  "description": "로고 및 스케일 컨트롤 객체 초기화에 사용되는 옵션 값입니다.",
+  "type": [
+    "Object"
+  ],
+  "properties": [
+    {
+      "name": "position",
+      "type": [
+        "string"
+      ],
+      "description": "로고 및 스케일 컨트롤을 배치할 위치입니다. `bottom-left`, `bottom-right`, `top-left`, `top-right`"
+    },
+    {
+      "name": "showScale",
+      "type": [
+        "boolean"
+      ],
+      "description": "스케일을 표시할지 여부입니다."
+    }
+  ],
+  "examples": [
+    "let logoScaleControlOptions = {\n  position: \"bottom-right\",\n  showScale: true,\n};"
+  ],
+  "relatedTypes": {}
+}

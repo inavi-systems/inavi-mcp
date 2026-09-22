@@ -2,7 +2,7 @@
   "name": "@inavi-maps/mcp-server",
   "version": "0.3.10",
   "mcpName": "io.github.inavi-systems/inavi-mcp",
-  "description": "MCP Server for iNavi Maps API - Geocoding, POI Search, Route Planning for Claude AI",
+  "description": "Documentation MCP server for iNavi Maps (South Korea) - API specifications, Web JS SDK reference, and render-ready HTML map templates. Provides the specs an AI needs to write correct code; it does not call the APIs itself.",
   "main": "dist/server.js",
   "bin": {
     "inavi-maps-mcp": "dist/server.js"
@@ -18,7 +18,7 @@
     "dev": "ts-node-dev --respawn --transpile-only -r tsconfig-paths/register src/server.ts",
     "build": "tsc -p tsconfig.src.json && tsc-alias -p tsconfig.src.json",
     "start": "node dist/server.js",
-    "test": "vitest",
+    "test": "vitest run",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest --coverage",
     "test:watch": "vitest --watch",
@@ -28,7 +28,9 @@
     "format:check": "prettier --check \"src/**/*.ts\"",
     "type-check": "tsc --noEmit",
     "update-api-docs": "node scripts/update-api-docs.js",
+    "update-sdk-docs": "node scripts/update-sdk-docs.js",
     "validate-api-docs": "vitest run test/scripts/validate-api-docs.test.ts",
+    "validate-sdk-docs": "vitest run test/scripts/validate-sdk-docs.test.ts",
     "prepublishOnly": "npm run lint && npm run type-check && npm run build",
     "version": "node scripts/sync-version.js && git add manifest.json server.json",
     "release": "echo 'Use GitHub Actions: Actions > Release > Run workflow' && exit 1"
@@ -53,7 +55,14 @@
     "claude",
     "ai",
     "llm",
-    "korean-maps"
+    "korean-maps",
+    "documentation",
+    "api-documentation",
+    "openapi",
+    "web-map-sdk",
+    "south-korea",
+    "map-visualization",
+    "html-template"
   ],
   "author": "inavi-webservice",
   "license": "MIT",
@@ -86,6 +95,7 @@
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.4",
     "prettier": "^3.6.2",
+    "puppeteer": "^24.38.0",
     "ts-node-dev": "^2.0.0",
     "tsc-alias": "^1.8.16",
     "tsconfig-paths": "^4.2.0",

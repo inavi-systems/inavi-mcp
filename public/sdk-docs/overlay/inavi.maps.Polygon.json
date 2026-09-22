@@ -1,0 +1,318 @@
+{
+  "id": "inavi.maps.Polygon",
+  "category": "overlay",
+  "kind": "class",
+  "name": "Polygon",
+  "description": "폴리곤 클래스입니다. 지도상에 폴리곤을 추가할 수 있습니다.",
+  "ctor": {
+    "signature": "new Polygon(polygonOptions?={})",
+    "params": [
+      {
+        "name": "polygonOptions",
+        "type": [
+          "PolygonOptions"
+        ],
+        "description": "폴리곤 생성을 위한 옵션입니다.",
+        "optional": true,
+        "default": "{}"
+      }
+    ]
+  },
+  "methods": [
+    {
+      "name": "getDraggable",
+      "signature": "getDraggable() ⇒ boolean",
+      "description": "폴리곤의 드래그 가능 여부를 반환합니다.",
+      "params": [],
+      "returns": [
+        {
+          "type": [
+            "boolean"
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "getMap",
+      "signature": "getMap() ⇒ Map | undefined",
+      "description": "폴리곤이 추가된 지도를 반환합니다.",
+      "params": [],
+      "returns": [
+        {
+          "type": [
+            "Map",
+            "undefined"
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "getPath",
+      "signature": "getPath() ⇒ Array.<LngLat>",
+      "description": "폴리곤을 구성하는 좌표를 배열로 반환합니다.",
+      "params": [],
+      "returns": [
+        {
+          "type": [
+            "Array.<LngLat>"
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "getStyle",
+      "signature": "getStyle() ⇒ FillStyle",
+      "description": "폴리곤의 스타일을 반환합니다.",
+      "params": [],
+      "returns": [
+        {
+          "type": [
+            "FillStyle"
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "getVisible",
+      "signature": "getVisible() ⇒ boolean",
+      "description": "폴리곤의 표시 여부를 반환합니다.",
+      "params": [],
+      "returns": [
+        {
+          "type": [
+            "boolean"
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "getZIndex",
+      "signature": "getZIndex() ⇒ number",
+      "description": "폴리곤의 z-index를 반환합니다.",
+      "params": [],
+      "returns": [
+        {
+          "type": [
+            "number"
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "off",
+      "signature": "off(eventType?, listener?) ⇒ Polygon",
+      "description": "폴리곤에 등록된 이벤트 리스너를 제거합니다. 파라미터에 따라 특정 이벤트에 대한 리스너를 제거하거나 모든 리스너를 제거할 수 있습니다.",
+      "params": [
+        {
+          "name": "eventType",
+          "type": [
+            "string"
+          ],
+          "description": "이벤트 타입입니다. 값이 없으면 폴리곤에 등록된 모든 리스너를 제거합니다.",
+          "optional": true
+        },
+        {
+          "name": "listener",
+          "type": [
+            "function"
+          ],
+          "description": "이벤트 리스너입니다. 값이 없으면 이벤트 타입에 대한 모든 리스너를 제거합니다.",
+          "optional": true
+        }
+      ],
+      "returns": [
+        {
+          "type": [
+            "Polygon"
+          ],
+          "description": "이벤트 리스너가 등록되었던 폴리곤 객체입니다."
+        }
+      ]
+    },
+    {
+      "name": "on",
+      "signature": "on(eventType, listener) ⇒ Polygon",
+      "description": "폴리곤에 이벤트 리스너를 등록합니다.",
+      "params": [
+        {
+          "name": "eventType",
+          "type": [
+            "string"
+          ],
+          "description": "이벤트 타입입니다. 사용 가능한 이벤트 타입은 다음과 같습니다.<br>\n `mousedown`, `mouseup`, `click`, `dblclick`, `mousemove`, `mouseenter`, `mouseleave`,\n `mouseover`, `mouseout`, `contextmenu`, `touchstart`, `touchend`, `touchcancel`."
+        },
+        {
+          "name": "listener",
+          "type": [
+            "function"
+          ],
+          "description": "이벤트 리스너입니다. 콜백 인자는 EventPayload 를 참고하세요."
+        }
+      ],
+      "returns": [
+        {
+          "type": [
+            "Polygon"
+          ],
+          "description": "이벤트 리스너가 등록된 폴리곤 객체입니다."
+        }
+      ]
+    },
+    {
+      "name": "once",
+      "signature": "once(eventType, listener) ⇒ Polygon",
+      "description": "폴리곤에 한 번만 실행되는 이벤트 리스너를 등록합니다.",
+      "params": [
+        {
+          "name": "eventType",
+          "type": [
+            "string"
+          ],
+          "description": "이벤트 타입입니다. 사용 가능한 이벤트 타입은 다음과 같습니다.<br>\n `mousedown`, `mouseup`, `click`, `dblclick`, `mousemove`, `mouseenter`, `mouseleave`,\n `mouseover`, `mouseout`, `contextmenu`, `touchstart`, `touchend`, `touchcancel`."
+        },
+        {
+          "name": "listener",
+          "type": [
+            "function"
+          ],
+          "description": "이벤트 리스너입니다. 콜백 인자는 EventPayload 를 참고하세요."
+        }
+      ],
+      "returns": [
+        {
+          "type": [
+            "Polygon"
+          ],
+          "description": "이벤트 리스너가 등록된 폴리곤 객체입니다."
+        }
+      ]
+    },
+    {
+      "name": "setDraggable",
+      "signature": "setDraggable(draggability) ⇒ void",
+      "description": "폴리곤의 드래그 가능 여부를 설정합니다.",
+      "params": [
+        {
+          "name": "draggability",
+          "type": [
+            "boolean"
+          ],
+          "description": "드래그 가능 여부입니다."
+        }
+      ],
+      "returns": []
+    },
+    {
+      "name": "setMap",
+      "signature": "setMap(map?) ⇒ void",
+      "description": "폴리곤을 추가할 지도를 설정합니다. 파라미터를 전달하지 않으면 폴리곤이 지도에서 제거됩니다.",
+      "params": [
+        {
+          "name": "map",
+          "type": [
+            "Map"
+          ],
+          "description": "지도 객체입니다.",
+          "optional": true
+        }
+      ],
+      "returns": []
+    },
+    {
+      "name": "setPath",
+      "signature": "setPath(path?=[]) ⇒ void",
+      "description": "폴리곤의 좌표를 설정합니다.",
+      "params": [
+        {
+          "name": "path",
+          "type": [
+            "Array.<LngLatLike>"
+          ],
+          "description": "좌표 배열입니다.",
+          "optional": true,
+          "default": "[]"
+        }
+      ],
+      "returns": []
+    },
+    {
+      "name": "setStyle",
+      "signature": "setStyle(style?={}) ⇒ void",
+      "description": "폴리곤의 스타일을 설정합니다. 파라미터로 전달한 스타일은 이전 스타일에 영향을 주지 않습니다.\n파라미터를 전달하지 않으면 기본 스타일이 적용됩니다.",
+      "params": [
+        {
+          "name": "style",
+          "type": [
+            "FillStyle"
+          ],
+          "description": "폴리곤의 스타일입니다.",
+          "optional": true,
+          "default": "{}"
+        }
+      ],
+      "returns": []
+    },
+    {
+      "name": "setVisible",
+      "signature": "setVisible(visibility?=false) ⇒ void",
+      "description": "폴리곤의 표시 여부를 설정합니다.",
+      "params": [
+        {
+          "name": "visibility",
+          "type": [
+            "boolean"
+          ],
+          "description": "표시 여부입니다.",
+          "optional": true,
+          "default": "false"
+        }
+      ],
+      "returns": []
+    },
+    {
+      "name": "setZIndex",
+      "signature": "setZIndex(zIndex) ⇒ void",
+      "description": "폴리곤의 z-index를 설정합니다.",
+      "params": [
+        {
+          "name": "zIndex",
+          "type": [
+            "number"
+          ],
+          "description": "z-index 값입니다."
+        }
+      ],
+      "returns": []
+    }
+  ],
+  "members": [],
+  "events": [
+    "mousedown",
+    "mouseup",
+    "click",
+    "dblclick",
+    "mousemove",
+    "mouseenter",
+    "mouseleave",
+    "mouseover",
+    "mouseout",
+    "contextmenu",
+    "touchstart",
+    "touchend",
+    "touchcancel"
+  ],
+  "relatedTypes": {
+    "Map": "inavi.maps.Map",
+    "LngLat": "inavi.maps.LngLat",
+    "FillStyle": "FillStyle",
+    "LngLatLike": "LngLatLike",
+    "PolygonOptions": "PolygonOptions",
+    "EventPayload": "EventPayload"
+  }
+}

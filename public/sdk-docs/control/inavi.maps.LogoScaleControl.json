@@ -1,0 +1,97 @@
+{
+  "id": "inavi.maps.LogoScaleControl",
+  "category": "control",
+  "kind": "class",
+  "name": "LogoScaleControl",
+  "description": "로고 및 스케일 컨트롤 클래스입니다. 로고 및 스케일을 표시하는 컨트롤을 다룹니다.",
+  "ctor": {
+    "signature": "new LogoScaleControl(logoScaleControlOptions?={})",
+    "params": [
+      {
+        "name": "logoScaleControlOptions",
+        "type": [
+          "LogoScaleControlOptions"
+        ],
+        "description": "로고 및 스케일 컨트롤 옵션입니다.",
+        "optional": true,
+        "default": "{}"
+      }
+    ]
+  },
+  "methods": [
+    {
+      "name": "addTo",
+      "signature": "addTo(map) ⇒ void",
+      "description": "지도에 로고 및 스케일 컨트롤을 추가합니다.",
+      "params": [
+        {
+          "name": "map",
+          "type": [
+            "Map"
+          ],
+          "description": "지도 객체입니다."
+        }
+      ],
+      "returns": []
+    },
+    {
+      "name": "getOptions",
+      "signature": "getOptions() ⇒ LogoScaleControlOptions",
+      "description": "로고 및 스케일 컨트롤 옵션을 반환합니다.",
+      "params": [],
+      "returns": [
+        {
+          "type": [
+            "LogoScaleControlOptions"
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "remove",
+      "signature": "remove() ⇒ void",
+      "description": "로고 및 스케일 컨트롤을 지도에서 제거합니다.",
+      "params": [],
+      "returns": []
+    },
+    {
+      "name": "setOptions",
+      "signature": "setOptions(logoScaleControlOptions) ⇒ void",
+      "description": "로고 및 스케일 컨트롤 옵션을 설정합니다.",
+      "params": [
+        {
+          "name": "logoScaleControlOptions",
+          "type": [
+            "LogoScaleControlOptions"
+          ],
+          "description": "로고 및 스케일 컨트롤 옵션입니다."
+        }
+      ],
+      "returns": []
+    },
+    {
+      "name": "setShowScale",
+      "signature": "setShowScale(showScale?=true) ⇒ void",
+      "description": "스케일 표시 여부를 설정합니다.",
+      "params": [
+        {
+          "name": "showScale",
+          "type": [
+            "boolean"
+          ],
+          "description": "스케일 표시 여부입니다.",
+          "optional": true,
+          "default": "true"
+        }
+      ],
+      "returns": []
+    }
+  ],
+  "members": [],
+  "events": [],
+  "relatedTypes": {
+    "Map": "inavi.maps.Map",
+    "LogoScaleControlOptions": "LogoScaleControlOptions"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "id": "ZoomOptions",
+  "category": "options",
+  "kind": "type",
+  "name": "ZoomOptions",
+  "description": "zoomIn, zoomOut 의 이동 옵션입니다.",
+  "type": [
+    "Object"
+  ],
+  "properties": [
+    {
+      "name": "duration",
+      "type": [
+        "number"
+      ],
+      "description": "이동에 소요되는 밀리초 단위의 시간입니다."
+    }
+  ],
+  "examples": [
+    "let zoomOptions = {\n  duration: 300, // 300ms 내에 이동을 수행\n};"
+  ],
+  "relatedTypes": {}
+}

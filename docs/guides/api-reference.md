@@ -9,6 +9,9 @@ iNavi MCP Server가 제공하는 모든 MCP 도구의 상세 문서입니다.
 - [HTML 예제 도구](#html-예제-도구)
   - [list_map_examples - 지도 예제 목록 조회](#list_map_examples)
   - [get_map_example - 지도 예제 HTML 조회](#get_map_example)
+- [SDK 문서 도구](#sdk-문서-도구)
+  - [list_sdk_docs - SDK 심볼 목록 조회](#list_sdk_docs)
+  - [get_sdk_doc - SDK 문서 상세 조회](#get_sdk_doc)
 
 ---
 
@@ -177,8 +180,66 @@ API의 상세 사양을 반환합니다:
 #### 참고사항
 
 - 반드시 `list_map_examples`로 먼저 `id`를 확인한 후 사용
-- AI는 템플릿의 데이터 값(좌표, 레이블 등)만 커스터마이징 가능
-- iNavi Maps API 생성자/메서드의 옵션을 임의로 변경하거나 추가하면 안 됨
+- 데이터 값(좌표, 줌, 레이블, 색상)은 자유롭게 교체 가능
+- 템플릿에 없는 옵션·메서드·이벤트도 추가할 수 있으나, 각 항목을 `get_sdk_doc`으로 먼저 확인할 것 — 기억이나 다른 지도 제공자의 문법을 옮겨 쓰면 안 됨
+- 템플릿 끝의 로더 스크립트에서 `{appKey}`는 플레이스홀더로 남으므로 실제 앱키로 교체해야 동작
+
+---
+
+## SDK 문서 도구
+
+iNavi Maps Web JS SDK의 클래스와 옵션/타입 정의를 조회합니다. 두 단계 워크플로우로 사용합니다:
+
+1. `list_sdk_docs`로 심볼 목록 탐색 (클래스 항목은 메서드명을 함께 반환)
+2. `get_sdk_doc`으로 특정 심볼 또는 단일 메서드의 상세 문서 조회
+
+지도를 만들 때는 `list_map_examples`가 출발점입니다. SDK 로더 스크립트와 콜백 규약은 예제 템플릿에만 있고 이 레퍼런스에는 없으므로, 레퍼런스만 보고 작성한 페이지는 렌더링되지 않습니다.
+
+### list_sdk_docs
+
+SDK 심볼 목록을 조회합니다. 카테고리별 필터링이 가능합니다.
+
+#### 입력 파라미터
+
+| 파라미터 | 타입 | 필수 | 설명 |
+|---------|------|------|------|
+| `category` | enum | ❌ | 카테고리 필터 (map, overlay, control, coordinates, options, style) |
+
+#### 사용 가능한 카테고리 및 심볼
+
+| 카테고리 | 심볼 수 | 포함 심볼 |
+|---------|--------|----------|
+| `map` | 2 | Map, EventPayload |
+| `overlay` | 8 | Circle, CustomInfoWindow, InfoWindow, Label, Marker, MarkerClusterer, Polygon, Polyline |
+| `control` | 3 | CompassControl, LogoScaleControl, ZoomControl |
+| `coordinates` | 12 | LngLat, LngLatBounds, Pixel, PixelBounds, TWLngLat, TWLngLatBounds 및 각 `*Like` 입력 타입 |
+| `options` | 15 | MapOptions, MarkerOptions, CircleOptions 등 `*Options` 타입 |
+| `style` | 5 | ClusterStyle, Color, FillStyle, LabelStyle, LineStyle |
+
+#### 참고사항
+
+- 선택한 카테고리에 원하는 심볼이 없으면 `category` 없이 다시 조회
+- 타입 정의(`*Options`, `*Style`, `*Like`)는 메서드를 갖지 않음
+
+### get_sdk_doc
+
+특정 심볼 또는 단일 메서드의 문서를 Markdown으로 반환합니다.
+
+#### 입력 파라미터
+
+| 파라미터 | 타입 | 필수 | 설명 |
+|---------|------|------|------|
+| `docId` | string | ✅ | 클래스/타입 id (예: `inavi.maps.Map`, `MapOptions`) 또는 메서드 롱네임 (예: `inavi.maps.Map#fitBounds`) |
+
+#### 출력
+
+- 심볼 설명, 생성자, 메서드 시그니처, 파라미터, 반환 타입, 이벤트, 참조 타입
+- 참조되는 옵션/복합 타입은 Markdown 링크로 표시되며, 링크 대상이 곧 다시 넘길 `docId`
+
+#### 참고사항
+
+- 반드시 `list_sdk_docs`로 먼저 id와 메서드명을 확인한 후 사용
+- 메서드 단위 사용 예제는 의도적으로 생략되어 있음 — 실행 가능한 코드는 `get_map_example` 사용
 
 ---
 

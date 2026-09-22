@@ -1,0 +1,119 @@
+{
+  "id": "inavi.maps.PixelBounds",
+  "category": "coordinates",
+  "kind": "class",
+  "name": "PixelBounds",
+  "description": "캔버스 좌표 단위로 지도의 경계 좌표를 나타내는 클래스입니다.",
+  "ctor": {
+    "signature": "new PixelBounds(southWest, northEast)",
+    "params": [
+      {
+        "name": "southWest",
+        "type": [
+          "PixelLike"
+        ],
+        "description": "남서쪽 좌표입니다."
+      },
+      {
+        "name": "northEast",
+        "type": [
+          "PixelLike"
+        ],
+        "description": "북동쪽 좌표입니다."
+      }
+    ]
+  },
+  "methods": [
+    {
+      "name": "convertToLngLatBounds",
+      "signature": "convertToLngLatBounds(map) ⇒ LngLatBounds",
+      "description": "캔버스 좌표 경계 데이터를 정규화 좌표 경계 데이터로 변환합니다.",
+      "params": [
+        {
+          "name": "map",
+          "type": [
+            "Map"
+          ],
+          "description": "지도 객체입니다."
+        }
+      ],
+      "returns": [
+        {
+          "type": [
+            "LngLatBounds"
+          ],
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "convertToTWLngLatBounds",
+      "signature": "convertToTWLngLatBounds(map, precision?=false) ⇒ TWLngLatBounds",
+      "description": "캔버스 좌표 경계 데이터를 팅크웨어 좌표 경계 데이터로 변환합니다.",
+      "params": [
+        {
+          "name": "map",
+          "type": [
+            "Map"
+          ],
+          "description": "지도 객체입니다."
+        },
+        {
+          "name": "precision",
+          "type": [
+            "boolean"
+          ],
+          "description": "정밀 계산 여부입니다. `true` 인 경우, 변환된 좌표를 실수형으로 반환합니다.",
+          "optional": true,
+          "default": "false"
+        }
+      ],
+      "returns": [
+        {
+          "type": [
+            "TWLngLatBounds"
+          ],
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "members": [
+    {
+      "name": "northEast",
+      "type": [
+        "Pixel"
+      ],
+      "description": "북동쪽 좌표를 `Pixel` 포맷으로 설정합니다."
+    },
+    {
+      "name": "northWest",
+      "type": [
+        "Pixel"
+      ],
+      "description": "북서쪽 좌표를 `Pixel` 포맷으로 설정합니다."
+    },
+    {
+      "name": "southEast",
+      "type": [
+        "Pixel"
+      ],
+      "description": "남동쪽 좌표를 `Pixel` 포맷으로 설정합니다."
+    },
+    {
+      "name": "southWest",
+      "type": [
+        "Pixel"
+      ],
+      "description": "남서쪽 좌표를 `Pixel` 포맷으로 설정합니다."
+    }
+  ],
+  "events": [],
+  "relatedTypes": {
+    "Pixel": "inavi.maps.Pixel",
+    "Map": "inavi.maps.Map",
+    "LngLatBounds": "inavi.maps.LngLatBounds",
+    "TWLngLatBounds": "inavi.maps.TWLngLatBounds",
+    "PixelLike": "PixelLike"
+  }
+}

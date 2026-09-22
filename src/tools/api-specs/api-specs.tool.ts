@@ -10,6 +10,7 @@ import { listApiSpecsInputSchema } from './schema/list-api-specs.input.schema';
 import { listApiSpecsOutputSchema } from './schema/list-api-specs.output.schema';
 import { getApiSpecInputSchema } from './schema/get-api-spec.input.schema';
 import { getApiSpecOutputSchema } from './schema/get-api-spec.output.schema';
+import { KOREA_ONLY_SCOPE } from '@/tools/shared/tool-scope';
 
 /**
  * Register list_api_specs tool
@@ -26,7 +27,8 @@ export function registerListApiSpecsTool(server: McpServer): void {
         'USAGE: First browse available APIs with this tool, then use get_api_spec to retrieve detailed specifications. ' +
         'FILTERING: Filter by category (e.g., search-place, route-directions). ' +
         'IMPORTANT: Some APIs may be categorized differently than expected. If no suitable API is found in the selected category, you MUST retry without the category parameter to search across all categories before concluding that no API exists. ' +
-        'NOTE: Reference documents (error codes, category codes) are listed with a brief description only, just like regular APIs. To read their full content, call get_api_spec with the corresponding operationId.',
+        'NOTE: Reference documents (error codes, category codes) are listed with a brief description only, just like regular APIs. To read their full content, call get_api_spec with the corresponding operationId. ' +
+        KOREA_ONLY_SCOPE,
       inputSchema: listApiSpecsInputSchema,
       outputSchema: listApiSpecsOutputSchema,
     },

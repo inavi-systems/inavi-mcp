@@ -1,0 +1,16 @@
+{
+  "id": "PixelLike",
+  "category": "coordinates",
+  "kind": "type",
+  "name": "PixelLike",
+  "description": "픽셀 위치 값을 갖는 유연한 데이터 타입",
+  "type": [
+    "Object",
+    "Array.<number>"
+  ],
+  "properties": [],
+  "examples": [
+    "let v1 = {x: 10, y: 20};\nlet v2 = [20, 10];"
+  ],
+  "relatedTypes": {}
+}

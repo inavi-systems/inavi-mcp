@@ -1,0 +1,15 @@
+{
+  "id": "PixelBoundsLike",
+  "category": "coordinates",
+  "kind": "type",
+  "name": "PixelBoundsLike",
+  "description": "픽셀 좌표 단위의 경계 좌표를 갖는 유연한 데이터 타입입니다. [남서쪽 좌표, 북동쪽 좌표] 순서입니다.",
+  "type": [
+    "Array.<PixelLike, PixelLike>"
+  ],
+  "properties": [],
+  "examples": [
+    "let v1 = [{x: 0, y: 100}, {x: 100, y: 0}];\nlet v2 = [[0, 100], [100, 0]];"
+  ],
+  "relatedTypes": {}
+}

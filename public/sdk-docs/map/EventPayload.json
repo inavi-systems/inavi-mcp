@@ -1,0 +1,48 @@
+{
+  "id": "EventPayload",
+  "category": "map",
+  "kind": "type",
+  "name": "EventPayload",
+  "description": "이벤트 리스너에 전달되는 콜백 인자입니다.",
+  "type": [
+    "Object"
+  ],
+  "properties": [
+    {
+      "name": "target",
+      "type": [
+        "Object"
+      ],
+      "description": "이벤트가 발생한 객체 자신입니다. 단, `MarkerClusterer` 는 예외입니다. 클러스터러 인스턴스가 아니라 클릭·호버한 클러스터 또는 개별 마커를 나타내는 별도 객체가 전달되며, `cluster`·`cluster_count`·`id` 속성으로 둘을 구분합니다. `inavi.maps.MarkerClusterer` 문서의 \"Event callback `target`\" 절을 보세요."
+    },
+    {
+      "name": "originalEvent",
+      "type": [
+        "Object"
+      ],
+      "description": "원본 브라우저 이벤트입니다.",
+      "optional": true
+    },
+    {
+      "name": "lngLat",
+      "type": [
+        "LngLat"
+      ],
+      "description": "이벤트와 관련된 좌표입니다.",
+      "optional": true
+    },
+    {
+      "name": "point",
+      "type": [
+        "Pixel"
+      ],
+      "description": "이벤트와 관련된 픽셀 좌표입니다.",
+      "optional": true
+    }
+  ],
+  "examples": [],
+  "relatedTypes": {
+    "LngLat": "inavi.maps.LngLat",
+    "Pixel": "inavi.maps.Pixel"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "category": "style",
+  "docs": [
+    {
+      "id": "ClusterStyle",
+      "category": "style",
+      "kind": "type",
+      "name": "ClusterStyle",
+      "summary": "클러스터에 설정할 수 있는 스타일입니다.",
+      "methods": []
+    },
+    {
+      "id": "Color",
+      "category": "style",
+      "kind": "type",
+      "name": "Color",
+      "summary": "색상으로 사용할 수 있는 옵션입니다.",
+      "methods": []
+    },
+    {
+      "id": "FillStyle",
+      "category": "style",
+      "kind": "type",
+      "name": "FillStyle",
+      "summary": "폴리곤, 원에 공통으로 설정할 수 있는 채우기 스타일입니다.",
+      "methods": []
+    },
+    {
+      "id": "LabelStyle",
+      "category": "style",
+      "kind": "type",
+      "name": "LabelStyle",
+      "summary": "라벨에 설정할 수 있는 스타일입니다.",
+      "methods": []
+    },
+    {
+      "id": "LineStyle",
+      "category": "style",
+      "kind": "type",
+      "name": "LineStyle",
+      "summary": "폴리라인에 설정할 수 있는 스타일입니다.",
+      "methods": []
+    }
+  ],
+  "totalCount": 5
+}

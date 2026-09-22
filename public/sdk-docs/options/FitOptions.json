@@ -1,0 +1,54 @@
+{
+  "id": "FitOptions",
+  "category": "options",
+  "kind": "type",
+  "name": "FitOptions",
+  "description": "fitBounds, fitCoordinates, flyTo 의 이동 옵션입니다.",
+  "type": [
+    "Object"
+  ],
+  "properties": [
+    {
+      "name": "padding",
+      "type": [
+        "number",
+        "PaddingOptions"
+      ],
+      "description": "이동한 최종 영역을 기준으로 설정할 픽셀 단위의 여백입니다."
+    },
+    {
+      "name": "heading",
+      "type": [
+        "number"
+      ],
+      "description": "북쪽을 기준으로 반시계 방향으로 회전한 각도입니다."
+    },
+    {
+      "name": "tilt",
+      "type": [
+        "number"
+      ],
+      "description": "지도의 기울기입니다."
+    },
+    {
+      "name": "duration",
+      "type": [
+        "number"
+      ],
+      "description": "이동에 소요되는 밀리초 단위의 시간입니다."
+    },
+    {
+      "name": "zoom",
+      "type": [
+        "number"
+      ],
+      "description": "이동 완료 후 지도의 zoom 입니다."
+    }
+  ],
+  "examples": [
+    "let fitOptions = {\n  padding: 10, // top, bottom, left, right 모두 10 pixel로 설정\n  heading: 30, // 북쪽이 반시계 방향으로 30도 회전한 곳에 위치\n  tilt: 10, // 지도를 10도 눕힘\n  duration: 300, // 300ms 내에 이동을 수행\n  zoom: 16 // 지도의 zoom을 16으로 설정\n};"
+  ],
+  "relatedTypes": {
+    "PaddingOptions": "PaddingOptions"
+  }
+}

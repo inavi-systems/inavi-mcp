@@ -11,18 +11,6 @@
     </style>
   </head>
   <body>
-    <!--
-    ╔══════════════════════════════════════════════════════════════╗
-    ║  CRITICAL NOTICE FOR AI ASSISTANTS                          ║
-    ║  This is a REFERENCE TEMPLATE with customizable data        ║
-    ║  ✅ ALLOWED: Replace sampleRouteData with actual route data ║
-    ║  ✅ ALLOWED: Replace coordinates, colors, line widths       ║
-    ║  ❌ FORBIDDEN: Modify iNavi Maps API calls/constructors     ║
-    ║  • DO NOT add options/parameters not shown in template      ║
-    ║  • DO NOT change API usage patterns                         ║
-    ║  • iNavi Maps API ≠ Google Maps API (different syntax)     ║
-    ╚══════════════════════════════════════════════════════════════╝
-    -->
     <div id="map"></div>
 
     <script>
@@ -42,6 +30,12 @@
        * Replace this with actual route API data to visualize
        * real navigation routes. Use the get_api_spec tool to
        * look up the iNavi Route API specification.
+       *
+       * NOTE: the API returns {x, y}, which is NOT a LngLatLike.
+       * LngLatLike accepts {lat, lng} or [lng, lat], so every
+       * coordinate must be converted with c => [c.x, c.y] before
+       * it is handed to Polyline. Passing {x, y} straight through
+       * fails.
        * ──────────────────────────────────────────────────────────
        */
       const sampleRouteData = {
