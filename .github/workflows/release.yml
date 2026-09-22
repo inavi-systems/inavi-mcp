@@ -4,13 +4,14 @@ on:
   workflow_dispatch:
     inputs:
       version-type:
-        description: 'Version bump type'
+        description: 'Version bump type ("none" republishes what is already on main)'
         required: true
         type: choice
         options:
           - patch
           - minor
           - major
+          - none
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
@@ -40,24 +41,65 @@ jobs:
       - name: Build
         run: npm run build
 
-      # Version bump (runs sync-version.js via npm "version" hook)
+      # Version bump (runs sync-version.js via npm "version" hook).
+      # Skipped for "none", which publishes the version already committed on main.
+      # That is the recovery path: a step after the version push can fail, and
+      # re-running a bump would strand the half-released version behind a new one.
       - name: Bump version
-        id: version
+        if: inputs.version-type != 'none'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           npm version ${{ inputs.version-type }}
+
+      - name: Resolve version
+        id: version
+        run: |
+          NAME=$(node -p "require('./package.json').name")
           VERSION=$(node -p "require('./package.json').version")
+          echo "name=$NAME" >> $GITHUB_OUTPUT
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "tag=v$VERSION" >> $GITHUB_OUTPUT
 
       - name: Push version commit and tag
+        if: inputs.version-type != 'none'
         run: git push origin main --tags
 
-      # Publish to npm
+      # Publish to npm. Skipped when the version is already published, so a
+      # "none" re-run does not fail on npm's refusal to overwrite a version.
+      - name: Check whether the version is already on npm
+        id: npm-state
+        run: |
+          if npm view --prefer-online \
+            "${{ steps.version.outputs.name }}@${{ steps.version.outputs.version }}" version > /dev/null 2>&1; then
+            echo "published=true" >> $GITHUB_OUTPUT
+          else
+            echo "published=false" >> $GITHUB_OUTPUT
+          fi
+
       - name: Publish to npm
+        if: steps.npm-state.outputs.published != 'true'
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      # npm accepts a publish before the version is readable from the registry
+      # ("Your package is being processed and may take a few minutes"). The MCP
+      # Registry validates the package against that read and rejects the release
+      # with a 404 if it runs first, so wait for the version to become visible.
+      - name: Wait for npm to serve the version
+        run: |
+          for attempt in $(seq 1 10); do
+            if npm view --prefer-online \
+              "${{ steps.version.outputs.name }}@${{ steps.version.outputs.version }}" version > /dev/null 2>&1; then
+              echo "${{ steps.version.outputs.name }}@${{ steps.version.outputs.version }} is readable from npm"
+              exit 0
+            fi
+            echo "attempt $attempt: not visible yet, retrying in 60s"
+            sleep 60
+          done
+          echo "::error::${{ steps.version.outputs.version }} did not appear on npm within 10 minutes"
+          exit 1
 
       # Publish to the official MCP Registry (GitHub OIDC, no secret required).
       # server.json is kept in sync by scripts/sync-version.js during "npm version".
