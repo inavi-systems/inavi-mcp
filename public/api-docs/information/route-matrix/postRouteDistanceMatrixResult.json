@@ -82,6 +82,18 @@
                 "description": "좌표 지점들의 목록(배열)<br>*최대 300개 까지 가능"
               }
             },
+            "weight": {
+              "minimum": 0,
+              "type": "integer",
+              "description": "차량 무게(kg)",
+              "format": "int32"
+            },
+            "height": {
+              "minimum": 0,
+              "type": "integer",
+              "description": "차량 높이(cm)",
+              "format": "int32"
+            },
             "traffic": {
               "maximum": 1,
               "minimum": 0,
