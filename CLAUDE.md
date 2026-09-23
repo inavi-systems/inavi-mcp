@@ -76,6 +76,25 @@ path for a run that failed after the version reached `main`: the bump, the push,
 publish of an already-published version are all skipped, so the remaining steps can finish. Run
 it once — a second run fails when the MCP Registry rejects the duplicate version.
 
+#### Release notes
+
+A `patch` release keeps the generated `## What's Changed` list on its own — for fixes and doc
+updates the PR titles are the description.
+
+A `minor` or `major` release adds a feature, which a list of PR titles does not convey. The
+workflow opens a `## Highlights` section above that list and leaves it reading `_Pending._`;
+fill it in afterwards (Claude Code or another assistant, from the diff between the two tags).
+
+Highlights are **one line per item**, not paragraphs — the point is to show at a glance what
+changed. Include:
+
+- new tools or capabilities — what the user can now do that they could not before
+- changed behaviour or meaning — the most important category; a field that now means something
+  else belongs here even when nothing breaks
+- visibly different output
+
+Leave out refactors, CI work and dependency bumps; `## What's Changed` already lists them.
+
 ## Architecture
 
 ### MCP Server Pattern
