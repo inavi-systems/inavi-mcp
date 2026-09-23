@@ -55,11 +55,45 @@ npm run update-sdk-docs   # Scrape Web JS SDK docs (Docma) into public/sdk-docs/
 ```
 
 ### Release
-```bash
-npm run release        # Patch release
-npm run release:minor  # Minor release
-npm run release:major  # Major release
+
+Releases run from GitHub Actions, not the shell. `npm run release` only prints a pointer and
+exits 1; `release:minor` and `release:major` do not exist.
+
 ```
+Actions > Release > Run workflow > version-type: patch | minor | major | none
+```
+
+The workflow bumps the version (`scripts/sync-version.js` syncs `manifest.json` and
+`server.json` through the npm `version` hook), pushes the commit and tag to `main`, publishes to
+npm, waits until npm serves the new version, publishes to the official MCP Registry, then
+attaches an MCPB bundle to a GitHub Release.
+
+**Do not bump the version locally** — the workflow does it, so a local `npm version` makes the
+release skip a number.
+
+`none` publishes the version already committed on `main` instead of bumping. It is the resume
+path for a run that failed after the version reached `main`: the bump, the push, and an npm
+publish of an already-published version are all skipped, so the remaining steps can finish. Run
+it once — a second run fails when the MCP Registry rejects the duplicate version.
+
+#### Release notes
+
+A `patch` release keeps the generated `## What's Changed` list on its own — for fixes and doc
+updates the PR titles are the description.
+
+A `minor` or `major` release adds a feature, which a list of PR titles does not convey. The
+workflow opens a `## Highlights` section above that list and leaves it reading `_Pending._`;
+fill it in afterwards (Claude Code or another assistant, from the diff between the two tags).
+
+Highlights are **one line per item**, not paragraphs — the point is to show at a glance what
+changed. Include:
+
+- new tools or capabilities — what the user can now do that they could not before
+- changed behaviour or meaning — the most important category; a field that now means something
+  else belongs here even when nothing breaks
+- visibly different output
+
+Leave out refactors, CI work and dependency bumps; `## What's Changed` already lists them.
 
 ## Architecture
 

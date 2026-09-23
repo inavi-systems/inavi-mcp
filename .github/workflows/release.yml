@@ -129,3 +129,25 @@ jobs:
             *.mcpb
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # A minor or major release adds a feature, and the generated list of PR titles
+      # does not convey one. Open the section here and fill it in afterwards; patch
+      # releases keep the generated list on its own. The body is read back and
+      # rewritten rather than passed to the action, so the result does not depend on
+      # how the API merges a supplied body with generated notes.
+      - name: Open a Highlights section
+        if: inputs.version-type == 'minor' || inputs.version-type == 'major'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TAG="${{ steps.version.outputs.tag }}"
+          gh release view "$TAG" --json body --jq '.body' > generated-notes.md
+          {
+            echo "## Highlights"
+            echo
+            echo "_Pending._"
+            echo
+            cat generated-notes.md
+          } > release-notes.md
+          gh release edit "$TAG" --notes-file release-notes.md
+          echo "### Highlights section is empty — fill it in on $TAG" >> "$GITHUB_STEP_SUMMARY"
