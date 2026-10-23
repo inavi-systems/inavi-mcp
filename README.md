@@ -1,14 +1,15 @@
-# iNavi MCP Server
+# INAVI Maps Docs MCP Server
 
 [![npm version](https://img.shields.io/npm/v/@inavi-maps/mcp-server)](https://www.npmjs.com/package/@inavi-maps/mcp-server)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 AI 어시스턴트에 지도 인텔리전스를 부여하는 MCP (Model Context Protocol) 서버입니다.
 
-iNavi MCP Server를 연결하면, AI가 iNavi Maps의 다양한 위치 기반 API를 이해하고 인터랙티브 지도를 직접 생성할 수 있게 됩니다. 별도의 API 문서를 읽거나 코드를 직접 작성할 필요 없이, 자연어로 대화하며 지도 기반 기능을 구현할 수 있습니다.
+INAVI Maps Docs MCP Server를 연결하면, AI가 INAVI Maps의 위치 기반 API와 Web JS SDK를 이해하고 인터랙티브 지도를 직접 생성할 수 있게 됩니다. 별도의 문서를 읽거나 코드를 직접 작성할 필요 없이, 자연어로 대화하며 지도 기반 기능을 구현할 수 있습니다.
 
-- **API 스펙 조회** - 지오코딩, POI 검색, 경로 탐색, 맵 매칭 등 30개 이상의 iNavi Maps API 사양을 AI에게 제공
-- **지도 시각화** - 마커, 클러스터, 폴리곤, 폴리라인 등 18개의 HTML 템플릿으로 인터랙티브 지도 생성
+- **API 명세** - 지오코딩, POI 검색, 경로 탐색, 맵 매칭 등 30개 이상의 INAVI Maps API 명세(OAS 기반)를 AI에게 제공
+- **지도 SDK 예제** - 마커, 클러스터, 폴리곤, 폴리라인 등 바로 실행되는 18개의 지도 SDK 예제로 인터랙티브 지도 생성
+- **SDK 레퍼런스** - Web JS SDK의 클래스·메서드·옵션·이벤트 정의를 제공해, 예제에 없는 기능도 실제 시그니처대로 작성
 
 **이런 분들에게 적합합니다:**
 - **빠른 프로토타이핑** - API 문서를 읽지 않고 AI 대화만으로 지도 기반 기능 구현
@@ -31,23 +32,92 @@ iNavi MCP Server를 연결하면, AI가 iNavi Maps의 다양한 위치 기반 AP
 
 ### 방법 2: npx (모든 MCP 호스트)
 
-Cursor, VS Code, Claude Code, Codex, Windsurf 등 다양한 MCP 호스트에서 사용할 수 있습니다. 아래 **서버 설정**을 사용 중인 도구의 **설정 경로**에 추가하세요. (Codex는 JSON이 아닌 TOML 형식이라 변환이 필요합니다.)
+Cursor, VS Code, Claude Code, Codex, Windsurf 등 다양한 MCP 호스트에서 사용할 수 있습니다.
 
 > **사전 요구사항:** Node.js 22 이상이 설치되어 있어야 합니다.
 
-| 도구 | 설정 경로 | 서버 설정 | 공식 가이드 |
-|---|---|---|---|
-| Cursor | `~/.cursor/mcp.json` | <pre>{<br>  "mcpServers": {<br>    "inavi-maps-mcp": {<br>      "command": "npx",<br>      "args": ["-y", "@inavi-maps/mcp-server"]<br>    }<br>  }<br>}</pre> | [↗](https://cursor.com/docs/mcp) |
-| VS Code | 사용자 프로필 | <pre>{<br>  "servers": {<br>    "inavi-maps-mcp": {<br>      "command": "npx",<br>      "args": ["-y", "@inavi-maps/mcp-server"]<br>    }<br>  }<br>}</pre> | [↗](https://code.visualstudio.com/docs/agents/reference/mcp-configuration) |
-| Claude Code | `~/.claude.json` | <pre>{<br>  "mcpServers": {<br>    "inavi-maps-mcp": {<br>      "command": "npx",<br>      "args": ["-y", "@inavi-maps/mcp-server"]<br>    }<br>  }<br>}</pre> | [↗](https://code.claude.com/docs/en/mcp) |
-| Claude Desktop | `%APPDATA%\Claude\claude_desktop_config.json` | <pre>{<br>  "mcpServers": {<br>    "inavi-maps-mcp": {<br>      "command": "npx",<br>      "args": ["-y", "@inavi-maps/mcp-server"]<br>    }<br>  }<br>}</pre> | [↗](https://modelcontextprotocol.io/docs/develop/connect-local-servers) |
-| Codex | `~/.codex/config.toml` | <pre>[mcp_servers.inavi-maps-mcp]<br>command = "npx"<br>args = ["-y", "@inavi-maps/mcp-server"]</pre> | [↗](https://developers.openai.com/codex/mcp) |
-| Windsurf | `~/.codeium/windsurf/mcp_config.json` | <pre>{<br>  "mcpServers": {<br>    "inavi-maps-mcp": {<br>      "command": "npx",<br>      "args": ["-y", "@inavi-maps/mcp-server"]<br>    }<br>  }<br>}</pre> | [↗](https://docs.windsurf.com/windsurf/cascade/mcp) |
+[![Install in Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en/install-mcp?name=inavi-maps-mcp&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIkBpbmF2aS1tYXBzL21jcC1zZXJ2ZXIiXX0=)
+[![Install in VS Code](https://img.shields.io/badge/VS_Code-Install_Server-0098FF?logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=inavi-maps-mcp&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40inavi-maps%2Fmcp-server%22%5D%7D)
 
-<sub>Claude Code, Codex 같은 CLI 도구는 다음과 같이 간단하게 설정할 수 있습니다.</sub>
+**표준 설정** — 대부분의 MCP 호스트에서 그대로 사용할 수 있습니다.
 
-- **Claude Code**: `claude mcp add --transport stdio inavi-maps-mcp -- npx -y @inavi-maps/mcp-server`
-- **Codex**: `codex mcp add inavi-maps-mcp -- npx -y @inavi-maps/mcp-server`
+```json
+{
+  "mcpServers": {
+    "inavi-maps-mcp": {
+      "command": "npx",
+      "args": ["-y", "@inavi-maps/mcp-server"]
+    }
+  }
+}
+```
+
+사용 중인 도구를 펼쳐 설정 위치를 확인하세요.
+
+<details>
+<summary><b>Cursor</b></summary>
+
+위 **Install in Cursor** 버튼을 누르거나, `~/.cursor/mcp.json`에 표준 설정을 추가합니다. ([공식 가이드](https://cursor.com/docs/mcp))
+
+</details>
+
+<details>
+<summary><b>VS Code</b></summary>
+
+위 **Install in VS Code** 버튼을 누르거나, 다음 명령을 실행합니다. ([공식 가이드](https://code.visualstudio.com/docs/agents/reference/mcp-configuration))
+
+```bash
+code --add-mcp '{"name":"inavi-maps-mcp","command":"npx","args":["-y","@inavi-maps/mcp-server"]}'
+```
+
+설정 파일을 직접 편집할 때는 최상위 키가 `mcpServers`가 아닌 `servers`입니다.
+
+</details>
+
+<details>
+<summary><b>Claude Code</b></summary>
+
+```bash
+claude mcp add --transport stdio inavi-maps-mcp -- npx -y @inavi-maps/mcp-server
+```
+
+또는 `~/.claude.json`에 표준 설정을 추가합니다. ([공식 가이드](https://code.claude.com/docs/en/mcp))
+
+</details>
+
+<details>
+<summary><b>Claude Desktop</b></summary>
+
+`claude_desktop_config.json`에 표준 설정을 추가합니다. ([공식 가이드](https://modelcontextprotocol.io/docs/develop/connect-local-servers))
+
+- Windows: `%APPDATA%\Claude\claude_desktop_config.json`
+- macOS: `~/Library/Application Support/Claude/claude_desktop_config.json`
+
+</details>
+
+<details>
+<summary><b>Codex</b></summary>
+
+```bash
+codex mcp add inavi-maps-mcp -- npx -y @inavi-maps/mcp-server
+```
+
+또는 `~/.codex/config.toml`에 추가합니다 (TOML 형식). ([공식 가이드](https://developers.openai.com/codex/mcp))
+
+```toml
+[mcp_servers.inavi-maps-mcp]
+command = "npx"
+args = ["-y", "@inavi-maps/mcp-server"]
+```
+
+</details>
+
+<details>
+<summary><b>Windsurf</b></summary>
+
+`~/.codeium/windsurf/mcp_config.json`에 표준 설정을 추가합니다. ([공식 가이드](https://docs.windsurf.com/windsurf/cascade/mcp))
+
+</details>
 
 ---
 
@@ -57,14 +127,14 @@ MCP 서버를 설치한 후, AI에게 자연어로 요청하세요.
 
 ### API 탐색 & 코드 생성
 
-이 MCP 서버는 iNavi Maps API 사양을 AI에게 제공합니다. AI가 직접 API를 호출하는 것이 아니라, API 스펙을 참조하여 올바른 호출 코드를 작성해 줍니다.
+이 MCP 서버는 INAVI Maps API 명세를 AI에게 제공합니다. AI가 직접 API를 호출하는 것이 아니라, API 명세를 참조하여 올바른 호출 코드를 작성해 줍니다.
 
 ```
-iNavi Maps에서 사용할 수 있는 지오코딩 관련 API를 알려줘
+INAVI Maps에서 사용할 수 있는 지오코딩 관련 API를 알려줘
 ```
 
 ```
-리버스 지오코딩 API의 요청/응답 스펙을 보여줘
+리버스 지오코딩 API의 요청/응답 명세를 보여줘
 ```
 
 ```
@@ -81,10 +151,10 @@ N:1 거리 매트릭스 API로 가장 가까운 매장을 찾는 로직을 구�
 
 ### 지도 시각화
 
-AI가 HTML 템플릿을 기반으로 인터랙티브 지도 페이지를 생성합니다.
+AI가 지도 SDK 예제로 동작하는 페이지를 먼저 구성하고, 예제에 없는 옵션·메서드·이벤트는 SDK 레퍼런스에서 확인해 반영합니다.
 
 ```
-iNavi 지도에 마커를 표시하는 HTML 페이지를 만들어줘
+INAVI Maps 지도에 마커를 표시하는 HTML 페이지를 만들어줘
 ```
 
 ```
@@ -99,16 +169,36 @@ iNavi 지도에 마커를 표시하는 HTML 페이지를 만들어줘
 서울 주요 관광지를 폴리곤 영역과 마커로 표시하는 지도를 만들어줘
 ```
 
+```
+클러스터에서 마커를 클릭하면 해당 장소의 정보를 InfoWindow로 보여줘
+```
+
+### SDK 레퍼런스 조회
+
+Web JS SDK의 클래스·메서드·옵션 정의를 AI가 기억에 의존해 추측하지 않고 확인한 뒤 답변합니다.
+
+```
+Marker에서 사용할 수 있는 이벤트와 옵션을 알려줘
+```
+
+```
+Map#fitBounds의 파라미터와 옵션을 알려줘
+```
+
+```
+Polyline 선 스타일(LineStyle)로 지정할 수 있는 값을 정리해줘
+```
+
 ### 조합 활용
 
-API 스펙 조회와 지도 시각화를 함께 사용하면 더 복잡한 기능을 구현할 수 있습니다.
+API 명세, 지도 SDK 예제, SDK 레퍼런스를 함께 사용하면 더 복잡한 기능을 구현할 수 있습니다.
 
 ```
 지오코딩 API로 주소를 좌표로 변환하고, 그 결과를 지도에 마커로 표시하는 페이지를 만들어줘
 ```
 
 ```
-경로 탐색 API 호출 결과를 지도 위에 폴리라인으로 시각화하는 코드를 작성해줘
+경로 탐색 API 호출 결과를 지도 위에 폴리라인으로 그리고, 지도 범위를 경로 전체에 맞춰줘
 ```
 
 ---
@@ -117,19 +207,19 @@ API 스펙 조회와 지도 시각화를 함께 사용하면 더 복잡한 기�
 
 이 MCP 서버는 세 종류, 총 **6개의 도구**를 제공합니다. 각 도구 쌍은 **탐색 → 상세 조회**의 2단계 워크플로우로 설계되어 있습니다.
 
-### API 스펙 도구
+### API 명세 도구
 
-iNavi Maps API 사양을 AI에게 제공하여, API 문서를 직접 읽지 않고도 AI가 올바른 API 호출 코드를 작성할 수 있도록 합니다.
+INAVI Maps API 명세(OAS 기반)를 AI에게 제공하여, API 문서를 직접 읽지 않고도 AI가 올바른 API 호출 코드를 작성할 수 있도록 합니다.
 
 | 도구 | 설명 | 주요 입력 |
 |------|------|-----------|
-| `list_api_specs` | API 스펙 목록 조회 | `category` (선택) |
-| `get_api_spec` | 특정 API 상세 사양 조회 | `operationId` (필수) |
+| `list_api_specs` | API 명세 목록 조회 | `category` (선택) |
+| `get_api_spec` | 특정 API 상세 명세 조회 | `operationId` (필수) |
 
-**워크플로우:** `list_api_specs`로 사용 가능한 API를 탐색한 후, `get_api_spec`에 `operationId`를 전달하여 파라미터, 요청/응답 스키마 등 상세 사양을 조회합니다.
+**워크플로우:** `list_api_specs`로 사용 가능한 API를 탐색한 후, `get_api_spec`에 `operationId`를 전달하여 파라미터, 요청/응답 스키마 등 상세 명세를 조회합니다.
 
 <details>
-<summary><b>API 스펙 카테고리 (8개)</b></summary>
+<summary><b>API 명세 카테고리 (8개)</b></summary>
 
 | 카테고리 | 설명 | 포함 API |
 |---------|------|---------|
@@ -144,19 +234,19 @@ iNavi Maps API 사양을 AI에게 제공하여, API 문서를 직접 읽지 않�
 
 </details>
 
-### HTML 예제 도구 (지도 시각화)
+### 지도 SDK 예제 도구
 
-인터랙티브 지도를 생성하기 위한 HTML 템플릿을 제공합니다. AI가 템플릿의 데이터 값(좌표, 레이블 등)을 커스터마이징하여 맞춤형 지도 페이지를 생성합니다.
+SDK 로더부터 지도 초기화까지 포함된, 바로 실행되는 지도 SDK 예제(HTML)를 제공합니다. AI가 예제의 데이터 값(좌표, 레이블 등)을 커스터마이징하여 맞춤형 지도 페이지를 생성합니다.
 
 | 도구 | 설명 | 주요 입력 |
 |------|------|-----------|
-| `list_map_examples` | 지도 예제 목록 조회 | `category` (선택) |
-| `get_map_example` | 특정 지도 예제 HTML 조회 | `id` (필수) |
+| `list_map_examples` | 지도 SDK 예제 목록 조회 | `category` (선택) |
+| `get_map_example` | 특정 지도 SDK 예제의 HTML 코드 조회 | `id` (필수) |
 
 **워크플로우:** `list_map_examples`로 사용 가능한 예제를 탐색한 후, `get_map_example`에 `id`를 전달하여 완전한 HTML 코드를 조회합니다.
 
 <details>
-<summary><b>지도 예제 카테고리 (4개, 총 18개 예제)</b></summary>
+<summary><b>지도 SDK 예제 카테고리 (4개, 총 18개 예제)</b></summary>
 
 | 카테고리 | 예제 수 | 포함 예제 |
 |---------|--------|----------|
@@ -167,21 +257,21 @@ iNavi Maps API 사양을 AI에게 제공하여, API 문서를 직접 읽지 않�
 
 </details>
 
-### SDK 문서 도구 (Web JS SDK 레퍼런스)
+### SDK 레퍼런스 도구
 
-iNavi Maps Web JS SDK의 클래스와 옵션/타입 정의를 제공합니다. 예제 템플릿에 없는 옵션·메서드·이벤트를 AI가 기억에 의존해 추측하지 않고, 실제 시그니처를 확인한 뒤 작성하도록 합니다.
+INAVI Maps Web JS SDK의 클래스와 옵션/타입 정의를 제공합니다. 지도 SDK 예제에 없는 옵션·메서드·이벤트를 AI가 기억에 의존해 추측하지 않고, 실제 시그니처를 확인한 뒤 작성하도록 합니다.
 
 | 도구 | 설명 | 주요 입력 |
 |------|------|-----------|
-| `list_sdk_docs` | SDK 심볼 목록 조회 (클래스는 메서드명 포함) | `category` (선택) |
-| `get_sdk_doc` | 특정 심볼 또는 단일 메서드 문서 조회 | `docId` (필수) |
+| `list_sdk_docs` | SDK 레퍼런스 심볼 목록 조회 (클래스는 메서드명 포함) | `category` (선택) |
+| `get_sdk_doc` | 특정 심볼 또는 단일 메서드의 SDK 레퍼런스 조회 | `docId` (필수) |
 
-**워크플로우:** 지도를 만들 때는 `list_map_examples`로 실행 가능한 템플릿을 먼저 확보하고, 템플릿에 없는 기능이 필요할 때 `list_sdk_docs` → `get_sdk_doc`으로 정확한 시그니처를 확인합니다. **SDK 로더 스크립트는 예제에만 있으므로 레퍼런스만으로는 동작하는 페이지를 만들 수 없습니다.**
+**워크플로우:** 지도를 만들 때는 `list_map_examples`로 실행 가능한 지도 SDK 예제를 먼저 확보하고, 예제에 없는 기능이 필요할 때 `list_sdk_docs` → `get_sdk_doc`으로 정확한 시그니처를 확인합니다. **SDK 로더 스크립트는 예제에만 있으므로 레퍼런스만으로는 동작하는 페이지를 만들 수 없습니다.**
 
 `docId`는 클래스/타입 id(`inavi.maps.Map`, `MapOptions`)와 메서드 롱네임(`inavi.maps.Map#fitBounds`)을 모두 받습니다.
 
 <details>
-<summary><b>SDK 문서 카테고리 (6개, 총 45개 심볼)</b></summary>
+<summary><b>SDK 레퍼런스 카테고리 (6개, 총 45개 심볼)</b></summary>
 
 | 카테고리 | 심볼 수 | 포함 심볼 |
 |---------|--------|----------|
@@ -198,14 +288,14 @@ iNavi Maps Web JS SDK의 클래스와 옵션/타입 정의를 제공합니다. �
 
 ## Tools
 
-This server exposes **6 tools**, arranged as three discovery → detail pairs.
+총 **6개 도구**를 탐색 → 상세 조회 3쌍으로 제공합니다.
 
-- `list_api_specs` — Browse available iNavi Maps API specifications by category.
-- `get_api_spec` — Get the detailed specification of a specific API by `operationId`.
-- `list_map_examples` — Browse available map visualization HTML examples.
-- `get_map_example` — Get a specific map example's HTML template by `id`.
-- `list_sdk_docs` — Browse Web JS SDK symbols (classes and option/type definitions) by category.
-- `get_sdk_doc` — Get one SDK symbol, or a single method, by `docId`.
+- `list_api_specs` — INAVI Maps API 명세를 카테고리별로 탐색합니다.
+- `get_api_spec` — `operationId`로 특정 API의 상세 명세를 조회합니다.
+- `list_map_examples` — 지도 SDK 예제 목록을 카테고리별로 탐색합니다.
+- `get_map_example` — `id`로 특정 지도 SDK 예제의 HTML 코드를 조회합니다.
+- `list_sdk_docs` — Web JS SDK 심볼(클래스, 옵션/타입 정의)을 카테고리별로 탐색합니다.
+- `get_sdk_doc` — `docId`로 SDK 심볼 하나 또는 단일 메서드의 SDK 레퍼런스를 조회합니다.
 
 ---
 
@@ -235,7 +325,7 @@ Unexpected token...is not valid JSON
 
 | 문서 | 설명 |
 |-----|------|
-| [API 레퍼런스](./docs/guides/api-reference.md) | 모든 도구의 상세 입출력 문서 |
+| [도구 레퍼런스](./docs/guides/api-reference.md) | 모든 도구의 상세 입출력 문서 |
 | [Claude Desktop 설정](./docs/setup/claude-desktop-setup.md) | Claude Desktop 설치 및 설정 가이드 |
 | [Cursor 설정](./docs/setup/cursor-setup.md) | Cursor IDE 설정 가이드 |
 | [로컬 개발](./docs/setup/local-development.md) | 소스 코드에서 직접 빌드 및 실행 |
@@ -253,4 +343,4 @@ MIT License - 자유롭게 사용, 수정, 배포할 수 있습니다. 자세한
 
 - [Model Context Protocol](https://modelcontextprotocol.io/) - MCP 공식 문서
 - [Claude Desktop](https://claude.ai/download) - Claude Desktop 다운로드
-- [iNavi Maps API](https://mapsapi.inavisys.com/) - iNavi Maps API 공식 문서
+- [INAVI Maps API](https://mapsapi.inavisys.com/) - INAVI Maps API 공식 문서
