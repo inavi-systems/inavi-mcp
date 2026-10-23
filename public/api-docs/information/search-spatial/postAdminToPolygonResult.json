@@ -135,7 +135,7 @@
                         "admincode": {
                           "type": "string",
                           "description": "행정표준코드",
-                          "example": "true"
+                          "example": "41135109"
                         },
                         "count": {
                           "type": "integer",
@@ -144,36 +144,88 @@
                           "example": 192
                         },
                         "polygonlist": {
-                          "type": "object",
-                          "properties": {
-                            "count": {
-                              "type": "integer",
-                              "description": "공간의 좌표 개수",
-                              "format": "int32",
-                              "example": 236
-                            },
-                            "polygon": {
-                              "type": "array",
-                              "description": "공간의 좌표 정보 목록(배열)",
-                              "items": {
+                          "type": "array",
+                          "description": "행정구역 공간 정보 목록(배열)",
+                          "items": {
+                            "type": "object",
+                            "allOf": [
+                              {
+                                "required": [
+                                  "type"
+                                ],
                                 "type": "object",
                                 "properties": {
-                                  "x": {
-                                    "type": "number",
-                                    "description": "해당 지점의 X좌표(경도)",
-                                    "example": 127.110762
+                                  "crs": {
+                                    "type": "object",
+                                    "properties": {
+                                      "type": {
+                                        "type": "string",
+                                        "enum": [
+                                          "name",
+                                          "link"
+                                        ]
+                                      },
+                                      "properties": {
+                                        "type": "object",
+                                        "additionalProperties": {
+                                          "type": "object"
+                                        }
+                                      }
+                                    }
                                   },
-                                  "y": {
-                                    "type": "number",
-                                    "description": "해당 지점의 Y좌표(위도)",
-                                    "example": 37.402184
+                                  "bbox": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "number",
+                                      "format": "double"
+                                    }
+                                  },
+                                  "type": {
+                                    "type": "string"
                                   }
                                 },
-                                "description": "검색 할 좌표를 담는 목록(배열)<br>*최소 3개 이상 입력"
+                                "description": "영역 정보",
+                                "discriminator": {
+                                  "propertyName": "type"
+                                }
+                              },
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "coordinates": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "array",
+                                      "items": {
+                                        "type": "object",
+                                        "properties": {
+                                          "longitude": {
+                                            "type": "number",
+                                            "format": "double"
+                                          },
+                                          "latitude": {
+                                            "type": "number",
+                                            "format": "double"
+                                          },
+                                          "altitude": {
+                                            "type": "number",
+                                            "format": "double"
+                                          },
+                                          "additionalElements": {
+                                            "type": "array",
+                                            "items": {
+                                              "type": "number",
+                                              "format": "double"
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
                               }
-                            }
-                          },
-                          "description": "행정구역 공간 정보 목록(배열)"
+                            ]
+                          }
                         }
                       },
                       "description": "행정구역 공간 정보 목록(배열)"

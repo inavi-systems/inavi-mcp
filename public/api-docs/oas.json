@@ -15,62 +15,62 @@
     {
       "name": "WEB(JS)",
       "description": "JavaScript 기반 아이나비 웹 지도 API",
-      "x-order": 1,
-      "tag": "지도"
+      "tag": "지도",
+      "x-order": 1
     },
     {
       "name": "Static Map",
       "description": "부드럽고 선명한 고성능 정적 지도",
-      "x-order": 2,
-      "tag": "지도"
+      "tag": "지도",
+      "x-order": 2
     },
     {
       "name": "장소/주소 검색",
       "description": "다양한 조건을 기반으로 장소 및 관련 정보를 조회합니다",
-      "x-order": 3,
-      "tag": "검색"
+      "tag": "검색",
+      "x-order": 3
     },
     {
       "name": "지오코딩",
       "description": "주소 ↔ 좌표의 변환 및 검증을 제공합니다",
-      "x-order": 4,
-      "tag": "검색"
+      "tag": "검색",
+      "x-order": 4
     },
     {
       "name": "공간 검색",
       "description": "좌표 기반의 공간 검색 유틸리티를 제공합니다",
-      "x-order": 5,
-      "tag": "검색"
+      "tag": "검색",
+      "x-order": 5
     },
     {
       "name": "W3W",
       "description": "what3words기반의 위치 검색·변환하는 기능을 제공합니다",
-      "x-order": 6,
-      "tag": "검색"
+      "tag": "검색",
+      "x-order": 6
     },
     {
       "name": "탐색",
       "description": "여러 조건에 따라 차량·도보 등의 경로 탐색을 제공합니다",
-      "x-order": 7,
-      "tag": "경로"
+      "tag": "경로",
+      "x-order": 7
     },
     {
       "name": "최적화",
       "description": "여러 지점의 최적 방문 순서를 제공합니다",
-      "x-order": 8,
-      "tag": "경로"
+      "tag": "경로",
+      "x-order": 8
     },
     {
       "name": "복원",
       "description": "GPS 데이터를 도로에 맞게 보정해 실제 주행 경로에 근접한 결과를 제공합니다",
-      "x-order": 9,
-      "tag": "경로"
+      "tag": "경로",
+      "x-order": 9
     },
     {
       "name": "매트릭스",
       "description": "출발/목적지 조합의 최적 거리·시간 정보를 제공합니다",
-      "x-order": 10,
-      "tag": "경로"
+      "tag": "경로",
+      "x-order": 10
     }
   ],
   "paths": {
@@ -12149,7 +12149,7 @@
           "탐색"
         ],
         "summary": "도보/PM 경로 탐색",
-        "description": "출발/도착지 및 최대 5개의 경유지, 기타 설정을 통해 최적화된 도보/PM 경로 탐색 정보를 반환합니다",
+        "description": "출발/도착지 및 최대 100개의 경유지, 기타 설정을 통해 최적화된 도보/PM 경로 탐색 정보를 반환합니다",
         "operationId": "postRoutePedestrianResult",
         "parameters": [
           {
@@ -13558,7 +13558,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/MapMatchPlusRequest"
+                "$ref": "#/components/schemas/MapMatchRequest"
               },
               "example": {
                 "userId": "example",
@@ -13596,7 +13596,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/MapMatchPlusResponse"
+                  "$ref": "#/components/schemas/MapMatchResponse"
                 },
                 "examples": {
                   "success": {
@@ -15792,11 +15792,11 @@
             "format": "int32",
             "example": 3720
           },
-          "startTime": {
-            "$ref": "#/components/schemas/startTime"
+          "start_time": {
+            "$ref": "#/components/schemas/start_time"
           },
-          "endTime": {
-            "$ref": "#/components/schemas/endTime"
+          "end_time": {
+            "$ref": "#/components/schemas/end_time"
           }
         },
         "description": "각 시간대별 경로 요약 정보의 목록(배열)<br>둘 다 값이 0인 경우 빈 배열 반환"
@@ -15867,7 +15867,7 @@
           }
         }
       },
-      "endTime": {
+      "end_time": {
         "type": "object",
         "properties": {
           "year": {
@@ -15903,7 +15903,7 @@
         },
         "description": "해당 경로 탐색의 예상 도착 시간을 나타내는 객체"
       },
-      "startTime": {
+      "start_time": {
         "type": "object",
         "properties": {
           "year": {
@@ -18588,7 +18588,7 @@
             "example": "37.402159"
           }
         },
-        "description": "좌표 지점들의 목록(배열)<br>*최대 300개 까지 가능"
+        "description": "하나의 좌표 지점 정보를 담는 객체"
       },
       "RouteDistanceMatrixRequest": {
         "required": [
@@ -19569,7 +19569,7 @@
             "$ref": "#/components/schemas/Header"
           },
           "roadMatch": {
-            "$ref": "#/components/schemas/roadMatch"
+            "$ref": "#/components/schemas/RoadMatchData"
           }
         },
         "description": "Road Map Matching 의 전체 응답",
@@ -19708,34 +19708,7 @@
         },
         "description": "과속 이벤트 리스트"
       },
-      "SafeDrivingEvent": {
-        "type": "object",
-        "properties": {
-          "accelEvents": {
-            "type": "array",
-            "description": "급가속 이벤트 리스트",
-            "items": {
-              "$ref": "#/components/schemas/AccelDrivingEvent"
-            }
-          },
-          "decelEvents": {
-            "type": "array",
-            "description": "급감속 이벤트 리스트",
-            "items": {
-              "$ref": "#/components/schemas/DecelDrivingEvent"
-            }
-          },
-          "overspeedEvents": {
-            "type": "array",
-            "description": "과속 이벤트 리스트",
-            "items": {
-              "$ref": "#/components/schemas/OverSpeedDrivingEvent"
-            }
-          }
-        },
-        "description": "경로 전체의 안전 운행 이벤트 정보"
-      },
-      "roadMatch": {
+      "RoadMatchData": {
         "type": "object",
         "properties": {
           "userId": {
@@ -19779,6 +19752,33 @@
         },
         "description": "Road Map Matching 결과"
       },
+      "SafeDrivingEvent": {
+        "type": "object",
+        "properties": {
+          "accelEvents": {
+            "type": "array",
+            "description": "급가속 이벤트 리스트",
+            "items": {
+              "$ref": "#/components/schemas/AccelDrivingEvent"
+            }
+          },
+          "decelEvents": {
+            "type": "array",
+            "description": "급감속 이벤트 리스트",
+            "items": {
+              "$ref": "#/components/schemas/DecelDrivingEvent"
+            }
+          },
+          "overspeedEvents": {
+            "type": "array",
+            "description": "과속 이벤트 리스트",
+            "items": {
+              "$ref": "#/components/schemas/OverSpeedDrivingEvent"
+            }
+          }
+        },
+        "description": "경로 전체의 안전 운행 이벤트 정보"
+      },
       "SearchRoadGroupingRequest": {
         "required": [
           "points"
@@ -19789,7 +19789,7 @@
             "maxItems": 100,
             "minItems": 1,
             "type": "array",
-            "description": "도로 그룹핑을 수행할 방문지 좌표 목록",
+            "description": "도로 그룹핑을 수행할 방문지 좌표 목록<br>*최대 100개의 좌표 설정 가능",
             "items": {
               "$ref": "#/components/schemas/PositionPoint"
             }
@@ -19979,7 +19979,7 @@
           "speed": {
             "minimum": 0,
             "type": "integer",
-            "description": "해당 지점의 속도",
+            "description": "해당 지점의 속도(km/h)",
             "format": "int32"
           },
           "angle": {
@@ -19999,7 +19999,7 @@
             "$ref": "#/components/schemas/Header"
           },
           "roadMatch": {
-            "$ref": "#/components/schemas/roadMatch"
+            "$ref": "#/components/schemas/PreMatchData"
           }
         },
         "description": "Preprocess Map Matching 의 전체 응답",
@@ -20097,6 +20097,50 @@
             ]
           }
         }
+      },
+      "PreMatchData": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "description": "사용자를 구분하기 위한 고유 식별 ID"
+          },
+          "tollFee": {
+            "type": "integer",
+            "description": "경로 상에서 발생하는 총 톨게이트 통행 요금",
+            "format": "int32",
+            "example": 1200
+          },
+          "totalDistance": {
+            "type": "integer",
+            "description": "경로 전체의 총 거리(m)",
+            "format": "int32",
+            "example": 4038
+          },
+          "totalPointCount": {
+            "type": "integer",
+            "description": "경로 전체의 총 지점 개수",
+            "format": "int32",
+            "example": 141
+          },
+          "safeDrivingScore": {
+            "type": "integer",
+            "description": "경로 전체의 안전 운행 점수",
+            "format": "int32",
+            "example": 71
+          },
+          "safeDrivingEvents": {
+            "$ref": "#/components/schemas/SafeDrivingEvent"
+          },
+          "paths": {
+            "type": "array",
+            "description": "경로를 구성하는 각 세부 구간에 대한 정보 목록(배열)",
+            "items": {
+              "$ref": "#/components/schemas/MapMatchPath"
+            }
+          }
+        },
+        "description": "Preprocess Map Matching 결과"
       },
       "SearchPolygonToAdminRequest": {
         "required": [
@@ -20523,6 +20567,88 @@
           }
         }
       },
+      "SearchMultiCoordinatesAsyncRequest": {
+        "required": [
+          "queryList"
+        ],
+        "type": "object",
+        "properties": {
+          "queryList": {
+            "maxItems": 1000,
+            "minItems": 1,
+            "type": "array",
+            "description": "검색 키워드 리스트<br>*최대 1000개 까지 가능",
+            "example": "경기도 성남시 분당구 판교역로 240",
+            "items": {
+              "type": "string",
+              "description": "search.request.multi-coordinates-async.queryList.description",
+              "example": "경기도 성남시 분당구 판교역로 240"
+            }
+          },
+          "coordtype": {
+            "maximum": 1,
+            "minimum": 0,
+            "type": "string",
+            "description": "좌표 체계",
+            "default": "1",
+            "enum": [
+              "0",
+              "1"
+            ],
+            "x-enum-descriptions": {
+              "0": "TW 좌표",
+              "1": "WGS84 좌표"
+            }
+          },
+          "reqcount": {
+            "maximum": 9999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "요청 개수<br>*0~9999",
+            "format": "int32",
+            "default": 100
+          }
+        },
+        "description": "다중 지오코딩 (비동기)을 위한 요청 파라미터 집합"
+      },
+      "MultiCoordinatesAsyncData": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "type": "boolean",
+            "description": "비동기 요청 성공 여부",
+            "example": true
+          },
+          "jobId": {
+            "type": "string",
+            "description": "다중 지오코딩 (비동기) 작업 ID"
+          }
+        },
+        "description": "다중 지오코딩 요청 (비동기) 결과"
+      },
+      "SearchMultiCoordinatesAsyncResponse": {
+        "type": "object",
+        "properties": {
+          "header": {
+            "$ref": "#/components/schemas/Header"
+          },
+          "data": {
+            "$ref": "#/components/schemas/MultiCoordinatesAsyncData"
+          }
+        },
+        "description": "다중 지오코딩 요청 (비동기) API의 전체 응답",
+        "example": {
+          "header": {
+            "isSuccessful": true,
+            "resultCode": 0,
+            "resultMessage": "Success"
+          },
+          "data": {
+            "result": true,
+            "jobId": "8beecc76fad841879b30429312829c8b"
+          }
+        }
+      },
       "SearchMultiAddressesRequest": {
         "required": [
           "points"
@@ -20841,6 +20967,77 @@
         },
         "description": "법정동 주소 정보"
       },
+      "SearchMultiAddressesAsyncRequest": {
+        "required": [
+          "points"
+        ],
+        "type": "object",
+        "properties": {
+          "points": {
+            "maxItems": 3000,
+            "minItems": 1,
+            "type": "array",
+            "description": "좌표 지점들의 목록(배열)<br>*최대 3000개 까지 가능",
+            "items": {
+              "$ref": "#/components/schemas/PositionPoint"
+            }
+          },
+          "coordtype": {
+            "maximum": 1,
+            "minimum": 0,
+            "type": "string",
+            "description": "좌표 체계",
+            "default": "1",
+            "enum": [
+              "0",
+              "1"
+            ],
+            "x-enum-descriptions": {
+              "0": "TW 좌표",
+              "1": "WGS84 좌표"
+            }
+          }
+        },
+        "description": "다중 리버스 지오코딩 (비동기)을 위한 요청 파라미터 집합"
+      },
+      "MultiAddressesAsyncData": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "type": "boolean",
+            "description": "비동기 요청 성공 여부",
+            "example": true
+          },
+          "jobId": {
+            "type": "string",
+            "description": "다중 리버스 지오코딩 (비동기) 작업 ID"
+          }
+        },
+        "description": "다중 리버스 지오코딩 요청 (비동기) 결과"
+      },
+      "SearchMultiAddressesAsyncResponse": {
+        "type": "object",
+        "properties": {
+          "header": {
+            "$ref": "#/components/schemas/Header"
+          },
+          "data": {
+            "$ref": "#/components/schemas/MultiAddressesAsyncData"
+          }
+        },
+        "description": "다중 리버스 지오코딩 요청 (비동기) API의 전체 응답",
+        "example": {
+          "header": {
+            "isSuccessful": true,
+            "resultCode": 0,
+            "resultMessage": "Success"
+          },
+          "data": {
+            "result": true,
+            "jobId": "8cf7b3f38bcaa6d0b243d2e0c3784245b7104f9980c75968a4ec5f258aeeb4dc"
+          }
+        }
+      },
       "MapMatch100Request": {
         "required": [
           "coords"
@@ -21110,7 +21307,7 @@
           }
         }
       },
-      "MapMatchPlusRequest": {
+      "MapMatchRequest": {
         "required": [
           "paths",
           "userId"
@@ -21132,14 +21329,58 @@
           }
         }
       },
-      "MapMatchPlusResponse": {
+      "MapMatchData": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "description": "사용자를 구분하기 위한 고유 식별 ID"
+          },
+          "tollFee": {
+            "type": "integer",
+            "description": "경로 상에서 발생하는 총 톨게이트 통행 요금",
+            "format": "int32",
+            "example": 1200
+          },
+          "totalDistance": {
+            "type": "integer",
+            "description": "경로 전체의 총 거리(m)",
+            "format": "int32",
+            "example": 4038
+          },
+          "totalPointCount": {
+            "type": "integer",
+            "description": "경로 전체의 총 지점 개수",
+            "format": "int32",
+            "example": 141
+          },
+          "safeDrivingScore": {
+            "type": "integer",
+            "description": "경로 전체의 안전 운행 점수",
+            "format": "int32",
+            "example": 71
+          },
+          "safeDrivingEvents": {
+            "$ref": "#/components/schemas/SafeDrivingEvent"
+          },
+          "paths": {
+            "type": "array",
+            "description": "경로를 구성하는 각 세부 구간에 대한 정보 목록(배열)",
+            "items": {
+              "$ref": "#/components/schemas/MapMatchPath"
+            }
+          }
+        },
+        "description": "Special Map Matching 결과"
+      },
+      "MapMatchResponse": {
         "type": "object",
         "properties": {
           "header": {
             "$ref": "#/components/schemas/Header"
           },
           "roadMatch": {
-            "$ref": "#/components/schemas/roadMatch"
+            "$ref": "#/components/schemas/MapMatchData"
           }
         },
         "description": "Special Map Matching 의 전체 응답",
@@ -21546,10 +21787,10 @@
             "description": "사용자를 구분하기 위한 고유 식별 ID"
           },
           "origins": {
-            "maxItems": 100,
+            "maxItems": 200,
             "minItems": 2,
             "type": "array",
-            "description": "좌표 목록<br>*최소 2개에서 최대 100개의 좌표 설정 가능",
+            "description": "좌표 목록<br>*최소 2개에서 최대 200개의 좌표 설정 가능",
             "items": {
               "type": "array",
               "description": "sprp.request.route-distance-matrix-demo.origins.description",
@@ -21561,10 +21802,10 @@
             }
           },
           "destinations": {
-            "maxItems": 100,
+            "maxItems": 200,
             "minItems": 0,
             "type": "array",
-            "description": "목적지 좌표 목록<br>*최대 100개의 좌표 설정 가능",
+            "description": "목적지 좌표 목록<br>*최대 200개의 좌표 설정 가능",
             "items": {
               "type": "array",
               "description": "sprp.request.route-distance-matrix-demo.destinations.description",
@@ -23395,6 +23636,21 @@
           }
         }
       },
+      "ClusteringAdditional": {
+        "type": "object",
+        "properties": {
+          "service_time": {
+            "type": "array",
+            "description": "각 지점별 작업 시간(초)을 시간 분배에 적용",
+            "items": {
+              "type": "integer",
+              "description": "sprp.request.clustering-demo.additional.service_time.description",
+              "format": "int32"
+            }
+          }
+        },
+        "description": "추가 옵션"
+      },
       "ClusteringOption": {
         "required": [
           "division_type",
@@ -23521,10 +23777,10 @@
             "description": "사용자를 구분하기 위한 고유 식별 ID"
           },
           "origins": {
-            "maxItems": 100,
+            "maxItems": 200,
             "minItems": 3,
             "type": "array",
-            "description": "좌표 목록",
+            "description": "좌표 목록<br>*최소 3개에서 최대 200개의 좌표 설정 가능",
             "items": {
               "type": "array",
               "description": "sprp.request.clustering-demo.origins.description",
@@ -23537,6 +23793,9 @@
           },
           "option": {
             "$ref": "#/components/schemas/ClusteringOption"
+          },
+          "additional": {
+            "$ref": "#/components/schemas/ClusteringAdditional"
           }
         },
         "description": "Clustering API를 위한 요청 파라미터 집합"
@@ -23639,114 +23898,6 @@
         },
         "description": "좌표 정보 목록(배열)"
       },
-      "ClusteringResponseOption": {
-        "type": "object",
-        "properties": {
-          "division_type": {
-            "maximum": 4,
-            "minimum": 0,
-            "type": "integer",
-            "description": "sprp.request.clustering.option.division_type.description",
-            "format": "int32",
-            "default": 0,
-            "enum": [
-              0,
-              1,
-              2,
-              3,
-              4
-            ],
-            "x-enum-descriptions": {
-              "0": "sprp.request.clustering.option.division_type-0.description",
-              "1": "sprp.request.clustering.option.division_type-1.description",
-              "2": "sprp.request.clustering.option.division_type-2.description",
-              "3": "sprp.request.clustering.option.division_type-3.description",
-              "4": "sprp.request.clustering.option.division_type-4.description"
-            }
-          },
-          "limit_value": {
-            "type": "integer",
-            "description": "sprp.request.clustering.option.limit_value.description",
-            "format": "int32"
-          },
-          "limit_deviation": {
-            "type": "integer",
-            "description": "sprp.request.clustering.option.limit_deviation.description",
-            "format": "int32"
-          },
-          "limit_cluster": {
-            "type": "integer",
-            "description": "sprp.request.clustering.option.limit_cluster.description",
-            "format": "int32"
-          },
-          "reservation": {
-            "type": "integer",
-            "description": "sprp.request.clustering.option.reservation.description",
-            "format": "int64"
-          },
-          "reservation_type": {
-            "maximum": 2,
-            "minimum": 0,
-            "type": "integer",
-            "description": "sprp.request.clustering.option.reservation_type.description",
-            "format": "int32",
-            "default": 0,
-            "enum": [
-              0,
-              1,
-              2
-            ],
-            "x-enum-descriptions": {
-              "0": "sprp.request.clustering.option.reservation_type-0.description",
-              "1": "sprp.request.clustering.option.reservation_type-1.description",
-              "2": "sprp.request.clustering.option.reservation_type-2.description"
-            }
-          },
-          "endpoint_type": {
-            "maximum": 5,
-            "minimum": 0,
-            "type": "integer",
-            "description": "sprp.request.clustering.option.endpoint_type.description",
-            "format": "int32",
-            "default": 0,
-            "enum": [
-              0,
-              1,
-              2,
-              3,
-              4,
-              5
-            ],
-            "x-enum-descriptions": {
-              "0": "sprp.request.clustering.option.endpoint_type-0.description",
-              "1": "sprp.request.clustering.option.endpoint_type-1.description",
-              "2": "sprp.request.clustering.option.endpoint_type-2.description",
-              "3": "sprp.request.clustering.option.endpoint_type-3.description",
-              "4": "sprp.request.clustering.option.endpoint_type-4.description",
-              "5": "sprp.request.clustering.option.endpoint_type-5.description"
-            }
-          },
-          "clustering_method": {
-            "maximum": 2,
-            "minimum": 0,
-            "type": "integer",
-            "description": "sprp.request.clustering.option.clustering_method.description",
-            "format": "int32",
-            "default": 0,
-            "enum": [
-              0,
-              1,
-              2
-            ],
-            "x-enum-descriptions": {
-              "0": "sprp.request.clustering.option.clustering_method-0.description",
-              "1": "sprp.request.clustering.option.clustering_method-1.description",
-              "2": "sprp.request.clustering.option.clustering_method-2.description"
-            }
-          }
-        },
-        "description": "요청 옵션 정보"
-      },
       "ClusteringSummary": {
         "type": "object",
         "properties": {
@@ -23804,9 +23955,6 @@
                 "format": "double"
               }
             }
-          },
-          "option": {
-            "$ref": "#/components/schemas/ClusteringResponseOption"
           },
           "summary": {
             "$ref": "#/components/schemas/ClusteringSummary"
@@ -24437,13 +24585,35 @@
         },
         "description": "공간 검색 결과"
       },
+      "Polygon": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/GeoJsonObject"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "coordinates": {
+                "type": "array",
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LngLatAlt"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
       "PolygonData": {
         "type": "object",
         "properties": {
           "admincode": {
             "type": "string",
             "description": "행정표준코드",
-            "example": "true"
+            "example": "41135109"
           },
           "count": {
             "type": "integer",
@@ -24452,7 +24622,11 @@
             "example": 192
           },
           "polygonlist": {
-            "$ref": "#/components/schemas/polygonlist"
+            "type": "array",
+            "description": "행정구역 공간 정보 목록(배열)",
+            "items": {
+              "$ref": "#/components/schemas/Polygon"
+            }
           }
         },
         "description": "행정구역 공간 정보 목록(배열)"
@@ -26060,25 +26234,6 @@
             ]
           }
         }
-      },
-      "polygonlist": {
-        "type": "object",
-        "properties": {
-          "count": {
-            "type": "integer",
-            "description": "공간의 좌표 개수",
-            "format": "int32",
-            "example": 236
-          },
-          "polygon": {
-            "type": "array",
-            "description": "공간의 좌표 정보 목록(배열)",
-            "items": {
-              "$ref": "#/components/schemas/NumberVertex"
-            }
-          }
-        },
-        "description": "행정구역 공간 정보 목록(배열)"
       },
       "SearchW3WProposerResponse": {
         "type": "object",
@@ -28274,6 +28429,205 @@
           }
         }
       },
+      "MultiCoordinatesAsyncResultData": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "작업 상태"
+          },
+          "address": {
+            "$ref": "#/components/schemas/MultiCoordinatesData"
+          }
+        },
+        "description": "다중 지오코딩 결과 요청 결과"
+      },
+      "SearchMultiCoordinatesAsyncResultResponse": {
+        "type": "object",
+        "properties": {
+          "header": {
+            "$ref": "#/components/schemas/Header"
+          },
+          "data": {
+            "$ref": "#/components/schemas/MultiCoordinatesAsyncResultData"
+          }
+        },
+        "description": "다중 지오코딩 결과 요청 API의 전체 응답",
+        "example": {
+          "header": {
+            "isSuccessful": true,
+            "resultCode": 0,
+            "resultMessage": "Success"
+          },
+          "address": {
+            "result": true,
+            "count": 2,
+            "coordinatesList": [
+              {
+                "result": true,
+                "admcount": 1,
+                "adm": [
+                  {
+                    "type": 3,
+                    "posx": "127.112125",
+                    "posy": "37.383669",
+                    "admcode": "4113511000",
+                    "address": "경기도 성남시 분당구 백현동",
+                    "address_sido": "경기도",
+                    "address_gu": "성남시 분당구",
+                    "address_dong": "백현동",
+                    "address_haeng": "백현동",
+                    "legalcode": "4113511000",
+                    "haengcode": "4113565700",
+                    "jibun": "582-7",
+                    "roadname": "경기도 성남시 분당구 판교역로",
+                    "roadjibun": "4",
+                    "postcode": "13536",
+                    "buildname": "ROME",
+                    "accuracy": 2,
+                    "distance": 0
+                  }
+                ]
+              },
+              {
+                "result": true,
+                "admcount": 1,
+                "adm": [
+                  {
+                    "type": 3,
+                    "posx": "126.751362",
+                    "posy": "37.668597",
+                    "admcode": "4128710400",
+                    "address": "경기도 고양시 일산서구 대화동",
+                    "address_sido": "경기도",
+                    "address_gu": "고양시 일산서구",
+                    "address_dong": "대화동",
+                    "address_haeng": "대화동",
+                    "legalcode": "4128710400",
+                    "haengcode": "4128757000",
+                    "jibun": "2602",
+                    "roadname": "경기도 고양시 일산서구 호수로",
+                    "roadjibun": "817",
+                    "postcode": "10391",
+                    "buildname": "",
+                    "accuracy": 0,
+                    "distance": 0
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "MultiAddressesAsyncResultData": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "작업 상태"
+          },
+          "location": {
+            "$ref": "#/components/schemas/MultiAddressesData"
+          }
+        },
+        "description": "다중 리버스 지오코딩 결과 요청 결과"
+      },
+      "SearchMultiAddressesAsyncResultResponse": {
+        "type": "object",
+        "properties": {
+          "header": {
+            "$ref": "#/components/schemas/Header"
+          },
+          "data": {
+            "$ref": "#/components/schemas/MultiAddressesAsyncResultData"
+          }
+        },
+        "description": "다중 리버스 지오코딩 결과 요청 API의 전체 응답",
+        "example": {
+          "header": {
+            "isSuccessful": true,
+            "resultCode": 0,
+            "resultMessage": "Success"
+          },
+          "location": {
+            "result": true,
+            "admlist": [
+              {
+                "result": true,
+                "hasAdmAddress": true,
+                "adm": {
+                  "posX": "127.110450",
+                  "posY": "37.402125",
+                  "address": "경기도 성남시 분당구 삼평동",
+                  "jibun": "678",
+                  "roadname": "경기도 성남시 분당구 판교역로",
+                  "roadjibun": "240",
+                  "admcode": "4113510900",
+                  "postcode": "13493",
+                  "bldname": "삼환하이펙스A동",
+                  "bldnum": ""
+                },
+                "adm_address": {
+                  "address": "경기도 성남시 분당구 삼평동",
+                  "jibun": "678",
+                  "cut_address": "경기 성남시 분당구 삼평동",
+                  "admcode": "4113565500",
+                  "address_category1": "경기도",
+                  "address_category2": "성남시 분당구",
+                  "address_category3": "삼평동",
+                  "address_category4": ""
+                },
+                "legal_address": {
+                  "address": "경기도 성남시 분당구 삼평동",
+                  "jibun": "678",
+                  "cut_address": "경기 성남시 분당구 삼평동",
+                  "admcode": "4113510900",
+                  "address_category1": "경기도",
+                  "address_category2": "성남시 분당구",
+                  "address_category3": "삼평동",
+                  "address_category4": ""
+                }
+              },
+              {
+                "result": true,
+                "hasAdmAddress": true,
+                "adm": {
+                  "posX": "127.110963",
+                  "posY": "37.394885",
+                  "address": "경기도 성남시 분당구 백현동",
+                  "jibun": "534-1",
+                  "roadname": "경기도 성남시 분당구 분당내곡로",
+                  "roadjibun": "121",
+                  "admcode": "4113511000",
+                  "postcode": "13529",
+                  "bldname": "판교역 KTX",
+                  "bldnum": ""
+                },
+                "adm_address": {
+                  "address": "경기도 성남시 분당구 백현동",
+                  "jibun": "534-1",
+                  "cut_address": "경기 성남시 분당구 백현동",
+                  "admcode": "4113565700",
+                  "address_category1": "경기도",
+                  "address_category2": "성남시 분당구",
+                  "address_category3": "백현동",
+                  "address_category4": ""
+                },
+                "legal_address": {
+                  "address": "경기도 성남시 분당구 백현동",
+                  "jibun": "534-1",
+                  "cut_address": "경기 성남시 분당구 백현동",
+                  "admcode": "4113511000",
+                  "address_category1": "경기도",
+                  "address_category2": "성남시 분당구",
+                  "address_category3": "백현동",
+                  "address_category4": ""
+                }
+              }
+            ]
+          }
+        }
+      },
       "MapsStyleInfoData": {
         "type": "object",
         "properties": {
@@ -30069,28 +30423,6 @@
             "properties": {
               "coordinates": {
                 "$ref": "#/components/schemas/LngLatAlt"
-              }
-            }
-          }
-        ]
-      },
-      "Polygon": {
-        "type": "object",
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/GeoJsonObject"
-          },
-          {
-            "type": "object",
-            "properties": {
-              "coordinates": {
-                "type": "array",
-                "items": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/LngLatAlt"
-                  }
-                }
               }
             }
           }

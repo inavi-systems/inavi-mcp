@@ -73,7 +73,7 @@
                   "speed": {
                     "minimum": 0,
                     "type": "integer",
-                    "description": "해당 지점의 속도",
+                    "description": "해당 지점의 속도(km/h)",
                     "format": "int32"
                   },
                   "angle": {
@@ -414,7 +414,7 @@
                     }
                   }
                 },
-                "description": "Road Map Matching 결과"
+                "description": "Special Map Matching 결과"
               }
             },
             "description": "Special Map Matching 의 전체 응답"
