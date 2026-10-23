@@ -1,13 +1,13 @@
-# iNavi MCP Server
+# INAVI Maps Docs MCP Server
 
 [![npm version](https://img.shields.io/npm/v/@inavi-maps/mcp-server)](https://www.npmjs.com/package/@inavi-maps/mcp-server)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 AI 어시스턴트에 지도 인텔리전스를 부여하는 MCP (Model Context Protocol) 서버입니다.
 
-iNavi MCP Server를 연결하면, AI가 iNavi Maps의 다양한 위치 기반 API를 이해하고 인터랙티브 지도를 직접 생성할 수 있게 됩니다. 별도의 API 문서를 읽거나 코드를 직접 작성할 필요 없이, 자연어로 대화하며 지도 기반 기능을 구현할 수 있습니다.
+INAVI Maps Docs MCP Server를 연결하면, AI가 INAVI Maps의 다양한 위치 기반 API를 이해하고 인터랙티브 지도를 직접 생성할 수 있게 됩니다. 별도의 API 문서를 읽거나 코드를 직접 작성할 필요 없이, 자연어로 대화하며 지도 기반 기능을 구현할 수 있습니다.
 
-- **API 스펙 조회** - 지오코딩, POI 검색, 경로 탐색, 맵 매칭 등 30개 이상의 iNavi Maps API 사양을 AI에게 제공
+- **API 스펙 조회** - 지오코딩, POI 검색, 경로 탐색, 맵 매칭 등 30개 이상의 INAVI Maps API 사양을 AI에게 제공
 - **지도 시각화** - 마커, 클러스터, 폴리곤, 폴리라인 등 18개의 HTML 템플릿으로 인터랙티브 지도 생성
 
 **이런 분들에게 적합합니다:**
@@ -31,23 +31,92 @@ iNavi MCP Server를 연결하면, AI가 iNavi Maps의 다양한 위치 기반 AP
 
 ### 방법 2: npx (모든 MCP 호스트)
 
-Cursor, VS Code, Claude Code, Codex, Windsurf 등 다양한 MCP 호스트에서 사용할 수 있습니다. 아래 **서버 설정**을 사용 중인 도구의 **설정 경로**에 추가하세요. (Codex는 JSON이 아닌 TOML 형식이라 변환이 필요합니다.)
+Cursor, VS Code, Claude Code, Codex, Windsurf 등 다양한 MCP 호스트에서 사용할 수 있습니다.
 
 > **사전 요구사항:** Node.js 22 이상이 설치되어 있어야 합니다.
 
-| 도구 | 설정 경로 | 서버 설정 | 공식 가이드 |
-|---|---|---|---|
-| Cursor | `~/.cursor/mcp.json` | <pre>{<br>  "mcpServers": {<br>    "inavi-maps-mcp": {<br>      "command": "npx",<br>      "args": ["-y", "@inavi-maps/mcp-server"]<br>    }<br>  }<br>}</pre> | [↗](https://cursor.com/docs/mcp) |
-| VS Code | 사용자 프로필 | <pre>{<br>  "servers": {<br>    "inavi-maps-mcp": {<br>      "command": "npx",<br>      "args": ["-y", "@inavi-maps/mcp-server"]<br>    }<br>  }<br>}</pre> | [↗](https://code.visualstudio.com/docs/agents/reference/mcp-configuration) |
-| Claude Code | `~/.claude.json` | <pre>{<br>  "mcpServers": {<br>    "inavi-maps-mcp": {<br>      "command": "npx",<br>      "args": ["-y", "@inavi-maps/mcp-server"]<br>    }<br>  }<br>}</pre> | [↗](https://code.claude.com/docs/en/mcp) |
-| Claude Desktop | `%APPDATA%\Claude\claude_desktop_config.json` | <pre>{<br>  "mcpServers": {<br>    "inavi-maps-mcp": {<br>      "command": "npx",<br>      "args": ["-y", "@inavi-maps/mcp-server"]<br>    }<br>  }<br>}</pre> | [↗](https://modelcontextprotocol.io/docs/develop/connect-local-servers) |
-| Codex | `~/.codex/config.toml` | <pre>[mcp_servers.inavi-maps-mcp]<br>command = "npx"<br>args = ["-y", "@inavi-maps/mcp-server"]</pre> | [↗](https://developers.openai.com/codex/mcp) |
-| Windsurf | `~/.codeium/windsurf/mcp_config.json` | <pre>{<br>  "mcpServers": {<br>    "inavi-maps-mcp": {<br>      "command": "npx",<br>      "args": ["-y", "@inavi-maps/mcp-server"]<br>    }<br>  }<br>}</pre> | [↗](https://docs.windsurf.com/windsurf/cascade/mcp) |
+[![Install in Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en/install-mcp?name=inavi-maps-mcp&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIkBpbmF2aS1tYXBzL21jcC1zZXJ2ZXIiXX0=)
+[![Install in VS Code](https://img.shields.io/badge/VS_Code-Install_Server-0098FF?logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=inavi-maps-mcp&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40inavi-maps%2Fmcp-server%22%5D%7D)
 
-<sub>Claude Code, Codex 같은 CLI 도구는 다음과 같이 간단하게 설정할 수 있습니다.</sub>
+**표준 설정** — 대부분의 MCP 호스트에서 그대로 사용할 수 있습니다.
 
-- **Claude Code**: `claude mcp add --transport stdio inavi-maps-mcp -- npx -y @inavi-maps/mcp-server`
-- **Codex**: `codex mcp add inavi-maps-mcp -- npx -y @inavi-maps/mcp-server`
+```json
+{
+  "mcpServers": {
+    "inavi-maps-mcp": {
+      "command": "npx",
+      "args": ["-y", "@inavi-maps/mcp-server"]
+    }
+  }
+}
+```
+
+사용 중인 도구를 펼쳐 설정 위치를 확인하세요.
+
+<details>
+<summary><b>Cursor</b></summary>
+
+위 **Install in Cursor** 버튼을 누르거나, `~/.cursor/mcp.json`에 표준 설정을 추가합니다. ([공식 가이드](https://cursor.com/docs/mcp))
+
+</details>
+
+<details>
+<summary><b>VS Code</b></summary>
+
+위 **Install in VS Code** 버튼을 누르거나, 다음 명령을 실행합니다. ([공식 가이드](https://code.visualstudio.com/docs/agents/reference/mcp-configuration))
+
+```bash
+code --add-mcp '{"name":"inavi-maps-mcp","command":"npx","args":["-y","@inavi-maps/mcp-server"]}'
+```
+
+설정 파일을 직접 편집할 때는 최상위 키가 `mcpServers`가 아닌 `servers`입니다.
+
+</details>
+
+<details>
+<summary><b>Claude Code</b></summary>
+
+```bash
+claude mcp add --transport stdio inavi-maps-mcp -- npx -y @inavi-maps/mcp-server
+```
+
+또는 `~/.claude.json`에 표준 설정을 추가합니다. ([공식 가이드](https://code.claude.com/docs/en/mcp))
+
+</details>
+
+<details>
+<summary><b>Claude Desktop</b></summary>
+
+`claude_desktop_config.json`에 표준 설정을 추가합니다. ([공식 가이드](https://modelcontextprotocol.io/docs/develop/connect-local-servers))
+
+- Windows: `%APPDATA%\Claude\claude_desktop_config.json`
+- macOS: `~/Library/Application Support/Claude/claude_desktop_config.json`
+
+</details>
+
+<details>
+<summary><b>Codex</b></summary>
+
+```bash
+codex mcp add inavi-maps-mcp -- npx -y @inavi-maps/mcp-server
+```
+
+또는 `~/.codex/config.toml`에 추가합니다 (TOML 형식). ([공식 가이드](https://developers.openai.com/codex/mcp))
+
+```toml
+[mcp_servers.inavi-maps-mcp]
+command = "npx"
+args = ["-y", "@inavi-maps/mcp-server"]
+```
+
+</details>
+
+<details>
+<summary><b>Windsurf</b></summary>
+
+`~/.codeium/windsurf/mcp_config.json`에 표준 설정을 추가합니다. ([공식 가이드](https://docs.windsurf.com/windsurf/cascade/mcp))
+
+</details>
 
 ---
 
@@ -57,10 +126,10 @@ MCP 서버를 설치한 후, AI에게 자연어로 요청하세요.
 
 ### API 탐색 & 코드 생성
 
-이 MCP 서버는 iNavi Maps API 사양을 AI에게 제공합니다. AI가 직접 API를 호출하는 것이 아니라, API 스펙을 참조하여 올바른 호출 코드를 작성해 줍니다.
+이 MCP 서버는 INAVI Maps API 사양을 AI에게 제공합니다. AI가 직접 API를 호출하는 것이 아니라, API 스펙을 참조하여 올바른 호출 코드를 작성해 줍니다.
 
 ```
-iNavi Maps에서 사용할 수 있는 지오코딩 관련 API를 알려줘
+INAVI Maps에서 사용할 수 있는 지오코딩 관련 API를 알려줘
 ```
 
 ```
@@ -84,7 +153,7 @@ N:1 거리 매트릭스 API로 가장 가까운 매장을 찾는 로직을 구�
 AI가 HTML 템플릿을 기반으로 인터랙티브 지도 페이지를 생성합니다.
 
 ```
-iNavi 지도에 마커를 표시하는 HTML 페이지를 만들어줘
+INAVI Maps 지도에 마커를 표시하는 HTML 페이지를 만들어줘
 ```
 
 ```
@@ -119,7 +188,7 @@ API 스펙 조회와 지도 시각화를 함께 사용하면 더 복잡한 기�
 
 ### API 스펙 도구
 
-iNavi Maps API 사양을 AI에게 제공하여, API 문서를 직접 읽지 않고도 AI가 올바른 API 호출 코드를 작성할 수 있도록 합니다.
+INAVI Maps API 사양을 AI에게 제공하여, API 문서를 직접 읽지 않고도 AI가 올바른 API 호출 코드를 작성할 수 있도록 합니다.
 
 | 도구 | 설명 | 주요 입력 |
 |------|------|-----------|
@@ -169,7 +238,7 @@ iNavi Maps API 사양을 AI에게 제공하여, API 문서를 직접 읽지 않�
 
 ### SDK 문서 도구 (Web JS SDK 레퍼런스)
 
-iNavi Maps Web JS SDK의 클래스와 옵션/타입 정의를 제공합니다. 예제 템플릿에 없는 옵션·메서드·이벤트를 AI가 기억에 의존해 추측하지 않고, 실제 시그니처를 확인한 뒤 작성하도록 합니다.
+INAVI Maps Web JS SDK의 클래스와 옵션/타입 정의를 제공합니다. 예제 템플릿에 없는 옵션·메서드·이벤트를 AI가 기억에 의존해 추측하지 않고, 실제 시그니처를 확인한 뒤 작성하도록 합니다.
 
 | 도구 | 설명 | 주요 입력 |
 |------|------|-----------|
@@ -200,7 +269,7 @@ iNavi Maps Web JS SDK의 클래스와 옵션/타입 정의를 제공합니다. �
 
 This server exposes **6 tools**, arranged as three discovery → detail pairs.
 
-- `list_api_specs` — Browse available iNavi Maps API specifications by category.
+- `list_api_specs` — Browse available INAVI Maps API specifications by category.
 - `get_api_spec` — Get the detailed specification of a specific API by `operationId`.
 - `list_map_examples` — Browse available map visualization HTML examples.
 - `get_map_example` — Get a specific map example's HTML template by `id`.
@@ -253,4 +322,4 @@ MIT License - 자유롭게 사용, 수정, 배포할 수 있습니다. 자세한
 
 - [Model Context Protocol](https://modelcontextprotocol.io/) - MCP 공식 문서
 - [Claude Desktop](https://claude.ai/download) - Claude Desktop 다운로드
-- [iNavi Maps API](https://mapsapi.inavisys.com/) - iNavi Maps API 공식 문서
+- [INAVI Maps API](https://mapsapi.inavisys.com/) - INAVI Maps API 공식 문서
