@@ -29,7 +29,7 @@ const projectRoot = resolve(__dirname, '../../..');
 const MAP_EXAMPLE_COMMON_WARNING =
   'CUSTOMIZING: Data values (coordinates, zoom, labels, colors) can be replaced freely. ' +
   'Options, methods, events or styles the template does not show may be added, but verify each one ' +
-  'with get_sdk_doc first — never invent API from memory or another provider, as iNavi Maps and ' +
+  'with get_sdk_doc first — never invent API from memory or another provider, as INAVI Maps and ' +
   'Google Maps differ in syntax.';
 
 /**
@@ -49,9 +49,9 @@ export function registerListMapExamplesTool(server: McpServer): void {
   server.registerTool(
     'list_map_examples',
     {
-      title: 'Browse iNavi Map Examples',
+      title: 'Browse INAVI Maps Examples',
       description:
-        'Browse render-ready iNavi Maps HTML examples. ' +
+        'Browse render-ready INAVI Maps HTML examples. ' +
         'Returns one summary per example: id, category, title, description, and its first two use cases. ' +
         'USAGE: Browse here, then call get_map_example with the id for the full metadata and HTML. ' +
         'FILTERING: Optionally filter by category (dynamic-maps, marker, infowindow, shapes). ' +
@@ -110,9 +110,9 @@ export function registerGetMapExampleTool(server: McpServer): void {
   server.registerTool(
     'get_map_example',
     {
-      title: 'Get iNavi Map Example HTML',
+      title: 'Get INAVI Maps Example HTML',
       description:
-        'Retrieve one iNavi Maps HTML example by id, with its full metadata ' +
+        'Retrieve one INAVI Maps HTML example by id, with its full metadata ' +
         '(description, keywords, use cases, features) and the complete HTML template. ' +
         'PREREQUISITE: Use list_map_examples to find the id. ' +
         'LOADER: The template ends with the SDK loader script. Its domain is filled in, but ' +

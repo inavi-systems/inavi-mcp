@@ -13,7 +13,7 @@ export const listMapExamplesInputSchema = {
         '"dynamic-maps" (basic interactive maps), ' +
         '"marker" (marker display and clustering), ' +
         '"infowindow" (InfoWindow creation and visibility control), ' +
-        '"shapes" (geometric shapes like circles, polygons, and polylines — also known as 피처/features on iNavi platform). ' +
+        '"shapes" (geometric shapes like circles, polygons, and polylines — also known as 피처/features on INAVI Maps platform). ' +
         'If not specified, returns all examples.',
     ),
 };

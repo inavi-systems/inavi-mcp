@@ -23,5 +23,5 @@ const fullMetadataSchema = z.object({
  */
 export const getMapExampleOutputSchema = {
   metadata: fullMetadataSchema.describe('Complete metadata for the selected example'),
-  htmlContent: z.string().describe('Complete HTML template code with iNavi Maps API integration'),
+  htmlContent: z.string().describe('Complete HTML template code with INAVI Maps API integration'),
 };

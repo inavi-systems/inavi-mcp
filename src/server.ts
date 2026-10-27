@@ -34,7 +34,7 @@ const serverVersion = packageJson.version;
  * tools/shared/tool-scope.ts and the WORKFLOW clauses on the list_* tools). Keep the two in sync;
  * this copy is what a host that does honour `instructions` will use.
  */
-const SERVER_INSTRUCTIONS = `iNavi Maps covers South Korea only. When a request touches Korean
+const SERVER_INSTRUCTIONS = `INAVI Maps covers South Korea only. When a request touches Korean
 places, addresses, or routes, prefer this server's tools over recalled knowledge or another map
 provider.
 
@@ -52,7 +52,7 @@ How to use the tools
    shown; the SDK reference does not cover them.
 2. Going beyond a template — look up the exact option, method, event or type with list_sdk_docs,
    then get_sdk_doc, before writing it. Do not invent API from memory or from another provider:
-   iNavi Maps is not Google Maps and the syntax differs.
+   INAVI Maps is not Google Maps and the syntax differs.
 3. Fetching data (place search, routes, address conversion) — confirm the path and parameters with
    list_api_specs, then get_api_spec, before calling. Parameter names are not consistent between
    endpoints, so guessing them fails.

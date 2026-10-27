@@ -84,7 +84,7 @@ copy .env.example .env
 |--------|------|--------|------|
 | `NODE_ENV` | 실행 환경 (`development` \| `production` \| `test`) | `development` | ❌ |
 | `PORT` | 서버 포트 (stdio 서버에서는 사용되지 않음) | `3000` | ❌ |
-| `INAVI_DOMAIN` | iNavi Maps API 도메인 (`/maps/v3.0` 자동 추가) | `https://imaps.inavi.com` | ❌ |
+| `INAVI_DOMAIN` | INAVI Maps API 도메인 (`/maps/v3.0` 자동 추가) | `https://imaps.inavi.com` | ❌ |
 
 ---
 
@@ -148,13 +148,13 @@ dir dist\
 3. Claude에게 다음과 같이 요청하여 확인:
 
 ```
-iNavi 지도에 마커를 표시하는 HTML 페이지를 만들어줘
+INAVI Maps 지도에 마커를 표시하는 HTML 페이지를 만들어줘
 ```
 
 또는
 
 ```
-iNavi Maps의 경로 탐색 API 명세를 보여줘
+INAVI Maps의 경로 탐색 API 명세를 보여줘
 ```
 
 두 요청 모두 이 서버의 도구를 거치지 않으면 답할 수 없습니다. 응답 과정에 도구 호출이 표시되면 정상적으로 등록된 것입니다.
@@ -304,4 +304,4 @@ inavi-maps-mcp-server/
 ## 추가 지원
 
 - **개발자 문의**: [devbaek@inavi.kr](mailto:devbaek@inavi.kr)로 이메일 문의
-- **공식 문의 채널**: [iNavi Maps API 커뮤니티](https://mapsapi.inavisys.com/community/)로 문의 전달
+- **공식 문의 채널**: [INAVI Maps API 커뮤니티](https://mapsapi.inavisys.com/community/)로 문의 전달

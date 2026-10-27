@@ -4,12 +4,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a TypeScript MCP (Model Context Protocol) server that integrates with iNavi Maps API. It communicates with MCP Hosts (Claude Desktop, Cursor, etc.) via **stdio transport** (not HTTP), providing map visualization tools and API specifications.
+This is a TypeScript MCP (Model Context Protocol) server that integrates with INAVI Maps API. It communicates with MCP Hosts (Claude Desktop, Cursor, etc.) via **stdio transport** (not HTTP), providing map visualization tools and API specifications.
 
 **Project Purpose:**
 Enable AI assistants to work with geospatial data and visualize results on interactive maps through:
 1. **HTML Example Tools**: Code templates for custom map visualizations
-2. **API Spec Tools**: iNavi Maps API specifications for reference
+2. **API Spec Tools**: INAVI Maps API specifications for reference
 
 **Key Technology Stack:**
 - TypeScript with strict type checking
@@ -119,7 +119,7 @@ Environment variables are validated at startup in `config/env.config.ts` using Z
 **Optional (with defaults):**
 - `NODE_ENV` - Environment mode (default: `development`, options: `development` | `production` | `test`)
 - `PORT` - Server port (default: `3000`)
-- `INAVI_DOMAIN` - iNavi Maps API domain (default: `https://imaps.inavi.com`; `/maps/v3.0` is appended automatically)
+- `INAVI_DOMAIN` - INAVI Maps API domain (default: `https://imaps.inavi.com`; `/maps/v3.0` is appended automatically)
 
 **Removed environment variables:**
 - `MCP_SERVER_NAME` - Now read from `package.json` `name` field
@@ -157,7 +157,7 @@ Provide HTML code templates for map visualizations. Use two-step workflow:
 
 ### API Spec Tools
 
-Provide iNavi Maps API specifications for reference.
+Provide INAVI Maps API specifications for reference.
 1. `list_api_specs` - List available API specifications
 2. `get_api_spec` - Get specific API specification details
 
@@ -165,7 +165,7 @@ Provide iNavi Maps API specifications for reference.
 
 ### SDK Doc Tools
 
-Provide iNavi Maps Web JS SDK documentation (classes and option/type definitions),
+Provide INAVI Maps Web JS SDK documentation (classes and option/type definitions),
 filtered by category (`map`, `overlay`, `control`, `coordinates`, `options`, `style`).
 1. `list_sdk_docs` - Browse SDK symbols by category; each item includes its method names.
 2. `get_sdk_doc` - Get a symbol as Markdown. `docId` may be a class/type id

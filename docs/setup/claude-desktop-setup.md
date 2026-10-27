@@ -1,6 +1,6 @@
 # Claude Desktop 설정 가이드
 
-Claude Desktop에서 iNavi MCP Server를 사용하기 위한 설정 가이드입니다.
+Claude Desktop에서 INAVI Maps Docs MCP Server를 사용하기 위한 설정 가이드입니다.
 
 ## 목차
 - [설치 방법](#설치-방법)
@@ -37,7 +37,7 @@ Claude Desktop에서 iNavi MCP Server를 사용하기 위한 설정 가이드입
 이제 Claude에게 지도 제작이나 API 연동을 요청할 수 있습니다:
 
 ```
-iNavi 지도에 마커를 표시하는 HTML 페이지를 만들어줘
+INAVI Maps 지도에 마커를 표시하는 HTML 페이지를 만들어줘
 ```
 
 ---
@@ -130,13 +130,13 @@ npx를 사용하면 별도의 다운로드 없이 최신 버전을 자동으로 
 Claude에게 다음과 같이 요청하여 MCP 도구가 정상적으로 등록되었는지 확인:
 
 ```
-iNavi 지도에 마커를 표시하는 HTML 페이지를 만들어줘
+INAVI Maps 지도에 마커를 표시하는 HTML 페이지를 만들어줘
 ```
 
 또는
 
 ```
-iNavi Maps의 경로 탐색 API 명세를 보여줘
+INAVI Maps의 경로 탐색 API 명세를 보여줘
 ```
 
 두 요청 모두 이 서버의 도구를 거치지 않으면 답할 수 없습니다. 응답 과정에 도구 호출이 표시되면 정상적으로 등록된 것입니다.
@@ -201,4 +201,4 @@ npx 방법을 사용할 때 Node.js가 설치되어 있지 않으면:
 ## 추가 지원
 
 - **개발자 문의**: [devbaek@inavi.kr](mailto:devbaek@inavi.kr)로 이메일 문의
-- **공식 문의 채널**: [iNavi Maps API 커뮤니티](https://mapsapi.inavisys.com/community/)로 문의 전달
+- **공식 문의 채널**: [INAVI Maps API 커뮤니티](https://mapsapi.inavisys.com/community/)로 문의 전달

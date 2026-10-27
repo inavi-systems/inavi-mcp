@@ -10,7 +10,7 @@ export const DYNAMIC_MAPS_EXAMPLES: readonly MapExampleMetadata[] = [
   {
     id: 'dynamic-basic',
     category: 'dynamic-maps',
-    title: 'Create Interactive Map (iNavi Maps)',
+    title: 'Create Interactive Map (INAVI Maps)',
     description:
       'Create a basic interactive map display with center coordinates and zoom level configuration. ' +
       'Demonstrates fundamental map initialization.',
@@ -43,7 +43,7 @@ export const DYNAMIC_MAPS_EXAMPLES: readonly MapExampleMetadata[] = [
   {
     id: 'dynamic-map-info',
     category: 'dynamic-maps',
-    title: 'Display Map Information (iNavi Maps)',
+    title: 'Display Map Information (INAVI Maps)',
     description:
       'Display current map information including zoom level, center coordinates, and bounds. ' +
       'Click the button to retrieve and display real-time map state information.',
@@ -70,14 +70,14 @@ export const DYNAMIC_MAPS_EXAMPLES: readonly MapExampleMetadata[] = [
     features: [
       'Map information retrieval via button click',
       'Display zoom level, center coordinates, and bounds',
-      'Real-time map state query using iNavi Maps API methods',
+      'Real-time map state query using INAVI Maps API methods',
       'Interactive information display',
     ],
   },
   {
     id: 'dynamic-distance-calculation',
     category: 'dynamic-maps',
-    title: 'Calculate Distance Between Two Points (iNavi Maps)',
+    title: 'Calculate Distance Between Two Points (INAVI Maps)',
     description:
       'Select two points on the map by clicking to calculate and visualize the straight-line distance between them. ' +
       'Uses Turf.js for precise distance calculation. Click the calculate button to display a polyline and label showing the distance.',
@@ -113,7 +113,7 @@ export const DYNAMIC_MAPS_EXAMPLES: readonly MapExampleMetadata[] = [
   {
     id: 'dynamic-map-type',
     category: 'dynamic-maps',
-    title: 'Switch Map Type Dynamically (iNavi Maps)',
+    title: 'Switch Map Type Dynamically (INAVI Maps)',
     description:
       'Dynamically switch the map type using interactive buttons. ' +
       'Calls Map#setType with the two supported values: NORMAL and SATELLITE.',

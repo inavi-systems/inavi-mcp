@@ -1,6 +1,6 @@
 # API 레퍼런스
 
-iNavi MCP Server가 제공하는 모든 MCP 도구의 상세 문서입니다.
+INAVI Maps Docs MCP Server가 제공하는 모든 MCP 도구의 상세 문서입니다.
 
 ## 목차
 - [API 스펙 도구](#api-스펙-도구)
@@ -17,14 +17,14 @@ iNavi MCP Server가 제공하는 모든 MCP 도구의 상세 문서입니다.
 
 ## API 스펙 도구
 
-iNavi Maps API 사양을 조회하여 AI가 참조할 수 있도록 합니다. 두 단계 워크플로우로 사용합니다:
+INAVI Maps API 사양을 조회하여 AI가 참조할 수 있도록 합니다. 두 단계 워크플로우로 사용합니다:
 
 1. `list_api_specs`로 사용 가능한 API 목록 탐색
 2. `get_api_spec`으로 특정 API의 상세 사양 조회
 
 ### list_api_specs
 
-사용 가능한 iNavi Maps API 목록을 조회합니다. 카테고리별 필터링이 가능합니다.
+사용 가능한 INAVI Maps API 목록을 조회합니다. 카테고리별 필터링이 가능합니다.
 
 #### 입력 파라미터
 
@@ -65,7 +65,7 @@ iNavi Maps API 사양을 조회하여 AI가 참조할 수 있도록 합니다. �
 
 **Claude에게:**
 ```
-iNavi Maps에서 사용할 수 있는 검색 관련 API 목록을 알려줘
+INAVI Maps에서 사용할 수 있는 검색 관련 API 목록을 알려줘
 ```
 
 ---
@@ -188,7 +188,7 @@ API의 상세 사양을 반환합니다:
 
 ## SDK 문서 도구
 
-iNavi Maps Web JS SDK의 클래스와 옵션/타입 정의를 조회합니다. 두 단계 워크플로우로 사용합니다:
+INAVI Maps Web JS SDK의 클래스와 옵션/타입 정의를 조회합니다. 두 단계 워크플로우로 사용합니다:
 
 1. `list_sdk_docs`로 심볼 목록 탐색 (클래스 항목은 메서드명을 함께 반환)
 2. `get_sdk_doc`으로 특정 심볼 또는 단일 메서드의 상세 문서 조회

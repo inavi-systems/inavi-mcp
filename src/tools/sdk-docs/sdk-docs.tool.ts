@@ -1,6 +1,6 @@
 /**
  * SDK Documentation MCP Tool
- * iNavi Maps Web JS SDK documentation query tool
+ * INAVI Maps Web JS SDK documentation query tool
  */
 
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
@@ -13,15 +13,15 @@ import { KOREA_ONLY_SCOPE } from '@/tools/shared/tool-scope';
 
 /**
  * Register list_sdk_docs tool
- * Query available iNavi Maps SDK documentation list
+ * Query available INAVI Maps SDK documentation list
  */
 export function registerListSdkDocsTool(server: McpServer): void {
   server.registerTool(
     'list_sdk_docs',
     {
-      title: 'Browse iNavi Maps SDK Documentation',
+      title: 'Browse INAVI Maps SDK Documentation',
       description:
-        'Lists iNavi Maps JavaScript SDK symbols — classes and option/type definitions. ' +
+        'Lists INAVI Maps JavaScript SDK symbols — classes and option/type definitions. ' +
         'Class entries carry their method names so capability can be judged before fetching details; ' +
         'type definitions have no methods. ' +
         'USAGE: Browse here, then call get_sdk_doc with a symbol id, or directly with a method longname ' +
@@ -79,7 +79,7 @@ export function registerGetSdkDocTool(server: McpServer): void {
   server.registerTool(
     'get_sdk_doc',
     {
-      title: 'Get iNavi Maps SDK Documentation',
+      title: 'Get INAVI Maps SDK Documentation',
       description:
         'Retrieves SDK documentation for one symbol as Markdown. ' +
         'Pass a class/type id for the whole symbol (description, constructor, method signatures, ' +
