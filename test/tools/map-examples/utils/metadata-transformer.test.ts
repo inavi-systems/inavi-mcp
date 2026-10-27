@@ -6,7 +6,7 @@ describe('metadata-transformer', () => {
   const mockMetadata: MapExampleMetadata = {
     id: 'test-example',
     category: 'marker',
-    title: 'Test Example (iNavi Maps)',
+    title: 'Test Example (INAVI Maps)',
     description: 'This is a test example. It demonstrates transformation functionality.',
     filename: 'test/example.html',
     keywords: ['test', 'example', 'marker', 'demo', 'showcase', 'map', 'display'],
@@ -18,7 +18,7 @@ describe('metadata-transformer', () => {
     it('should remove provider suffix from title', () => {
       const result = toSummary(mockMetadata);
       expect(result.title).toBe('Test Example');
-      expect(result.title).not.toContain('iNavi Maps');
+      expect(result.title).not.toContain('INAVI Maps');
     });
 
     it('should use full description without splitting', () => {
@@ -116,7 +116,7 @@ describe('metadata-transformer', () => {
     const realExample: MapExampleMetadata = {
       id: 'marker-basic',
       category: 'marker',
-      title: 'Display Markers on Map (iNavi Maps)',
+      title: 'Display Markers on Map (INAVI Maps)',
       description:
         'Display markers on a map at specific positions. ' +
         'Ideal for showing geocoding results, POI locations, or user-specified coordinates.',
@@ -167,7 +167,7 @@ describe('metadata-transformer', () => {
     it('should transform real example to complete metadata', () => {
       const fullMetadata = toFullMetadata(realExample);
 
-      expect(fullMetadata.title).toBe('Display Markers on Map (iNavi Maps)');
+      expect(fullMetadata.title).toBe('Display Markers on Map (INAVI Maps)');
       expect(fullMetadata.description).toContain('Display markers on a map');
       expect(fullMetadata.keywords).toHaveLength(10);
       expect(fullMetadata.useCases).toHaveLength(4);

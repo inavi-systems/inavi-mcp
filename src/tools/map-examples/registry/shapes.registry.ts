@@ -10,7 +10,7 @@ export const SHAPES_EXAMPLES: readonly MapExampleMetadata[] = [
   {
     id: 'shapes-circle',
     category: 'shapes',
-    title: 'Display Circle on Map (iNavi Maps)',
+    title: 'Display Circle on Map (INAVI Maps)',
     description:
       'Display a circle shape on a map at a specific position with customizable radius and style. ' +
       'Ideal for showing coverage areas, proximity zones, or highlighting circular regions.',
@@ -45,7 +45,7 @@ export const SHAPES_EXAMPLES: readonly MapExampleMetadata[] = [
   {
     id: 'shapes-polygon',
     category: 'shapes',
-    title: 'Display Polygon on Map (iNavi Maps)',
+    title: 'Display Polygon on Map (INAVI Maps)',
     description:
       'Display a polygon shape on a map defined by a series of coordinate points. ' +
       'Ideal for showing boundaries, zones, or custom-shaped areas.',
@@ -79,7 +79,7 @@ export const SHAPES_EXAMPLES: readonly MapExampleMetadata[] = [
   {
     id: 'shapes-multi-polygon',
     category: 'shapes',
-    title: 'Display Multi-Polygon with Hole on Map (iNavi Maps)',
+    title: 'Display Multi-Polygon with Hole on Map (INAVI Maps)',
     description:
       'Display a multi-polygon shape with an inner hole (cutout) on a map. ' +
       'The outer polygon defines the boundary while the inner polygon creates a transparent hole. ' +
@@ -117,7 +117,7 @@ export const SHAPES_EXAMPLES: readonly MapExampleMetadata[] = [
   {
     id: 'shapes-style',
     category: 'shapes',
-    title: 'Dynamic Shape Styling (iNavi Maps)',
+    title: 'Dynamic Shape Styling (INAVI Maps)',
     description:
       'Dynamically change shape styles using setStyle() method. ' +
       'Demonstrates how to update fill color, opacity, and outline color at runtime. ' +
@@ -156,10 +156,10 @@ export const SHAPES_EXAMPLES: readonly MapExampleMetadata[] = [
   {
     id: 'shapes-polyline',
     category: 'shapes',
-    title: 'Display Polyline with Traffic Colors on Map (iNavi Maps)',
+    title: 'Display Polyline with Traffic Colors on Map (INAVI Maps)',
     description:
       'Display polylines on a map with traffic-colored segments. ' +
-      'Uses hardcoded sample data that mirrors the iNavi Route API response structure. ' +
+      'Uses hardcoded sample data that mirrors the INAVI Maps Route API response structure. ' +
       'Replace sample data with actual route API data to visualize real navigation routes.',
     filename: 'shapes/shapes-polyline.html',
     keywords: [

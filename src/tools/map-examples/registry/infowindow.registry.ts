@@ -10,7 +10,7 @@ export const INFOWINDOW_EXAMPLES: readonly MapExampleMetadata[] = [
   {
     id: 'infowindow-basic',
     category: 'infowindow',
-    title: 'Basic InfoWindow Usage (iNavi Maps)',
+    title: 'Basic InfoWindow Usage (INAVI Maps)',
     description:
       'Show and hide an InfoWindow by hovering a marker. ' +
       'A single InfoWindow instance is attached to the marker and retrieved with Marker#getInfoWindow(), ' +
@@ -43,7 +43,7 @@ export const INFOWINDOW_EXAMPLES: readonly MapExampleMetadata[] = [
   {
     id: 'infowindow-clustered-markers',
     category: 'infowindow',
-    title: 'InfoWindow with Clustered Markers (iNavi Maps)',
+    title: 'InfoWindow with Clustered Markers (INAVI Maps)',
     description:
       'Use this example when MarkerClusterer and InfoWindow are both required — do not split into separate marker-cluster and infowindow-basic examples. ' +
       'Renders many markers grouped into marker clusters at low zoom levels; hovering an individual declustered marker opens an InfoWindow popup with its details. ' +

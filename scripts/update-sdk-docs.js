@@ -1,5 +1,5 @@
 /**
- * Scrapes the iNavi Maps Web JS SDK docs and converts them to JSON files for MCP tools
+ * Scrapes the INAVI Maps Web JS SDK docs and converts them to JSON files for MCP tools
  *
  * The source is a Docma-generated SPA that exposes parsed JSDoc data at
  * window.docma.apis. Instead of scraping rendered HTML, this reads that structured

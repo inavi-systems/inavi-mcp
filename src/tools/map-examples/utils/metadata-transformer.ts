@@ -8,7 +8,7 @@ import type {
  * Transforms full metadata into lightweight summary for listing
  *
  * Transformation rules (Revised - Compromise):
- * 1. Title: Remove provider suffix "(iNavi Maps)" to save tokens
+ * 1. Title: Remove provider suffix "(INAVI Maps)" to save tokens
  * 2. Description: Use full description (no splitting)
  * 3. UseCases: Take first 2 use cases for context
  *
@@ -19,7 +19,7 @@ import type {
  * @returns Summary with full description and partial useCases
  */
 export function toSummary(metadata: MapExampleMetadata): MapExampleSummary {
-  const title = metadata.title.replace(/\s*\(iNavi Maps\)\s*$/, '');
+  const title = metadata.title.replace(/\s*\(INAVI Maps\)\s*$/, '');
   const description = metadata.description;
   const useCases = metadata.useCases.slice(0, 2);
 

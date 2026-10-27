@@ -14,15 +14,15 @@ import { KOREA_ONLY_SCOPE } from '@/tools/shared/tool-scope';
 
 /**
  * Register list_api_specs tool
- * Query available iNavi Maps API list
+ * Query available INAVI Maps API list
  */
 export function registerListApiSpecsTool(server: McpServer): void {
   server.registerTool(
     'list_api_specs',
     {
-      title: 'Browse iNavi Maps API Specifications',
+      title: 'Browse INAVI Maps API Specifications',
       description:
-        'Lists available iNavi Maps APIs. ' +
+        'Lists available INAVI Maps APIs. ' +
         'Can be filtered by category. ' +
         'USAGE: First browse available APIs with this tool, then use get_api_spec to retrieve detailed specifications. ' +
         'FILTERING: Filter by category (e.g., search-place, route-directions). ' +
@@ -76,7 +76,7 @@ export function registerGetApiSpecTool(server: McpServer): void {
   server.registerTool(
     'get_api_spec',
     {
-      title: 'Get iNavi Maps API Specification',
+      title: 'Get INAVI Maps API Specification',
       description:
         'Retrieves detailed specification of a specific API (including request/response schemas). ' +
         'PREREQUISITE: First use list_api_specs to browse available APIs and obtain the operationId. ' +

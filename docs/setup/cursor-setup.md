@@ -1,6 +1,6 @@
 # Cursor 설정 가이드
 
-Cursor 에디터에서 iNavi MCP Server를 사용하기 위한 설정 가이드입니다.
+Cursor 에디터에서 INAVI Maps Docs MCP Server를 사용하기 위한 설정 가이드입니다.
 
 > **참고**: 이 가이드는 Windsurf, Continue, Cline 등 다른 MCP 호스트에서도 유사하게 적용됩니다.
 
@@ -107,13 +107,13 @@ Cursor의 MCP 설정 파일을 열고 다음 내용을 추가합니다:
 Cursor의 AI 채팅에서 다음과 같이 요청하여 MCP 도구가 정상적으로 등록되었는지 확인:
 
 ```
-iNavi 지도에 마커를 표시하는 HTML 페이지를 만들어줘
+INAVI Maps 지도에 마커를 표시하는 HTML 페이지를 만들어줘
 ```
 
 또는
 
 ```
-iNavi Maps의 경로 탐색 API 명세를 보여줘
+INAVI Maps의 경로 탐색 API 명세를 보여줘
 ```
 
 두 요청 모두 이 서버의 도구를 거치지 않으면 답할 수 없습니다. 응답 과정에 도구 호출이 표시되면 정상적으로 등록된 것입니다.
@@ -213,4 +213,4 @@ Cline의 MCP 설정에 위와 동일한 형식으로 설정을 추가합니다.
 ## 추가 지원
 
 - **개발자 문의**: [devbaek@inavi.kr](mailto:devbaek@inavi.kr)로 이메일 문의
-- **공식 문의 채널**: [iNavi Maps API 커뮤니티](https://mapsapi.inavisys.com/community/)로 문의 전달
+- **공식 문의 채널**: [INAVI Maps API 커뮤니티](https://mapsapi.inavisys.com/community/)로 문의 전달

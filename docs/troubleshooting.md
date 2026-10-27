@@ -1,6 +1,6 @@
 # 문제 해결 가이드
 
-iNavi MCP Server 사용 중 발생할 수 있는 문제들과 해결 방법을 정리했습니다.
+INAVI Maps Docs MCP Server 사용 중 발생할 수 있는 문제들과 해결 방법을 정리했습니다.
 
 ## 목차
 - [MCP 서버가 연결되지 않을 때](#mcp-서버가-연결되지-않을-때)
@@ -14,7 +14,7 @@ iNavi MCP Server 사용 중 발생할 수 있는 문제들과 해결 방법을 �
 ## MCP 서버가 연결되지 않을 때
 
 ### 증상
-Claude Desktop이나 다른 MCP Host에서 iNavi MCP 서버를 인식하지 못합니다.
+Claude Desktop이나 다른 MCP Host에서 INAVI Maps Docs MCP 서버를 인식하지 못합니다.
 
 ### 해결 방법
 
@@ -112,13 +112,13 @@ API 호출 시 에러가 발생하거나 결과가 반환되지 않습니다.
 
 1. **API 키 검증**
 
-   iNavi Maps API 키가 유효한지 확인합니다:
-   - [iNavi Maps API 대시보드](https://mapsapi.inavisys.com/) 방문
+   INAVI Maps API 키가 유효한지 확인합니다:
+   - [INAVI Maps API 대시보드](https://mapsapi.inavisys.com/) 방문
    - API 키 상태 확인
 
 2. **네트워크 확인**
 
-   iNavi API 엔드포인트에 접근 가능한지 확인합니다:
+   INAVI Maps API 엔드포인트에 접근 가능한지 확인합니다:
    ```bash
    curl https://imaps.inavi.com/maps/v3.0
    ```
@@ -146,7 +146,7 @@ MCP 도구에서 받은 HTML 예제 코드를 브라우저에서 열었을 때 �
 
 1. **API 키 확인**
 
-   HTML의 `{appKey}` 플레이스홀더를 실제 iNavi API 키로 교체합니다:
+   HTML의 `{appKey}` 플레이스홀더를 실제 INAVI Maps API 키로 교체합니다:
 
    ```html
    <!-- 템플릿 (base_url은 자동 치환됨) -->
@@ -221,6 +221,6 @@ MCP 도구에서 받은 HTML 예제 코드를 브라우저에서 열었을 때 �
 위의 방법으로 문제가 해결되지 않으면 아래 채널로 문의해 주세요:
 
 1. **개발자 문의**: [devbaek@inavi.kr](mailto:devbaek@inavi.kr)로 이메일 문의
-2. **공식 문의 채널**: [iNavi Maps API 커뮤니티](https://mapsapi.inavisys.com/community/)로 문의 전달
+2. **공식 문의 채널**: [INAVI Maps API 커뮤니티](https://mapsapi.inavisys.com/community/)로 문의 전달
 3. **로그 첨부**: MCP Host의 로그 파일을 첨부해주시면 더 빠르게 도움을 드릴 수 있습니다
 4. **환경 정보**: OS, Node.js 버전, MCP Host 종류 및 버전을 함께 알려주세요

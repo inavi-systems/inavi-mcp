@@ -1,8 +1,8 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.inavi-systems/inavi-mcp",
-  "title": "iNavi Maps Docs",
-  "description": "iNavi Maps docs for AI (South Korea): API specs, Web JS SDK reference, HTML map templates",
+  "title": "INAVI Maps Docs",
+  "description": "INAVI Maps docs for AI (South Korea): API specs, Web JS SDK reference, HTML map templates",
   "repository": {
     "url": "https://github.com/inavi-systems/inavi-mcp",
     "source": "github"

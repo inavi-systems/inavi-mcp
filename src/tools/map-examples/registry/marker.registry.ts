@@ -10,7 +10,7 @@ export const MARKER_EXAMPLES: readonly MapExampleMetadata[] = [
   {
     id: 'marker-basic',
     category: 'marker',
-    title: 'Display Markers on Map (iNavi Maps)',
+    title: 'Display Markers on Map (INAVI Maps)',
     description:
       'Display markers on a map at specific positions. ' +
       'Ideal for showing geocoding results, POI locations, or user-specified coordinates.',
@@ -42,7 +42,7 @@ export const MARKER_EXAMPLES: readonly MapExampleMetadata[] = [
   {
     id: 'marker-movable',
     category: 'marker',
-    title: 'Movable Marker (iNavi Maps)',
+    title: 'Movable Marker (INAVI Maps)',
     description:
       'Create an interactive marker that can be moved using click or drag. ' +
       'Toggle between click mode (click anywhere on map to reposition) and drag mode (drag the marker directly). ' +
@@ -76,7 +76,7 @@ export const MARKER_EXAMPLES: readonly MapExampleMetadata[] = [
   {
     id: 'marker-cluster',
     category: 'marker',
-    title: 'Display Multiple Markers with Clustering (iNavi Maps)',
+    title: 'Display Multiple Markers with Clustering (INAVI Maps)',
     description:
       'Efficiently display many markers using automatic marker clustering. ' +
       'Markers group together at low zoom levels and separate when zooming in. ' +
@@ -111,7 +111,7 @@ export const MARKER_EXAMPLES: readonly MapExampleMetadata[] = [
   {
     id: 'marker-cluster-grid-size',
     category: 'marker',
-    title: 'Set Marker Cluster Grid Size (iNavi Maps)',
+    title: 'Set Marker Cluster Grid Size (INAVI Maps)',
     description:
       'Configure the clustering distance for MarkerClusterer. ' +
       'Dynamically adjust the grid size parameter to control when markers are grouped into clusters. ' +
@@ -143,7 +143,7 @@ export const MARKER_EXAMPLES: readonly MapExampleMetadata[] = [
   {
     id: 'marker-numbering',
     category: 'marker',
-    title: 'Display Numbered Markers on Map (iNavi Maps)',
+    title: 'Display Numbered Markers on Map (INAVI Maps)',
     description:
       'Display multiple markers with sequential numbers on a map. ' +
       'Each marker shows its order number, making it ideal for visualizing routes, delivery sequences, or ordered locations.',
@@ -177,7 +177,7 @@ export const MARKER_EXAMPLES: readonly MapExampleMetadata[] = [
   {
     id: 'marker-colored',
     category: 'marker',
-    title: 'Display Colored Markers on Map (iNavi Maps)',
+    title: 'Display Colored Markers on Map (INAVI Maps)',
     description:
       'Display markers with custom colors on a map. ' +
       'Each marker can have a different color using dynamic SVG generation, ideal for categorizing locations or distinguishing between different data types.',
