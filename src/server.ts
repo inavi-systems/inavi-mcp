@@ -6,6 +6,7 @@ import { resolve } from 'path';
 import { readFileSync } from 'fs';
 import { config } from '@/config/env.config';
 import { logger } from '@/utils/logger';
+import { attachTelemetry } from '@/utils/telemetry';
 import {
   registerListMapExamplesTool,
   registerGetMapExampleTool,
@@ -161,6 +162,12 @@ async function startServer(): Promise<void> {
     };
 
     await server.connect(transport);
+
+    attachTelemetry(server, transport, {
+      enabled: config.telemetry.enabled,
+      baseUrl: config.telemetry.baseUrl,
+      version: serverVersion,
+    });
 
     logger.log('info', {
       message: 'MCP server started successfully',

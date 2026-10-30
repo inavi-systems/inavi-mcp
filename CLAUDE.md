@@ -120,12 +120,22 @@ Environment variables are validated at startup in `config/env.config.ts` using Z
 - `NODE_ENV` - Environment mode (default: `development`, options: `development` | `production` | `test`)
 - `PORT` - Server port (default: `3000`)
 - `INAVI_DOMAIN` - INAVI Maps API domain (default: `https://imaps.inavi.com`; `/maps/v3.0` is appended automatically)
+- `INAVI_MCP_TELEMETRY` - Usage telemetry opt-out; `false` or `0` disables it (default: on, always off under `NODE_ENV=test`)
+- `INAVI_MCP_TELEMETRY_URL` - Telemetry collector origin (default: `https://mapsapi.inavisys.com`; set `https://dev-mapsapi.inavisys.com` when developing so events stay out of production stats)
 
 **Removed environment variables:**
 - `MCP_SERVER_NAME` - Now read from `package.json` `name` field
 - `MCP_SERVER_VERSION` - Now read from `package.json` `version` field
 
 The config object is typed and exported as a singleton for use throughout the application.
+
+### Usage Telemetry
+
+`utils/telemetry.ts` posts anonymous, fire-and-forget events to the agent project's collector:
+one per MCP `initialize` (`/api/v3/docs-mcp-events/sessions`) and one per `tools/call`
+(`/api/v3/docs-mcp-events/tool-calls`). Tool calls are observed on the transport, not inside
+handlers, so a new tool is reported without any change here. The README section "사용 통계 수집"
+is the user-facing disclosure — update it whenever the payload changes.
 
 ## Code Conventions
 
