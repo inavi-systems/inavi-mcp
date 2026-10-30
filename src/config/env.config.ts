@@ -25,6 +25,14 @@ const envSchema = z.object({
     .url('INAVI_DOMAIN must be a valid URL')
     .optional()
     .default('https://imaps.inavi.com'),
+  // Usage telemetry opt-out: "false" or "0" disables it. Any other value (or unset) keeps it on —
+  // a typo here must not stop the server from starting.
+  INAVI_MCP_TELEMETRY: z.string().optional(),
+  INAVI_MCP_TELEMETRY_URL: z
+    .string()
+    .url('INAVI_MCP_TELEMETRY_URL must be a valid URL')
+    .optional()
+    .default('https://mapsapi.inavisys.com'),
 });
 
 /**
@@ -51,6 +59,12 @@ export const config = {
   inavi: {
     domain: parsedEnv.data.INAVI_DOMAIN,
     baseUrl: `${parsedEnv.data.INAVI_DOMAIN}/maps/v3.0`,
+  },
+  telemetry: {
+    enabled:
+      parsedEnv.data.NODE_ENV !== 'test' &&
+      !['false', '0'].includes((parsedEnv.data.INAVI_MCP_TELEMETRY ?? '').trim().toLowerCase()),
+    baseUrl: parsedEnv.data.INAVI_MCP_TELEMETRY_URL,
   },
   isDevelopment: parsedEnv.data.NODE_ENV === 'development',
   isProduction: parsedEnv.data.NODE_ENV === 'production',

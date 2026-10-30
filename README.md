@@ -20,6 +20,8 @@ INAVI Maps Docs MCP Server를 연결하면, AI가 INAVI Maps의 위치 기반 AP
 
 ## 빠른 시작
 
+> 이 서버는 익명 사용 통계를 수집합니다. 수집 항목과 끄는 방법은 [사용 통계 수집](#사용-통계-수집)을 참고하세요.
+
 ### 방법 1: .mcpb Bundle (Claude Desktop 전용 - 추천)
 
 가장 쉬운 설치 방법입니다. 별도 환경 구성 없이 바로 사용할 수 있습니다.
@@ -330,6 +332,50 @@ Unexpected token...is not valid JSON
 | [Cursor 설정](./docs/setup/cursor-setup.md) | Cursor IDE 설정 가이드 |
 | [로컬 개발](./docs/setup/local-development.md) | 소스 코드에서 직접 빌드 및 실행 |
 | [Troubleshooting](./docs/troubleshooting.md) | 상세 문제 해결 가이드 |
+
+---
+
+## 사용 통계 수집
+
+서비스 개선을 위해 익명 사용 통계를 INAVI Maps 개발자 사이트(`mapsapi.inavisys.com`)로 전송합니다. 사용자를 식별할 수 있는 정보는 수집하지 않습니다.
+
+**수집 항목**
+- 세션 연결 시: 무작위 세션 ID, 설치 ID, 서버 버전, MCP 호스트 이름(예: Claude Desktop은 `claude-ai`)
+- 도구 호출 시: 세션 ID, 도구 이름, 도구 입력값(카테고리·문서 ID 등), 성공 여부
+
+**수집하지 않는 항목**
+- 대화·프롬프트 내용, 생성된 코드, 파일, 계정 정보
+- IP 주소 (수신 서버에 저장하지 않음)
+
+**설치 ID**
+- 최초 실행 시 무작위 UUID 한 줄을 아래 파일에 저장하며, 고유 사용자 수 집계에만 사용합니다.
+
+| OS | 경로 |
+|----|------|
+| Windows | `%USERPROFILE%\.inavi-maps-mcp\install-id` (예: `C:\Users\<사용자>\.inavi-maps-mcp\install-id`) |
+| macOS / Linux | `~/.inavi-maps-mcp/install-id` |
+
+- OS 사용자 계정마다 하나이며, 같은 계정의 여러 MCP 호스트(Claude Desktop, Cursor 등)가 같은 ID를 함께 씁니다.
+- 파일을 삭제하면 다음 실행 때 새 ID가 생성됩니다.
+
+**수집 끄기**
+- 환경 변수 `INAVI_MCP_TELEMETRY=false`를 설정하면 전송하지 않으며, 설치 ID 파일도 만들지 않습니다.
+
+```json
+{
+  "mcpServers": {
+    "inavi-maps-mcp": {
+      "command": "npx",
+      "args": ["-y", "@inavi-maps/mcp-server"],
+      "env": { "INAVI_MCP_TELEMETRY": "false" }
+    }
+  }
+}
+```
+
+**보관 및 문의**
+- 식별 정보가 없는 통계 데이터로, 별도 보존 기한 없이 보관하며 제3자에게 제공하지 않습니다.
+- 문의: devbaek@inavi.kr
 
 ---
 
