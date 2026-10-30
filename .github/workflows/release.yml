@@ -112,21 +112,11 @@ jobs:
           ./mcp-publisher login github-oidc
           ./mcp-publisher publish
 
-      # Create MCPB bundle
-      - name: Install MCPB CLI
-        run: npm install -g @anthropic-ai/mcpb
-
-      - name: Create MCPB bundle
-        run: mcpb pack
-
-      # Create GitHub Release with MCPB bundle
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ steps.version.outputs.tag }}
           generate_release_notes: true
-          files: |
-            *.mcpb
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
