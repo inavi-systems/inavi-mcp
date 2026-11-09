@@ -20,19 +20,7 @@ INAVI Maps Docs MCP Server를 연결하면, AI가 INAVI Maps의 위치 기반 AP
 
 ## 빠른 시작
 
-### 방법 1: .mcpb Bundle (Claude Desktop 전용 - 추천)
-
-가장 쉬운 설치 방법입니다. 별도 환경 구성 없이 바로 사용할 수 있습니다.
-
-1. [GitHub Releases](https://github.com/inavi-systems/inavi-mcp/releases)에서 최신 `.mcpb` 파일 다운로드
-2. 다운로드한 `.mcpb` 파일을 Claude Desktop에 **드래그 앤 드롭** (또는 더블클릭)
-3. Claude Desktop 재시작
-
-완료! 이제 Claude에게 지도 관련 질문을 할 수 있습니다.
-
-### 방법 2: npx (모든 MCP 호스트)
-
-Cursor, VS Code, Claude Code, Codex, Windsurf 등 다양한 MCP 호스트에서 사용할 수 있습니다.
+Claude Desktop, Cursor, VS Code, Claude Code, Codex, Windsurf 등 다양한 MCP 호스트에서 npx로 실행합니다.
 
 > **사전 요구사항:** Node.js 22 이상이 설치되어 있어야 합니다.
 
@@ -92,6 +80,8 @@ claude mcp add --transport stdio inavi-maps-mcp -- npx -y @inavi-maps/mcp-server
 
 - Windows: `%APPDATA%\Claude\claude_desktop_config.json`
 - macOS: `~/Library/Application Support/Claude/claude_desktop_config.json`
+
+> `.mcpb` 번들은 더 이상 제공하지 않습니다. 번들로 설치했다면 Claude Desktop에서 확장을 제거한 뒤 표준 설정을 추가하세요.
 
 </details>
 

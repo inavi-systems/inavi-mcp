@@ -66,7 +66,8 @@ Actions > Release > Run workflow > version-type: patch | minor | major | none
 The workflow bumps the version (`scripts/sync-version.js` syncs `manifest.json` and
 `server.json` through the npm `version` hook), pushes the commit and tag to `main`, publishes to
 npm, waits until npm serves the new version, publishes to the official MCP Registry, then
-attaches an MCPB bundle to a GitHub Release.
+creates a GitHub Release. MCPB (`.mcpb`) bundles are no longer built; `manifest.json` stays and
+is still kept in sync.
 
 **Do not bump the version locally** — the workflow does it, so a local `npm version` makes the
 release skip a number.

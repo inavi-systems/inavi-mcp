@@ -4,9 +4,8 @@ Claude Desktop에서 INAVI Maps Docs MCP Server를 사용하기 위한 설정 �
 
 ## 목차
 - [설치 방법](#설치-방법)
-  - [방법 1: .mcpb Bundle (추천)](#방법-1-mcpb-bundle-추천)
-  - [방법 2: npx](#방법-2-npx)
-  - [방법 3: 로컬 빌드](#방법-3-로컬-빌드)
+  - [방법 1: npx (추천)](#방법-1-npx-추천)
+  - [방법 2: 로컬 빌드](#방법-2-로컬-빌드)
 - [설정 확인](#설정-확인)
 - [문제 해결](#문제-해결)
 
@@ -14,35 +13,9 @@ Claude Desktop에서 INAVI Maps Docs MCP Server를 사용하기 위한 설정 �
 
 ## 설치 방법
 
-### 방법 1: .mcpb Bundle (추천)
+> `.mcpb` 번들은 더 이상 제공하지 않습니다. 번들로 설치했다면 Claude Desktop에서 확장을 제거한 뒤 방법 1로 설정하세요.
 
-가장 쉬운 설치 방법입니다. 클릭 몇 번으로 설치 완료!
-
-#### 단계
-
-1. **[GitHub Releases](https://github.com/inavi-systems/inavi-mcp/releases)에서 최신 `.mcpb` 파일 다운로드**
-
-   최신 릴리스 페이지에서 `inavi-maps-mcp-server.mcpb` 파일을 다운로드합니다.
-
-2. **다운로드한 `.mcpb` 파일을 Claude Desktop에 드래그 앤 드롭** (또는 더블클릭)
-
-   Claude Desktop이 자동으로 파일을 인식하고 설치를 시작합니다.
-
-3. **Claude Desktop 재시작**
-
-   설정 적용을 위해 Claude Desktop을 완전히 종료하고 재시작합니다.
-
-#### 완료!
-
-이제 Claude에게 지도 제작이나 API 연동을 요청할 수 있습니다:
-
-```
-INAVI Maps 지도에 마커를 표시하는 HTML 페이지를 만들어줘
-```
-
----
-
-### 방법 2: npx
+### 방법 1: npx (추천)
 
 npx를 사용하면 별도의 다운로드 없이 최신 버전을 자동으로 실행할 수 있습니다.
 
@@ -76,7 +49,7 @@ npx를 사용하면 별도의 다운로드 없이 최신 버전을 자동으로 
 
 ---
 
-### 방법 3: 로컬 빌드
+### 방법 2: 로컬 빌드
 
 소스에서 직접 빌드하려는 개발자는 로컬에서 빌드하여 사용할 수 있습니다.
 
@@ -160,7 +133,7 @@ Claude Desktop의 설정 메뉴에서 MCP 서버가 올바르게 등록되었는
 
    설정 파일이 올바른 JSON 형식인지 확인합니다. [JSONLint](https://jsonlint.com/)에서 검증할 수 있습니다.
 
-3. **절대 경로 사용 (방법 3 사용 시)**
+3. **절대 경로 사용 (방법 2 사용 시)**
 
    ```json
    // ❌ 잘못된 예 (상대 경로)
