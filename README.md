@@ -337,6 +337,17 @@ Unexpected token...is not valid JSON
 
 MIT License - 자유롭게 사용, 수정, 배포할 수 있습니다. 자세한 내용은 [LICENSE](./LICENSE) 파일을 참조하세요.
 
+Copyright (c) 2024-2026 iNavi Systems Corp.
+
+---
+
+## 지원
+
+이 MCP 서버는 (주)아이나비시스템즈(iNavi Systems Corp.)가 공식으로 개발하고 유지보수합니다.
+
+- **연동 가이드**: [INAVI Maps 문서 MCP 서버 가이드](https://mapsapi.inavisys.com/docs-mcp-guide)
+- **버그 제보·기능 요청·서비스 문의**: [INAVI Maps API 커뮤니티](https://mapsapi.inavisys.com/community/)
+
 ---
 
 ## 참고 자료
