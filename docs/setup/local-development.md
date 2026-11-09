@@ -77,7 +77,6 @@ copy .env.example .env
 # PORT=3000
 # INAVI_DOMAIN=https://imaps.inavi.com
 # INAVI_MCP_TELEMETRY=false
-# INAVI_MCP_TELEMETRY_URL=https://dev-mapsapi.inavisys.com
 ```
 
 ### 환경 변수 설명
@@ -88,14 +87,10 @@ copy .env.example .env
 | `PORT` | 서버 포트 (stdio 서버에서는 사용되지 않음) | `3000` | ❌ |
 | `INAVI_DOMAIN` | INAVI Maps API 도메인 (`/maps/v3.0` 자동 추가) | `https://imaps.inavi.com` | ❌ |
 | `INAVI_MCP_TELEMETRY` | 사용 통계 전송 여부 (`false` 또는 `0`이면 끔, `NODE_ENV=test`에서는 항상 꺼짐) | 켜짐 | ❌ |
-| `INAVI_MCP_TELEMETRY_URL` | 사용 통계 수집 서버 주소 | `https://mapsapi.inavisys.com` | ❌ |
 
 ### 로컬 개발 시 사용 통계
 
-기본 전송 주소는 운영 서버입니다. 로컬에서 실행한 기록이 운영 통계에 섞이지 않도록 아래 중 하나를 설정하세요.
-
-- 개발 서버로 전송: `INAVI_MCP_TELEMETRY_URL=https://dev-mapsapi.inavisys.com`
-- 전송 끄기: `INAVI_MCP_TELEMETRY=false`
+로컬에서 실행한 기록이 사용 통계에 섞이지 않도록 `INAVI_MCP_TELEMETRY=false`로 전송을 끄세요.
 
 `.env`는 `npm run dev`와 MCP Host에 등록한 빌드 모두에 적용됩니다. MCP Host 설정의 `env`에 지정하면 그 값이 우선합니다.
 
@@ -143,7 +138,7 @@ dir dist\
     "inavi-maps-mcp": {
       "command": "node",
       "args": ["C:/absolute/path/to/inavi-maps-mcp-server/dist/server.js"],
-      "env": { "INAVI_MCP_TELEMETRY_URL": "https://dev-mapsapi.inavisys.com" }
+      "env": { "INAVI_MCP_TELEMETRY": "false" }
     }
   }
 }
@@ -152,7 +147,7 @@ dir dist\
 **중요:**
 - **절대 경로**를 사용하세요 (상대 경로 불가)
 - Windows에서는 슬래시(`/`) 또는 이스케이프된 백슬래시(`\\`) 사용
-- `env`는 사용 통계를 개발 서버로 보내는 설정입니다 ([로컬 개발 시 사용 통계](#로컬-개발-시-사용-통계) 참고)
+- `env`는 사용 통계 전송을 끄는 설정입니다 ([로컬 개발 시 사용 통계](#로컬-개발-시-사용-통계) 참고)
 
 ### Cursor / Windsurf / Continue / Cline
 
