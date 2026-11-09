@@ -485,7 +485,7 @@
                               "format": "int32",
                               "example": 3720
                             },
-                            "startTime": {
+                            "start_time": {
                               "type": "object",
                               "properties": {
                                 "year": {
@@ -521,7 +521,7 @@
                               },
                               "description": "해당 경로 탐색의 실제 출발 시간을 나타내는 객체"
                             },
-                            "endTime": {
+                            "end_time": {
                               "type": "object",
                               "properties": {
                                 "year": {
