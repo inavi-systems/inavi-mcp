@@ -345,9 +345,8 @@ Copyright (c) 2024-2026 iNavi Systems Corp.
 
 이 MCP 서버는 (주)아이나비시스템즈(iNavi Systems Corp.)가 공식으로 개발하고 유지보수합니다.
 
-- **버그 제보·기능 요청**: [GitHub Issues](https://github.com/inavi-systems/inavi-mcp/issues)
 - **연동 가이드**: [INAVI Maps 문서 MCP 서버 가이드](https://mapsapi.inavisys.com/docs-mcp-guide)
-- **서비스 문의**: [INAVI Maps API 커뮤니티](https://mapsapi.inavisys.com/community/)
+- **버그 제보·기능 요청·서비스 문의**: [INAVI Maps API 커뮤니티](https://mapsapi.inavisys.com/community/)
 
 ---
 
