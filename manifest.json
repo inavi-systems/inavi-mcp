@@ -4,7 +4,7 @@
   "version": "0.4.2",
   "description": "Documentation for building with INAVI Maps (South Korea) - API specifications, Web JS SDK reference, and render-ready HTML map templates. The server provides specs and code templates; it does not call the APIs.",
   "author": {
-    "name": "iMPS",
+    "name": "iNavi Systems Corp.",
     "url": "https://mapsapi.inavisys.com/"
   },
   "server": {
