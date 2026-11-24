@@ -29,8 +29,8 @@ const projectRoot = resolve(__dirname, '../../..');
 const MAP_EXAMPLE_COMMON_WARNING =
   'CUSTOMIZING: Data values (coordinates, zoom, labels, colors) can be replaced freely. ' +
   'Options, methods, events or styles the template does not show may be added, but verify each one ' +
-  'with get_sdk_doc first — never invent API from memory or another provider, as INAVI Maps and ' +
-  'Google Maps differ in syntax.';
+  'with get_sdk_doc first — never invent API from memory or another provider, as INAVI Maps has ' +
+  'its own syntax and calls from other map SDKs do not carry over.';
 
 /**
  * Replace placeholder values in HTML with actual environment variable values

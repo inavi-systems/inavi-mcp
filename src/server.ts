@@ -52,7 +52,7 @@ How to use the tools
    shown; the SDK reference does not cover them.
 2. Going beyond a template — look up the exact option, method, event or type with list_sdk_docs,
    then get_sdk_doc, before writing it. Do not invent API from memory or from another provider:
-   INAVI Maps is not Google Maps and the syntax differs.
+   INAVI Maps has its own syntax, and calls from other map SDKs do not carry over.
 3. Fetching data (place search, routes, address conversion) — confirm the path and parameters with
    list_api_specs, then get_api_spec, before calling. Parameter names are not consistent between
    endpoints, so guessing them fails.
